@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpetly_project_fe=self.webpackChunkpetly_project_fe||[]).push([[273],{273:function(e,n,t){t.r(n),t.d(n,{default:function(){return r}});var u=t(329),r=function(){return(0,u.jsx)("h1",{children:"Page not found"})}}}]);
+//# sourceMappingURL=273.638c7524.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpetly_project_fe=self.webpackChunkpetly_project_fe||[]).push([[911],{911:function(e,n,t){t.r(n),t.d(n,{default:function(){return s}});var c=t(791),r=t(689),u=t(329),s=function(){return(0,u.jsx)(c.Suspense,{fallback:(0,u.jsx)("div",{children:"Loading..."}),children:(0,u.jsx)(r.j3,{})})}}}]);
+//# sourceMappingURL=911.45bc2589.chunk.js.map

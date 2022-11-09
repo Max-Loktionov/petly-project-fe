@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpetly_project_fe=self.webpackChunkpetly_project_fe||[]).push([[221],{221:function(e,n,t){t.r(n),t.d(n,{default:function(){return o}});var c,r=t(168),i=t(444).ZP.div(c||(c=(0,r.Z)(["\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 40px;\n  color: #010101;\n"]))),l=t(329),o=function(){return(0,l.jsx)(i,{children:"Welcome to petly project"})}}}]);
+//# sourceMappingURL=221.17044b3b.chunk.js.map
