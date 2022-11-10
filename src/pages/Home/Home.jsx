@@ -1,7 +1,14 @@
-import { Container } from './Home.styled';
+// import { Container } from "./Home.styled";
+import { Button } from "components/Button/Button";
 
 const Home = () => {
-  return <Container>Welcome to petly project</Container>;
+  return (
+    <>
+      <form>
+        <Button>dsfd</Button>
+      </form>
+    </>
+  );
 };
 
 export default Home;

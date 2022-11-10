@@ -24,8 +24,8 @@ const theme = {
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
-    body: "Manrope', sans-serif",
-    logo: "Poppins', sans-serif",
+    body: "Manrope, sans-serif",
+    logo: "Poppins, sans-serif",
   },
   fontSizes: {
     xs: "12px",
