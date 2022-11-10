@@ -1,19 +1,22 @@
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { Nav } from "components/Nav/Nav";
 import { UserNav } from "components/UserNav/UserNav";
-import { StyledSVG } from "./Navigation.styled";
+import { ReactComponent as Icon } from "../../img/icons/menu.svg";
+import { BurgerMenuBtn, MobileMenu, NavContainer } from "./Navigation.styled";
 
 export const Navigation = () => {
   return (
     <>
-      <Nav />
-      <UserNav />
-      <AuthNav />
-      <button type="button">
-        <StyledSVG width={30} height={20}>
-          <use href="../../img/symbol-defs.svg#icon-menu"></use>
-        </StyledSVG>
-      </button>
+      <BurgerMenuBtn type="button">
+        <Icon width={30} height={20}></Icon>
+      </BurgerMenuBtn>
+      <MobileMenu>
+        <NavContainer>
+          <Nav />
+          <UserNav />
+          <AuthNav />
+        </NavContainer>
+      </MobileMenu>
     </>
   );
 };
