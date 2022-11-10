@@ -1,6 +1,6 @@
 import { AccentLogo, LogoText } from "./Logo.styled";
 
-export const Logo = () => {
+const Logo = () => {
   return (
     <>
       <LogoText>
@@ -9,3 +9,5 @@ export const Logo = () => {
     </>
   );
 };
+
+export default Logo;

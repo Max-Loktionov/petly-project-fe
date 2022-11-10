@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const LogoText = styled.p`
-  font-family: ${p => p.theme.fonts.logo};
-  color: ${p => p.theme.colors.logo};
+  /* font-family: ${p => p.theme.fonts.logo}; */
+  /* color: ${p => p.theme.colors.accent}; */
+  ${p => p.theme.colors.logo};
   font-weight: ${p => p.theme.fontWeights.logo};
   font-size: 28px;
   line-height: 1.5;

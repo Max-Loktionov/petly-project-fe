@@ -22,6 +22,10 @@ export const StyledNavLink = styled(NavLink)`
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.navBarText};
 
+  &.active {
+    color: ${p => p.theme.colors.accent};
+  }
+
   @media (min-width: 768px) {
     font-size: 48px;
   }

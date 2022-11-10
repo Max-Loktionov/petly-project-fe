@@ -8,11 +8,11 @@ export const Container = styled.div`
   font-size: 40px;
   /* color: #010101; */
   color: ${p => p.theme.colors.inputModal};
-  color: green;
+  /* color: green; */
   @media ${p => p.theme.media.tablet} {
-    color: red;
+    color: ${p => p.theme.colors.accent};
   }
   @media ${p => p.theme.media.desktop} {
-    color: yellow;
+    color: ${p => p.theme.colors.white};
   }
 `;
