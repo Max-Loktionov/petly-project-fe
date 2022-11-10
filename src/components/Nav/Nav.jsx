@@ -1,11 +1,19 @@
-import { StyledNavLink } from "./Nav.styled";
+import { StyledNavLink, NavItem, NavList } from "./Nav.styled";
 
 export const Nav = () => {
   return (
     <nav>
-      <StyledNavLink to="/news">news</StyledNavLink>
-      <StyledNavLink to="/notices">find pet</StyledNavLink>
-      <StyledNavLink to="/friends">our friend</StyledNavLink>
+      <NavList>
+        <NavItem>
+          <StyledNavLink to="/news">News</StyledNavLink>
+        </NavItem>
+        <NavItem>
+          <StyledNavLink to="/notices">Find pet</StyledNavLink>
+        </NavItem>
+        <NavItem>
+          <StyledNavLink to="/friends">Our friend</StyledNavLink>
+        </NavItem>
+      </NavList>
     </nav>
   );
 };

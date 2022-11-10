@@ -1,10 +1,32 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+export const NavList = styled.ul`
+  @media (min-width: 1280px) {
+    display: flex;
+  }
+`;
+export const NavItem = styled.li`
+  @media (min-width: 1280px) {
+    :not(:last-child) {
+      margin-right: 80px;
+    }
+  }
+`;
+
 export const StyledNavLink = styled(NavLink)`
-  font-weight: 500;
-  font-size: 32px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.heading};
+  font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.37;
   letter-spacing: 0.04em;
-  color: #181c27;
+  color: ${p => p.theme.colors.navBarText};
+
+  @media (min-width: 768px) {
+    font-size: 48px;
+  }
+  @media (min-width: 1280px) {
+    font-size: 20px;
+    line-height: 1.35;
+  }
 `;

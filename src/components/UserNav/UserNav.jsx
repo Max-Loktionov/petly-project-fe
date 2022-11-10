@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { StyledNavLink } from "./UserNav.styled";
 
 export const UserNav = () => {
-  return <NavLink to="/user">Account</NavLink>;
+  return <StyledNavLink to="/user">Account</StyledNavLink>;
 };

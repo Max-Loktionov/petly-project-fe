@@ -6,7 +6,7 @@ export const Navigation = () => {
   return (
     <>
       <Nav />
-      <UserNav />
+      {/* <UserNav /> */}
       <AuthNav />
     </>
   );
