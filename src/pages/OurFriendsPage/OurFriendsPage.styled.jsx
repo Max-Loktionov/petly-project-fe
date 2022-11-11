@@ -27,3 +27,14 @@ export const Card = styled.li`
     margin-left: 0px;
   }
 `;
+
+
+@media screen and (min-width: 320px) {
+    
+  }
+
+  @media screen and (min-width: 768px) {
+  
+  }
+  @media screen and (min-width: 1280px) {
+   
