@@ -46,8 +46,8 @@ const theme = {
   },
   borders: {
     none: "none",
-    normal: "1px solid",
-    inputModal: "2px solid",
+    primaryBtn: "2px solid",
+    inputModal: "1px solid",
   },
   radii: {
     none: "0",
