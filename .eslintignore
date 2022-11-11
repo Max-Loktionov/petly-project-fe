@@ -7,7 +7,7 @@ dist/
 /public/
 /vendor/
 node_modules/
-!.eslintrc.js
+!.eslintrc.json
 /client/server/devdocs/search-index.js
 /packages/calypso-codemods/tests
 /packages/webpack-rtl-plugin/test/dist*/
