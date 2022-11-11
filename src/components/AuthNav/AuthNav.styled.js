@@ -19,13 +19,4 @@ export const AuthNavItem = styled.li`
   } ;
 `;
 
-// const TomatoButton = styled(Button)`
-//   color: tomato;
-//   border-color: tomato;
-// `;
-
-export const StyledNavLink = styled(NavLink)`
-  &.active {
-    color: ${p => p.theme.colors.accent};
-  }
-`;
+export const StyledNavLink = styled(NavLink)``;

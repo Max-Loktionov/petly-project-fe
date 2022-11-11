@@ -1,5 +1,10 @@
+import Button from "components/Button";
 import { StyledNavLink } from "./UserNav.styled";
 
 export const UserNav = () => {
-  return <StyledNavLink to="/user">Account</StyledNavLink>;
+  return (
+    <Button active={true}>
+      <StyledNavLink to="/user">Account</StyledNavLink>
+    </Button>
+  );
 };
