@@ -1,7 +1,17 @@
-import { Container } from './Home.styled';
+import { LearnButton, Container } from "./Home.styled";
+import Button from "components/Button";
 
 const Home = () => {
-  return <Container>Welcome to petly project</Container>;
+  return (
+    <>
+      <Container>
+        Home
+        <Button active>sell</Button>
+        <Button>lost/found</Button>
+        <LearnButton disabled>Learn more</LearnButton>
+      </Container>
+    </>
+  );
 };
 
 export default Home;
