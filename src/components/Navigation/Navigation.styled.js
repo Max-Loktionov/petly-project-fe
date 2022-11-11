@@ -28,7 +28,7 @@ export const MobileMenu = styled.div`
   height: 100vh;
   width: 100%;
   background-color: ${p => p.theme.colors.background};
-  background-color: #f59256;
+  /* background-color: #f59256; */
   visibility: visible;
   /* transform: translateX(100%); */
   transition: 0.5s;

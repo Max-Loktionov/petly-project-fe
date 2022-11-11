@@ -17,7 +17,7 @@ export const Navigation = () => {
           <AuthNav />
           {/* </Container> */}
         </NavContainer>
-      </MobileMenu>{" "}
+      </MobileMenu>
     </>
   );
 };
