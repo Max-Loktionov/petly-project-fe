@@ -1,7 +1,7 @@
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { BurgerMenu } from "components/BurgerMenuBtn/BurgerMenu";
 import { Nav } from "components/Nav/Nav";
-import { UserNav } from "components/UserNav/UserNav";
+// import { UserNav } from "components/UserNav/UserNav";
 import { MobileMenu, NavContainer } from "./Navigation.styled";
 
 export const Navigation = () => {
@@ -11,10 +11,13 @@ export const Navigation = () => {
       <MobileMenu>
         <NavContainer>
           <Nav />
-          <UserNav />
+
+          {/* <Container> */}
+          {/* <UserNav /> */}
           <AuthNav />
+          {/* </Container> */}
         </NavContainer>
-      </MobileMenu>
+      </MobileMenu>{" "}
     </>
   );
 };
