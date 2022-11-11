@@ -1,4 +1,4 @@
-import "modern-normalize";
+// import "modern-normalize";
 
 import { createGlobalStyle } from "styled-components";
 
