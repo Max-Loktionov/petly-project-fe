@@ -14,6 +14,8 @@ const FriendCard = friend => {
         <List>
           <Elem>
             <span>Time:</span>
+            {workDays !== null && <span>hello</span>}
+            <span>_______ </span>
           </Elem>
           <Elem>
             <span>Address:</span>
@@ -21,7 +23,8 @@ const FriendCard = friend => {
           </Elem>
           <Elem>
             <span>Email:</span>
-            <span>{email}</span>
+            {email && <span>{email}</span>}
+            <span>_______ </span>
           </Elem>
           <Elem>
             <span>Phone:</span>
