@@ -11,20 +11,25 @@ export const Navigation = () => {
   const onClick = () => {
     setIsOpenMobile(!isOpenMobile);
   };
+
+  const screenSize = window.innerWidth;
+
   return (
     <>
       <BurgerMenu handleClick={onClick} />
-
       <MobileMenu $mode={isOpenMobile}>
         <NavContainer>
           <Nav />
 
           {/* <Container> */}
-          <UserNav />
-          <AuthNav />
+          {screenSize < 768 && <AuthNav />}
+          {screenSize < 768 && <UserNav />}
+
           {/* </Container> */}
         </NavContainer>
       </MobileMenu>
+      {screenSize >= 768 && <AuthNav />}
+      {screenSize >= 768 && <UserNav />}
     </>
   );
 };

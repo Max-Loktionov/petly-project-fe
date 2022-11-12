@@ -3,11 +3,15 @@ import styled from "styled-components";
 
 export const AuthNavList = styled.ul`
   display: flex;
+  @media (max-width: 767px) {
+    margin-bottom: 60px;
+  }
   @media (min-width: 768px) {
-    /* margin-left: auto; */
+    margin-left: auto;
+    margin-right: 82px;
   }
   @media (min-width: 1280px) {
-    margin-left: auto;
+    margin-right: 0;
   }
 `;
 
