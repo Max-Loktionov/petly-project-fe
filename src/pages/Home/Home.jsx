@@ -1,7 +1,12 @@
 import { LearnButton, Container } from "./Home.styled";
 import Button from "components/Button";
+import { useGetUserQuery } from "redux/userApi";
 
 const Home = () => {
+  const { data, error } = useGetUserQuery();
+  console.log("data", data);
+  console.log("error", error);
+
   return (
     <>
       <Container>
