@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const SharedLayout = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Header />
+      {/* <Header /> */}
       <Outlet />
     </Suspense>
   );

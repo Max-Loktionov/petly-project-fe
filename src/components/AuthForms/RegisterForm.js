@@ -1,16 +1,24 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux'; 
 import { useState } from 'react';
-import authOperations from '../../redux/auth/authOperations';
-import { Button } from '../Button';
-import { Form } from './registerForm.styled';
-import { Input } from './registerForm.styled';
+import { Form, Input, RegisterBtn } from './authForms.styled';
 
 const RegisterForm = () => {
     // const dispatch = useDispatch();
     // const [email, setEmail] = useState('');
     // const [password, setPassword] = useState('');
+    const [nextPage, setNextPage] = useState(false);
+    const [btnText, setBtnText] = useState('Next');
+    // const [btnType, setBtnType] = useState('button');
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const handleClick = evt => {
+        if (evt) {
+            setNextPage(true);
+            setBtnText('Register');
+            // setBtnType('submit');
+        }
+    }
 
     // const handleChange = ({ target: { name, value } }) => {
     //     switch (name) {
@@ -33,29 +41,52 @@ const RegisterForm = () => {
 
     const emailValidation = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
+
     return (
-        <Form color={"black"}>
-            <Input
+        <Form>
+            {!nextPage && <Input
                 label='Email'
                 {...register("email", { required: 'This is required', pattern: { value: emailValidation, message: 'Check your email' } })}
                 aria-invalid={errors.email ? "true" : "false"}
+                type='email'
                 placeholder="Email"
-            />
-            <Input
+            />}
+            {!nextPage && <Input
                 label="Password"
-                {...register("password", { required: 'This is required', minLength: { value: 7, message: 'Min length is 7' } })}
+                {...register("password", { required: 'This is required', minLength: { value: 7, message: 'Min length is 7' }, maxLength: { value: 32, message: 'Min length is 32' } })}
                 aria-invalid={errors.password ? "true" : "false"}
                 type='password'
                 placeholder="Password"
-            />
-            <Input
+            />}
+            {!nextPage && <Input
                 label="Confirm Password"
                 {...register("password", { required: 'This is required', minLength: { value: 7, message: 'Min length is 7' } })}
                 aria-invalid={errors.password ? "true" : "false"}
                 type='password'
                 placeholder="Confirm Password"
-            />
-            <Input type='submit' />
+            />}
+            {nextPage && <Input
+                label="Name"
+                {...register("name", { required: 'This is required' })}
+                aria-invalid={errors.name ? "true" : "false"}
+                type='text'
+                placeholder="Name"
+            />}
+            {nextPage && <Input
+                label="Location"
+                {...register("location", { required: 'This is required' })}
+                aria-invalid={errors.location ? "true" : "false"}
+                type='text'
+                placeholder="City, region"
+            />}
+            {nextPage && <Input
+                label="Number"
+                {...register("number", { required: 'This is required' })}
+                aria-invalid={errors.number ? "true" : "false"}
+                type='tel'
+                placeholder="Mobile Phone"
+            />}
+            <RegisterBtn type='button' onClick={handleClick} active>{btnText}</RegisterBtn>
         </Form>
     )
 }
