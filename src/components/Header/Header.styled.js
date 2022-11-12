@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding-top: 16px;
+  padding: 12px 20px;
+
   @media (min-width: 768px) {
-    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 32px;
   }
   @media (min-width: 1280px) {
     display: flex;
     align-items: center;
+    padding: 20px 16px;
   }
 `;
