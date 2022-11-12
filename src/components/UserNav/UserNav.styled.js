@@ -7,6 +7,10 @@ export const StyledButton = styled(Button)`
   @media (max-width: 767px) {
     margin-bottom: 60px;
   }
+  @media (min-width: 768px) {
+    margin-left: auto;
+    margin-right: 82px;
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
