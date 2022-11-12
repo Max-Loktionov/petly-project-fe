@@ -57,7 +57,7 @@ const theme = {
   },
   media: {
     mobile: "(min-width: 320px)",
-    tablet: "(max-width: 1279px) and (min-width: 768px)",
+    tablet: "(min-width: 768px)",
     desktop: "(min-width: 1280px)",
   },
 };
