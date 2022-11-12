@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const NavContainer = styled.div`
   /* @media (max-width: 767px) {
@@ -33,6 +33,21 @@ export const MobileMenu = styled.div`
   /* transform: translateX(100%); */
   transition: 0.5s;
   padding: 60px 20px;
+
+  //
+  ${props => {
+    switch (props.$mode) {
+      case true:
+        return css`
+          visibility: visible;
+        `;
+      default:
+        return css`
+          visibility: hidden;
+        `;
+    }
+  }}
+  //
 
   @media screen and (min-width: 768px) {
     width: 100%;

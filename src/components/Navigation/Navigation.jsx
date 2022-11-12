@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { BurgerMenu } from "components/BurgerMenuBtn/BurgerMenu";
 import { Nav } from "components/Nav/Nav";
@@ -5,10 +7,15 @@ import { Nav } from "components/Nav/Nav";
 import { MobileMenu, NavContainer } from "./Navigation.styled";
 
 export const Navigation = () => {
+  const [isOpenMobile, setIsOpenMobile] = useState(false);
+  const onClick = () => {
+    setIsOpenMobile(!isOpenMobile);
+  };
   return (
     <>
-      <BurgerMenu />
-      <MobileMenu>
+      <BurgerMenu handleClick={onClick} />
+
+      <MobileMenu $mode={isOpenMobile}>
         <NavContainer>
           <Nav />
 

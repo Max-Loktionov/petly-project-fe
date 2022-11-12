@@ -4,6 +4,9 @@ import styled from "styled-components";
 export const AuthNavList = styled.ul`
   display: flex;
   @media (min-width: 768px) {
+    /* margin-left: auto; */
+  }
+  @media (min-width: 1280px) {
     margin-left: auto;
   }
 `;
