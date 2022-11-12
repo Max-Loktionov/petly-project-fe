@@ -5,10 +5,10 @@ import { Container } from "./Header.styled";
 export const Header = () => {
   return (
     <header>
-      <Container>
+      {/* <Container>
         <Logo />
         <Navigation />
-      </Container>
+      </Container> */}
     </header>
   );
 };

@@ -8,6 +8,7 @@ import theme from "styles/theme";
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const UserPage = lazy(() => import("../pages/UserPage"));
 
 export const App = () => {
   return (
@@ -17,8 +18,9 @@ export const App = () => {
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
-              <Route index element={<Home />} />
-              <Route path="*" element={<NotFound />} />
+              {/* <Route index element={<Home />} /> */}
+              <Route path="profile" element={<UserPage />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
             </Route>
           </Routes>
         </Suspense>
