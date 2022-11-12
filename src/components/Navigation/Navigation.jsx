@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { BurgerMenu } from "components/BurgerMenuBtn/BurgerMenu";
 import { Nav } from "components/Nav/Nav";
-// import { UserNav } from "components/UserNav/UserNav";
+import { UserNav } from "components/UserNav/UserNav";
 import { MobileMenu, NavContainer } from "./Navigation.styled";
 
 export const Navigation = () => {
@@ -20,7 +20,7 @@ export const Navigation = () => {
           <Nav />
 
           {/* <Container> */}
-          {/* <UserNav /> */}
+          <UserNav />
           <AuthNav />
           {/* </Container> */}
         </NavContainer>
