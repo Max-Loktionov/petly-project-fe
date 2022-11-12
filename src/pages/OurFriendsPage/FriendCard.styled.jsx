@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { colors } from "../../styles/theme";
+
 export const Box = styled.div`
   display: flex;
 `;
 export const Title = styled.p`
-  @media screen and (min-width: 320px) {
+  @media ${p => p.theme.media.mobile} {
     text-align: center;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -13,45 +13,45 @@ export const Title = styled.p`
     line-height: 16px;
     color: #f59256;
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     margin-bottom: 16px;
     font-size: 16px;
     line-height: 22px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     font-size: 20px;
     line-height: 27px;
   }
 `;
 
 export const Picture = styled.div`
-  @media screen and (min-width: 320px) {
+  @media ${p => p.theme.media.mobile} {
     margin: 0px;
     width: 110px;
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     width: 120px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     width: 158px;
   }
 `;
 export const List = styled.ul`
-  @media screen and (min-width: 320px) {
+  @media ${p => p.theme.media.mobile} {
     margin: 0px 0px 0px 12px;
     width: 120px;
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     margin: 0px 0px 0px 14px;
     width: 181px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     margin: 0px 0px 0px 16px;
   }
 `;
 
 export const Elem = styled.li`
- @media screen and (min-width: 320px) {
+ @media ${p => p.theme.media.mobile} {
   display: flex;
   flex-direction: column;
   text-align: start;
@@ -61,12 +61,12 @@ line-height: 16px;
 &:nth-child(1) {
     margin-top: 0px;
 }
- @media screen and (min-width: 768px) {
+ @media ${p => p.theme.media.tablet}  {
 margin-top: 8px;
 font-size: 14px;
 line-height: 19px;
  }
- @media screen and (min-width: 1280px) {
+ @media ${p => p.theme.media.desktop} {
   margin-top: 12px;  
   font-size: 16px;
   line-height: 22px;  
