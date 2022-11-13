@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormWrapper } from "./LoginForm.styled";
+import { Form, Input, RegisterBtn } from "./authForms.styled";
 import { loginFormSchima } from "utilities/auth-validation-schemas";
 
 export const LoginForm = () => {
@@ -22,14 +22,12 @@ export const LoginForm = () => {
     reset();
   };
   return (
-    <FormWrapper>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type={"email"} placeholder={"Email"} {...register("email")} />
-        <p>{errors.email?.message}</p>
-        <input type={"password"} placeholder={"Password"} {...register("password")} />
-        <p>{errors.password?.message}</p>
-        <button type="submit">Login</button>
-      </form>
-    </FormWrapper>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Input type={"email"} placeholder={"Email"} {...register("email")} />
+      <p>{errors.email?.message}</p>
+      <Input type={"password"} placeholder={"Password"} {...register("password")} />
+      <p>{errors.password?.message}</p>
+      <RegisterBtn type="submit">Login</RegisterBtn>
+    </Form>
   );
 };
