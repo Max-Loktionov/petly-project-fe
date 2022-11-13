@@ -1,6 +1,6 @@
 import { LearnButton, Container } from "./Home.styled";
 import Button from "components/Button";
-import { useAddPetMutation, useDeletePetMutation, useGetUserQuery } from "redux/userApi";
+import { useAddPetMutation, useDeletePetMutation, useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 
 const Home = () => {
   const { data, error } = useGetUserQuery();
@@ -12,6 +12,7 @@ const Home = () => {
   const [deletePet, { isSuccess, isLoading }] = useDeletePetMutation();
   console.log("isSuccess", isSuccess);
   console.log("isLoading", isLoading);
+  const [updateUserAvatar] = useUpdateUserAvatarMutation();
 
   return (
     <>
@@ -20,8 +21,10 @@ const Home = () => {
         <Button active>sell</Button>
         <Button>lost/found</Button>
         <LearnButton disabled>Learn more</LearnButton>
-        <Button onClick={() => deletePet(10)}>deletePet</Button>
-        <Button onClick={() => addPet(newPet)}>addPet</Button>
+        <button onClick={() => deletePet(10)}>deletePet</button>
+        <button onClick={() => addPet(newPet)}>addPet</button>
+        <button onClick={() => updateUserAvatar(newPet)}>updateUserAvatar</button>
+
       </Container>
     </>
   );
