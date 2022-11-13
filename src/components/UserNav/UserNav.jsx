@@ -1,8 +1,8 @@
 import { AccountButton, StyledNavLink } from "./UserNav.styled";
 
-export const UserNav = () => {
+export const UserNav = ({ closeMobileMenu }) => {
   return (
-    <AccountButton active={true}>
+    <AccountButton onClick={closeMobileMenu} active={true}>
       <StyledNavLink to="/user">Account</StyledNavLink>
     </AccountButton>
   );
