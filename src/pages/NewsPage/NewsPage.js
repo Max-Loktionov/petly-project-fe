@@ -14,7 +14,6 @@ function News() {
     const form = e.currentTarget;
     setSeachParams({ query: form.elements.query.value });
     form.reset();
-    const query = "";
   };
   useEffect(() => {
     const newsPage = async () => {

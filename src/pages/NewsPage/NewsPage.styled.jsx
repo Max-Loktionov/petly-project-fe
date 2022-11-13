@@ -32,6 +32,17 @@ export const Title = styled.h1`
   }
 `;
 
+export const SearchBox = styled.form`
+  @media ${p => p.theme.media.mobile} {
+    margin-bottom: 40px;
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-bottom: 60px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-bottom: 60px;
+  }
+`;
 export const Input = styled.input`
   @media ${p => p.theme.media.mobile} {
     display: block;
@@ -55,18 +66,6 @@ export const Input = styled.input`
   @media ${p => p.theme.media.desktop} {
     width: 608px;
     height: 44px;
-  }
-`;
-
-export const SearchBox = styled.form`
-  @media ${p => p.theme.media.mobile} {
-    margin-bottom: 40px;
-  }
-  @media ${p => p.theme.media.tablet} {
-    margin-bottom: 60px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    margin-bottom: 60px;
   }
 `;
 
