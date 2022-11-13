@@ -1,6 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const NavContainer = styled.div`
+  /* @media (max-width: 767px) {
+    align-items: center;
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-right: 92px;
+  } */
   display: flex;
   align-items: center;
 
@@ -11,29 +17,42 @@ export const NavContainer = styled.div`
     width: 100%;
   }
 `;
+
 export const MobileMenu = styled.div`
   position: fixed;
-  top: 0;
+  top: 60px;
   right: 0;
   z-index: 1;
-  padding: 48px 15px;
 
   height: 100vh;
   width: 100%;
-
+  background-color: ${p => p.theme.colors.background};
+  /* background-color: #f59256; */
   visibility: visible;
   /* transform: translateX(100%); */
   transition: 0.5s;
+  padding: 34px 20px;
 
-  @media screen and (min-width: 320px) {
-    /* width: 250px; */
-    padding: 100px 20px;
-  }
+  //
+  ${props => {
+    switch (props.$mode) {
+      case true:
+        return css`
+          visibility: visible;
+        `;
+      default:
+        return css`
+          visibility: hidden;
+        `;
+    }
+  }}
+  //
 
   @media screen and (min-width: 768px) {
     width: 100%;
-    padding: 140px 24px;
-    top: 48px;
+    padding: 80px 24px;
+    top: 75px;
+
     right: 0;
   }
   @media screen and (min-width: 1280px) {
