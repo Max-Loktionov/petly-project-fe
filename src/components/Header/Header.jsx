@@ -1,5 +1,5 @@
 import Logo from "components/Logo";
-// import { Navigation } from "components/Navigation/Navigation";
+import { Navigation } from "components/Navigation/Navigation";
 import { Container } from "./Header.styled";
 
 export const Header = () => {
@@ -7,7 +7,7 @@ export const Header = () => {
     <header>
       <Container>
         <Logo />
-        {/* <Navigation /> */}
+        <Navigation />
       </Container>
     </header>
   );

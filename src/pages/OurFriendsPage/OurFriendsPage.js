@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Box, Card, Title } from "./OurFriendsPage.styled";
-import FriendCard from "./FriendCard";
+import FriendCard from "../../components/OurFriendsCard/FriendCard";
+import getFriends from "./app";
 import axios from "axios";
 
 function Friends() {

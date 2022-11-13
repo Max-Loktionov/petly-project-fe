@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   display: flex;
+  overflow: hidden;
 `;
 export const Title = styled.p`
   @media ${p => p.theme.media.mobile} {
@@ -76,4 +77,5 @@ line-height: 19px;
 export const Img = styled.img`
   width: 100%;
   vertical-align: middle;
+  background: #f59256;
 `;

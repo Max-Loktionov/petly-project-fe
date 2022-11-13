@@ -27,7 +27,6 @@ export const Card = styled.div`
 `;
 export const Title = styled.h3`
   @media ${p => p.theme.media.mobile} {
-    overflow-y: hidden;
     height: 66px;
     margin-top: 0px;
     margin-bottom: 16px;
@@ -35,6 +34,22 @@ export const Title = styled.h3`
     font-size: 24px;
     line-height: 33px;
     letter-spacing: -0.01em;
+
+    span {
+      display: none;
+      padding: 2px 3px;
+      margin-left: 0px;
+      width: 200px;
+    }
+    :hover span {
+      display: inline-block;
+      position: absolute;
+      background: #fdf7f2;
+      border: 1px solid #f59256;
+      font-size: 18px;
+      border-radius: 10px;
+      color: #535353;
+    }
   }
 
   @media ${p => p.theme.media.desktop} {
@@ -51,8 +66,7 @@ export const Elem = styled.p`
     line-height: 22px;
     color: #111321;
     margin-bottom: 20px;
-      }
-  }
+   
   @media ${p => p.theme.media.tablet} {
     margin-bottom: 40px;
   }
