@@ -1,26 +1,43 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Card, Title, Search } from "./NewsPage.styled";
+import { useSearchParams } from "react-router-dom";
+import { Container, Box, Card, Title, SearchBox, Input } from "./NewsPage.styled";
 import NewsCard from "./NewsCard";
 import axios from "axios";
 
 function News() {
   const [news, setNews] = useState([]);
+  const [searchParams, setSeachParams] = useSearchParams();
+  const query = searchParams.get("query") ?? "";
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setSeachParams({ query: form.elements.query.value });
+    form.reset();
+    const query = "";
+  };
   useEffect(() => {
     const newsPage = async () => {
       try {
-        const news = await axios.get("https://petly-be.herokuapp.com/news");
-        setNews(news.data.data.result);
+        const newsArray = await axios.get("https://petly-be.herokuapp.com/news");
+        const newsResult = newsArray.data.data.result;
+        const normalisedQuery = query.toLocaleLowerCase();
+        const news = newsResult.filter(newsItem => newsItem.title.toLowerCase().includes(normalisedQuery));
+        setNews(news);
       } catch (error) {
         console.log(error.message);
       }
     };
     newsPage();
-  }, []);
+  }, [query]);
 
   return (
     <Container>
       <Title>News</Title>
-      <Search>search</Search>
+      <SearchBox onSubmit={handleSubmit}>
+        <Input type="text" name="query" placeholder="Search"></Input>
+        <button type="submit"></button>
+      </SearchBox>
       <Box>
         {news.map(newItem => (
           <Card key={newItem._id}>

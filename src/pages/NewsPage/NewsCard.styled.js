@@ -51,6 +51,7 @@ export const Elem = styled.p`
     line-height: 22px;
     color: #111321;
     margin-bottom: 20px;
+      }
   }
   @media ${p => p.theme.media.tablet} {
     margin-bottom: 40px;

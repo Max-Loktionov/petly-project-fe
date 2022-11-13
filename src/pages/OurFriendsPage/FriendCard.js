@@ -1,3 +1,5 @@
+import EllipsisText from "react-ellipsis-text";
+import PropTypes from "prop-types";
 import { Box, List, Img, Elem, Picture, Title } from "./FriendCard.styled";
 
 const FriendCard = friend => {
@@ -14,17 +16,19 @@ const FriendCard = friend => {
         <List>
           <Elem>
             <span>Time:</span>
-            {workDays !== null && <span>hello</span>}
             <span>_______ </span>
           </Elem>
           <Elem>
             <span>Address:</span>
-            <span>{address}</span>
+            {address && (
+              <span>
+                <EllipsisText text={address} length={25} />
+              </span>
+            )}
           </Elem>
           <Elem>
             <span>Email:</span>
             {email && <span>{email}</span>}
-            <span>_______ </span>
           </Elem>
           <Elem>
             <span>Phone:</span>
@@ -37,3 +41,15 @@ const FriendCard = friend => {
 };
 
 export default FriendCard;
+
+EllipsisText.propTypes = {
+  text: PropTypes.string.isRequired,
+  length: PropTypes.number.isRequired,
+  tail: PropTypes.string,
+  tailClassName: PropTypes.string,
+  tooltip: PropTypes.shape({
+    copyOnClick: PropTypes.bool,
+    onAppear: PropTypes.func,
+    onDisapepear: PropTypes.func,
+  }),
+};

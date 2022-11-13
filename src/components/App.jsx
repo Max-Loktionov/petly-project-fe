@@ -5,11 +5,14 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
+import RegisterPage from "pages/AuthPages/RegisterPage";
+
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const OurFriendsPage = lazy(() => import("../pages/OurFriendsPage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));
+// const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 
 export const App = () => {
   return (
@@ -22,6 +25,7 @@ export const App = () => {
               <Route index element={<Home />} />
               <Route path="friend" element={<OurFriendsPage />} />
               <Route path="news" element={<NewsPage />} />
+              <Route path="register" element={<RegisterPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

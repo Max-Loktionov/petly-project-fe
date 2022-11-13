@@ -32,28 +32,44 @@ export const Title = styled.h1`
   }
 `;
 
-export const Search = styled.div`
+export const Input = styled.input`
   @media ${p => p.theme.media.mobile} {
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 40px;
     width: 280px;
     height: 40px;
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+    border: 1px white solid;
     border-radius: 20px;
-    border: 1px blue solid;
+    padding-left: 15px;
+
+    ::placeholder {
+      color: #535353;
+    }
   }
   @media ${p => p.theme.media.tablet} {
-    margin-bottom: 60px;
     width: 608px;
     height: 44px;
   }
   @media ${p => p.theme.media.desktop} {
-    margin-bottom: 60px;
     width: 608px;
     height: 44px;
   }
 `;
+
+export const SearchBox = styled.form`
+  @media ${p => p.theme.media.mobile} {
+    margin-bottom: 40px;
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-bottom: 60px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-bottom: 60px;
+  }
+`;
+
 export const Box = styled.ul`
   @media ${p => p.theme.media.tablet} {
     display: flex;

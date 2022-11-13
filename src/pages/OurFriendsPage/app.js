@@ -1,8 +1,8 @@
-// import axios from "axios";
+import axios from "axios";
 
-// const getFriends = async () => {
-//   const response = await axios.get("https://petly-be.herokuapp.com/friends");
-//   return response.data;
-// };
+const getFriends = async () => {
+  const response = await axios.get("https://petly-be.herokuapp.com/friends");
+  return response.data;
+};
 
-// export default getFriends;
+export default getFriends;
