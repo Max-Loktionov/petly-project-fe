@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
-import Button from "components/Button";
-
 import styled from "styled-components";
 
-export const StyledButton = styled(Button)`
+import { StyledButton } from "../Button/Button.styled";
+
+export const AccountButton = styled(StyledButton)`
   @media (max-width: 767px) {
     margin-bottom: 60px;
   }

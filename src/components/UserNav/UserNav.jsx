@@ -1,9 +1,9 @@
-import { StyledButton, StyledNavLink } from "./UserNav.styled";
+import { AccountButton, StyledNavLink } from "./UserNav.styled";
 
 export const UserNav = () => {
   return (
-    <StyledButton active={true}>
+    <AccountButton active={true}>
       <StyledNavLink to="/user">Account</StyledNavLink>
-    </StyledButton>
+    </AccountButton>
   );
 };
