@@ -9,11 +9,10 @@ import {
   BoxBtn,
   BoxTitlePet,
   BoxPet,
-  BoxPetItem,
-  PetBlock,
   BoxTitleUser,
   BoxBtnTablet,
 } from "./UserPage.styled";
+import PetsList from "components/PetsList";
 
 const UserPage = () => {
   return (
@@ -38,10 +37,7 @@ const UserPage = () => {
               <BtnAddPet>+</BtnAddPet>
             </BoxBtn>
           </BoxTitlePet>
-          <BoxPetItem>
-            <PetBlock></PetBlock>
-            <PetBlock></PetBlock>
-          </BoxPetItem>
+          <PetsList />
         </BoxPet>
       </UserPageContainer>
     </>
