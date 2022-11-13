@@ -18,14 +18,13 @@ const Home = () => {
     <>
       <Container>
         Home
-        <Button onClick={() => addPet(newPet)} active>
-          sell
-        </Button>
-        <Button onClick={() => deletePet(10)}>lost/found</Button>
+        <Button active>sell</Button>
+        <Button>lost/found</Button>
         <LearnButton disabled>Learn more</LearnButton>
         <button onClick={() => deletePet(10)}>deletePet</button>
         <button onClick={() => addPet(newPet)}>addPet</button>
         <button onClick={() => updateUserAvatar(newPet)}>updateUserAvatar</button>
+
       </Container>
     </>
   );
