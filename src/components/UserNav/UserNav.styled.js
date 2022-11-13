@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import Button from "components/Button";
-
 import styled from "styled-components";
+
+import Button from "components/Button";
 
 export const StyledButton = styled(Button)`
   @media (max-width: 767px) {
