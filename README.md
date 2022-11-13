@@ -1,12 +1,43 @@
 # React homework template
 
 ```
+https://petly-be.herokuapp.com/auth/signup     post - реєстрація користувача (потребує  password, email, name - обов'язкові, city, phone, birthday), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
 
-https://petly-be.herokuapp.com/friends  - дані з друзями
+https://petly-be.herokuapp.com/auth/login      post - логінізація користувача (потрубує email, password), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
 
-https://petly-be.herokuapp.com/news - дані з новинами
+https://petly-be.herokuapp.com/auth/logout     get -  вихід з аккаунту зареєстрованого юзера
 
+https://petly-be.herokuapp.com/auth/current    get  - віддає данні користувача при вже наявному токені
 
+----------------------------------------------------------------------------------------------
+
+https://petly-be.herokuapp.com/friends  -      get -  всі дані з друзями /доступна пагінація (default {page = 1, limit = 10})
+
+----------------------------------------------------------------------------------------------
+
+https://petly-be.herokuapp.com/news -          get - всі дані з новинами /доступна пагінація (default {page = 1, limit = 10})
+
+----------------------------------------------------------------------------------------------
+
+https://petly-be.herokuapp.com/notices            get  - всі оголошення / доступна пагінація (default (page = 1, per_page = 15))/ (обрати за категорією з доступних: ["sell", "lost_found", "in_good_hands"], за допомогою params)
+
+https://petly-be.herokuapp.com/notices/:id        get  - детальна інформація по оголошенню
+
+https://petly-be.herokuapp.com/notices/:category  post -  додавання оголошення (потребує name,title,birthday,breed,male,location,comments - обов'язково, price, avatar, category ), потребує передачу даних за допомогою body/form-data/text (key=name,key=title, ...) body/form-data/file key=avatar
+
+https://petly-be.herokuapp.com/notices/:id        delete - видалення оголошення за його id
+
+-----------------------------------------------------------------------------------------
+
+https://petly-be.herokuapp.com/user                  GET /user - віддає данні про користувача, включно з домашніми улюбленцями, при наявності токену;
+
+https://petly-be.herokuapp.com/user/pets             POST /user/pets - додає юзеру домашнього улюбленця, наявніть токену (потребує name - обов'язково, birthday, breed, comments)), потребує передачу даних за допомогою body/raw/JSON {name,breed, };
+
+ https://petly-be.herokuapp.com/user/pets/:petsId    DELETE /user/pets/:petsId - видаляє домашнього улюбленця по його id, наявність токену;
+
+https://petly-be.herokuapp.com/user/avatar           PATCH /user/avatar - оновлення аватара юзера, наявність токену), потребує передачу даних за допомогою body/form-data/file key=avatar;
+
+https://petly-be.herokuapp.com/user/:properties      PATCH /user/:properties - оновлює одне поле з інформацією про юзера(одне з name, email, birthday, city, phone), окрім аватара, properties - поле яке треба оновити, потребує передачу даних для оновлення у params  ;
 
 
 ```
