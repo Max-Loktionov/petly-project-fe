@@ -35,9 +35,9 @@ const RegisterForm = () => {
         setIsDisabled(false)
     }
 
-    const onSubmit = async data => {
-        console.log(data);
-        const result = await registerUser(data);
+    const onSubmit = async ({email, password, name, city, phone}) => {
+        console.log({email, password, name, city, phone});
+        const result = await registerUser({email, password, name, city, phone});
         dispatch(setToken(result.data.token));
     }
 
