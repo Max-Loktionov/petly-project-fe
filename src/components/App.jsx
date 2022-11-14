@@ -11,7 +11,7 @@ import NoticesPage from "pages/NoticesPage/NoticesPage";
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
-// const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 
 export const App = () => {
   return (

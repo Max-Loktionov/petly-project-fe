@@ -9,7 +9,7 @@ const RegisterPage = () => {
                 <Title>Registration</Title>
                 <RegisterForm />
                 <Text>Already have an account?
-                    <LogoLink href="/">Login</LogoLink>
+                    <LogoLink href="/login">Login</LogoLink>
                 </Text>
             </Container>
         </Section>
