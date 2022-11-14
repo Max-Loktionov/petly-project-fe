@@ -1,10 +1,12 @@
 // import PropTypes from "prop-types";
-import { Box, List, Img, Elem, Picture, Title } from "./FriendCard.styled";
+import { Box, List, Img, Elem, Picture, Title, Time } from "./FriendCard.styled";
+import WorkTime from "./WorkTime";
+// import image from "../../img/"
 const BASE_URL = "https://petly-be.herokuapp.com/friends";
 
 const FriendCard = friend => {
   const { title, address, email, phone, workDays, imageUrl = "" } = friend.friend;
-
+  console.log(friend);
   return (
     <>
       <Title>{title}</Title>
@@ -13,21 +15,27 @@ const FriendCard = friend => {
           <Img src={BASE_URL + imageUrl} alt={title} />
         </Picture>
         <List>
+          <Time>
+            Time:
+            {workDays ? (
+              <span>
+                <WorkTime workDays={workDays} />
+              </span>
+            ) : (
+              <small>_______________ </small>
+            )}
+          </Time>
           <Elem>
-            <span>Time:</span>
-            <span>_______ </span>
+            Address:
+            {address ? <span>{address}</span> : <span>__________ </span>}
           </Elem>
           <Elem>
-            <span>Address:</span>
-            {address && <span>{address}</span>}
+            Email:
+            {email ? <span>{email}</span> : <span>__________ </span>}
           </Elem>
           <Elem>
-            <span>Email:</span>
-            {email && <span>{email}</span>}
-          </Elem>
-          <Elem>
-            <span>Phone:</span>
-            {phone && <span>{phone}</span>}
+            Phone:
+            {phone ? <span>{phone}</span> : <span>__________ </span>}
           </Elem>
         </List>
       </Box>

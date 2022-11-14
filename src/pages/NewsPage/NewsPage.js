@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Container, Box, Card, Title, SearchBox, Input } from "./NewsPage.styled";
-import NewsCard from "./NewsCard";
+import NewsCard from "../../components/NewsCars/NewsCard";
 import axios from "axios";
 
 function News() {

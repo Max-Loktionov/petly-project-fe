@@ -61,18 +61,21 @@ width: calc((100% - 32px) / 2);
   margin-bottom: 32px;
   margin-right: 0px;
   padding: 16px 17px 16px 4px;
-   &:nth-child(2n + 1) {
-    margin-left: 0px;
+  &:nth-child(2n + 1) {
+  margin-left: 0px;
   }
  }
-  @media ${p => p.theme.media.desktop} {
+  @media (${p => p.theme.media.desktop}) {
   width: calc((100% - 64px) / 3);
   height: 287px;  
-   margin-left: 32px;
+  margin-left: 32px;
   margin-bottom: 32px;
   margin-right: 0px;
   padding: 16px 35px 16px 11px;  
-    &:nth-child(3n + 1) {
-    margin-left: 0px;
+  &:nth-child(2n + 1) {
+  margin-left: 32px;
+  }
+  &:nth-child(3n + 1) {
+  margin-left: 0px;
   }
 `;
