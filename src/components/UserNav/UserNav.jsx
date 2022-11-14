@@ -1,10 +1,9 @@
-import Button from "components/Button";
-import { StyledNavLink } from "./UserNav.styled";
+import { AccountButton, StyledNavLink } from "./UserNav.styled";
 
-export const UserNav = () => {
+export const UserNav = ({ closeMobileMenu }) => {
   return (
-    <Button active={true}>
+    <AccountButton onClick={closeMobileMenu} active={true}>
       <StyledNavLink to="/user">Account</StyledNavLink>
-    </Button>
+    </AccountButton>
   );
 };
