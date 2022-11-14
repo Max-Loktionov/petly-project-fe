@@ -5,12 +5,10 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
-import RegisterPage from "pages/AuthPages/RegisterPage";
-
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
-// const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 
 export const App = () => {
   return (
