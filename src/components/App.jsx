@@ -5,12 +5,13 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
-import RegisterPage from "pages/AuthPages/RegisterPage";
+// import RegisterPage from "pages/AuthPages/RegisterPage";
+import NoticesPage from "pages/NoticesPage/NoticesPage";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
-// const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<Home />} />
               <Route path="register" element={<RegisterPage />} />
+              <Route path="notices" element={<NoticesPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
