@@ -1,7 +1,8 @@
-import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn, BtnAddPet } from "./PetsList.styled";
+import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsList.styled";
 import { useGetUserQuery } from "redux/userApi";
 
 import PetsData from "components/PetsData";
+import AddPetBtn from "components/AddPetBtn";
 
 const PetsList = () => {
   const pets = [
@@ -32,7 +33,7 @@ const PetsList = () => {
         <TitlePet>My pets:</TitlePet>
         <BoxBtn>
           <TitleBtn>Add pet</TitleBtn>
-          <BtnAddPet accent>+</BtnAddPet>
+          <AddPetBtn />
         </BoxBtn>
       </BoxTitlePet>
       {pets.map(({ id, name, data, breed, comment }) => (

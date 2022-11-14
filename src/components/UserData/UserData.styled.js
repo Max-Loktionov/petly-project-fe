@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "components/Button";
 
 export const BoxUser = styled.section`
   margin-bottom: 40px;
@@ -54,13 +53,4 @@ export const TitleBtn = styled.p`
   margin-right: 15px;
   font-weight: 500;
   font-size: 20px;
-`;
-
-export const BtnAddPet = styled(Button)`
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  justify-content: center;
-  font-size: 50px;
-  border-radius: ${p => p.theme.radii.round};
 `;
