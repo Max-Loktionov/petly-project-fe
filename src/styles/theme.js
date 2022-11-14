@@ -54,6 +54,7 @@ const theme = {
     btn: "40px",
     inputModal: "20px",
     round: "50%",
+    cardPet: "40px",
   },
   media: {
     mobile: "(min-width: 320px)",

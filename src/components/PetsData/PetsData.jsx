@@ -1,22 +1,39 @@
-import { PetItem } from "./PetsData.styled";
+import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./PetsData.styled";
+import { useDeletePetMutation } from "redux/userApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const PetsData = () => {
+const PetsData = ({ id, name, birthday, breed, comments, avatar }) => {
+  const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
+
+  isDeleting && toast(`${name} was removed`);
+
   return (
     <PetItem>
-      <p>
-        <span>Name:</span> Jack
-      </p>
-      <p>
-        <span>Date of birth:</span> 22.04.2018
-      </p>
-      <p>
-        <span>Breed:</span>JKKKKKK
-      </p>
-      <p>
-        <span>Comments:</span>
-        Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
-        amet, consectetur
-      </p>
+      <ImgPet src={`${avatar}`} alt={`${name}`}></ImgPet>
+
+      <BoxInfo>
+        <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(id)}>
+          <DelIcon />
+        </DeleteBtm>
+        <InfoPet>
+          <Title>Name: </Title>
+          {name}
+        </InfoPet>
+        <InfoPet>
+          <Title>Date of birth: </Title>
+          {birthday}
+        </InfoPet>
+        <InfoPet>
+          <Title>Breed: </Title>
+          {breed}
+        </InfoPet>
+        <InfoPet>
+          <Title>Comments: </Title>
+          {comments}
+        </InfoPet>
+      </BoxInfo>
+      <ToastContainer />
     </PetItem>
   );
 };

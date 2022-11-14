@@ -1,44 +1,15 @@
-import {
-  UserPageContainer,
-  UserBlock,
-  BoxUser,
-  TitleUser,
-  TitlePet,
-  TitleBtn,
-  BtnAddPet,
-  BoxBtn,
-  BoxTitlePet,
-  BoxPet,
-  BoxTitleUser,
-  BoxBtnTablet,
-} from "./UserPage.styled";
 import PetsList from "components/PetsList";
+import UserData from "components/UserData";
+
+import { UserPageContainer } from "./UserPage.styled";
 
 const UserPage = () => {
   return (
     <>
       <div style={{ height: "42px", backgroundColor: "green", marginBottom: "61px" }}></div>
       <UserPageContainer>
-        <BoxUser>
-          <BoxTitleUser>
-            <TitleUser>My information:</TitleUser>
-            <BoxBtnTablet>
-              <TitleBtn>Add pet</TitleBtn>
-              <BtnAddPet>+</BtnAddPet>
-            </BoxBtnTablet>
-          </BoxTitleUser>
-          <UserBlock></UserBlock>
-        </BoxUser>
-        <BoxPet>
-          <BoxTitlePet>
-            <TitlePet>My pets:</TitlePet>
-            <BoxBtn>
-              <TitleBtn>Add pet</TitleBtn>
-              <BtnAddPet>+</BtnAddPet>
-            </BoxBtn>
-          </BoxTitlePet>
-          <PetsList />
-        </BoxPet>
+        <UserData />
+        <PetsList />
       </UserPageContainer>
     </>
   );

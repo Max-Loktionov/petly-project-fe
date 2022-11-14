@@ -1,44 +1,32 @@
 import styled from "styled-components";
 import Button from "components/Button";
 
-export const BoxPet = styled.section`
+export const BoxUser = styled.section`
+  margin-bottom: 40px;
   @media ${p => p.theme.media.tablet} {
-    margin-left: 32px;
+    margin-bottom: 20px;
   }
   @media ${p => p.theme.media.desktop} {
-    width: 821px;
-    height: 212px;
+    margin-right: 32px;
+    margin-bottom: 0px;
   }
 `;
-
-export const BoxTitlePet = styled.div`
+export const BoxTitleUser = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 26px;
   justify-content: space-between;
+  margin-bottom: 18px;
+  margin-left: 32px;
   @media ${p => p.theme.media.tablet} {
+    margin-bottom: 40px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-left: 16px;
     margin-bottom: 24px;
   }
 `;
 
-export const BoxBtn = styled.div`
-  display: inline-flex;
-  align-items: center;
-  @media ${p => p.theme.media.tablet} {
-    display: none;
-  }
-  @media ${p => p.theme.media.desktop} {
-    display: inline-flex;
-  }
-`;
-
-export const TitleBtn = styled.p`
-  margin-right: 15px;
-  font-weight: 500;
-  font-size: 20px;
-`;
-
-export const TitlePet = styled.h2`
+export const TitleUser = styled.h2`
   color: ${p => p.theme.colors.primaryText};
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: 20px;
@@ -51,6 +39,23 @@ export const TitlePet = styled.h2`
   }
 `;
 
+export const BoxBtnTablet = styled.div`
+  display: none;
+  @media ${p => p.theme.media.tablet} {
+    display: inline-flex;
+    align-items: center;
+  }
+  @media ${p => p.theme.media.desktop} {
+    display: none;
+  }
+`;
+
+export const TitleBtn = styled.p`
+  margin-right: 15px;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
 export const BtnAddPet = styled(Button)`
   width: 40px;
   height: 40px;
@@ -59,5 +64,3 @@ export const BtnAddPet = styled(Button)`
   font-size: 50px;
   border-radius: ${p => p.theme.radii.round};
 `;
-
-export const BoxPetItem = styled.div``;
