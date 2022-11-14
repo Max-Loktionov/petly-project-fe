@@ -8,28 +8,37 @@ import { MobileMenu, NavContainer } from "./Navigation.styled";
 
 export const Navigation = () => {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
-  const onClick = () => {
-    setIsOpenMobile(!isOpenMobile);
+
+  const onMobileMenuClick = e => {
+    if (e) {
+      setIsOpenMobile(!isOpenMobile);
+    }
+  };
+
+  const closeMobileMenu = e => {
+    if (e) {
+      setIsOpenMobile(false);
+    }
   };
 
   const screenSize = window.innerWidth;
 
   return (
     <>
-      <BurgerMenu handleClick={onClick} />
+      <BurgerMenu handleClick={onMobileMenuClick} />
       <MobileMenu $mode={isOpenMobile}>
         <NavContainer>
-          <Nav />
+          <Nav handleClick={onMobileMenuClick} />
 
           {/* <Container> */}
-          {screenSize < 768 && <AuthNav />}
-          {screenSize < 768 && <UserNav />}
+          {screenSize < 768 && <AuthNav closeMobileMenu={closeMobileMenu} />}
+          {screenSize < 768 && <UserNav closeMobileMenu={closeMobileMenu} />}
 
           {/* </Container> */}
         </NavContainer>
       </MobileMenu>
-      {screenSize >= 768 && <AuthNav />}
-      {screenSize >= 768 && <UserNav />}
+      {screenSize >= 768 && <AuthNav closeMobileMenu={closeMobileMenu} />}
+      {screenSize >= 768 && <UserNav closeMobileMenu={closeMobileMenu} />}
     </>
   );
 };
