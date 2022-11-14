@@ -32,6 +32,14 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    updateUserAvatar: builder.mutation({
+      query: file => ({
+        url: "/avatar",
+        method: "PATCH",
+        body: file,
+      }),
+      invalidatesTags: ["User"],
+    }),
 
     addPet: builder.mutation({
       query: newPet => ({
@@ -54,4 +62,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetUserQuery, useUpdateUserMutation, useAddPetMutation, useDeletePetMutation } = userApi;
+export const { useGetUserQuery, useUpdateUserMutation, useAddPetMutation, useDeletePetMutation, useUpdateUserAvatarMutation } = userApi;
