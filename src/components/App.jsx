@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
-import RegisterPage from "pages/AuthPages/RegisterPage";
+// import RegisterPage from "pages/AuthPages/RegisterPage";
 import NoticesPage from "pages/NoticesPage/NoticesPage";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
