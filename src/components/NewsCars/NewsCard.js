@@ -12,8 +12,8 @@ const NewsCard = newItem => {
     <>
       <Card>
         <Title>
-          {name}
           <span>{title}</span>
+          {name}
         </Title>
         <Elem>{text}</Elem>
 

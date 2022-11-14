@@ -39,7 +39,7 @@ export const Title = styled.h3`
       display: none;
       padding: 2px 3px;
       margin-left: 0px;
-      width: 200px;
+      width: 350px;
     }
     :hover span {
       display: inline-block;

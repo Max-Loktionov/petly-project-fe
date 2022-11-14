@@ -34,37 +34,51 @@ export const Title = styled.h1`
 
 export const SearchBox = styled.form`
   @media ${p => p.theme.media.mobile} {
+    position: relative;
     margin-bottom: 40px;
-  }
-  @media ${p => p.theme.media.tablet} {
-    margin-bottom: 60px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    margin-bottom: 60px;
-  }
-`;
-export const Input = styled.input`
-  @media ${p => p.theme.media.mobile} {
-    display: block;
     margin-left: auto;
     margin-right: auto;
     width: 280px;
     height: 40px;
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-bottom: 60px;
+    width: 608px;
+    height: 44px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-bottom: 60px;
+    width: 608px;
+    height: 44px;
+  }
+`;
+export const Button = styled.button`
+  position: absolute;
+  right: 15px;
+  top: 30%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+`;
+
+export const Input = styled.input`
+  @media ${p => p.theme.media.mobile} {
+    display: block;
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     border: 1px white solid;
     border-radius: 20px;
     padding-left: 15px;
+    width: 100%;
+    height: 40px;
 
     ::placeholder {
       color: #535353;
     }
   }
   @media ${p => p.theme.media.tablet} {
-    width: 608px;
     height: 44px;
   }
   @media ${p => p.theme.media.desktop} {
-    width: 608px;
     height: 44px;
   }
 `;

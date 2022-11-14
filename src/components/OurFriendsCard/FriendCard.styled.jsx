@@ -120,7 +120,6 @@ border-radius: 8px;
 
 export const Img = styled.img`
   width: 100%;
-  vertical-align: middle;
   background: #f59256;
 `;
 

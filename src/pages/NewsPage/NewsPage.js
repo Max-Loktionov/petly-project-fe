@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Container, Box, Card, Title, SearchBox, Input } from "./NewsPage.styled";
+import { Container, Box, Card, Title, SearchBox, Input, Button } from "./NewsPage.styled";
 import NewsCard from "../../components/NewsCars/NewsCard";
 import axios from "axios";
+import searchIcon from "../../img/VectorG.svg";
 
 function News() {
   const [news, setNews] = useState([]);
@@ -33,9 +34,12 @@ function News() {
   return (
     <Container>
       <Title>News</Title>
+
       <SearchBox onSubmit={handleSubmit}>
         <Input type="text" name="query" placeholder="Search"></Input>
-        <button type="submit"></button>
+        <Button type="submit">
+          <img src={searchIcon} alt="searchIcon" />
+        </Button>
       </SearchBox>
       <Box>
         {news.map(newItem => (

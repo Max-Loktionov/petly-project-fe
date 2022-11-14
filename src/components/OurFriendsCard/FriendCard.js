@@ -1,19 +1,17 @@
 // import PropTypes from "prop-types";
 import { Box, List, Img, Elem, Picture, Title, Time } from "./FriendCard.styled";
 import WorkTime from "./WorkTime";
-// import image from "../../img/"
+import image from "./cat.png";
 const BASE_URL = "https://petly-be.herokuapp.com/friends";
 
 const FriendCard = friend => {
-  const { title, address, email, phone, workDays, imageUrl = "" } = friend.friend;
+  const { title, address, email, phone, workDays, imageUrl } = friend.friend;
   console.log(friend);
   return (
     <>
       <Title>{title}</Title>
       <Box>
-        <Picture>
-          <Img src={BASE_URL + imageUrl} alt={title} />
-        </Picture>
+        <Picture>{{ imageUrl } ? <Img src={BASE_URL + imageUrl} alt={title} /> : <Img src="./cat.png" alt={title} />}</Picture>
         <List>
           <Time>
             Time:
