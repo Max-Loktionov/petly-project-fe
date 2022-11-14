@@ -17,7 +17,7 @@ export const Container = styled.div`
 //   }
 
 export const Title = styled.h3`
-    padding-top: 100px;
+    padding-top: 42px;
     display: flex;
     justify-content: center;
 
