@@ -27,8 +27,16 @@ const ModalAddsPet = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = formData => {
+  const handleSubmitClick = formData => {
     console.log("formData", formData);
+  };
+
+  const handleNextClick = () => {
+    setNextPage(true);
+  };
+
+  const handleBackClick = () => {
+    setNextPage(false);
   };
 
   const textRegexp = /[a-zA-Z]+/;
@@ -37,119 +45,132 @@ const ModalAddsPet = () => {
   return (
     <>
       <Title>Add pet</Title>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="petName">Name pet</Label>
-        <Input
-          id="petName"
-          type="text"
-          placeholder="Type name pet"
-          {...register("petName", {
-            required: "Name is required",
-            minLength: {
-              value: 2,
-              message: "This input must exceed 2 characters",
-            },
-            maxLength: {
-              value: 16,
-              message: "The length of this field cannot exceed 16 characters",
-            },
-            pattern: {
-              value: textRegexp,
-              message: "Name should  contain only letters.",
-            },
-          })}
-          // aria-invalid={errors.petName ? "true" : "false"}
-        />
-
-        {errors.petName && (
-          <ErrorText role="alert">{errors.petName?.message}</ErrorText>
-        )}
-        <Label htmlFor="dateOfBirth">Date of birth</Label>
-        <Input
-          id="dateOfBirth"
-          placeholder="Type date of birth"
-          {...register("dateOfBirth", {
-            required: "Date of birth is required.",
-            pattern: {
-              value: dateRegexp,
-              message: "This input is number only. Example: 01.01.2022",
-            },
-          })}
-        />
-
-        {errors.dateOfBirth && (
-          <ErrorText role="alert">{errors.dateOfBirth?.message}</ErrorText>
-        )}
-
-        <Label htmlFor="breed">Breed</Label>
-        <Input
-          id="breed"
-          type="text"
-          placeholder="Type breed"
-          {...register("breed", {
-            required: "Breed is required",
-            maxLength: {
-              value: 16,
-              message: "The length of this field cannot exceed 16 characters",
-            },
-            minLength: {
-              value: 2,
-              message: "This input must exceed 2 characters",
-            },
-            pattern: {
-              value: textRegexp,
-              message: "Breed should  contain only letters.",
-            },
-          })}
-          aria-invalid={errors.breed ? "true" : "false"}
-        />
-        {errors.breed && (
-          <ErrorText role="alert">{errors.breed?.message}</ErrorText>
-        )}
-
-        <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
-        <Input
-          type="file"
-          id="addPhoto"
-          {...register("addPhoto", {
-            required: "Photo is required.",
-          })}
-        />
-
-        {errors.addPhoto && (
-          <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
+      <Form onSubmit={handleSubmit(handleSubmitClick)}>
+        {!nextPage && (
+          <>
+            <Label htmlFor="petName">Name pet</Label>
+            <Input
+              id="petName"
+              type="text"
+              placeholder="Type name pet"
+              {...register("petName", {
+                required: "Name is required",
+                minLength: {
+                  value: 2,
+                  message: "This input must exceed 2 characters",
+                },
+                maxLength: {
+                  value: 16,
+                  message:
+                    "The length of this field cannot exceed 16 characters",
+                },
+                pattern: {
+                  value: textRegexp,
+                  message: "Name should  contain only letters.",
+                },
+              })}
+              aria-invalid={errors.petName ? "true" : "false"}
+            />
+            {errors.petName && <ErrorText>{errors.petName?.message}</ErrorText>}
+            <Label htmlFor="dateOfBirth">Date of birth</Label>
+            <Input
+              id="dateOfBirth"
+              placeholder="Type date of birth"
+              {...register("dateOfBirth", {
+                required: "Date of birth is required.",
+                pattern: {
+                  value: dateRegexp,
+                  message: "This input is number only. Example: 01.01.2022",
+                },
+              })}
+            />
+            {errors.dateOfBirth && (
+              <ErrorText role="alert">{errors.dateOfBirth?.message}</ErrorText>
+            )}
+            <Label htmlFor="breed">Breed</Label>
+            <Input
+              id="breed"
+              type="text"
+              placeholder="Type breed"
+              {...register("breed", {
+                required: "Breed is required",
+                maxLength: {
+                  value: 16,
+                  message:
+                    "The length of this field cannot exceed 16 characters",
+                },
+                minLength: {
+                  value: 2,
+                  message: "This input must exceed 2 characters",
+                },
+                pattern: {
+                  value: textRegexp,
+                  message: "Breed should  contain only letters.",
+                },
+              })}
+              aria-invalid={errors.breed ? "true" : "false"}
+            />
+            {errors.breed && (
+              <ErrorText role="alert">{errors.breed?.message}</ErrorText>
+            )}
+          </>
         )}
 
-        <Label htmlFor="addPhoto">Comments</Label>
-        <Textarea
-          id="Comments"
-          {...register("comments", {
-            required: "Comments is required.",
-            maxLength: {
-              value: 120,
-              message: "The length of this field cannot exceed 120 characters",
-            },
-            minLength: {
-              value: 8,
-              message: "This input must exceed 8 characters",
-            },
-          })}
-        />
-
-        {errors.comments && (
-          <ErrorText role="alert">{errors.comments?.message}</ErrorText>
+        {nextPage && (
+          <>
+            <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+            <Input
+              type="file"
+              id="addPhoto"
+              {...register("addPhoto", {
+                required: "Photo is required.",
+              })}
+            />
+            {errors.addPhoto && (
+              <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
+            )}
+            <Label htmlFor="addPhoto">Comments</Label>
+            <Textarea
+              id="Comments"
+              {...register("comments", {
+                required: "Comments is required.",
+                maxLength: {
+                  value: 120,
+                  message:
+                    "The length of this field cannot exceed 120 characters",
+                },
+                minLength: {
+                  value: 8,
+                  message: "This input must exceed 8 characters",
+                },
+              })}
+            />
+            {errors.comments && (
+              <ErrorText role="alert">{errors.comments?.message}</ErrorText>
+            )}
+          </>
         )}
 
         <BtnBox>
-          <BtnNext active type="button">
-            Next{" "}
-          </BtnNext>
-          <BtnCancel type="submit">Cancel</BtnCancel>
-          <BtnDone active type="button">
-            Done
-          </BtnDone>
+          {!nextPage && (
+            <>
+              <BtnNext onClick={handleNextClick} active type="button">
+                Next
+              </BtnNext>
+              <BtnCancel type="button">Cancel</BtnCancel>
+            </>
+          )}
 
-          <BtnBack type="submit">Back</BtnBack>
+          {nextPage && (
+            <>
+              <BtnDone active type="submit">
+                Done
+              </BtnDone>
+              <BtnBack onClick={handleBackClick} type="button">
+                Back
+              </BtnBack>
+            </>
+          )}
         </BtnBox>
       </Form>
     </>
