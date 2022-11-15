@@ -2,7 +2,7 @@ import React from "react";
 import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer, DataContainer } from "./ModalNotice.styled";
 
 function ModalNotice({ id }) {
-  // id to use getMutationByid and change pet Object
+  // id to use getMutationByid and delete pet Object
 
   const pet = {
     id: "dasdqw21323reased1243434567",

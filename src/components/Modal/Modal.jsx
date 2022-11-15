@@ -1,11 +1,11 @@
 import React from "react";
 import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 
-function Modal({ children }) {
+function Modal({ onClose, children }) {
   return (
     <MyBackdrop>
       <ModalWindow>
-        <Exit>
+        <Exit onClick={onClose}>
           <ExitIcon />
         </Exit>
         {children}

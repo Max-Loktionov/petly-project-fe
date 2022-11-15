@@ -6,8 +6,6 @@ import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
 import NoticesPage from "pages/NoticesPage/NoticesPage";
-import ModalNotice from "./ModalNotice";
-import Modal from "./Modal/Modal";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
@@ -21,16 +19,13 @@ export const App = () => {
       <BrowserRouter basename="/petly-project-fe">
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            {/* <Route path="/" element={<SharedLayout />}>
+            <Route path="/" element={<SharedLayout />}>
               <Route index element={<Home />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="notices" element={<NoticesPage />} />
               <Route path="*" element={<NotFound />} />
-            </Route> */}
+            </Route>
           </Routes>
-          <Modal>
-            <ModalNotice id={"string"} />
-          </Modal>
         </Suspense>
       </BrowserRouter>
     </ThemeProvider>
