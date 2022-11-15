@@ -3,14 +3,14 @@ import Button from "components/Button";
 import { useAddPetMutation, useDeletePetMutation, useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 
 const Home = () => {
-  const { data, error } = useGetUserQuery();
+  // const { data, error } = useGetUserQuery();
 
   const [addPet] = useAddPetMutation();
   const newPet = { name: "vfv", age: 1 };
-  const [deletePet, { isSuccess, isLoading }] = useDeletePetMutation();
+  const [deletePet] = useDeletePetMutation(); //{ isSuccess, isLoading }
 
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
-
+  useGetUserQuery();
   return (
     <>
       <Container>
