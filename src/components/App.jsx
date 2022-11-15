@@ -5,15 +5,18 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
-import RegisterPage from "pages/AuthPages/RegisterPage";
 import NoticesPage from "pages/NoticesPage/NoticesPage";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+<<<<<<< HEAD
 
 const UserPage = lazy(() => import("../pages/UserPage"));
 // const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+=======
+const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
+>>>>>>> d79bcbf134ec696695ce12e955d0c848ed47875e
 
 export const App = () => {
   return (

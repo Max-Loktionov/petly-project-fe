@@ -18,5 +18,6 @@ export const StyledButton = styled.button`
     background-color: ${p => (p.active ? p.theme.colors.hoverBtn : p.theme.colors.white)};
     border-color: ${p => p.theme.colors.hoverBtn};
     color: ${p => (p.active ? p.theme.colors.secondatyBtnText : p.theme.colors.hoverBtn)};
+    outline: none;
   }
 `;
