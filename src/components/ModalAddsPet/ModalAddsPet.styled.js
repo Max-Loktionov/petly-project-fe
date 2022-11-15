@@ -83,7 +83,6 @@ export const ErrorText = styled.p`
   font-style: italic;
 
   @media ${p => p.theme.media.tablet} {
-    margin-left: 97px;
     font-size: ${p => p.theme.fontSizes.xs};
   }
 `;
