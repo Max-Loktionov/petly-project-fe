@@ -84,7 +84,7 @@ export const BackBtn = styled(RegisterBtn)`
 `;
 
 export const ErrorText = styled.div`
-    margin-left: 40px;
+    margin-left: 16px;
     &:not(:last-of-type) {
        margin-bottom: 14px; 
     }

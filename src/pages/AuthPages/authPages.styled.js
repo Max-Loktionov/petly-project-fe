@@ -19,11 +19,13 @@ export const Section = styled.div`
 `;
 
 export const Container = styled.div`
+    width: 280px;
+    margin-right: auto;
+    margin-left: auto;
+
     @media ${p => p.theme.media.tablet} {
         padding-top: 60px;
         padding-bottom: 40px;
-        margin-right: auto;
-        margin-left: auto;
 
         width: 608px;
         box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
