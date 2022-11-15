@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HiTrash } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi2";
 
 export const PetItem = styled.div`
   &:not(:last-child) {

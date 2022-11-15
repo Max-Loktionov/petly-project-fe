@@ -2,6 +2,7 @@ import {
   UserBlock,
   BoxImg,
   EditImgBtn,
+  IconEditImgBtn,
   ImgUser,
   BoxInfo,
   BoxTitle,
@@ -23,7 +24,10 @@ const UserDataItem = ({ id, name, data, breed, comment }) => {
     <UserBlock>
       <BoxImg>
         <ImgUser src="http://wer" alt="User" />
-        <EditImgBtn>Edit photo</EditImgBtn>
+        <EditImgBtn>
+          <IconEditImgBtn />
+          Edit photo
+        </EditImgBtn>
       </BoxImg>
       <BoxInfo>
         <BoxTitle>
