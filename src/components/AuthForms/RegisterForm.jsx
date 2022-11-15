@@ -6,7 +6,7 @@ import { authSlice } from "redux/auth";
 import { useRegisterUserMutation } from "redux/auth/authApi";
 
 const RegisterForm = () => {
-  const [registerUser] = useRegisterUserMutation();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
   const { setToken } = authSlice;
   const dispatch = useDispatch();
 
@@ -42,13 +42,11 @@ const RegisterForm = () => {
   };
 
   const onSubmit = async ({ email, password, name, city, phone }) => {
-    console.log({ email, password, name, city, phone });
     const result = await registerUser({ email, password, name, city, phone });
     dispatch(setToken(result.data.token));
   };
 
-  const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const passwordRegex = /^\S*$/;
   const nameRegex = /[a-zA-Z]+/;
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
@@ -56,6 +54,7 @@ const RegisterForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
+      {isLoading}
       {!nextPage && (
         <div>
           <Input

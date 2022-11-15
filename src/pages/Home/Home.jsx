@@ -3,17 +3,14 @@ import Button from "components/Button";
 import { useAddPetMutation, useDeletePetMutation, useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 
 const Home = () => {
-  const { data, error } = useGetUserQuery();
-  console.log("data", data);
-  console.log("error", error);
+  // const { data, error } = useGetUserQuery();
 
   const [addPet] = useAddPetMutation();
   const newPet = { name: "vfv", age: 1 };
-  const [deletePet, { isSuccess, isLoading }] = useDeletePetMutation();
-  console.log("isSuccess", isSuccess);
-  console.log("isLoading", isLoading);
-  const [updateUserAvatar] = useUpdateUserAvatarMutation();
+  const [deletePet] = useDeletePetMutation(); //{ isSuccess, isLoading }
 
+  const [updateUserAvatar] = useUpdateUserAvatarMutation();
+  useGetUserQuery();
   return (
     <>
       <Container>
@@ -24,7 +21,6 @@ const Home = () => {
         <button onClick={() => deletePet(10)}>deletePet</button>
         <button onClick={() => addPet(newPet)}>addPet</button>
         <button onClick={() => updateUserAvatar(newPet)}>updateUserAvatar</button>
-
       </Container>
     </>
   );
