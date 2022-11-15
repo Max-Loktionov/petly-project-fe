@@ -42,12 +42,6 @@ export const Cathegory = styled.p`
   overflow: hidden;
 `;
 
-export const DataContainer = styled.div`
-  @media ${p => p.theme.media.tablet} {
-    /* margin-right: 40px; */
-  }
-`;
-
 export const Header = styled.h2`
   margin: 16px 0px;
 

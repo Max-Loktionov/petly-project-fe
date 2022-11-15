@@ -1,5 +1,6 @@
 import React from "react";
-import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer, DataContainer } from "./ModalNotice.styled";
+import PropTypes from "prop-types";
+import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer } from "./ModalNotice.styled";
 
 function ModalNotice({ id }) {
   // id to use getMutationByid and delete pet Object
@@ -25,7 +26,7 @@ function ModalNotice({ id }) {
         <PictureData imageUrl={pet.avatar}>
           <Cathegory>{pet.cathegory}</Cathegory>
         </PictureData>
-        <DataContainer>
+        <div>
           <Header>Сute dog looking for a home</Header>
           <ul>
             <MyLi>
@@ -64,7 +65,7 @@ function ModalNotice({ id }) {
               </MyLi>
             )}
           </ul>
-        </DataContainer>
+        </div>
       </ImageContainer>
 
       <Comments>
@@ -80,5 +81,7 @@ function ModalNotice({ id }) {
     </div>
   );
 }
+
+ModalNotice.propTypes = { id: PropTypes.string };
 
 export default ModalNotice;

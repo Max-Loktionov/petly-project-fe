@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 
 function Modal({ onClose, children }) {
@@ -13,5 +14,9 @@ function Modal({ onClose, children }) {
     </MyBackdrop>
   );
 }
+
+Modal.propTypes = {
+  OnClose: PropTypes.func,
+};
 
 export default Modal;
