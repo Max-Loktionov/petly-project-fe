@@ -7,7 +7,6 @@ export const MyBackdrop = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-width: 320px;
 
   display: flex;
   justify-content: center;
@@ -23,8 +22,9 @@ export const MyBackdrop = styled.div`
 
 export const ModalWindow = styled.div`
   position: relative;
-  width: calc(100vw - 40px);
-  min-height: 20%;
+  width: 280px;
+
+  max-height: calc(100vh - 40px);
 
   background-color: white;
   padding: 60px 20px 40px;
@@ -32,15 +32,12 @@ export const ModalWindow = styled.div`
   border-radius: 20px;
 
   background-color: ${p => p.theme.colors.white};
+  overflow-y: auto;
 
   @media ${p => p.theme.media.tablet} {
     padding: 32px 20px;
 
-    width: calc(100vw - 64px);
-  }
-
-  @media ${p => p.theme.media.desktop} {
-    width: calc(100vw - 577px);
+    width: 704px;
   }
 `;
 
@@ -56,10 +53,20 @@ export const Exit = styled.button`
 
   z-index: 10;
   background-color: ${p => p.theme.colors.background};
+
+  @media ${p => p.theme.media.tablet} {
+    width: 44px;
+    height: 44px;
+  }
 `;
 
 export const ExitIcon = styled(IconMenu)`
   width: 16px;
   height: 16px;
   fill: ${p => p.theme.colors.black};
+
+  @media ${p => p.theme.media.tablet} {
+    width: 20px;
+    height: 20px;
+  }
 `;

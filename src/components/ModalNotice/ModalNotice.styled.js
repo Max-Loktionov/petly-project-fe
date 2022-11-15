@@ -1,6 +1,13 @@
 import Button from "../Button";
 import styled from "styled-components";
 
+export const ImageContainer = styled("div")`
+  @media ${p => p.theme.media.tablet} {
+    margin-right: 40px;
+    display: flex;
+  }
+`;
+
 export const PictureData = styled.div`
   position: relative;
   width: 100%;
@@ -11,6 +18,13 @@ export const PictureData = styled.div`
   background-size: cover;
 
   border-radius: 0px 0px 40px 40px;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 288px;
+    height: 328px;
+
+    margin-right: 20px;
+  }
 `;
 
 export const Cathegory = styled.p`
@@ -28,19 +42,35 @@ export const Cathegory = styled.p`
   overflow: hidden;
 `;
 
+export const DataContainer = styled.div`
+  @media ${p => p.theme.media.tablet} {
+    /* margin-right: 40px; */
+  }
+`;
+
 export const Header = styled.h2`
   margin: 16px 0px;
 
   font-size: ${p => p.theme.fontSizes.ml};
   line-height: ${p => p.theme.lineHeights.heading};
+  letter-spacing: -0.01em;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 320px;
+    font-size: ${p => p.theme.fontSizes.mll};
+    margin: 0px 0px 20px 0px;
+  }
 `;
 
 export const MyLi = styled.li`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
 
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.body};
+
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
 
   &:not(:first-child) {
     padding-top: 8px;
@@ -49,6 +79,21 @@ export const MyLi = styled.li`
   & p {
     font-size: inherit;
     font-weight: ${p => p.theme.fontWeights.semiBold};
+    width: 98px;
+
+    @media ${p => p.theme.media.tablet} {
+      font-size: ${p => p.theme.fontSizes.m};
+
+      width: 121px;
+    }
+  }
+
+  & span {
+    font-size: inherit;
+
+    @media ${p => p.theme.media.tablet} {
+      font-weight: ${p => p.theme.fontWeights.heading};
+    }
   }
 `;
 
@@ -61,6 +106,24 @@ export const Comments = styled.p`
 
   & span {
     font-weight: ${p => p.theme.fontWeights.text};
+
+    @media ${p => p.theme.media.tablet} {
+      font-weight: ${p => p.theme.fontWeights.heading};
+    }
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    margin: 28px 0px 32px;
+
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const BtnContainer = styled.div`
+  @media ${p => p.theme.media.tablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
   }
 `;
 
@@ -74,5 +137,14 @@ export const MyBtn = styled(Button)`
 
   &:last-child {
     margin-top: 12px;
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    width: 160px;
+
+    &:last-child {
+      margin-top: 0px;
+      margin-right: 12px;
+    }
   }
 `;

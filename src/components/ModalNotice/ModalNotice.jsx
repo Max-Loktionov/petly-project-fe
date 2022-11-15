@@ -1,7 +1,9 @@
 import React from "react";
-import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn } from "./ModalNotice.styled";
+import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer, DataContainer } from "./ModalNotice.styled";
 
-function ModalNotice() {
+function ModalNotice({ id }) {
+  // id to use getMutationByid and change pet Object
+
   const pet = {
     id: "dasdqw21323reased1243434567",
     name: "Rich",
@@ -19,57 +21,62 @@ function ModalNotice() {
 
   return (
     <div>
-      <PictureData imageUrl={pet.avatar}>
-        <Cathegory>{pet.cathegory}</Cathegory>
-      </PictureData>
+      <ImageContainer>
+        <PictureData imageUrl={pet.avatar}>
+          <Cathegory>{pet.cathegory}</Cathegory>
+        </PictureData>
+        <DataContainer>
+          <Header>Сute dog looking for a home</Header>
+          <ul>
+            <MyLi>
+              <p>Name:</p>
+              <span>{pet.name}</span>
+            </MyLi>
+            <MyLi>
+              <p>Birthday:</p>
+              <span>{pet.birthday}</span>
+            </MyLi>
+            <MyLi>
+              <p>Breed:</p>
+              <span>{pet.breed}</span>
+            </MyLi>
+            <MyLi>
+              <p>Location:</p>
+              <span>{pet.location}</span>
+            </MyLi>
+            <MyLi>
+              <p>The sex:</p>
+              <span>{pet.theSex}</span>
+            </MyLi>
+            <MyLi>
+              <p>Email:</p>
+              <span>{pet.email}</span>
+            </MyLi>
+            <MyLi>
+              <p>Phone:</p>
+              <span>{pet.phone}</span>
+            </MyLi>
 
-      <Header>Сute dog looking for a home</Header>
-      <ul>
-        <MyLi>
-          <p>Name:</p>
-          <span>{pet.name}</span>
-        </MyLi>
-        <MyLi>
-          <p>Birthday:</p>
-          <span>{pet.birthday}</span>
-        </MyLi>
-        <MyLi>
-          <p>Breed:</p>
-          <span>{pet.breed}</span>
-        </MyLi>
-        <MyLi>
-          <p>Location:</p>
-          <span>{pet.location}</span>
-        </MyLi>
-        <MyLi>
-          <p>The sex:</p>
-          <span>{pet.theSex}</span>
-        </MyLi>
-        <MyLi>
-          <p>Email:</p>
-          <span>{pet.email}</span>
-        </MyLi>
-        <MyLi>
-          <p>Phone:</p>
-          <span>{pet.phone}</span>
-        </MyLi>
-
-        {pet.cathegory === "sell" && (
-          <MyLi>
-            <p>Price:</p>
-            <span>{pet.price}</span>
-          </MyLi>
-        )}
-      </ul>
+            {pet.cathegory === "sell" && (
+              <MyLi>
+                <p>Sell:</p>
+                <span>{pet.price}</span>
+              </MyLi>
+            )}
+          </ul>
+        </DataContainer>
+      </ImageContainer>
 
       <Comments>
         Comments: <span>{pet.comments}</span>
       </Comments>
 
-      <MyBtn active={"active"}>Contact</MyBtn>
-      <MyBtn>
-        Add to <span>&#10084;</span>
-      </MyBtn>
+      <BtnContainer>
+        <MyBtn active={"active"}>Contact</MyBtn>
+        <MyBtn>
+          Add to <span>&#10084;</span>
+        </MyBtn>
+      </BtnContainer>
     </div>
   );
 }
