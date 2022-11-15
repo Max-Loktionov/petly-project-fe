@@ -12,7 +12,6 @@ export const MyBackdrop = styled.div`
   justify-content: center;
   align-items: center;
 
-  z-index: 10;
   background-color: ${p => p.theme.colors.backdrop};
   backdrop-filter: blur(10px);
 
@@ -26,13 +25,11 @@ export const ModalWindow = styled.div`
 
   max-height: calc(100vh - 40px);
 
-  background-color: white;
   padding: 60px 20px 40px;
 
   border-radius: 20px;
 
   background-color: ${p => p.theme.colors.white};
-  overflow-y: auto;
 
   @media ${p => p.theme.media.tablet} {
     padding: 32px 20px;
