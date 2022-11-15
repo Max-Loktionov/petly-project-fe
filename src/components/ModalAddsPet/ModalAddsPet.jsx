@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import {
   Label,
   Form,
+  Container,
   Input,
   BtnBox,
   ErrorText,
@@ -119,35 +120,37 @@ const ModalAddsPet = () => {
         {nextPage && (
           <>
             <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
-            <Input
-              type="file"
-              id="addPhoto"
-              {...register("addPhoto", {
-                required: "Photo is required.",
-              })}
-            />
-            {errors.addPhoto && (
-              <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
-            )}
-            <Label htmlFor="addPhoto">Comments</Label>
-            <Textarea
-              id="Comments"
-              {...register("comments", {
-                required: "Comments is required.",
-                maxLength: {
-                  value: 120,
-                  message:
-                    "The length of this field cannot exceed 120 characters",
-                },
-                minLength: {
-                  value: 8,
-                  message: "This input must exceed 8 characters",
-                },
-              })}
-            />
-            {errors.comments && (
-              <ErrorText role="alert">{errors.comments?.message}</ErrorText>
-            )}
+            <Container>
+              <Input
+                type="file"
+                id="addPhoto"
+                {...register("addPhoto", {
+                  required: "Photo is required.",
+                })}
+              />
+              {errors.addPhoto && (
+                <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
+              )}
+              <Label htmlFor="addPhoto">Comments</Label>
+              <Textarea
+                id="Comments"
+                {...register("comments", {
+                  required: "Comments is required.",
+                  maxLength: {
+                    value: 120,
+                    message:
+                      "The length of this field cannot exceed 120 characters",
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "This input must exceed 8 characters",
+                  },
+                })}
+              />
+              {errors.comments && (
+                <ErrorText role="alert">{errors.comments?.message}</ErrorText>
+              )}
+            </Container>
           </>
         )}
 
