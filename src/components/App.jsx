@@ -1,13 +1,11 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
-
 import NoticesPage from "pages/NoticesPage/NoticesPage";
 import Modal from "./Modal/Modal";
-import ModalNotice from "./ModalNotice";
+import ModalAddPets from "./ModalAddPets";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
@@ -29,7 +27,7 @@ export const App = () => {
             </Route>
           </Routes>
           <Modal>
-            <ModalNotice />
+            <ModalAddPets />
           </Modal>
         </Suspense>
       </BrowserRouter>
