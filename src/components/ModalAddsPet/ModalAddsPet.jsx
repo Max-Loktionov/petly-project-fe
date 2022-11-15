@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+// import { ErrorMessage } from "@hookform/error-message";
+import {
+  Label,
+  Form,
+  Input,
+  BtnCancel,
+  BtnNext,
+  BtnDone,
+  Textarea,
+} from "./ModalAddsPet.styled";
 
 const ModalAddsPet = () => {
   const [nextPage, setNextPage] = useState(false);
@@ -11,77 +20,115 @@ const ModalAddsPet = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onBlur",
+  });
   console.log("errors", errors);
   const onSubmit = formData => {
     console.log("formData", formData);
   };
 
+  const textRegexp = /[a-zA-Z]+/;
+  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Label htmlFor="petName">Name pet</Label>
+      <Input
+        id="petName"
         type="text"
-        label="Name pet"
         placeholder="Type name pet"
         {...register("petName", {
           required: "Name is required",
+          minLength: {
+            value: 2,
+            message: "This input must exceed 2 characters",
+          },
           maxLength: {
-            value: 20,
-            message: "The length of this field cannot exceed 20 characters",
+            value: 16,
+            message: "The length of this field cannot exceed 16 characters",
+          },
+          pattern: {
+            value: textRegexp,
+            message: "Name should  contain only letters.",
           },
         })}
-        aria-invalid={errors.petName ? "true" : "false"}
+        // aria-invalid={errors.petName ? "true" : "false"}
       />
-      {errors.petName?.type === "required" && (
-        <p role="alert">First name is required</p>
-      )}
-      <input
-        type="number"
-        label="Date of birth"
+
+      {errors.petName && <p role="alert">{errors.petName?.message}</p>}
+      <Label htmlFor="dateOfBirth">Date of birth</Label>
+      <Input
+        id="dateOfBirth"
         placeholder="Type date of birth"
         {...register("dateOfBirth", {
           required: "Date of birth is required.",
           pattern: {
-            value: /\d+/,
-            message: "This input is number only.",
-          },
-          maxLength: {
-            value: 20,
-            message: "The length of this field cannot exceed 20 characters",
-          },
-          minLength: {
-            value: 4,
-            message: "This input must exceed 4 characters",
+            value: dateRegexp,
+            message: "This input is number only. Example: 01.01.2022",
           },
         })}
       />
 
       {errors.dateOfBirth && <p role="alert">{errors.dateOfBirth?.message}</p>}
 
-      <input
+      <Label htmlFor="breed">Breed</Label>
+      <Input
+        id="breed"
         type="text"
-        label="Breed"
         placeholder="Type breed"
         {...register("breed", {
           required: "Breed is required",
           maxLength: {
-            value: 20,
-            message: "The length of this field cannot exceed 20 characters",
+            value: 16,
+            message: "The length of this field cannot exceed 16 characters",
           },
           minLength: {
-            value: 4,
-            message: "This input must exceed 4 characters",
+            value: 2,
+            message: "This input must exceed 2 characters",
+          },
+          pattern: {
+            value: textRegexp,
+            message: "Breed should  contain only letters.",
           },
         })}
         aria-invalid={errors.breed ? "true" : "false"}
       />
       {errors.breed && <p role="alert">{errors.breed?.message}</p>}
 
-      <button type="button">{btnTextLeft}</button>
-      <button type="submit">{btnText}</button>
-    </form>
+      <Label htmlFor="addPhoto">Add photo and some comments</Label>
+      <Input
+        type="file"
+        id="addPhoto"
+        {...register("addPhoto", {
+          required: "Photo is required.",
+        })}
+      />
+
+      {errors.dateOfBirth && <p role="alert">{errors.dateOfBirth?.message}</p>}
+
+      <Label htmlFor="addPhoto">Add photo and some comments</Label>
+      <Textarea
+        id="Comments"
+        {...register("comments", {
+          required: "Comments is required.",
+          maxLength: {
+            value: 120,
+            message: "The length of this field cannot exceed 120 characters",
+          },
+          minLength: {
+            value: 8,
+            message: "This input must exceed 8 characters",
+          },
+        })}
+      />
+
+      {errors.comments && <p role="alert">{errors.comments?.message}</p>}
+      <BtnCancel type="button">Cancel</BtnCancel>
+      <BtnNext type="submit">Next</BtnNext>
+      <BtnDone type="submit">Done</BtnDone>
+    </Form>
   );
 };
 
