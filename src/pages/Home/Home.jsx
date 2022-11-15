@@ -6,7 +6,6 @@ import {
   useGetUserQuery,
   useUpdateUserAvatarMutation,
 } from "redux/userApi";
-import ModalAddsPet from "components/ModalAddsPet";
 
 const Home = () => {
   const { data, error } = useGetUserQuery();
@@ -23,7 +22,6 @@ const Home = () => {
   return (
     <>
       <Container>
-        <ModalAddsPet />
         Home
         <Button active>sell</Button>
         <Button>lost/found</Button>

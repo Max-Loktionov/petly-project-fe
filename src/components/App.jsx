@@ -11,7 +11,7 @@ const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
-
+const UserPage = lazy(() => import("../pages/UserPage"));
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -23,6 +23,7 @@ export const App = () => {
               <Route index element={<Home />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="notices" element={<NoticesPage />} />
+              <Route path="user" element={<UserPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
