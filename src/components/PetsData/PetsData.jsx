@@ -1,9 +1,11 @@
-import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./PetsData.styled";
+import PropTypes from "prop-types";
 import { useDeletePetMutation } from "redux/userApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const PetsData = ({ id, name, birthday, breed, comments, avatar }) => {
+import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./PetsData.styled";
+
+const PetsData = ({ _id, name, birthday, breed, comments, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
 
   isDeleting && toast(`${name} was removed`);
@@ -11,9 +13,8 @@ const PetsData = ({ id, name, birthday, breed, comments, avatar }) => {
   return (
     <PetItem>
       <ImgPet src={`${avatar}`} alt={`${name}`}></ImgPet>
-
       <BoxInfo>
-        <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(id)}>
+        <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(_id)}>
           <DelIcon />
         </DeleteBtm>
         <InfoPet>
@@ -39,3 +40,12 @@ const PetsData = ({ id, name, birthday, breed, comments, avatar }) => {
 };
 
 export default PetsData;
+
+PetsData.prototype = {
+  _id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  birthday: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
