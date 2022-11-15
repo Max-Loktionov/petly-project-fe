@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { loginError } from "utilities/notification";
 import { useLoginUserMutation } from "redux/auth/authApi";
 import { authSlice } from "redux/auth";
-import { Form, Input, RegisterBtn } from "./authForms.styled";
+import { Form, Input, RegisterBtn, ErrorText } from "./authForms.styled";
 import { loginFormSchima } from "utilities/auth-validation-schemas";
 
 export const LoginForm = () => {
@@ -39,9 +39,9 @@ export const LoginForm = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input type={"email"} placeholder={"Email"} {...register("email")} />
-      <p>{errors.email?.message}</p>
+      <ErrorText>{errors.email?.message}</ErrorText>
       <Input type={"password"} placeholder={"Password"} {...register("password")} />
-      <p>{errors.password?.message}</p>
+      <ErrorText>{errors.password?.message}</ErrorText>
       <RegisterBtn type="submit">{isLoading ? "Loading" : "Login"}</RegisterBtn>
       <ToastContainer />
     </Form>
