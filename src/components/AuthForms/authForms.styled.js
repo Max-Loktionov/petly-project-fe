@@ -10,7 +10,10 @@ export const Input = styled.input`
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2px;
+    &:not(:last-of-type) {
+        margin-bottom: 2px;
+    }
+    
     padding: 11px 14px 12px;
 
     width: 280px;
@@ -26,6 +29,18 @@ export const Input = styled.input`
 
     :focus {
         outline-color: ${p => p.theme.colors.inputModal};
+    }
+
+    @media ${p => p.theme.media.tablet} {
+        width: 448px;
+        height: 52px;
+
+        font-size: 18px;
+        line-height: 1.38;
+    }
+
+    @media ${p => p.theme.media.desktop} {
+        width: 458px;
     }
 `;
 
@@ -45,6 +60,17 @@ export const RegisterBtn = styled(StyledButton)`
 
     font-size: 20px;
     line-height: 1.35;
+
+    @media ${p => p.theme.media.tablet} {
+        width: 448px;
+        font-size: 20px;
+    }
+
+    @media ${p => p.theme.media.desktop} {
+        width: 458px;
+        height: 48px;
+        font-size: 20px;
+    }
 `;
 
 export const BackBtn = styled(RegisterBtn)`
@@ -60,11 +86,16 @@ export const BackBtn = styled(RegisterBtn)`
 export const ErrorText = styled.div`
     margin-left: 40px;
     &:not(:last-of-type) {
-       margin-bottom: 16px; 
+       margin-bottom: 14px; 
     }
     font-size: 10px;
     color: red;
     font-weight: ${p => p.theme.fontWeights.bold};
     font-style: italic;
+
+    @media ${p => p.theme.media.tablet} {
+        margin-left: 97px;
+        font-size: ${p => p.theme.fontSizes.xs};
+    }
     
 `
