@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useGetUserQuery, userApi } from "redux/userApi";
+
 import {
   UserBlock,
   BoxImg,
@@ -12,12 +15,17 @@ import {
   EditTextBtn,
   EditTextBtnIcon,
 } from "./UserDataItem.styled";
-// import { useGetUserQuery } from "redux/userApi";
 
 const UserDataItem = () => {
-  // console.log(comment);
-  //   const { data, error, isLoading } = useGetUserQuery();
-  //   console.log(data);
+  // const { data, isLoading, isError } = useGetUserQuery();
+  // console.log(useGetUserQuery());
+  // const [user, setUser] = useState([]);
+
+  // if (data) {
+  //   return setUser(data.data);
+  // }
+
+  // const { name, email, avatar, birthday, city, phone } = user;
   return (
     <UserBlock>
       <BoxImg>
