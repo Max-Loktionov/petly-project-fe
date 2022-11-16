@@ -11,15 +11,13 @@ import {
   Block,
   EditTextBtn,
   EditTextBtnIcon,
-  LogOut,
-  LogOutIcon,
 } from "./UserDataItem.styled";
 // import { useGetUserQuery } from "redux/userApi";
 
-const UserDataItem = ({ id, name, data, breed, comment }) => {
-  console.log(comment);
-  //   const { date, error, isLoading } = useGetUserQuery();
-  //   console.log(date);
+const UserDataItem = () => {
+  // console.log(comment);
+  //   const { data, error, isLoading } = useGetUserQuery();
+  //   console.log(data);
   return (
     <UserBlock>
       <BoxImg>
@@ -38,7 +36,6 @@ const UserDataItem = ({ id, name, data, breed, comment }) => {
               <EditTextBtnIcon />
             </EditTextBtn>
           </Block>
-          {name}
         </BoxTitle>
         <BoxTitle>
           <Title>Email:</Title>
@@ -77,10 +74,6 @@ const UserDataItem = ({ id, name, data, breed, comment }) => {
           </Block>
         </BoxTitle>
       </BoxInfo>
-      <LogOut>
-        <LogOutIcon />
-        log out
-      </LogOut>
     </UserBlock>
   );
 };

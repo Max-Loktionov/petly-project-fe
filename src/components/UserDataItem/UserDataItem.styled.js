@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
 import { HiCamera } from "react-icons/hi2";
 
@@ -27,8 +26,10 @@ export const UserBlock = styled.div`
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: column;
+    justify-content: inherit;
     width: 411px;
     min-height: 580px;
+    padding: 20px 16px 42px 16px;
   }
 `;
 
@@ -39,6 +40,9 @@ export const BoxImg = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 8px;
+  @media ${p => p.theme.media.desktop} {
+    margin-bottom: 36px;
+  }
 `;
 
 export const ImgUser = styled.img`
@@ -64,6 +68,11 @@ export const EditImgBtn = styled.button`
 
   border: none;
   background-color: transparent;
+  cursor: pointer;
+  :hover svg,
+  :focus svg {
+    fill: ${p => p.theme.colors.hoverBtn};
+  }
   @media ${p => p.theme.media.tablet} {
     position: absolute;
     bottom: 0;
@@ -78,7 +87,7 @@ export const IconEditImgBtn = styled(HiCamera)`
   height: 20px;
   margin-right: 4px;
 
-  color: ${p => p.theme.colors.accent};
+  fill: ${p => p.theme.colors.accent};
 `;
 
 export const BoxInfo = styled.div`
@@ -89,6 +98,11 @@ export const BoxInfo = styled.div`
     margin-top: 16px;
     width: inherit;
   }
+  @media ${p => p.theme.media.desktop} {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 46px;
+  }
 `;
 
 export const BoxTitle = styled.div`
@@ -96,13 +110,13 @@ export const BoxTitle = styled.div`
   align-items: center;
   &:not(:last-child) {
     margin-bottom: 12px;
+    @media ${p => p.theme.media.desktop} {
+      margin-bottom: 15px;
+    }
   }
   @media ${p => p.theme.media.tablet} {
     width: 379px;
   }
-  /* @media ${p => p.theme.media.desktop} {
-    width: 580px;
-  } */
 `;
 
 export const Title = styled.p`
@@ -114,9 +128,6 @@ export const Title = styled.p`
     width: 107px;
     font-size: 18px;
   }
-  /* @media ${p => p.theme.media.desktop} {
-    width: 580px;
-  } */
 `;
 export const Text = styled.div`
   margin-left: 18px;
@@ -144,6 +155,11 @@ export const EditTextBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   border: none;
   background-color: ${p => p.theme.colors.background};
+  cursor: pointer;
+  :hover svg,
+  :focus svg {
+    fill: ${p => p.theme.colors.hoverBtn};
+  }
   @media ${p => p.theme.media.tablet} {
     width: 32px;
     height: 32px;
@@ -153,38 +169,10 @@ export const EditTextBtn = styled.button`
 export const EditTextBtnIcon = styled(HiPencil)`
   width: 13px;
   height: 13px;
+
   color: ${p => p.theme.colors.accent};
   @media ${p => p.theme.media.tablet} {
     width: 20px;
     height: 20px;
   }
 `;
-
-export const LogOut = styled.button`
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
-  margin-bottom: 8px;
-  border: none;
-  background-color: transparent;
-  color: ${p => p.theme.colors.greyText};
-  font-size: 16px;
-  font-weight: 500;
-  @media ${p => p.theme.media.tablet} {
-    position: absolute;
-    left: 32px;
-    bottom: 24px;
-    margin: 0;
-    padding: 0;
-  }
-`;
-export const LogOutIcon = styled(HiArrowRightOnRectangle)`
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  color: ${p => p.theme.colors.accent};
-`;
-
-/* @media ${p => p.theme.media.tablet} {
-    font-size: 16px;
-  } */

@@ -2,9 +2,6 @@ import styled from "styled-components";
 import Button from "components/Button";
 
 export const BoxPet = styled.section`
-  @media ${p => p.theme.media.tablet} {
-    margin-left: 32px;
-  }
   @media ${p => p.theme.media.desktop} {
     width: 821px;
     height: 212px;
