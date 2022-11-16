@@ -56,66 +56,68 @@ export const List = styled.ul`
 `;
 
 export const Elem = styled.li`
- @media ${p => p.theme.media.mobile} {
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  height: 44px;
-  overflow: hidden;
-margin-top: 4px;
-font-size: 12px;
-line-height: 16px;
-&:nth-child(1) {
-    margin-top: 0px;
-}
- @media ${p => p.theme.media.tablet}  {
-margin-top: 8px;
-font-size: 14px;
-line-height: 19px;
- }
- @media ${p => p.theme.media.desktop} {
-  margin-top: 12px;  
-  font-size: 16px;
-  line-height: 22px;  
+  @media ${p => p.theme.media.mobile} {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    height: 44px;
+    overflow: hidden;
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 16px;
+    &:nth-child(1) {
+      margin-top: 0px;
+    }
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 22px;
   }
 `;
 
 export const Time = styled.li`
- @media ${p => p.theme.media.mobile} {
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  height: 44px;
-  overflow: hidden;
-margin-top: 4px;
-font-size: 12px;
-line-height: 16px;
-&:nth-child(1) {
-    margin-top: 0px;
-}
- @media ${p => p.theme.media.tablet}  {
-margin-top: 8px;
-font-size: 14px;
-line-height: 19px;
- }
- @media ${p => p.theme.media.desktop} {
-  margin-top: 12px;  
-  font-size: 16px;
-  line-height: 22px;  
-  }
- 
-    :hover span {
-      display: inline-block;
-      padding: 12px 12px 12px 12px;
-      position: absolute;
-      border: 1px solid #f59256;
-      font-size: 12px;
-      line-height: 16px;
-      background: #FFFFFF;
-border: 1px solid #F59256;
-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-border-radius: 8px;
+  @media ${p => p.theme.media.mobile} {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    height: 44px;
+    overflow: hidden;
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 16px;
+    &:nth-child(1) {
+      margin-top: 0px;
     }
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  :hover span {
+    display: inline-block;
+    padding: 12px 12px 12px 12px;
+    position: absolute;
+    border: 1px solid #f59256;
+    font-size: 12px;
+    line-height: 16px;
+    background: #ffffff;
+    border: 1px solid #f59256;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+  }
 `;
 
 export const Img = styled.img`
