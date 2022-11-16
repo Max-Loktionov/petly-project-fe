@@ -13,7 +13,7 @@ const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
-
+const UserPage = lazy(() => import("../pages/UserPage"));
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -26,6 +26,7 @@ export const App = () => {
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="notices" element={<NoticesPage />} />
+              <Route path="user" element={<UserPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
