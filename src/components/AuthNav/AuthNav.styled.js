@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export const AuthNavList = styled.ul`
   display: flex;
-  @media (max-width: 767px) {
+  @media ${p => p.theme.media.mobile} {
     margin-bottom: 60px;
   }
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     margin-left: auto;
     margin-right: 82px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     margin-right: 0;
   }
 `;
@@ -19,7 +19,7 @@ export const AuthNavItem = styled.li`
   :not(:last-child) {
     margin-right: 12px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     :not(:last-child) {
       margin-right: 20px;
     }

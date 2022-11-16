@@ -7,9 +7,9 @@ export const AccountButton = styled(StyledButton)`
   @media ${p => p.theme.media.mobile} {
     margin-bottom: 60px;
   }
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     margin-left: auto;
-    margin-right: 82px;
+    margin-right: 62px;
   }
   @media ${p => p.theme.media.desktop} {
     margin-right: 0px;
