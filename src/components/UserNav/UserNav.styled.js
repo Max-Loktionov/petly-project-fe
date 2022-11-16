@@ -4,12 +4,15 @@ import styled from "styled-components";
 import { StyledButton } from "../Button/Button.styled";
 
 export const AccountButton = styled(StyledButton)`
-  @media (max-width: 767px) {
+  @media ${p => p.theme.media.mobile} {
     margin-bottom: 60px;
   }
   @media (min-width: 768px) {
     margin-left: auto;
     margin-right: 82px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-right: 0px;
   }
 `;
 
