@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useAddPetMutation } from "../../redux/userApi";
 // import { ErrorMessage } from "@hookform/error-message";
 import {
   Label,
@@ -19,17 +20,19 @@ import {
 
 const ModalAddsPet = () => {
   const [nextPage, setNextPage] = useState(false);
+  const [addPet] = useAddPetMutation();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
 
   const handleSubmitClick = formData => {
     console.log("formData", formData);
+    addPet(formData);
   };
 
   const handleNextClick = () => {
@@ -54,7 +57,7 @@ const ModalAddsPet = () => {
               id="petName"
               type="text"
               placeholder="Type name pet"
-              {...register("petName", {
+              {...register("name", {
                 required: "Name is required",
                 minLength: {
                   value: 2,
@@ -72,12 +75,12 @@ const ModalAddsPet = () => {
               })}
               aria-invalid={errors.petName ? "true" : "false"}
             />
-            {errors.petName && <ErrorText>{errors.petName?.message}</ErrorText>}
+            {errors.name && <ErrorText>{errors.name?.message}</ErrorText>}
             <Label htmlFor="dateOfBirth">Date of birth</Label>
             <Input
               id="dateOfBirth"
               placeholder="Type date of birth"
-              {...register("dateOfBirth", {
+              {...register("birthday", {
                 required: "Date of birth is required.",
                 pattern: {
                   value: dateRegexp,
@@ -85,8 +88,8 @@ const ModalAddsPet = () => {
                 },
               })}
             />
-            {errors.dateOfBirth && (
-              <ErrorText role="alert">{errors.dateOfBirth?.message}</ErrorText>
+            {errors.birthday && (
+              <ErrorText role="alert">{errors.birthday?.message}</ErrorText>
             )}
             <Label htmlFor="breed">Breed</Label>
             <Input
@@ -121,7 +124,7 @@ const ModalAddsPet = () => {
           <>
             <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
             <Container>
-              <Input
+              {/* <Input
                 type="file"
                 id="addPhoto"
                 {...register("addPhoto", {
@@ -130,8 +133,10 @@ const ModalAddsPet = () => {
               />
               {errors.addPhoto && (
                 <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
-              )}
-              <Label htmlFor="addPhoto">Comments</Label>
+              )} */}
+              <Label textarea htmlFor="addPhoto">
+                Comments
+              </Label>
               <Textarea
                 id="Comments"
                 {...register("comments", {
@@ -157,7 +162,12 @@ const ModalAddsPet = () => {
         <BtnBox>
           {!nextPage && (
             <>
-              <BtnNext onClick={handleNextClick} active type="button">
+              <BtnNext
+                onClick={handleNextClick}
+                active
+                disabled={!isValid}
+                type="button"
+              >
                 Next
               </BtnNext>
               <BtnCancel type="button">Cancel</BtnCancel>
