@@ -4,6 +4,7 @@ export const UserPageContainer = styled.div`
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 119px;
   @media ${p => p.theme.media.mobile} {
     width: 320px;
   }
@@ -11,11 +12,13 @@ export const UserPageContainer = styled.div`
     width: 768px;
     padding-left: 0px;
     padding-right: 32px;
+    padding-top: 158px;
   }
   @media ${p => p.theme.media.desktop} {
     display: flex;
     padding-left: 0px;
     padding-right: 16px;
+    padding-top: 126px;
     width: 1280px;
   }
 `;

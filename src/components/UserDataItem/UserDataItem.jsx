@@ -29,7 +29,7 @@ const UserDataItem = () => {
   return (
     <UserBlock>
       <BoxImg>
-        <ImgUser src="http://wer" alt="User" />
+        <ImgUser src="" alt="User" />
         <EditImgBtn>
           <IconEditImgBtn />
           Edit photo
