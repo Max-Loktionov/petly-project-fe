@@ -11,6 +11,8 @@ import NoticesPage from "pages/NoticesPage/NoticesPage";
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const OurFriendsPage = lazy(() => import("../pages/OurFriendsPage"));
+const NewsPage = lazy(() => import("../pages/NewsPage"));
 const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 const UserPage = lazy(() => import("../pages/UserPage"));
@@ -23,6 +25,8 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<Home />} />
+              <Route path="friends" element={<OurFriendsPage />} />
+              <Route path="news" element={<NewsPage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="notices" element={<NoticesPage />} />
