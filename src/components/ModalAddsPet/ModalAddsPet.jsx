@@ -170,7 +170,9 @@ const ModalAddsPet = ({ onClose }) => {
               >
                 Next
               </BtnNext>
-              <BtnCancel type="button">Cancel</BtnCancel>
+              <BtnCancel onClick={onClose} type="button">
+                Cancel
+              </BtnCancel>
             </>
           )}
 
