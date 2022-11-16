@@ -1,5 +1,5 @@
 import Logout from "components/Logout";
-import PetsList from "components/PetsList";
+import PetsData from "components/PetsData";
 import UserData from "components/UserData";
 
 import { UserPageContainer, BoxUser } from "./UserPage.styled";
@@ -13,7 +13,7 @@ const UserPage = () => {
           <UserData />
           <Logout />
         </BoxUser>
-        <PetsList />
+        <PetsData />
       </UserPageContainer>
     </>
   );

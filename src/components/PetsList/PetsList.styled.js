@@ -31,7 +31,8 @@ export const BoxBtn = styled.div`
 
 export const TitleBtn = styled.p`
   margin-right: 15px;
-  font-weight: 500;
+
+  font-weight: ${p => p.theme.fontWeights.heading};
   font-size: 20px;
 `;
 
@@ -49,10 +50,11 @@ export const TitlePet = styled.h2`
 `;
 
 export const BtnAddPet = styled(Button)`
+  justify-content: center;
   width: 40px;
   height: 40px;
   padding: 0;
-  justify-content: center;
+
   font-size: 50px;
   border-radius: ${p => p.theme.radii.round};
 `;
