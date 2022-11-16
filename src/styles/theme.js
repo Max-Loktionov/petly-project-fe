@@ -15,8 +15,10 @@ const theme = {
     textRegister: "#3091EB",
     primaryBtnText: "#111111",
     secondatyBtnText: "#FFFFFF",
+    placegolder: "#1b1b1b99",
 
     hoverBtn: "#FF6101",
+    input: "#FDF7F2",
 
     shadowCard: "rgba(49, 21, 4, 0.07)",
 
@@ -34,6 +36,7 @@ const theme = {
     m: "16px",
     ml: "24px",
     mll: "28px",
+    n: "18px",
     l: "32px",
     xl: "64px",
   },

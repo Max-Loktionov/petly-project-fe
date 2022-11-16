@@ -5,7 +5,7 @@ import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 import NoticesPage from "pages/NoticesPage/NoticesPage";
 import Modal from "./Modal/Modal";
-import ModalAddPets from "./ModalAddPets";
+import ModalAddPets from "./ModalAddNotice";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));

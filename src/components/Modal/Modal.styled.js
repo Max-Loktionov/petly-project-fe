@@ -27,7 +27,7 @@ export const ModalWindow = styled.div`
   max-height: calc(100vh - 40px);
 
   background-color: white;
-  padding: 60px 20px 40px;
+  padding: 40px 20px 40px;
 
   border-radius: 20px;
 
