@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { BurgerMenu } from "components/BurgerMenuBtn/BurgerMenu";
 import { Nav } from "components/Nav/Nav";

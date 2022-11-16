@@ -1,7 +1,7 @@
 # React homework template
 
 ```
-https://petly-be.herokuapp.com/auth/signup     post - реєстрація користувача (потребує  password, email, name - обов'язкові, city, phone, birthday), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
+https://petly-be.herokuapp.com/auth/signup     post - реєстрація користувача (потребує  password, email- обов'язкові,  name, city, phone, birthday), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
 
 https://petly-be.herokuapp.com/auth/login      post - логінізація користувача (потрубує email, password), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
 

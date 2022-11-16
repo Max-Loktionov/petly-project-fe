@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
+import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
-import RegisterPage from "pages/AuthPages/RegisterPage";
 import NoticesPage from "pages/NoticesPage/NoticesPage";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
@@ -13,7 +13,8 @@ const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const OurFriendsPage = lazy(() => import("../pages/OurFriendsPage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));
-// const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 
 export const App = () => {
   return (
@@ -26,6 +27,7 @@ export const App = () => {
               <Route index element={<Home />} />
               <Route path="friends" element={<OurFriendsPage />} />
               <Route path="news" element={<NewsPage />} />
+              <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="notices" element={<NoticesPage />} />
               <Route path="*" element={<NotFound />} />
