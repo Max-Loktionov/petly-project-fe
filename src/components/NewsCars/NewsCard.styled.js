@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-   @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobile} {
     display: flex;
     flex-direction: column;
     min-width: 280px;
@@ -13,16 +13,18 @@ export const Card = styled.div`
       border-radius: 40px;
       width: 200px;
     }
-     @media ${p => p.theme.media.tablet} {
-       ::before {
+  }
+  @media ${p => p.theme.media.tablet} {
+    ::before {
       content: " ";
       width: 280px;
-       }
-       @media ${p => p.theme.media.desktop} {
-       ::before {
+    }
+  }
+  @media ${p => p.theme.media.desktop} {
+    ::before {
       content: " ";
       width: 340px;
-       }
+    }
   }
 `;
 export const Title = styled.h3`
@@ -66,12 +68,13 @@ export const Elem = styled.p`
     line-height: 22px;
     color: #111321;
     margin-bottom: 20px;
-   
-  @media ${p => p.theme.media.tablet} {
-    margin-bottom: 40px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    margin-bottom: 40px;
+
+    @media ${p => p.theme.media.tablet} {
+      margin-bottom: 40px;
+    }
+    @media ${p => p.theme.media.desktop} {
+      margin-bottom: 40px;
+    }
   }
 `;
 
