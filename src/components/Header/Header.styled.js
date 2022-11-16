@@ -5,12 +5,12 @@ export const Container = styled.div`
   width: 100%;
   padding: 16px 20px;
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     display: flex;
     justify-content: space-between;
     padding: 24px 32px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     display: flex;
     align-items: center;
     padding: 20px 16px;
