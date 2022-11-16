@@ -37,6 +37,7 @@ const theme = {
     ml: "24px",
     mll: "28px",
     n: "18px",
+    nl: "20px",
     l: "32px",
     xl: "64px",
   },

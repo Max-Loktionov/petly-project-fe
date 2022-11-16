@@ -37,7 +37,7 @@ export const ModalWindow = styled.div`
   @media ${p => p.theme.media.tablet} {
     padding: 32px 20px;
 
-    width: 704px;
+    width: ${props => (props?.tabletNoStandartWidth ? "704px" : "608px")};
   }
 `;
 
