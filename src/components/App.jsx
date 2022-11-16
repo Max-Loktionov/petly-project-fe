@@ -11,7 +11,7 @@ const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
-const UserPage = lazy(() => import("../pages/UserPage"));
+const UserPage = lazy(() => import("../pages/UserPageJ"));
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
