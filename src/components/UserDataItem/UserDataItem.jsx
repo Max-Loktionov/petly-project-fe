@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useGetUserQuery, userApi } from "redux/userApi";
 
 import {
@@ -17,19 +16,16 @@ import {
 } from "./UserDataItem.styled";
 
 const UserDataItem = () => {
-  // const { data, isLoading, isError } = useGetUserQuery();
-  // console.log(useGetUserQuery());
-  // const [user, setUser] = useState([]);
+  const { data: user = [], isLoading, isError } = useGetUserQuery();
+  console.log(useGetUserQuery());
+  console.log(user.data.result);
 
-  // if (data) {
-  //   return setUser(data.data);
-  // }
+  const { avatar, birthday, city, email, name, phone } = user.data.result;
 
-  // const { name, email, avatar, birthday, city, phone } = user;
   return (
     <UserBlock>
       <BoxImg>
-        <ImgUser src="" alt="User" />
+        <ImgUser src={avatar} alt="Avatar User" />
         <EditImgBtn>
           <IconEditImgBtn />
           Edit photo
@@ -39,7 +35,7 @@ const UserDataItem = () => {
         <BoxTitle>
           <Title>Name:</Title>
           <Block>
-            <Text>Anna</Text>
+            <Text>{name}</Text>
             <EditTextBtn>
               <EditTextBtnIcon />
             </EditTextBtn>
@@ -48,7 +44,7 @@ const UserDataItem = () => {
         <BoxTitle>
           <Title>Email:</Title>
           <Block>
-            <Text>anna00@gmail.com</Text>
+            <Text>{email}</Text>
             <EditTextBtn>
               <EditTextBtnIcon />
             </EditTextBtn>
@@ -57,7 +53,7 @@ const UserDataItem = () => {
         <BoxTitle>
           <Title>Birthday:</Title>
           <Block>
-            <Text>00.00.0000</Text>
+            <Text>{birthday}</Text>
             <EditTextBtn>
               <EditTextBtnIcon />
             </EditTextBtn>
@@ -66,7 +62,7 @@ const UserDataItem = () => {
         <BoxTitle>
           <Title>Phone:</Title>
           <Block>
-            <Text>+38000000000</Text>
+            <Text>{phone}</Text>
             <EditTextBtn>
               <EditTextBtnIcon />
             </EditTextBtn>
@@ -75,7 +71,7 @@ const UserDataItem = () => {
         <BoxTitle>
           <Title>City:</Title>
           <Block>
-            <Text>Kiev</Text>
+            <Text>{city}</Text>
             <EditTextBtn>
               <EditTextBtnIcon />
             </EditTextBtn>
