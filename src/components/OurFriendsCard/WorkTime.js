@@ -1,3 +1,5 @@
+// import { Day } from "./WorkTime.styled";
+
 const WorkTime = workDays => {
   console.log(workDays);
 
@@ -5,12 +7,15 @@ const WorkTime = workDays => {
     <ul>
       {workDays.workDays.map(({ day, from, to, isOpen }) => (
         <li>
-          {{ isOpen } ? (
+          {isOpen ? (
             <p>
+              <small>{day}&nbsp;&nbsp;</small>
               {from} - {to}
             </p>
           ) : (
-            <span>{day} Closed</span>
+            <p>
+              <small>{day}</small> Closed
+            </p>
           )}
         </li>
       ))}

@@ -41,12 +41,12 @@ export const Box = styled.ul`
 
 export const Card = styled.li`
   @media ${p => p.theme.media.mobile} {
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;  
     width: 280px;
     height: 192px;
     margin-bottom: 12px;
-    overflow-y: hidden;
+   
    
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
      border-radius: 40px;
