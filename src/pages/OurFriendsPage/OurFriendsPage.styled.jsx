@@ -40,6 +40,9 @@ export const Box = styled.ul`
 `;
 
 export const Card = styled.li`
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 40px;
+  padding: 12px 34px 12px 4px;
   @media ${p => p.theme.media.mobile} {
     margin-left: auto;
     margin-right: auto;
@@ -48,9 +51,6 @@ export const Card = styled.li`
     margin-bottom: 12px;
     overflow-y: hidden;
 
-    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-    border-radius: 40px;
-    padding: 12px 34px 12px 4px;
     &:nth-last-child() {
       margin-bottom: 0px;
     }
@@ -66,7 +66,7 @@ export const Card = styled.li`
       margin-left: 0px;
     }
   }
-  @media (${p => p.theme.media.desktop}) {
+  @media ${p => p.theme.media.desktop} {
     width: calc((100% - 64px) / 3);
     height: 287px;
     margin-left: 32px;
