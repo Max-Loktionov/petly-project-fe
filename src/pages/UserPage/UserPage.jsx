@@ -24,7 +24,7 @@ const UserPage = () => {
 
       {isOpenAddPetModal && (
         <Modal onClose={closeAddPetModal}>
-          <ModalAddsPet />
+          <ModalAddsPet onClose={closeAddPetModal} />
         </Modal>
       )}
     </>

@@ -18,7 +18,7 @@ import {
   SubTitle,
 } from "./ModalAddsPet.styled";
 
-const ModalAddsPet = () => {
+const ModalAddsPet = ({ onClose }) => {
   const [nextPage, setNextPage] = useState(false);
   const [addPet] = useAddPetMutation();
 
@@ -30,8 +30,8 @@ const ModalAddsPet = () => {
     mode: "onBlur",
   });
 
-  const handleSubmitClick = formData => {
-    console.log("formData", formData);
+  const handleSubmitClick = (formData, evt) => {
+    onClose(evt);
     addPet(formData);
   };
 
