@@ -1,13 +1,14 @@
 import { useState } from "react";
-
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { BurgerMenu } from "components/BurgerMenuBtn/BurgerMenu";
 import { Nav } from "components/Nav/Nav";
 import { UserNav } from "components/UserNav/UserNav";
 import { MobileMenu, NavContainer } from "./Navigation.styled";
+import { useSelector } from "react-redux";
 
 export const Navigation = () => {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
+  const isLoggedIn = useSelector(state => state.auth.token);
 
   const onMobileMenuClick = e => {
     if (e) {
@@ -30,15 +31,20 @@ export const Navigation = () => {
         <NavContainer>
           <Nav handleClick={onMobileMenuClick} />
 
-          {/* <Container> */}
-          {screenSize < 768 && <AuthNav closeMobileMenu={closeMobileMenu} />}
-          {screenSize < 768 && <UserNav closeMobileMenu={closeMobileMenu} />}
-
-          {/* </Container> */}
+          {screenSize < 768 && !isLoggedIn && (
+            <AuthNav closeMobileMenu={closeMobileMenu} />
+          )}
+          {screenSize < 768 && isLoggedIn && (
+            <UserNav closeMobileMenu={closeMobileMenu} />
+          )}
         </NavContainer>
       </MobileMenu>
-      {screenSize >= 768 && <AuthNav closeMobileMenu={closeMobileMenu} />}
-      {screenSize >= 768 && <UserNav closeMobileMenu={closeMobileMenu} />}
+      {screenSize >= 768 && !isLoggedIn && (
+        <AuthNav closeMobileMenu={closeMobileMenu} />
+      )}
+      {screenSize >= 768 && isLoggedIn && (
+        <UserNav closeMobileMenu={closeMobileMenu} />
+      )}
     </>
   );
 };
