@@ -13,19 +13,9 @@ const PetsList = () => {
       ) : data.length === 0 ? (
         <div>Pet not found</div>
       ) : (
-        data.data.result.pets.map(
-          ({ _id, name, data, breed, comments, birthday }) => (
-            <PetsListItem
-              key={_id}
-              name={name}
-              data={data}
-              breed={breed}
-              comment={comments}
-              id={_id}
-              birthday={birthday}
-            />
-          )
-        )
+        data.data.result.pets.map(({ _id, name, data, breed, comments, birthday }) => (
+          <PetsListItem key={_id} name={name} data={data} breed={breed} comment={comments} id={_id} birthday={birthday} />
+        ))
       )}
     </>
   );

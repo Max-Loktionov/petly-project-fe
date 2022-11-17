@@ -1,12 +1,6 @@
 import AddPetBtn from "components/AddPetBtn";
 
-import {
-  TitlePet,
-  BoxBtn,
-  BoxTitlePet,
-  BoxPet,
-  TitleBtn,
-} from "./PetsData.styled";
+import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsData.styled";
 import PetsList from "components/PetsList";
 import Modal from "components/Modal/Modal";
 import ModalAddsPet from "components/ModalAddsPet";

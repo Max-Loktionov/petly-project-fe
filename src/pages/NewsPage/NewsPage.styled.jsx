@@ -95,28 +95,30 @@ export const Box = styled.ul`
 `;
 
 export const Card = styled.li`
- @media ${p => p.theme.media.mobile} {
-     margin-left: auto;
-    margin-right: auto;   
-    margin-bottom: 40px;  
+  @media ${p => p.theme.media.mobile} {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
     &:nth-last-child() {
       margin-bottom: 0px;
     }
- @media ${p => p.theme.media.tablet} {
-width: calc((100% - 32px) / 2);
-  margin-left: 32px;
-  margin-bottom: 60px;
-  margin-right: 0px; 
-   &:nth-child(2n + 1) {
-    margin-left: 0px;
   }
- }
- @media ${p => p.theme.media.desktop} {
-  width: calc((100% - 64px) / 3);
-  &:nth-child(2n + 1) {
+  @media ${p => p.theme.media.tablet} {
+    width: calc((100% - 32px) / 2);
     margin-left: 32px;
+    margin-bottom: 60px;
+    margin-right: 0px;
+    &:nth-child(2n + 1) {
+      margin-left: 0px;
+    }
   }
+  @media ${p => p.theme.media.desktop} {
+    width: calc((100% - 64px) / 3);
+    &:nth-child(2n + 1) {
+      margin-left: 32px;
+    }
     &:nth-child(3n + 1) {
-    margin-left: 0px;
+      margin-left: 0px;
+    }
   }
 `;

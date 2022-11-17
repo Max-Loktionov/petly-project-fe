@@ -3,15 +3,7 @@ import { useDeletePetMutation } from "redux/userApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  PetItem,
-  InfoPet,
-  Title,
-  ImgPet,
-  BoxInfo,
-  DeleteBtm,
-  DelIcon,
-} from "./PetsListItem.styled";
+import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./PetsListItem.styled";
 
 const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
@@ -21,11 +13,7 @@ const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
     <PetItem>
       <ImgPet src={`${avatar}`} alt={`${name}`}></ImgPet>
       <BoxInfo>
-        <DeleteBtm
-          type="button"
-          disabled={isDeleting}
-          onClick={() => deletePet(id)}
-        >
+        <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(id)}>
           <DelIcon />
         </DeleteBtm>
         <InfoPet>
