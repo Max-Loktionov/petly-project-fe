@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useAddPetMutation } from "../../redux/userApi";
 // import { ErrorMessage } from "@hookform/error-message";
 import {
   Label,
@@ -17,19 +18,21 @@ import {
   SubTitle,
 } from "./ModalAddsPet.styled";
 
-const ModalAddsPet = () => {
+const ModalAddsPet = ({ onClose }) => {
   const [nextPage, setNextPage] = useState(false);
+  const [addPet] = useAddPetMutation();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
 
-  const handleSubmitClick = formData => {
-    console.log("formData", formData);
+  const handleSubmitClick = (formData, evt) => {
+    onClose(evt);
+    addPet(formData);
   };
 
   const handleNextClick = () => {
@@ -54,7 +57,7 @@ const ModalAddsPet = () => {
               id="petName"
               type="text"
               placeholder="Type name pet"
-              {...register("petName", {
+              {...register("name", {
                 required: "Name is required",
                 minLength: {
                   value: 2,
@@ -62,8 +65,7 @@ const ModalAddsPet = () => {
                 },
                 maxLength: {
                   value: 16,
-                  message:
-                    "The length of this field cannot exceed 16 characters",
+                  message: "The length of this field cannot exceed 16 characters",
                 },
                 pattern: {
                   value: textRegexp,
@@ -72,12 +74,12 @@ const ModalAddsPet = () => {
               })}
               aria-invalid={errors.petName ? "true" : "false"}
             />
-            {errors.petName && <ErrorText>{errors.petName?.message}</ErrorText>}
+            {errors.name && <ErrorText>{errors.name?.message}</ErrorText>}
             <Label htmlFor="dateOfBirth">Date of birth</Label>
             <Input
               id="dateOfBirth"
               placeholder="Type date of birth"
-              {...register("dateOfBirth", {
+              {...register("birthday", {
                 required: "Date of birth is required.",
                 pattern: {
                   value: dateRegexp,
@@ -85,9 +87,7 @@ const ModalAddsPet = () => {
                 },
               })}
             />
-            {errors.dateOfBirth && (
-              <ErrorText role="alert">{errors.dateOfBirth?.message}</ErrorText>
-            )}
+            {errors.birthday && <ErrorText role="alert">{errors.birthday?.message}</ErrorText>}
             <Label htmlFor="breed">Breed</Label>
             <Input
               id="breed"
@@ -97,8 +97,7 @@ const ModalAddsPet = () => {
                 required: "Breed is required",
                 maxLength: {
                   value: 16,
-                  message:
-                    "The length of this field cannot exceed 16 characters",
+                  message: "The length of this field cannot exceed 16 characters",
                 },
                 minLength: {
                   value: 2,
@@ -111,9 +110,7 @@ const ModalAddsPet = () => {
               })}
               aria-invalid={errors.breed ? "true" : "false"}
             />
-            {errors.breed && (
-              <ErrorText role="alert">{errors.breed?.message}</ErrorText>
-            )}
+            {errors.breed && <ErrorText role="alert">{errors.breed?.message}</ErrorText>}
           </>
         )}
 
@@ -121,7 +118,7 @@ const ModalAddsPet = () => {
           <>
             <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
             <Container>
-              <Input
+              {/* <Input
                 type="file"
                 id="addPhoto"
                 {...register("addPhoto", {
@@ -130,16 +127,17 @@ const ModalAddsPet = () => {
               />
               {errors.addPhoto && (
                 <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
-              )}
-              <Label htmlFor="addPhoto">Comments</Label>
+              )} */}
+              <Label textarea htmlFor="addPhoto">
+                Comments
+              </Label>
               <Textarea
                 id="Comments"
                 {...register("comments", {
                   required: "Comments is required.",
                   maxLength: {
                     value: 120,
-                    message:
-                      "The length of this field cannot exceed 120 characters",
+                    message: "The length of this field cannot exceed 120 characters",
                   },
                   minLength: {
                     value: 8,
@@ -147,9 +145,7 @@ const ModalAddsPet = () => {
                   },
                 })}
               />
-              {errors.comments && (
-                <ErrorText role="alert">{errors.comments?.message}</ErrorText>
-              )}
+              {errors.comments && <ErrorText role="alert">{errors.comments?.message}</ErrorText>}
             </Container>
           </>
         )}
@@ -157,10 +153,12 @@ const ModalAddsPet = () => {
         <BtnBox>
           {!nextPage && (
             <>
-              <BtnNext onClick={handleNextClick} active type="button">
+              <BtnNext onClick={handleNextClick} active disabled={!isValid} type="button">
                 Next
               </BtnNext>
-              <BtnCancel type="button">Cancel</BtnCancel>
+              <BtnCancel onClick={onClose} type="button">
+                Cancel
+              </BtnCancel>
             </>
           )}
 

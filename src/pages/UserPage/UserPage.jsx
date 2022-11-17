@@ -1,11 +1,23 @@
-import Modal from "components/Modal/Modal";
-import ModalAddsPet from "components/ModalAddsPet";
+import Logout from "components/Logout";
+import PetsData from "components/PetsData";
+import UserData from "components/UserData";
+import { useGetUserQuery } from "redux/userApi";
+
+import { UserPageContainer, BoxUser } from "./UserPage.styled";
 
 const UserPage = () => {
+  const { data, error } = useGetUserQuery();
+
   return (
-    <Modal>
-      <ModalAddsPet />
-    </Modal>
+    <>
+      <UserPageContainer>
+        <BoxUser>
+          <UserData />
+          <Logout />
+        </BoxUser>
+        <PetsData />
+      </UserPageContainer>
+    </>
   );
 };
 
