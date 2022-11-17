@@ -61,12 +61,23 @@ export const BoxInfo = styled.div`
 `;
 export const DeleteBtm = styled.button`
   position: absolute;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  border: none;
-  background-color: transparent;
+  justify-content: center;
   padding: 0;
   right: 0;
+
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: ${p => p.theme.colors.background};
+  cursor: pointer;
+  border-radius: ${p => p.theme.radii.round};
+  border: none;
+  @media ${p => p.theme.media.tablet} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const DelIcon = styled(HiTrash)`

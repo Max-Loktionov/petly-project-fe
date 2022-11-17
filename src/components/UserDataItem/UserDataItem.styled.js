@@ -22,7 +22,8 @@ export const UserBlock = styled.div`
     min-height: 311px;
     padding: 24px 40px 24px 32px;
 
-    border-radius: 0 ${p => p.theme.radii.cardPet} ${p => p.theme.radii.cardPet} 0;
+    border-radius: 0 ${p => p.theme.radii.cardPet} ${p => p.theme.radii.cardPet}
+      0;
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: column;
@@ -129,7 +130,7 @@ export const Title = styled.p`
     font-size: 18px;
   }
 `;
-export const Text = styled.div`
+export const Text = styled.p`
   margin-left: 18px;
 
   font-size: 14px;
@@ -174,5 +175,41 @@ export const EditTextBtnIcon = styled(HiPencil)`
   @media ${p => p.theme.media.tablet} {
     width: 20px;
     height: 20px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex: auto;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Input = styled.input`
+  padding: 4px 18px;
+
+  width: 159px;
+  height: 24px;
+
+  background-color: ${p =>
+    p.disabled ? "transparent" : p.theme.colors.background};
+  border: ${p => (p.disabled ? "none" : p.theme.borders.inputModal)};
+  border-color: ${p => p.theme.colors.inputModal};
+  color: ${p => p.theme.colors.primaryText};
+  border-radius: 40px;
+
+  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.text};
+
+  :focus {
+    outline-color: ${p => p.theme.colors.inputModal};
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    width: 216px;
+    height: 32px;
+    padding: 4px 12px;
+
+    font-size: 18px;
   }
 `;
