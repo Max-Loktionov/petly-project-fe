@@ -99,7 +99,7 @@ export const BtnBox = styled.div`
 `;
 
 export const BtnCancel = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     width: 100%;
     display: block;
   }
@@ -110,7 +110,7 @@ export const BtnCancel = styled(StyledButton)`
   }
 `;
 export const BtnNext = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     width: 100%;
     margin-bottom: 12px;
     display: block;
@@ -121,7 +121,7 @@ export const BtnNext = styled(StyledButton)`
   }
 `;
 export const BtnBack = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     display: block;
     width: 100%;
   }
@@ -133,7 +133,7 @@ export const BtnBack = styled(StyledButton)`
 `;
 
 export const BtnDone = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     margin-bottom: 12px;
     width: 100%;
 
@@ -154,7 +154,7 @@ export const Textarea = styled.textarea`
   background: ${p => p.theme.colors.background};
   border: 1px solid ${p => p.theme.colors.inputModal};
   border-radius: 20px;
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     width: 240px;
     height: 100px;
   }

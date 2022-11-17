@@ -3,18 +3,20 @@ import AddPetBtn from "components/AddPetBtn";
 import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsData.styled";
 import PetsList from "components/PetsList";
 
-const PetsData = () => {
+const PetsData = ({ onOpenModal }) => {
   return (
-    <BoxPet>
-      <BoxTitlePet>
-        <TitlePet>My pets:</TitlePet>
-        <BoxBtn>
-          <TitleBtn>Add pet</TitleBtn>
-          <AddPetBtn disabled={true} />
-        </BoxBtn>
-      </BoxTitlePet>
-      <PetsList />
-    </BoxPet>
+    <>
+      <BoxPet>
+        <BoxTitlePet>
+          <TitlePet>My pets:</TitlePet>
+          <BoxBtn>
+            <TitleBtn>Add pet</TitleBtn>
+            <AddPetBtn onOpenModal={onOpenModal} />
+          </BoxBtn>
+        </BoxTitlePet>
+        <PetsList />
+      </BoxPet>
+    </>
   );
 };
 
