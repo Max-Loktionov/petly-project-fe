@@ -4,12 +4,14 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 import { userApi } from "./userApi";
 import { authApi } from "./auth";
 import { persistedReducer } from "./auth";
+import { filterSlice } from "./filterCategoriesSlice";
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     auth: persistedReducer,
+    categories: filterSlice.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
