@@ -2,11 +2,11 @@ import Button from "components/Button";
 import Modal from "components/Modal/Modal";
 import ModalAddsPet from "components/ModalAddsPet";
 import { useState } from "react";
-import { useGetUserQuery } from "redux/userApi";
+// import { useGetUserQuery } from "redux/userApi";
 
 const UserPage = () => {
   const [isOpenAddPetModal, setIsOpenAddPetModal] = useState(false);
-  const { data, error } = useGetUserQuery();
+  // const { data, error } = useGetUserQuery();
 
   const closeAddPetModal = e => {
     if (e) {

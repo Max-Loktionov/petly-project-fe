@@ -17,7 +17,9 @@ import {
 
 const UserDataItem = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
-  console.log(useGetUserQuery());
+
+  const BASE_URL = "https://www.gravatar.com/avatar/";
+  const imgUrl = user?.data?.result?.avatar;
 
   return (
     <UserBlock>
@@ -26,7 +28,7 @@ const UserDataItem = () => {
       ) : (
         <>
           <BoxImg>
-            <ImgUser src={user.data.result.avatar} alt="Avatar User" />
+            <ImgUser src={BASE_URL + imgUrl} alt="Avatar User" />
             <EditImgBtn>
               <IconEditImgBtn />
               Edit photo
