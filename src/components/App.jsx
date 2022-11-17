@@ -15,7 +15,7 @@ const OurFriendsPage = lazy(() => import("../pages/OurFriendsPage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));
 const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
-const UserPage = lazy(() => import("../pages/UserPage"));
+const UserPage = lazy(() => import("../pages/UserPageJ"));
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
