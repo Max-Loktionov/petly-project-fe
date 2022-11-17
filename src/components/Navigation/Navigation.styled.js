@@ -60,11 +60,11 @@ export const MobileMenu = styled.div`
     position: static;
     transform: translateX(0);
 
-//     padding: 0;
-//     width: auto;
-//     height: auto;
-//     visibility: visible;
-//     margin-left: auto;
-//     margin-right: auto;
-//   }
-// `;
+    //     padding: 0;
+    //     width: auto;
+    //     height: auto;
+    //     visibility: visible;
+    //     margin-left: auto;
+    //     margin-right: auto;
+  }
+`;
