@@ -60,7 +60,7 @@ const theme = {
     round: "50%",
   },
   media: {
-    mobile: "(max-width: 767px)",
+    mobile: "(min-width: 320px)",
     tablet: "(min-width: 768px)",
     desktop: "(min-width: 1280px)",
   },

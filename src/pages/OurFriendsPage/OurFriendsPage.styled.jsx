@@ -46,6 +46,7 @@ export const Card = styled.li`
     width: 280px;
     height: 192px;
     margin-bottom: 12px;
+    background-color: #ffffff;
 
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     border-radius: 40px;
