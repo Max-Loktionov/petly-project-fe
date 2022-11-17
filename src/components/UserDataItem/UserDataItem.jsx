@@ -18,66 +18,69 @@ import {
 const UserDataItem = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
   console.log(useGetUserQuery());
-  console.log(user.data.result);
-
-  const { avatar, birthday, city, email, name, phone } = user.data.result;
 
   return (
     <UserBlock>
-      <BoxImg>
-        <ImgUser src={avatar} alt="Avatar User" />
-        <EditImgBtn>
-          <IconEditImgBtn />
-          Edit photo
-        </EditImgBtn>
-      </BoxImg>
-      <BoxInfo>
-        <BoxTitle>
-          <Title>Name:</Title>
-          <Block>
-            <Text>{name}</Text>
-            <EditTextBtn>
-              <EditTextBtnIcon />
-            </EditTextBtn>
-          </Block>
-        </BoxTitle>
-        <BoxTitle>
-          <Title>Email:</Title>
-          <Block>
-            <Text>{email}</Text>
-            <EditTextBtn>
-              <EditTextBtnIcon />
-            </EditTextBtn>
-          </Block>
-        </BoxTitle>
-        <BoxTitle>
-          <Title>Birthday:</Title>
-          <Block>
-            <Text>{birthday}</Text>
-            <EditTextBtn>
-              <EditTextBtnIcon />
-            </EditTextBtn>
-          </Block>
-        </BoxTitle>
-        <BoxTitle>
-          <Title>Phone:</Title>
-          <Block>
-            <Text>{phone}</Text>
-            <EditTextBtn>
-              <EditTextBtnIcon />
-            </EditTextBtn>
-          </Block>
-        </BoxTitle>
-        <BoxTitle>
-          <Title>City:</Title>
-          <Block>
-            <Text>{city}</Text>
-            <EditTextBtn>
-              <EditTextBtnIcon />
-            </EditTextBtn>
-          </Block>
-        </BoxTitle>
-      </BoxInfo>
+      {user.length === 0 ? (
+        <div>not found</div>
+      ) : (
+        <>
+          <BoxImg>
+            <ImgUser src={user.data.result.avatar} alt="Avatar User" />
+            <EditImgBtn>
+              <IconEditImgBtn />
+              Edit photo
+            </EditImgBtn>
+          </BoxImg>
+          <BoxInfo>
+            <BoxTitle>
+              <Title>Name:</Title>
+              <Block>
+                <Text>{user.data.result.name}</Text>
+                <EditTextBtn>
+                  <EditTextBtnIcon />
+                </EditTextBtn>
+              </Block>
+            </BoxTitle>
+            <BoxTitle>
+              <Title>Email:</Title>
+              <Block>
+                <Text>{user.data.result.email}</Text>
+                <EditTextBtn>
+                  <EditTextBtnIcon />
+                </EditTextBtn>
+              </Block>
+            </BoxTitle>
+            <BoxTitle>
+              <Title>Birthday:</Title>
+              <Block>
+                <Text>{user.data.result.birthday}</Text>
+                <EditTextBtn>
+                  <EditTextBtnIcon />
+                </EditTextBtn>
+              </Block>
+            </BoxTitle>
+            <BoxTitle>
+              <Title>Phone:</Title>
+              <Block>
+                <Text>{user.data.result.phone}</Text>
+                <EditTextBtn>
+                  <EditTextBtnIcon />
+                </EditTextBtn>
+              </Block>
+            </BoxTitle>
+            <BoxTitle>
+              <Title>City:</Title>
+              <Block>
+                <Text>{user.data.result.city}</Text>
+                <EditTextBtn>
+                  <EditTextBtnIcon />
+                </EditTextBtn>
+              </Block>
+            </BoxTitle>
+          </BoxInfo>
+        </>
+      )}
     </UserBlock>
   );
 };
