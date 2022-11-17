@@ -7,13 +7,12 @@ export const BurgerMenuBtn = styled.button`
   width: 30px;
   height: 20px;
   z-index: 10;
-  /* border: none; */
   background-color: transparent;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     top: 34px;
     right: 37px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     visibility: hidden;
   }
 `;
