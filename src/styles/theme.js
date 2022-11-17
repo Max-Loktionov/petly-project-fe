@@ -3,6 +3,7 @@ const theme = {
     black: "#000",
     white: "#fff",
     background: "#FDF7F2",
+    backdrop: " #11111199",
     accent: "#F59256",
 
     logo: "#111111",
@@ -31,12 +32,15 @@ const theme = {
     xs: "12px",
     s: "14px",
     m: "16px",
+    ml: "24px",
+    mll: "28px",
     l: "32px",
     xl: "64px",
   },
   fontWeights: {
     text: 400,
     heading: 500,
+    semiBold: 600,
     logo: 700,
     bold: 700,
   },
@@ -56,7 +60,7 @@ const theme = {
     round: "50%",
   },
   media: {
-    mobile: "(min-width: 320px)",
+    mobile: "(max-width: 767px)",
     tablet: "(min-width: 768px)",
     desktop: "(min-width: 1280px)",
   },
