@@ -39,7 +39,7 @@ export const SearchFormInput = styled.input`
   padding-left: 12px;
   padding-right: 12px;
 
-  color: #535353;
+  color: ${p => p.theme.colors.searchText};
 
   @media ${p => p.theme.media.tablet} {
     display: flex;
