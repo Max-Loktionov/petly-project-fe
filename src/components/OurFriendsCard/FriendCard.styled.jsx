@@ -14,7 +14,6 @@ export const Title = styled.h3`
     z-index: 2;
 
     span {
-      position: absolute;
       display: none;
       background: #ffffff;
       padding: 2px 10px 2px 10px;
@@ -24,6 +23,7 @@ export const Title = styled.h3`
       transform: scale(1.1);
     }
     :hover span {
+      position: absolute;
       display: inline-block;
     }
   }
@@ -72,7 +72,7 @@ export const List = styled.ul`
 `;
 
 export const Time = styled.li`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobile} {    
     display: flex;
     flex-direction: column;
     text-align: start;
@@ -86,7 +86,9 @@ export const Time = styled.li`
     }
     :hover {
       color: #f59256;
+     
     }
+  }
     @media ${p => p.theme.media.tablet} {
       margin-top: 8px;
       font-size: 14px;
@@ -99,30 +101,29 @@ export const Time = styled.li`
       line-height: 22px;
       height: 44px;
     }
-  }
-  small {
-    display: none;
-  }
-  :hover span {
     small {
-      display: inline-block;
+      display: none;
     }
-     @media ${p => p.theme.media.mobile} {
-    position: absolute;
-    left: 0px;
-    top: 25%;
-    width: 120px;
-    display: inline-block;
-    padding: 12px 12px 12px 12px;
-    border: 1px solid #f59256;
-    font-size: 12px;
-    line-height: 16px;
-    background: #ffffff;
-    border: 1px solid #f59256;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
+       :hover span {
+      position: absolute;
+      left: 0px;
+      top: 25%;
+      width: 120px;
+      display: inline-block;
+      padding: 12px 12px 12px 12px;
+      border: 1px solid #f59256;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 16px;
+      background: #ffffff;
+      border: 1px solid #f59256;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      small {
+        display: inline-block;
+      }
+    }
   }
-  
 `;
 
 export const Img = styled.img`
@@ -143,32 +144,32 @@ export const Address = styled.li`
     &:nth-child(1) {
       margin-top: 0px;
     }
-    @media ${p => p.theme.media.tablet} {
-      margin-top: 8px;
-      font-size: 14px;
-      line-height: 19px;
-      height: 38px;
-    }
-    @media ${p => p.theme.media.desktop} {
-      margin-top: 12px;
-      font-size: 16px;
-      line-height: 22px;
-      height: 44px;
-    }
-    :hover span {
-      position: absolute;
-      left: 0px;
-      top: 25%;
-      display: inline-block;
-      padding: 2px 2px 2px 2px;
-      border: 1px solid #f59256;
-      cursor: pointer;
-      background: #ffffff;
-      border: 1px solid #f59256;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-      border-radius: 8px;
-      overflow: visible;
-    }
+  }
+  @media ${p => p.theme.media.tablet} {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 19px;
+    height: 38px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 22px;
+    height: 44px;
+  }
+  :hover span {
+    position: absolute;
+    left: 0px;
+    top: 25%;
+    display: inline-block;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #f59256;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #f59256;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    overflow: visible;
   }
 `;
 
