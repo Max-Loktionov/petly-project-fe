@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AddPet } from "./AddPetBtn.styled";
 
-const AddPetBtn = ({ disabled = false, ...props }) => {
+const AddPetBtn = ({ disabled = false, openAddPetModal, ...props }) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -9,7 +9,7 @@ const AddPetBtn = ({ disabled = false, ...props }) => {
   };
   return (
     <>
-      <AddPet active disabled={disabled} onClick={toggleModal} {...props}>
+      <AddPet active disabled={disabled} onClick={openAddPetModal} {...props}>
         +
       </AddPet>
       {showModal && (

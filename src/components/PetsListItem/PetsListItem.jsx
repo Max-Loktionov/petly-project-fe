@@ -5,16 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./PetsListItem.styled";
 
-const PetsListItem = ({ _id, name, birthday, breed, comments, avatar }) => {
+const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
-
   isDeleting && toast(`${name} was removed`);
 
   return (
     <PetItem>
       <ImgPet src={`${avatar}`} alt={`${name}`}></ImgPet>
       <BoxInfo>
-        <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(_id)}>
+        <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(id)}>
           <DelIcon />
         </DeleteBtm>
         <InfoPet>
@@ -31,7 +30,7 @@ const PetsListItem = ({ _id, name, birthday, breed, comments, avatar }) => {
         </InfoPet>
         <InfoPet>
           <Title>Comments: </Title>
-          {comments}
+          {comment}
         </InfoPet>
       </BoxInfo>
       <ToastContainer />
@@ -42,7 +41,7 @@ const PetsListItem = ({ _id, name, birthday, breed, comments, avatar }) => {
 export default PetsListItem;
 
 PetsListItem.prototype = {
-  _id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   birthday: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
