@@ -65,8 +65,7 @@ const ModalAddsPet = ({ onClose }) => {
                 },
                 maxLength: {
                   value: 16,
-                  message:
-                    "The length of this field cannot exceed 16 characters",
+                  message: "The length of this field cannot exceed 16 characters",
                 },
                 pattern: {
                   value: textRegexp,
@@ -88,9 +87,7 @@ const ModalAddsPet = ({ onClose }) => {
                 },
               })}
             />
-            {errors.birthday && (
-              <ErrorText role="alert">{errors.birthday?.message}</ErrorText>
-            )}
+            {errors.birthday && <ErrorText role="alert">{errors.birthday?.message}</ErrorText>}
             <Label htmlFor="breed">Breed</Label>
             <Input
               id="breed"
@@ -100,8 +97,7 @@ const ModalAddsPet = ({ onClose }) => {
                 required: "Breed is required",
                 maxLength: {
                   value: 16,
-                  message:
-                    "The length of this field cannot exceed 16 characters",
+                  message: "The length of this field cannot exceed 16 characters",
                 },
                 minLength: {
                   value: 2,
@@ -114,9 +110,7 @@ const ModalAddsPet = ({ onClose }) => {
               })}
               aria-invalid={errors.breed ? "true" : "false"}
             />
-            {errors.breed && (
-              <ErrorText role="alert">{errors.breed?.message}</ErrorText>
-            )}
+            {errors.breed && <ErrorText role="alert">{errors.breed?.message}</ErrorText>}
           </>
         )}
 
@@ -143,8 +137,7 @@ const ModalAddsPet = ({ onClose }) => {
                   required: "Comments is required.",
                   maxLength: {
                     value: 120,
-                    message:
-                      "The length of this field cannot exceed 120 characters",
+                    message: "The length of this field cannot exceed 120 characters",
                   },
                   minLength: {
                     value: 8,
@@ -152,9 +145,7 @@ const ModalAddsPet = ({ onClose }) => {
                   },
                 })}
               />
-              {errors.comments && (
-                <ErrorText role="alert">{errors.comments?.message}</ErrorText>
-              )}
+              {errors.comments && <ErrorText role="alert">{errors.comments?.message}</ErrorText>}
             </Container>
           </>
         )}
@@ -162,12 +153,7 @@ const ModalAddsPet = ({ onClose }) => {
         <BtnBox>
           {!nextPage && (
             <>
-              <BtnNext
-                onClick={handleNextClick}
-                active
-                disabled={!isValid}
-                type="button"
-              >
+              <BtnNext onClick={handleNextClick} active disabled={!isValid} type="button">
                 Next
               </BtnNext>
               <BtnCancel onClick={onClose} type="button">
