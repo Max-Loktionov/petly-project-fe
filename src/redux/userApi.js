@@ -25,10 +25,10 @@ export const userApi = createApi({
     }),
 
     updateUser: builder.mutation({
-      query: object => ({
-        url: `/${object.propertyName}`,
+      query: (propertyName, propertyValue) => ({
+        url: `/${propertyName}`,
         method: "PATCH",
-        body: object.propertyValue,
+        body: propertyValue,
       }),
       invalidatesTags: ["User"],
     }),
@@ -64,4 +64,3 @@ export const userApi = createApi({
 });
 
 export const { useGetUserQuery, useUpdateUserMutation, useAddPetMutation, useDeletePetMutation, useUpdateUserAvatarMutation } = userApi;
-

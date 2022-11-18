@@ -119,7 +119,7 @@ export const BoxTitle = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.label`
   width: 64px;
 
   font-size: 12px;
@@ -129,7 +129,7 @@ export const Title = styled.p`
     font-size: 18px;
   }
 `;
-export const Text = styled.div`
+export const Text = styled.p`
   margin-left: 18px;
 
   font-size: 14px;
@@ -155,6 +155,7 @@ export const EditTextBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   border: none;
   background-color: ${p => p.theme.colors.background};
+  margin-left: auto;
   cursor: pointer;
   :hover svg,
   :focus svg {
@@ -174,5 +175,40 @@ export const EditTextBtnIcon = styled(HiPencil)`
   @media ${p => p.theme.media.tablet} {
     width: 20px;
     height: 20px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  justify-content: space-between;
+`;
+
+export const UserDataInput = styled.input`
+  padding: 4px 18px;
+
+  width: 159px;
+  height: 24px;
+
+  background-color: ${p => (p.disabled ? p.theme.colors.white : p.theme.colors.background)};
+  border: ${p => (p.disabled ? "none" : p.theme.borders.inputModal)};
+  border-color: ${p => p.theme.colors.inputModal};
+  color: ${p => p.theme.colors.primaryText};
+  border-radius: 40px;
+
+  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.text};
+
+  :focus {
+    outline-color: ${p => p.theme.colors.inputModal};
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    width: 216px;
+    height: 32px;
+    padding: 4px 12px;
+
+    font-size: 18px;
   }
 `;
