@@ -1,19 +1,15 @@
-
 import { useState } from "react";
 import { useUpdateUserMutation } from "redux/userApi";
 import { EditTextBtn, EditTextBtnIcon, UserDataInput } from "./UserDataItem.styled";
-
 
 const UserDataItem = ({ name, defaultVaule }) => {
   const [active, setActive] = useState(false);
   const [inputeValue, setInputeValue] = useState(defaultVaule ?? "");
   const [editUserInfo] = useUpdateUserMutation();
 
-// fix/UserData 
   const onInputeChange = e => {
     setInputeValue(e.target.value);
- 
-
+  };
 
   const handleClick = e => {
     e.preventDefault();
