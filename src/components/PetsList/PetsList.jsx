@@ -13,7 +13,7 @@ const PetsList = () => {
         <div>Pet not found</div>
       ) : (
         data.data.result.pets.map(({ _id, name, data, breed, comments, birthday, avatar }) => (
-          <PetsListItem key={_id} name={name} data={data} breed={breed} comment={comments} avatar={avatar} id={_id} birthday={birthday} />
+          <PetsListItem key={_id} name={name} data={data} breed={breed} comment={comments} id={_id} birthday={birthday} avatar={avatar} />
         ))
       )}
     </>
