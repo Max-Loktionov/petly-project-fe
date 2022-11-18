@@ -1,4 +1,4 @@
-import { useGetUserQuery, userApi } from "redux/userApi";
+import { useGetUserQuery } from "redux/userApi";
 
 import {
   UserBlock,
@@ -16,7 +16,7 @@ import {
 } from "./UserDataItem.styled";
 
 const UserDataItem = () => {
-  const { data: user = [], isLoading, isError } = useGetUserQuery();
+  const { data: user = [] } = useGetUserQuery();
 
   const BASE_URL = "https://www.gravatar.com/avatar/";
   const imgUrl = user?.data?.result?.avatar;
