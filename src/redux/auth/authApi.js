@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://petly-be.herokuapp.com/auth/",
+    baseUrl: "https://petly-be.herokuapp.com/auth",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
@@ -37,7 +37,7 @@ export const authApi = createApi({
     logOutUser: builder.mutation({
       query: () => ({
         url: "/logout",
-        method: "POST",
+        method: "GET",
       }),
       invalidatesTags: ["Auth"],
     }),
