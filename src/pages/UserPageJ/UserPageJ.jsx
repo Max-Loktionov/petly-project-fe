@@ -1,16 +1,12 @@
-import Logout from "components/Logout";
-import PetsData from "components/PetsData";
-import UserData from "components/UserData";
-import { useState } from "react";
-import { useGetUserQuery } from "redux/userApi";
+import Button from "components/Button";
 import Modal from "components/Modal/Modal";
 import ModalAddsPet from "components/ModalAddsPet";
-
-import { UserPageContainer, BoxUser } from "./UserPage.styled";
+import { useState } from "react";
+// import { useGetUserQuery } from "redux/userApi";
 
 const UserPage = () => {
-  const { data, error } = useGetUserQuery();
   const [isOpenAddPetModal, setIsOpenAddPetModal] = useState(false);
+  // const { data, error } = useGetUserQuery();
 
   const closeAddPetModal = e => {
     if (e) {
@@ -22,21 +18,15 @@ const UserPage = () => {
       setIsOpenAddPetModal(true);
     }
   };
-
   return (
     <>
+      <Button onClick={openAddPetModal}>Add pet</Button>
+
       {isOpenAddPetModal && (
         <Modal onClose={closeAddPetModal}>
           <ModalAddsPet onClose={closeAddPetModal} />
         </Modal>
       )}
-      <UserPageContainer>
-        <BoxUser>
-          <UserData onOpenModal={openAddPetModal} />
-          <Logout />
-        </BoxUser>
-        <PetsData onOpenModal={openAddPetModal} />
-      </UserPageContainer>
     </>
   );
 };

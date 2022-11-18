@@ -6,7 +6,7 @@ export const Form = styled.form`
     padding: 0px 60px;
   }
   @media ${p => p.theme.media.tablet} {
-    padding: 0px 87px;
+    padding: 0px 60px;
   }
 `;
 export const Title = styled.h1`
@@ -52,6 +52,7 @@ export const Label = styled.label`
     :not(:first-child) {
       margin-top: 28px;
     }
+    margin-left: ${p => (p.textarea ? "27px" : "0px")};
   }
 `;
 
@@ -66,6 +67,7 @@ export const Input = styled.input`
   border-radius: 40px;
   @media ${p => p.theme.media.tablet} {
     padding: 11px 16px;
+    height: 44px;
   }
   :focus {
     outline-color: ${p => p.theme.colors.inputModal};
@@ -97,7 +99,7 @@ export const BtnBox = styled.div`
 `;
 
 export const BtnCancel = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     width: 100%;
     display: block;
   }
@@ -108,7 +110,7 @@ export const BtnCancel = styled(StyledButton)`
   }
 `;
 export const BtnNext = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     width: 100%;
     margin-bottom: 12px;
     display: block;
@@ -119,7 +121,7 @@ export const BtnNext = styled(StyledButton)`
   }
 `;
 export const BtnBack = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     display: block;
     width: 100%;
   }
@@ -131,7 +133,7 @@ export const BtnBack = styled(StyledButton)`
 `;
 
 export const BtnDone = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     margin-bottom: 12px;
     width: 100%;
 
@@ -152,7 +154,7 @@ export const Textarea = styled.textarea`
   background: ${p => p.theme.colors.background};
   border: 1px solid ${p => p.theme.colors.inputModal};
   border-radius: 20px;
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     width: 240px;
     height: 100px;
   }
@@ -160,6 +162,7 @@ export const Textarea = styled.textarea`
   @media ${p => p.theme.media.tablet} {
     width: 394px;
     height: 116px;
+    display: flex;
     margin-right: auto;
     margin-left: auto;
   }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { StyledButton } from "../Button/Button.styled";
 
 export const AccountButton = styled(StyledButton)`
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     margin-bottom: 60px;
   }
   @media ${p => p.theme.media.tablet} {

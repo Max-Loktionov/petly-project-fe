@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Container, Box, Card, Title, SearchBox, Input, Button } from "./NewsPage.styled";
-import NewsCard from "../../components/NewsCars/NewsCard";
-import axios from "axios";
+import {
+  Container,
+  Box,
+  Card,
+  Title,
+  SearchBox,
+  Input,
+  Button,
+} from "./NewsPage.styled";
+import NewsCard from "../../components/NewsCards/NewsCard";
 import searchIcon from "../../img/VectorG.svg";
+import getNews from "./getNews";
 
 function News() {
   const [news, setNews] = useState([]);
@@ -16,13 +24,16 @@ function News() {
     setSeachParams({ query: form.elements.query.value });
     form.reset();
   };
+
   useEffect(() => {
     const newsPage = async () => {
       try {
-        const newsArray = await axios.get("https://petly-be.herokuapp.com/news");
-        const newsResult = newsArray.data.data.result;
+        const newsArray = await getNews();
+        const newsResult = newsArray.data.result;
         const normalisedQuery = query.toLocaleLowerCase();
-        const news = newsResult.filter(newsItem => newsItem.title.toLowerCase().includes(normalisedQuery));
+        const news = newsResult.filter(newsItem =>
+          newsItem.title.toLowerCase().includes(normalisedQuery)
+        );
         setNews(news);
       } catch (error) {
         console.log(error.message);
@@ -36,7 +47,7 @@ function News() {
       <Title>News</Title>
 
       <SearchBox onSubmit={handleSubmit}>
-        <Input type="text" name="query" placeholder="Search"></Input>
+        <Input type="text" name="query" placeholder="Search" autoFocus />
         <Button type="submit">
           <img src={searchIcon} alt="searchIcon" />
         </Button>

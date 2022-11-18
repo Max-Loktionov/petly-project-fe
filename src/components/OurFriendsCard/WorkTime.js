@@ -1,12 +1,11 @@
 // import { Day } from "./WorkTime.styled";
+import { nanoid } from "nanoid";
 
 const WorkTime = workDays => {
-  console.log(workDays);
-
   return (
     <ul>
       {workDays.workDays.map(({ day, from, to, isOpen }) => (
-        <li>
+        <li key={nanoid()}>
           {isOpen ? (
             <p>
               <small>{day}&nbsp;&nbsp;</small>
