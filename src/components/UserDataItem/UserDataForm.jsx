@@ -1,5 +1,6 @@
 import { useGetUserQuery } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
+import devaultIcon from "../../img/default-icon-user.png";
 
 import { UserBlock, BoxImg, EditImgBtn, IconEditImgBtn, ImgUser, BoxInfo, BoxTitle, Title, Block, Form } from "./UserDataItem.styled";
 
@@ -15,7 +16,7 @@ const UserDataForm = () => {
       ) : (
         <>
           <BoxImg>
-            <ImgUser src={BASE_URL + imgUrl} alt="Avatar User" />
+            <ImgUser src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt="Avatar User" />
             <EditImgBtn>
               <IconEditImgBtn />
               Edit photo
