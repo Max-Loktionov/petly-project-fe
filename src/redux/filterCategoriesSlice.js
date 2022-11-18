@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  category: null,
+  category: 'sell',
 };
 
 export const filterSlice = createSlice({
