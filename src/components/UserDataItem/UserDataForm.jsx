@@ -6,6 +6,7 @@ import { UserBlock, BoxImg, EditImgBtn, IconEditImgBtn, ImgUser, BoxInfo, BoxTit
 
 const UserDataForm = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
+  const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
   console.log(imgUrl);
@@ -17,7 +18,7 @@ const UserDataForm = () => {
       ) : (
         <>
           <BoxImg>
-            <ImgUser src={imgUrl ? imgUrl : devaultIcon} alt={imgAlt} />
+            <ImgUser src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt={imgAlt} />
             <EditImgBtn>
               <IconEditImgBtn />
               Edit photo
