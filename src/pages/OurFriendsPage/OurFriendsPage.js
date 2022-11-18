@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { Container, Box, Card, Title } from "./OurFriendsPage.styled";
 import FriendCard from "../../components/OurFriendsCard/FriendCard";
-import getFriends from "./app";
-import axios from "axios";
+import getFriends from "./getFriends";
 
 function Friends() {
   const [friends, setFriends] = useState([]);
   useEffect(() => {
     const ourFriendsPage = async () => {
       try {
-        const friends = await axios.get("https://petly-be.herokuapp.com/friends");
-        setFriends(friends.data.data.result);
+        const friends = await getFriends();
+        setFriends(friends.data.result);
       } catch (error) {
         console.log(error.message);
       }
