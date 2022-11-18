@@ -25,10 +25,10 @@ export const userApi = createApi({
     }),
 
     updateUser: builder.mutation({
-      query: (propertyName, propertyValue) => ({
-        url: `/${propertyName}`,
+      query: ({ name, data }) => ({
+        url: `/${name}`,
         method: "PATCH",
-        body: propertyValue,
+        body: data,
       }),
       invalidatesTags: ["User"],
     }),

@@ -18,7 +18,7 @@ const UserDataItem = ({ name, defaultVaule }) => {
       const data = {
         [name]: inputeValue,
       };
-      editUserInfo(name, data);
+      editUserInfo({ name, data });
       return;
     }
 
