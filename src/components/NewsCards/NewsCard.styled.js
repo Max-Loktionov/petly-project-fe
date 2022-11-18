@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-   @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobile} {
     display: flex;
     flex-direction: column;
     min-width: 280px;
@@ -13,16 +13,18 @@ export const Card = styled.div`
       border-radius: 40px;
       width: 200px;
     }
-     @media ${p => p.theme.media.tablet} {
-       ::before {
+  }
+  @media ${p => p.theme.media.tablet} {
+    ::before {
       content: " ";
       width: 280px;
-       }
-       @media ${p => p.theme.media.desktop} {
-       ::before {
+    }
+  }
+  @media ${p => p.theme.media.desktop} {
+    ::before {
       content: " ";
       width: 340px;
-       }
+    }
   }
 `;
 export const Title = styled.h3`
@@ -39,8 +41,21 @@ export const Title = styled.h3`
       display: none;
       padding: 2px 3px;
       margin-left: 0px;
-      width: 350px;
+      
+      @media ${p => p.theme.media.mobile} {
+        width: 85%;
+        height: auto;  
+      }
+      @media ${p => p.theme.media.tablet} {
+        width: calc(((100% - 32px) / 2)*0.9);
+        height: auto;
+      }
+      @media ${p => p.theme.media.desktop} {
+      width: calc((100% - 64px) / 3);
+      height: auto;    
+      }      
     }
+
     :hover span {
       display: inline-block;
       position: absolute;
@@ -48,8 +63,7 @@ export const Title = styled.h3`
       border: 1px solid #f59256;
       font-size: 18px;
       border-radius: 10px;
-      color: #535353;
-    }
+      color: #535353;     
   }
 
   @media ${p => p.theme.media.desktop} {
@@ -66,12 +80,13 @@ export const Elem = styled.p`
     line-height: 22px;
     color: #111321;
     margin-bottom: 20px;
-   
-  @media ${p => p.theme.media.tablet} {
-    margin-bottom: 40px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    margin-bottom: 40px;
+
+    @media ${p => p.theme.media.tablet} {
+      margin-bottom: 40px;
+    }
+    @media ${p => p.theme.media.desktop} {
+      margin-bottom: 40px;
+    }
   }
 `;
 

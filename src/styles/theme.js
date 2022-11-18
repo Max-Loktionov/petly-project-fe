@@ -58,9 +58,11 @@ const theme = {
     btn: "40px",
     inputModal: "20px",
     round: "50%",
+    cardPet: "40px",
   },
   media: {
-    mobile: "(max-width: 767px)",
+    mobile: "(min-width: 320px)",
+    mobileM: "(max-width: 767px)",
     tablet: "(min-width: 768px)",
     desktop: "(min-width: 1280px)",
   },

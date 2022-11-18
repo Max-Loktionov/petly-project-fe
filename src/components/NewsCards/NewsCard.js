@@ -19,7 +19,9 @@ const NewsCard = newItem => {
 
         <Box>
           <Data>{date}</Data>
-          <Link href={url}>Read more</Link>
+          <Link href={url} target="_blank">
+            Read more
+          </Link>
         </Box>
       </Card>
     </>
