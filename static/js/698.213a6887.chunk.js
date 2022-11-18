@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpetly_project_fe=self.webpackChunkpetly_project_fe||[]).push([[698],{698:function(e,n,r){r.r(n);var t=r(4684),c=r(4756),s=r(3329);n.default=function(){return(0,s.jsx)(c.$0,{children:(0,s.jsx)(c.Eq,{paddingTopTablet:241,paddingTopDesktop:114,children:(0,s.jsxs)(c.W2,{children:[(0,s.jsx)(c.Dx,{children:"Registration"}),(0,s.jsx)(t.Z,{}),(0,s.jsxs)(c.xv,{children:["Already have an account?",(0,s.jsx)(c.vw,{href:"/petly-project-fe/login",children:"Login"})]})]})})})}}}]);
+//# sourceMappingURL=698.213a6887.chunk.js.map
