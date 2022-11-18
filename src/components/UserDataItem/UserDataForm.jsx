@@ -6,8 +6,9 @@ import { UserBlock, BoxImg, EditImgBtn, IconEditImgBtn, ImgUser, BoxInfo, BoxTit
 
 const UserDataForm = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
-  const BASE_URL = "https://www.gravatar.com/avatar/";
   const imgUrl = user?.data?.result?.avatar;
+  const imgAlt = user?.data?.result?.name;
+  console.log(imgUrl);
 
   return (
     <UserBlock>
@@ -16,7 +17,7 @@ const UserDataForm = () => {
       ) : (
         <>
           <BoxImg>
-            <ImgUser src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt="Avatar User" />
+            <ImgUser src={imgUrl ? imgUrl : devaultIcon} alt={imgAlt} />
             <EditImgBtn>
               <IconEditImgBtn />
               Edit photo
@@ -65,5 +66,7 @@ const UserDataForm = () => {
     </UserBlock>
   );
 };
+
+// Image.devaultIcon
 
 export default UserDataForm;
