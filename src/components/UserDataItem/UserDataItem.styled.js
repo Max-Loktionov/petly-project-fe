@@ -22,8 +22,7 @@ export const UserBlock = styled.div`
     min-height: 311px;
     padding: 24px 40px 24px 32px;
 
-    border-radius: 0 ${p => p.theme.radii.cardPet} ${p => p.theme.radii.cardPet}
-      0;
+    border-radius: 0 ${p => p.theme.radii.cardPet} ${p => p.theme.radii.cardPet} 0;
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: column;
@@ -120,7 +119,7 @@ export const BoxTitle = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.label`
   width: 64px;
 
   font-size: 12px;
@@ -156,6 +155,7 @@ export const EditTextBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   border: none;
   background-color: ${p => p.theme.colors.background};
+  margin-left: auto;
   cursor: pointer;
   :hover svg,
   :focus svg {
@@ -180,19 +180,18 @@ export const EditTextBtnIcon = styled(HiPencil)`
 
 export const Form = styled.form`
   display: flex;
+  flex-direction: column;
   flex: auto;
   justify-content: space-between;
-  align-items: center;
 `;
 
-export const Input = styled.input`
+export const UserDataInput = styled.input`
   padding: 4px 18px;
 
   width: 159px;
   height: 24px;
 
-  background-color: ${p =>
-    p.disabled ? "transparent" : p.theme.colors.background};
+  background-color: ${p => (p.disabled ? p.theme.colors.white : p.theme.colors.background)};
   border: ${p => (p.disabled ? "none" : p.theme.borders.inputModal)};
   border-color: ${p => p.theme.colors.inputModal};
   color: ${p => p.theme.colors.primaryText};
