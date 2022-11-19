@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
+  position: relative;
   width: 280px;
   height: 40px;
   margin: 0 auto;
@@ -27,6 +28,7 @@ export const SearchForm = styled.form`
 `;
 
 export const SearchFormInput = styled.input`
+  display: block;
   width: 100%;
   font: inherit;
   font-weight: 500;
@@ -55,10 +57,9 @@ export const SearchFormInput = styled.input`
 `;
 
 export const SearchBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  position: absolute;
+  right: 15px;
+  top: 30%;
   border: none;
   cursor: pointer;
   background-color: transparent;
