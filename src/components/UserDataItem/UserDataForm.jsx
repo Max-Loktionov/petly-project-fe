@@ -9,7 +9,6 @@ const UserDataForm = () => {
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
-  console.log(imgUrl);
 
   return (
     <UserBlock>

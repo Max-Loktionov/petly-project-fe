@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
-import NoticesSearch from "components/NoticesSearch";
+import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesList from "components/NoticesCategoriesList";
 import { Title } from "./NoticesPage.styled";
 
