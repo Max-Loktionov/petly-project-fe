@@ -53,6 +53,10 @@ const NoticeCategoryItem = ({ _id, name, title, birthday, breed, male, location,
           <Table>
             <tbody>
               <tr>
+                <td>Name:</td>
+                <td>{name}</td>
+              </tr>
+              <tr>
                 <td>Breed:</td>
                 <td>{breed}</td>
               </tr>
