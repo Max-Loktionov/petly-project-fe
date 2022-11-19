@@ -57,7 +57,7 @@ export const userApi = createApi({
           url: "/pets",
           method: "POST",
           headers: {
-            "Content-Type": "form-data",
+            "Content-Type": "multipart/form-data",
           },
           body: data,
         };
