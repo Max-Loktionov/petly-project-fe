@@ -33,7 +33,14 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formData, evt) => {
     try {
       onClose(evt);
-      await addPet(formData);
+      const { name, birthday, breed, comments, addPhoto } = await formData;
+      const formdata = new FormData();
+      formdata.append("name", name);
+      formdata.append("birthday", birthday);
+      formdata.append("breed", breed);
+      formdata.append("comments", comments);
+      formdata.append("file", addPhoto[0]);
+      await addPet(formdata);
     } catch (error) {
       console.log(error.message);
     }
