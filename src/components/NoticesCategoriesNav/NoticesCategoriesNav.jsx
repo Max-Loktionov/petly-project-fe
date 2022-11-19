@@ -24,7 +24,7 @@ export const NoticesCategoriesNav = () => {
         <>
             <Button onClick={() => handleClick('lost_found')}>lost/found</Button>
             <Button onClick={() => handleClick('in_good_hands')}>In good hands</Button>
-            <Button onClick={() => handleClick('sell')}>sell</Button>
+            <Button active onClick={() => handleClick('sell')}>sell</Button>
             {isAuthorized && (<div>
                 <Button onClick={() => handleClick('favorite')}>Favorite ads</Button>
                 <Button onClick={() => handleClick('own')}>My ads</Button>

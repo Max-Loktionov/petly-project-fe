@@ -49,7 +49,7 @@ const ModalAddsPet = ({ onClose }) => {
   return (
     <>
       <Title>Add pet</Title>
-      <Form onSubmit={handleSubmit(handleSubmitClick)}>
+      <Form encType="multipart/form-data" onSubmit={handleSubmit(handleSubmitClick)}>
         {!nextPage && (
           <>
             <Label htmlFor="petName">Name pet</Label>

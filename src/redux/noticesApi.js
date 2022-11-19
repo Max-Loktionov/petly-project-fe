@@ -11,7 +11,15 @@ export const noticesApi = createApi({
       query: () => ({ url: "/notices" }),
       providesTags: ["Notices"],
     }),
+    categories: builder.mutation({
+      query: noticeId => ({
+        url: `/notices/${noticeId}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Notices"],
+    })
   }),
+  
 });
 
-export const { useNoticesQuery } = noticesApi;
+export const { useNoticesQuery, useCategoriesMutation } = noticesApi;

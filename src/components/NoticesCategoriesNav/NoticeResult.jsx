@@ -3,16 +3,18 @@ import { useNoticesQuery } from '../../redux/noticesApi';
 
 
 export const NoticeResult = () => {
-    const { data } = useNoticesQuery();
+    const category = useSelector(state => state.categories.category);
+    const { data, isLoading } = useNoticesQuery(category);
     
     
     console.log(data)   
     
-    const category = useSelector(state => state.categories.category);
+    
     return (
-    // <p>{data.map(({ breed, location, birthday }) => { return { breed, location, birthday } })}</p>
+    <ul>
+            {!isLoading && data.notices.map(({ breed, location, birthday }) => { return <li>{breed} {location} {birthday}</li> })}
+    </ul>
         
-        
-        < p > { category }</p >
+        // < p > { category }</p >
     )
 }

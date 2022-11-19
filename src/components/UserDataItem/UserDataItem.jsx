@@ -1,89 +1,37 @@
-import { useGetUserQuery, userApi } from "redux/userApi";
+import { useState } from "react";
+import { useUpdateUserMutation } from "redux/userApi";
+import { EditTextBtn, EditTextBtnIcon, UserDataInput } from "./UserDataItem.styled";
 
-import {
-  UserBlock,
-  BoxImg,
-  EditImgBtn,
-  IconEditImgBtn,
-  ImgUser,
-  BoxInfo,
-  BoxTitle,
-  Title,
-  Text,
-  Block,
-  EditTextBtn,
-  EditTextBtnIcon,
-} from "./UserDataItem.styled";
+const UserDataItem = ({ name, defaultVaule }) => {
+  const [active, setActive] = useState(false);
+  const [inputeValue, setInputeValue] = useState(defaultVaule ?? "");
+  const [editUserInfo] = useUpdateUserMutation();
 
-const UserDataItem = () => {
-  const { data: user = [], isLoading, isError } = useGetUserQuery();
+  const onInputeChange = e => {
+    setInputeValue(e.target.value);
+  };
 
-  const BASE_URL = "https://www.gravatar.com/avatar/";
-  const imgUrl = user?.data?.result?.avatar;
+  const handleClick = e => {
+    e.preventDefault();
+    if (active === true && inputeValue.length !== 0) {
+      setActive(false);
+      const data = {
+        [name]: inputeValue,
+      };
+      editUserInfo({ name, data });
+      return;
+    }
+
+    setActive(true);
+  };
 
   return (
-    <UserBlock>
-      {user.length === 0 ? (
-        <div>not found</div>
-      ) : (
-        <>
-          <BoxImg>
-            <ImgUser src={BASE_URL + imgUrl} alt="Avatar User" />
-            <EditImgBtn>
-              <IconEditImgBtn />
-              Edit photo
-            </EditImgBtn>
-          </BoxImg>
-          <BoxInfo>
-            <BoxTitle>
-              <Title>Name:</Title>
-              <Block>
-                <Text>{user.data.result.name}</Text>
-                <EditTextBtn>
-                  <EditTextBtnIcon />
-                </EditTextBtn>
-              </Block>
-            </BoxTitle>
-            <BoxTitle>
-              <Title>Email:</Title>
-              <Block>
-                <Text>{user.data.result.email}</Text>
-                <EditTextBtn>
-                  <EditTextBtnIcon />
-                </EditTextBtn>
-              </Block>
-            </BoxTitle>
-            <BoxTitle>
-              <Title>Birthday:</Title>
-              <Block>
-                <Text>{user.data.result.birthday}</Text>
-                <EditTextBtn>
-                  <EditTextBtnIcon />
-                </EditTextBtn>
-              </Block>
-            </BoxTitle>
-            <BoxTitle>
-              <Title>Phone:</Title>
-              <Block>
-                <Text>{user.data.result.phone}</Text>
-                <EditTextBtn>
-                  <EditTextBtnIcon />
-                </EditTextBtn>
-              </Block>
-            </BoxTitle>
-            <BoxTitle>
-              <Title>City:</Title>
-              <Block>
-                <Text>{user.data.result.city}</Text>
-                <EditTextBtn>
-                  <EditTextBtnIcon />
-                </EditTextBtn>
-              </Block>
-            </BoxTitle>
-          </BoxInfo>
-        </>
-      )}
-    </UserBlock>
+    <>
+      <UserDataInput disabled={!active} onChange={onInputeChange} name={name} value={inputeValue}></UserDataInput>
+      <EditTextBtn onClick={handleClick}>
+        <EditTextBtnIcon />
+      </EditTextBtn>
+    </>
   );
 };
 
