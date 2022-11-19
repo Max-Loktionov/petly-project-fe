@@ -1,4 +1,5 @@
 import NoticesSearch from "components/NoticesSearch";
+import NoticesCategoriesList from "components/NoticesCategoriesList";
 import { Title } from "./NoticesPage.styled";
 
 const NoticesPage = () => {
@@ -6,6 +7,7 @@ const NoticesPage = () => {
         <>
             <Title>Find your favorite pet</Title>
             <NoticesSearch />
+            <NoticesCategoriesList />
         </>
 
     );
