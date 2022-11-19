@@ -1,5 +1,5 @@
 import AddPetBtn from "components/AddPetBtn";
-import UserDataItem from "components/UserDataItem";
+import UserDataItem from "components/UserDataItem/";
 import { TitleUser, TitleBtn, BoxTitleUser, BoxBtnTablet } from "./UserData.styled";
 
 const UserData = ({ onOpenModal }) => {
