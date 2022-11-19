@@ -43,10 +43,13 @@ export const userApi = createApi({
     }),
 
     addPet: builder.mutation({
-      query: newPet => ({
+      query: data => ({
         url: "/pets",
         method: "POST",
-        body: newPet,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: data,
       }),
       invalidatesTags: ["User"],
     }),
@@ -64,4 +67,3 @@ export const userApi = createApi({
 });
 
 export const { useGetUserQuery, useUpdateUserMutation, useAddPetMutation, useDeletePetMutation, useUpdateUserAvatarMutation } = userApi;
-

@@ -1,3 +1,4 @@
+import { async } from "q";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
@@ -30,9 +31,21 @@ const ModalAddsPet = ({ onClose }) => {
     mode: "onBlur",
   });
 
-  const handleSubmitClick = (formData, evt) => {
-    onClose(evt);
-    addPet(formData);
+  const handleSubmitClick = async (formData, evt) => {
+    try {
+      onClose(evt);
+      const { name, birthday, breed, comments, addPhoto } = await formData;
+      const data = new FormData();
+      data.append("name", name);
+      data.append("birthday", birthday);
+      data.append("breed", breed);
+      data.append("comments", comments);
+      data.append("file", addPhoto[0]);
+      await addPet(data);
+      console.log(addPhoto[0]);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleNextClick = () => {
@@ -118,16 +131,14 @@ const ModalAddsPet = ({ onClose }) => {
           <>
             <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
             <Container>
-              {/* <Input
+              <Input
                 type="file"
                 id="addPhoto"
                 {...register("addPhoto", {
                   required: "Photo is required.",
                 })}
               />
-              {errors.addPhoto && (
-                <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
-              )} */}
+              {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
               <Label textarea htmlFor="addPhoto">
                 Comments
               </Label>
