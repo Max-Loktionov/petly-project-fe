@@ -1,5 +1,8 @@
 import Button from "components/Button";
 import styled from "styled-components";
+import { ReactComponent as Male } from "../../img/male.svg";
+import { ReactComponent as Female } from "../../img/female.svg";
+import { ReactComponent as ImageCross } from "../../img/image_cross.svg";
 
 export const Container = styled.div`
   font-size: ${p => p.theme.fontSizes.s};
@@ -14,6 +17,10 @@ export const Header = styled.h2`
   font-size: ${p => p.theme.fontSizes.ml};
   line-height: ${p => p.theme.lineHeights.body};
   font-weight: ${p => p.theme.fontWeights.heading};
+
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.lx};
+  }
 `;
 
 export const Text = styled.p`
@@ -34,11 +41,12 @@ export const MyBtn = styled.button`
   padding: 8px 27px;
   margin: 0px;
 
-  color: ${p => (p.color !== "accent" ? p.theme.colors.accent : p.theme.colors.white)};
-  background-color: ${p => (p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent)};
-  border-color: ${p => p.theme.colors.accent};
+  color: ${p =>
+    p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white};
+  background-color: ${p =>
+    p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent};
 
-  border: 2px solid;
+  border: 2px solid ${p => p.theme.colors.accent};
   border-radius: 40px;
 
   @media ${p => p.theme.media.tablet} {
@@ -48,7 +56,7 @@ export const MyBtn = styled.button`
   }
 
   &:first-child {
-    margin: 20px 0px 12px 0px;
+    margin: 0px 0px 12px 0px;
 
     @media ${p => p.theme.media.tablet} {
       margin: 0px 12px 0px 0px;
@@ -75,6 +83,120 @@ export const MyBtn = styled.button`
   }
 `;
 
+export const InputsNames = styled.p`
+  margin-bottom: 8px;
+
+  font-size: ${p => p.theme.fontSizes.n};
+  line-height: ${p => p.theme.lineHeights.body};
+  font-weight: ${p => p.theme.fontWeights.heading};
+
+  &.icon_name {
+    margin: 0px;
+  }
+
+  &.icon_header {
+    margin-bottom: 18px;
+
+    @media ${p => p.theme.media.tablet} {
+      margin-bottom: 31px;
+    }
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.ml};
+    margin-bottom: 12px;
+  }
+
+  & span {
+    color: ${p => p.theme.colors.accent};
+
+    @media ${p => p.theme.media.tablet} {
+      font-size: ${p => p.theme.fontSizes.ml};
+    }
+  }
+`;
+
+export const RadioContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 39px;
+
+  @media ${p => p.theme.media.tablet} {
+    margin-bottom: 14px;
+  }
+`;
+
+export const RadioInputs = styled.input`
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  &:checked + label {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const MyMaleSVG = styled(Male)`
+  height: 36px;
+  margin-bottom: 14px;
+
+  @media ${p => p.theme.media.tablet} {
+    height: 56px;
+    width: 56px;
+  }
+`;
+
+export const MyFemaleSVG = styled(Female)`
+  width: 40px;
+  margin-bottom: 14px;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 56px;
+    height: 56px;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  @media ${p => p.theme.media.tablet} {
+    margin-top: 28px;
+  }
+
+  & input {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  & #image-label {
+    @media ${p => p.theme.media.tablet} {
+      margin-top: 0px;
+    }
+  }
+`;
+
+export const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 140px;
+  height: 140px;
+
+  background-color: ${p => p.theme.colors.background};
+  border-radius: 20px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
+export const MyImageCross = styled(ImageCross)``;
+
 export const MyForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -83,7 +205,7 @@ export const MyForm = styled.form`
   margin-bottom: 40px;
 
   @media ${p => p.theme.media.tablet} {
-    margin-top: 28px;
+    margin-top: 40px;
   }
 
   & label {
@@ -98,49 +220,33 @@ export const MyForm = styled.form`
       }
     }
 
-    & p {
-      margin-bottom: 8px;
+    &.icon_label {
+      margin: 0px;
+    }
+  }
 
-      font-size: ${p => p.theme.fontSizes.n};
-      line-height: ${p => p.theme.lineHeights.body};
-      font-weight: ${p => p.theme.fontWeights.heading};
+  & input {
+    padding: 11px 14px;
 
-      @media ${p => p.theme.media.tablet} {
-        font-size: ${p => p.theme.fontSizes.ml};
-      }
+    background-color: ${p => p.theme.colors.input};
 
-      & span {
-        color: ${p => p.theme.colors.accent};
+    border: 1px solid #f5925680;
+    border-radius: 40px;
 
-        @media ${p => p.theme.media.tablet} {
-          font-size: ${p => p.theme.fontSizes.ml};
-        }
-      }
+    font-size: ${p => p.theme.fontSizes.s};
+
+    @media ${p => p.theme.media.tablet} {
+      padding: 11px 16px;
+      font-size: ${p => p.theme.fontSizes.m};
     }
 
-    & input {
-      padding: 11px 14px;
+    :hover:not(:disabled),
+    :focus:not(:disabled) {
+      border-color: ${p => p.theme.colors.hoverBtn};
+    }
 
-      background-color: ${p => p.theme.colors.input};
-
-      border: 1px solid #f5925680;
-      border-radius: 40px;
-
-      font-size: ${p => p.theme.fontSizes.s};
-
-      @media ${p => p.theme.media.tablet} {
-        padding: 11px 16px;
-        font-size: ${p => p.theme.fontSizes.m};
-      }
-
-      :hover:not(:disabled),
-      :focus:not(:disabled) {
-        border-color: ${p => p.theme.colors.hoverBtn};
-      }
-
-      &:placeholder-shown {
-        color: ${p => p.theme.colors.placeholder};
-      }
+    &:placeholder-shown {
+      color: ${p => p.theme.colors.placeholder};
     }
   }
 `;
@@ -160,7 +266,14 @@ export const MoveBtn = styled(Button)`
   width: 100%;
   height: 40px;
 
+  font-size: ${p => p.theme.fontSizes.m};
+  font-weight: ${p => p.theme.fontWeights.heading};
+
+  color: ${p => (p.active ? p.theme.colors.white : p.theme.colors.black)};
+  border-color: ${p => p.theme.colors.accent};
+
   @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.nl};
     width: 180px;
   }
 

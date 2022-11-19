@@ -1,6 +1,22 @@
-import Button from "components/Button";
 import { useState } from "react";
-import { BtnContainer, CategoryContainer, Container, Header, MoveBtn, MyBtn, MyForm, Text } from "./ModalAddNotice.styled";
+import {
+  BtnContainer,
+  CategoryContainer,
+  Container,
+  Header,
+  ImageBox,
+  ImageContainer,
+  InputsNames,
+  MoveBtn,
+  MyBtn,
+  MyFemaleSVG,
+  MyForm,
+  MyImageCross,
+  MyMaleSVG,
+  RadioContainer,
+  RadioInputs,
+  Text,
+} from "./ModalAddNotice.styled";
 
 const CATEGORY = [
   {
@@ -24,13 +40,18 @@ function ModalAddNotice() {
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
   const [breed, setBreed] = useState("");
-  const [sex, setSex] = useState("");
+  const [sex, setSex] = useState("male");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [comments, setComments] = useState("");
 
   const handleClick = e => setNoticeCategory(e.currentTarget.value);
+
   const checkCategory = value => {
+    if (value !== "sell" && price !== "") {
+      setPrice("");
+    }
+
     if (value === noticeCategory) {
       return true;
     }
@@ -56,7 +77,7 @@ function ModalAddNotice() {
         setBreed(e.target.value);
         break;
       case "sex":
-        setSex(e.target.value);
+        setSex(e.target.id);
         break;
       case "location":
         setLocation(e.target.value);
@@ -73,17 +94,36 @@ function ModalAddNotice() {
     }
   };
 
+  const handleImage = e => {
+    const imageContainer = document.getElementById("image_container");
+
+    imageContainer.style.backgroundImage = `url(${URL.createObjectURL(
+      e.target.files[0]
+    )})`;
+
+    imageContainer.childNodes[0].style.visibility = "hidden";
+  };
+
   return (
     <Container>
       <Header>Add pet</Header>
 
       {page === 1 && (
         <>
-          <Text>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            consectetur
+          </Text>
 
           <CategoryContainer>
             {CATEGORY.map(({ category, value }, index) => (
-              <MyBtn type="button" value={category} disabled={checkCategory(category)} onClick={handleClick} key={index}>
+              <MyBtn
+                type="button"
+                value={category}
+                disabled={checkCategory(category)}
+                onClick={handleClick}
+                key={index}
+              >
                 {value}
               </MyBtn>
             ))}
@@ -95,46 +135,141 @@ function ModalAddNotice() {
         {page === 1 && (
           <>
             <label>
-              <p>
-                Title of ad <span>*</span>
-              </p>
-              <input type="text" placeholder="Sell beautiful dog" name="title" onChange={handleValue} value={title} required />
+              <InputsNames>
+                Title of ad<span>*</span>
+              </InputsNames>
+              <input
+                type="text"
+                placeholder="Sell beautiful dog"
+                name="title"
+                onChange={handleValue}
+                value={title}
+                required
+              />
             </label>
             <label>
-              <p>Name Pet</p>
-              <input type="text" placeholder="Julio Alvarez" name="name" onChange={handleValue} value={name} />
+              <InputsNames>Name Pet</InputsNames>
+              <input
+                type="text"
+                placeholder="Julio Alvarez"
+                name="name"
+                onChange={handleValue}
+                value={name}
+              />
             </label>
             <label>
-              <p> Day of birth</p>
-              <input type="text" name="birth" placeholder="year-month-date" onChange={handleValue} value={birth} />
+              <InputsNames> Day of birth</InputsNames>
+              <input
+                type="date"
+                name="birth"
+                placeholder="Set date"
+                onChange={handleValue}
+                value={birth}
+              />
             </label>
             <label>
-              <p> Breed</p>
-              <input type="text" name="breed" placeholder="Husky" onChange={handleValue} value={breed} />
+              <InputsNames> Breed</InputsNames>
+              <input
+                type="text"
+                name="breed"
+                placeholder="Husky"
+                onChange={handleValue}
+                value={breed}
+              />
             </label>
           </>
         )}
 
         {page === 2 && (
           <>
+            <InputsNames className="icon_header">
+              The sex<span>*</span>
+            </InputsNames>
+            <RadioContainer>
+              <div>
+                <RadioInputs
+                  type="radio"
+                  id="male"
+                  name="sex"
+                  onChange={handleValue}
+                  checked={sex === "male" ? true : false}
+                />
+                <label htmlFor="male" className="icon_label">
+                  <MyMaleSVG />
+                  <InputsNames className="icon_name">Male</InputsNames>
+                </label>
+              </div>
+
+              <div>
+                <RadioInputs
+                  type="radio"
+                  id="female"
+                  name="sex"
+                  onChange={handleValue}
+                  checked={sex === "female" ? true : false}
+                />
+                <label htmlFor="female" className="icon_label">
+                  <MyFemaleSVG />
+                  <InputsNames className="icon_name">Female</InputsNames>
+                </label>
+              </div>
+            </RadioContainer>
+
             <label>
-              <p>
-                Title of ad <span>*</span>
-              </p>
-              <input type="button" placeholder="Sell beautiful dog" name="title" onChange={handleValue} value={title} required />
-              <input type="button" placeholder="Sell beautiful dog" name="title" onChange={handleValue} value={title} required />
+              <InputsNames>
+                Location<span>*</span>
+              </InputsNames>
+              <input
+                type="text"
+                placeholder="Kyiv"
+                name="location"
+                value={location}
+                onChange={handleValue}
+                required
+              />
             </label>
+
+            {noticeCategory === "sell" && (
+              <label>
+                <InputsNames>
+                  Price<span>*</span>
+                </InputsNames>
+                <input
+                  type="number"
+                  name="price"
+                  placeholder="123.99"
+                  onChange={handleValue}
+                  value={price}
+                  required
+                />
+              </label>
+            )}
+
+            <ImageContainer>
+              <input
+                type="file"
+                name="image"
+                id="image"
+                accept=".jpg,.jpeg,.png"
+                onChange={handleImage}
+              />
+              <label htmlFor="image" id="image-label">
+                <InputsNames> Load the pet's image</InputsNames>
+                <ImageBox id="image_container">
+                  <MyImageCross />
+                </ImageBox>
+              </label>
+            </ImageContainer>
+
             <label>
-              <p>Name Pet</p>
-              <input type="text" placeholder="Julio Alvarez" name="name" onChange={handleValue} value={name} />
-            </label>
-            <label>
-              <p> Day of birth</p>
-              <input type="text" name="birth" placeholder="year-month-date" onChange={handleValue} value={birth} />
-            </label>
-            <label>
-              <p> Breed</p>
-              <input type="text" name="breed" placeholder="Husky" onChange={handleValue} value={breed} />
+              <InputsNames> Comments </InputsNames>
+              <input
+                type="text"
+                name="comments"
+                placeholder="The best dog ever"
+                onChange={handleValue}
+                value={comments}
+              />
             </label>
           </>
         )}
@@ -143,7 +278,13 @@ function ModalAddNotice() {
       <BtnContainer>
         {page === 1 && (
           <>
-            <MoveBtn type="button" active={true} name="move-btn" color="accent" onClick={handlePage}>
+            <MoveBtn
+              type="button"
+              active={true}
+              name="move-btn"
+              color="accent"
+              onClick={handlePage}
+            >
               Next
             </MoveBtn>
             <MoveBtn type="button" name="move-btn">
@@ -154,12 +295,12 @@ function ModalAddNotice() {
 
         {page === 2 && (
           <>
-            <MyBtn type="button" name="move-btn" color="accent">
+            <MoveBtn type="button" name="move-btn" active={true}>
               Done
-            </MyBtn>
-            <MyBtn type="button" name="move-btn" onClick={handlePage}>
+            </MoveBtn>
+            <MoveBtn type="button" name="move-btn" onClick={handlePage}>
               Back
-            </MyBtn>
+            </MoveBtn>
           </>
         )}
       </BtnContainer>

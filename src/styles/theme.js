@@ -39,6 +39,7 @@ const theme = {
     n: "18px",
     nl: "20px",
     l: "32px",
+    lx: "36px",
     xl: "64px",
   },
   fontWeights: {
