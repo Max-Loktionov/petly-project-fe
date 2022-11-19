@@ -16,7 +16,7 @@ export const MobileMenu = styled.div`
   position: fixed;
   top: 60px;
   right: 0;
-  z-index: 1;
+  z-index: 10;
 
   height: 100vh;
   width: 100%;
