@@ -45,13 +45,21 @@ export const userApi = createApi({
     //
     addPet: builder.mutation({
       query: formdata => {
+        const { name, birthday, breed, comments, addPhoto } = formdata;
+        const data = new FormData();
+        data.append("name", name);
+        data.append("birthday", birthday);
+        data.append("breed", breed);
+        data.append("comments", comments);
+        data.append("file", addPhoto[0]);
+
         return {
           url: "/pets",
           method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "form-data",
           },
-          body: formdata,
+          body: data,
         };
       },
       invalidatesTags: ["User"],

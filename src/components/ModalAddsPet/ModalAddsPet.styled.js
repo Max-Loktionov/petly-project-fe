@@ -145,7 +145,12 @@ export const BtnDone = styled(StyledButton)`
   }
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 export const Textarea = styled.textarea`
   width: 100%;
@@ -163,7 +168,67 @@ export const Textarea = styled.textarea`
     width: 394px;
     height: 116px;
     display: flex;
-    margin-right: auto;
+  }
+`;
+export const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
+  background-color: ${p => p.theme.colors.background};
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid ${p => p.theme.colors.inputModal};
+`;
+
+export const InputsNames = styled.p`
+  margin-bottom: 8px;
+  font-size: ${p => p.theme.fontSizes.n};
+  line-height: ${p => p.theme.lineHeights.body};
+  font-weight: ${p => p.theme.fontWeights.heading};
+  &.icon_name {
+    margin: 0px;
+  }
+  &.icon_header {
+    margin-bottom: 18px;
+    @media ${p => p.theme.media.tablet} {
+      margin-bottom: 31px;
+    }
+  }
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.ml};
+    margin-bottom: 12px;
+  }
+  & span {
+    color: ${p => p.theme.colors.accent};
+    @media ${p => p.theme.media.tablet} {
+      font-size: ${p => p.theme.fontSizes.ml};
+    }
+  }
+`;
+
+// export const MyImageCross = styled(ImageCross)``;
+
+export const ImageContainer = styled.div`
+  @media ${p => p.theme.media.tablet} {
+    margin-top: 28px;
+    margin-bottom: 28px;
     margin-left: auto;
+    margin-right: auto;
+  }
+  & input {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  & #image-label {
+    @media ${p => p.theme.media.tablet} {
+      margin-top: 0px;
+    }
   }
 `;

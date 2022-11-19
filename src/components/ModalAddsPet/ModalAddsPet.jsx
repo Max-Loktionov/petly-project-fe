@@ -16,6 +16,10 @@ import {
   Textarea,
   Title,
   SubTitle,
+  ImageBox,
+  InputsNames,
+  MyImageCross,
+  ImageContainer,
 } from "./ModalAddsPet.styled";
 
 const ModalAddsPet = ({ onClose }) => {
@@ -33,14 +37,8 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formData, evt) => {
     try {
       onClose(evt);
-      const { name, birthday, breed, comments, addPhoto } = await formData;
-      const formdata = new FormData();
-      formdata.append("name", name);
-      formdata.append("birthday", birthday);
-      formdata.append("breed", breed);
-      formdata.append("comments", comments);
-      formdata.append("file", addPhoto[0]);
-      await addPet(formdata);
+      const data = await formData;
+      await addPet(data);
     } catch (error) {
       console.log(error.message);
     }
@@ -54,6 +52,11 @@ const ModalAddsPet = ({ onClose }) => {
     setNextPage(false);
   };
 
+  const handleImage = e => {
+    const imageContainer = document.getElementById("image_container");
+
+    imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
+  };
   const textRegexp = /[a-zA-Z]+/;
   const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
@@ -89,13 +92,10 @@ const ModalAddsPet = ({ onClose }) => {
             <Label htmlFor="dateOfBirth">Date of birth</Label>
             <Input
               id="dateOfBirth"
+              type="date"
               placeholder="Type date of birth"
               {...register("birthday", {
                 required: "Date of birth is required.",
-                pattern: {
-                  value: dateRegexp,
-                  message: "This input is number only. Example: 01.01.2022",
-                },
               })}
             />
             {errors.birthday && <ErrorText role="alert">{errors.birthday?.message}</ErrorText>}
@@ -129,17 +129,20 @@ const ModalAddsPet = ({ onClose }) => {
           <>
             <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
             <Container>
-              <Input
-                type="file"
-                id="addPhoto"
-                {...register("addPhoto", {
-                  required: "Photo is required.",
-                })}
-              />
-              {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
-              <Label textarea htmlFor="addPhoto">
-                Comments
-              </Label>
+              <ImageContainer>
+                <Input
+                  type="file"
+                  id="addPhoto"
+                  {...register("addPhoto", {
+                    required: "Photo is required.",
+                  })}
+                  onChange={handleImage}
+                />
+                {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
+                <label htmlFor="addPhoto" id="addPhoto-label">
+                  <ImageBox id="image_container">{/* <MyImageCross /> */}x</ImageBox>
+                </label>
+              </ImageContainer>
               <Textarea
                 id="Comments"
                 {...register("comments", {
