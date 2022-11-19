@@ -1,4 +1,3 @@
-import { async } from "q";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
@@ -34,15 +33,7 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formData, evt) => {
     try {
       onClose(evt);
-      const { name, birthday, breed, comments, addPhoto } = await formData;
-      const data = new FormData();
-      data.append("name", name);
-      data.append("birthday", birthday);
-      data.append("breed", breed);
-      data.append("comments", comments);
-      data.append("file", addPhoto[0]);
-      await addPet(data);
-      console.log(addPhoto[0]);
+      await addPet(formData);
     } catch (error) {
       console.log(error.message);
     }
