@@ -12,7 +12,7 @@ export const PictureData = styled.div`
   position: relative;
   width: 100%;
   height: 240px;
-
+  padding-top: 20px;
   background-image: ${props => `url(${props.imageUrl})`};
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,7 +22,7 @@ export const PictureData = styled.div`
   @media ${p => p.theme.media.tablet} {
     width: 288px;
     height: 328px;
-
+    padding-top: 0px;
     margin-right: 20px;
   }
 `;

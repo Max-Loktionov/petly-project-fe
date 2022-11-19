@@ -15,6 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  line-height: ${p => p.theme.lineHeights.body};
 }
 
 

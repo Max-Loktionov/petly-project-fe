@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 export const NavList = styled.ul`
   text-align: center;
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     display: flex;
   }
 `;
 export const NavItem = styled.li`
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     :not(:last-child) {
       margin-right: 80px;
     }
@@ -27,10 +27,10 @@ export const StyledNavLink = styled(NavLink)`
     color: ${p => p.theme.colors.accent};
   }
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     font-size: 48px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     font-size: 20px;
     line-height: 1.35;
   }
