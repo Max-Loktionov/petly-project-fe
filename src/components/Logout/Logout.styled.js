@@ -9,6 +9,7 @@ export const LogOut = styled.button`
   align-items: center;
   margin-left: auto;
   margin-bottom: 8px;
+
   border: none;
   background-color: transparent;
   color: ${p => p.theme.colors.greyText};
@@ -23,6 +24,8 @@ export const LogOut = styled.button`
   @media ${p => p.theme.media.tablet} {
     left: 32px;
     bottom: 24px;
+    width: 90px;
+    height: 22px;
     margin: 0;
     padding: 0;
   }

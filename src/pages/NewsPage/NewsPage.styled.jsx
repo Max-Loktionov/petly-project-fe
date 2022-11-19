@@ -70,6 +70,7 @@ export const Input = styled.input`
     padding-left: 15px;
     width: 100%;
     height: 40px;
+    background-color: #ffffff;
 
     ::placeholder {
       color: #535353;

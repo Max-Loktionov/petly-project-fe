@@ -49,6 +49,7 @@ export const Card = styled.li`
     width: 280px;
     height: 192px;
     margin-bottom: 12px;
+    background-color: #ffffff;
 
     &:nth-last-child() {
       margin-bottom: 0px;
