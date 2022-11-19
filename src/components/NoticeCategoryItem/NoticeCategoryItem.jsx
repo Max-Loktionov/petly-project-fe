@@ -13,10 +13,10 @@ import {
 } from "./NoticeCategoryItem.styled";
 import unlike from "img/unlike.svg";
 
-const NoticeCategoryItem = ({ _id, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
+const NoticeCategoryItem = ({ id, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
-
+  console.log(id);
   const currentAge = date => {
     let today = new Date();
     let birthDate = new Date(date);
@@ -76,10 +76,10 @@ const NoticeCategoryItem = ({ _id, name, title, birthday, breed, male, location,
           </Table>
         </ContainerDescription>
       </div>
-      <ButtonMore active="true" type="button" onClick={() => onModalOpen(_id)}>
+      <ButtonMore active="true" type="button" onClick={() => onModalOpen(id)}>
         Learn more
       </ButtonMore>
-      <button type="button" disabled={isDeleting} onClick={() => deleteNotice(_id)}>
+      <button type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
         Delete
       </button>
     </Item>
