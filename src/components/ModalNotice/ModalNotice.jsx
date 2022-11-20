@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer } from "./ModalNotice.styled";
 
-function ModalNotice({ id }) {
+function ModalNotice({ id, onClose }) {
   // id to use getMutationByid and delete pet Object
 
   const pet = {
@@ -14,7 +14,8 @@ function ModalNotice({ id }) {
     theSex: "male",
     email: "user@mail.com",
     phone: "+380971234567",
-    comments: "Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem",
+    comments:
+      "Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem",
     cathegory: "sell",
     price: 123,
     avatar: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLX9f3BTRl8zwQuDCnJqd4DZEAo7KKFf07WPI7Y-Ih&s`,
@@ -74,7 +75,7 @@ function ModalNotice({ id }) {
 
       <BtnContainer>
         <MyBtn active={"active"}>Contact</MyBtn>
-        <MyBtn>
+        <MyBtn onClose={onClose}>
           Add to <span>&#10084;</span>
         </MyBtn>
       </BtnContainer>

@@ -7,8 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 
-import NoticesPage from "pages/NoticesPage/NoticesPage";
-
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const NotFound = lazy(() => import("../pages/NotFound"));
@@ -17,6 +15,7 @@ const NewsPage = lazy(() => import("../pages/NewsPage"));
 const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 const UserPage = lazy(() => import("../pages/UserPage/UserPage"));
+const NoticesPage = lazy(() => import("../pages/NoticesPage/NoticesPage"));
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
