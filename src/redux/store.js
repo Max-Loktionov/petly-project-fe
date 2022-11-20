@@ -3,7 +3,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import { userApi } from "./userApi";
 import { authApi } from "./auth";
-import { noticesApi } from './noticesApi';
+import { noticesApi } from "./noticesApi";
 import { persistedReducer } from "./auth";
 import { filterSlice } from "./filterCategoriesSlice";
 

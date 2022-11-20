@@ -1,12 +1,14 @@
 import { useGetUserQuery } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
+import devaultIcon from "../../img/default-icon-user.png";
 
 import { UserBlock, BoxImg, EditImgBtn, IconEditImgBtn, ImgUser, BoxInfo, BoxTitle, Title, Block, Form } from "./UserDataItem.styled";
 
 const UserDataForm = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
-  const BASE_URL = "https://www.gravatar.com/avatar/";
+  const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
+  const imgAlt = user?.data?.result?.name;
 
   return (
     <UserBlock>
@@ -15,7 +17,7 @@ const UserDataForm = () => {
       ) : (
         <>
           <BoxImg>
-            <ImgUser src={BASE_URL + imgUrl} alt="Avatar User" />
+            <ImgUser src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt={imgAlt} />
             <EditImgBtn>
               <IconEditImgBtn />
               Edit photo
@@ -64,5 +66,7 @@ const UserDataForm = () => {
     </UserBlock>
   );
 };
+
+// Image.devaultIcon
 
 export default UserDataForm;

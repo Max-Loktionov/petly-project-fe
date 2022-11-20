@@ -1,9 +1,12 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 
+const modalRoot = document.querySelector("#modal-root");
+
 function Modal({ onClose, children }) {
-  return (
+  return createPortal(
     <MyBackdrop>
       <ModalWindow>
         <Exit onClick={onClose}>
@@ -11,7 +14,8 @@ function Modal({ onClose, children }) {
         </Exit>
         {children}
       </ModalWindow>
-    </MyBackdrop>
+    </MyBackdrop>,
+    modalRoot
   );
 }
 
