@@ -96,7 +96,6 @@ export const BoxInfo = styled.div`
     margin-bottom: 0;
     margin-right: 52px;
     margin-top: 16px;
-    width: inherit;
   }
   @media ${p => p.theme.media.desktop} {
     margin-top: 0;
