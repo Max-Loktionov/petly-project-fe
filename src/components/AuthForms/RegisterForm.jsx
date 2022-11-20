@@ -50,7 +50,6 @@ const RegisterForm = () => {
       city = city === "" ? city = 'no info' : city;
       phone = phone === "" ? phone = 'no info' : phone;
       
-      console.log(city)
       const result = await registerUser({ email, password, name, city, phone });
       dispatch(setToken(result.data.token));
       navigate('/user');
