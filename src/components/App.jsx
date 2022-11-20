@@ -29,7 +29,6 @@ export const App = () => {
               <Route path="friends" element={<OurFriendsPage />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="notices" element={<NoticesPage />} />
-              <Route path="*" element={<NotFound />} />
               <Route path="user" element={
                 <PrivatRoute path="/login">
                   <UserPage />
@@ -39,6 +38,7 @@ export const App = () => {
                   <LoginPage />
                 </PublicRoute>
               } />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </Suspense>
