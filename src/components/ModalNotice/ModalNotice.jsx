@@ -4,7 +4,7 @@ import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, 
 
 function ModalNotice({ id, onClose }) {
   // id to use getMutationByid and delete pet Object
-
+  console.log("ModalNotice id", id);
   const pet = {
     id: "dasdqw21323reased1243434567",
     name: "Rich",
