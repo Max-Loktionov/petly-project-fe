@@ -13,7 +13,6 @@ const NoticesPage = () => {
   const openModalNotice = e => {
     if (e) {
       setIsOpenModalNotice(true);
-      console.log("NoticePage open:");
     }
   };
 

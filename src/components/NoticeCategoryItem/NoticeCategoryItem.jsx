@@ -16,7 +16,7 @@ import unlike from "img/unlike.svg";
 const NoticeCategoryItem = ({ id, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
-  console.log(id);
+
   const currentAge = date => {
     let today = new Date();
     let birthDate = new Date(date);
