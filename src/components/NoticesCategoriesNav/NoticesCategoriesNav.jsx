@@ -5,11 +5,10 @@ import { Button } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
     const dispatch = useDispatch();
-    const category = useSelector(state => state.categories.category);
-    console.log(category);
     const token = useSelector(state => state.auth.token);
 
     const [isAuthorized, setIsAuthorized] = useState(false);
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         if (token) {
@@ -18,13 +17,14 @@ export const NoticesCategoriesNav = () => {
     }, [setIsAuthorized, token]);
 
     const handleClick = (filteredCategory) => { 
-        dispatch(setFilterCategories(filteredCategory))
+        dispatch(setFilterCategories(filteredCategory));
+        // setIsActive(true);
     }
     return (
         <>
-            <Button onClick={() => handleClick('lost_found')}>lost/found</Button>
-            <Button onClick={() => handleClick('in_good_hands')}>In good hands</Button>
-            <Button active onClick={() => handleClick('sell')}>sell</Button>
+            <Button active={isActive} onClick={() => handleClick('lost_found')}>lost/found</Button>
+            <Button active={isActive} onClick={() => handleClick('in_good_hands')}>In good hands</Button>
+            <Button active={isActive} onClick={() => handleClick('sell')}>sell</Button>
             {isAuthorized && (<div>
                 <Button onClick={() => handleClick('favorite')}>Favorite ads</Button>
                 <Button onClick={() => handleClick('own')}>My ads</Button>

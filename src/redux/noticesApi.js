@@ -41,7 +41,7 @@ export const noticesApi = createApi({
 
     noticesByCategory: builder.query({
       query: category => ({
-        url: `/${category}`,
+        url: `?category=${category}`,
         method: "GET",
       }),
       providesTags: ["Notices"],
