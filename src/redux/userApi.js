@@ -46,20 +46,18 @@ export const userApi = createApi({
     addPet: builder.mutation({
       query: ({ formdata }) => {
         console.log(formdata);
-        console.log({ formdata });
-
         const data = new FormData();
-        data.set(formdata.avatar, formdata.avatar[0]);
-        data.set(formdata.name, formdata.name);
-        data.set(formdata.birthday, formdata.birthday);
-        data.set(formdata.breed, formdata.breed);
-        data.set(formdata.comments, formdata.comments);
-
+        data.set("avatar", formdata.avatar[0]);
+        data.set("name", formdata.name);
+        data.set("birthday", formdata.birthday);
+        data.set("breed", formdata.breed);
+        data.set("comments", formdata.comments);
+        console.log(JSON.stringify(Object.fromEntries(data)));
         return {
           url: "/pets",
           method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
+            "content-Type": "multipart/form-data",
           },
           body: data,
         };
