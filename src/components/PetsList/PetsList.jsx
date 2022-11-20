@@ -4,7 +4,7 @@ import PetsListItem from "components/PetsListItem";
 
 const PetsList = () => {
   const { data = [], isLoading, isError } = useGetUserQuery();
-  console.log(data);
+
   return (
     <>
       {isLoading && <div>...Loading</div>}

@@ -1,5 +1,5 @@
 import AddPetBtn from "components/AddPetBtn";
-import UserDataItem from "components/UserDataItem";
+import UserDataForm from "components/UserDataItem/UserDataForm";
 import { TitleUser, TitleBtn, BoxTitleUser, BoxBtnTablet } from "./UserData.styled";
 
 const UserData = ({ onOpenModal }) => {
@@ -12,7 +12,7 @@ const UserData = ({ onOpenModal }) => {
           <AddPetBtn active onOpenModal={onOpenModal}></AddPetBtn>
         </BoxBtnTablet>
       </BoxTitleUser>
-      <UserDataItem />
+      <UserDataForm />
     </>
   );
 };
