@@ -37,6 +37,7 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formdata, evt) => {
     try {
       onClose(evt);
+      console.log(formdata);
       addPet(formdata);
     } catch (error) {
       console.log(error.message);
@@ -69,6 +70,7 @@ const ModalAddsPet = ({ onClose }) => {
             <Input
               id="petName"
               type="text"
+              name="name"
               placeholder="Type name pet"
               {...register("name", {
                 required: "Name is required",
@@ -92,6 +94,7 @@ const ModalAddsPet = ({ onClose }) => {
             <Input
               id="dateOfBirth"
               type="date"
+              name="birthday"
               placeholder="Type date of birth"
               {...register("birthday", {
                 required: "Date of birth is required.",
@@ -102,6 +105,7 @@ const ModalAddsPet = ({ onClose }) => {
             <Input
               id="breed"
               type="text"
+              name="breed"
               placeholder="Type breed"
               {...register("breed", {
                 required: "Breed is required",
@@ -130,6 +134,7 @@ const ModalAddsPet = ({ onClose }) => {
             <Container>
               <ImageContainer>
                 <Input
+                  name="avatar"
                   type="file"
                   id="avatar"
                   {...register("avatar", {
@@ -144,6 +149,7 @@ const ModalAddsPet = ({ onClose }) => {
               </ImageContainer>
               <Textarea
                 id="Comments"
+                name="comments"
                 {...register("comments", {
                   required: "Comments is required.",
                   maxLength: {
