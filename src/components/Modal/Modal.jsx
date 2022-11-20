@@ -15,7 +15,7 @@ function Modal({ onClose, children }) {
     document.addEventListener("keydown", handleEscapeKey);
     return () => document.removeEventListener("keydown", handleEscapeKey);
   });
-  console.log("Modal child:", children);
+
   const onBackdrop = e => {
     if (e.currentTarget === e.target) {
       onClose(e);
@@ -25,7 +25,7 @@ function Modal({ onClose, children }) {
   return createPortal(
     <MyBackdrop onClick={onBackdrop}>
       <ModalWindow>
-        <Exit onClick={onClose}>
+        <Exit onClick={onClose()}>
           <ExitIcon />
         </Exit>
         {children}
