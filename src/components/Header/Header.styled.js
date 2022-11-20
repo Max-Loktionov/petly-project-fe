@@ -4,6 +4,7 @@ export const Container = styled.div`
   position: fixed;
   width: 100%;
   padding: 16px 20px;
+  z-index: 20;
 
   @media ${p => p.theme.media.tablet} {
     display: flex;

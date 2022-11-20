@@ -42,7 +42,7 @@ export const App = () => {
                 </PublicRoute>
               } />
             </Route>
-        
+
           </Routes>
         </Suspense>
       </BrowserRouter>

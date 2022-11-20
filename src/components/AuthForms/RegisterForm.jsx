@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { registerError } from "utilities/notification";
 import { ToastContainer } from "react-toastify";
 
+
 const RegisterForm = () => {
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const { setToken } = authSlice;
@@ -46,6 +47,7 @@ const RegisterForm = () => {
   };
 
   const onSubmit = async ({ email, password, name, city, phone }) => {
+
     try {
       city = city === "" ? city = 'no info' : city;
       phone = phone === "" ? phone = 'no info' : phone;
@@ -56,6 +58,7 @@ const RegisterForm = () => {
     } catch (error) {
       registerError();
     }
+
   };
 
   const emailRegex =
