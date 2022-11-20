@@ -25,13 +25,10 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<Home />} />
+              <Route path="register" element={<RegisterPage />} />
               <Route path="friends" element={<OurFriendsPage />} />
               <Route path="news" element={<NewsPage />} />
-              <Route path="register" element={<RegisterPage />} />
               <Route path="notices" element={<NoticesPage />} />
-              {/* <Route path="user" element={<UserPage />} /> */}
-              <Route path="*" element={<NotFound />} />
-              {/* <Route path="/login" element={<LoginPage />} /> */}
               <Route path="user" element={
                 <PrivatRoute path="/login">
                   <UserPage />
@@ -41,8 +38,8 @@ export const App = () => {
                   <LoginPage />
                 </PublicRoute>
               } />
+              <Route path="*" element={<NotFound />} />
             </Route>
-
           </Routes>
         </Suspense>
       </BrowserRouter>
