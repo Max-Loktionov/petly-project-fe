@@ -25,7 +25,7 @@ function Modal({ onClose, children }) {
   return createPortal(
     <MyBackdrop onClick={onBackdrop}>
       <ModalWindow>
-        <Exit onClick={onClose()}>
+        <Exit onClick={onClose}>
           <ExitIcon />
         </Exit>
         {children}
