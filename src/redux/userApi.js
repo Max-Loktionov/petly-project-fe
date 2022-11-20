@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BASE_URL = "https://petly-be.herokuapp.com/user";
+// const BASE_URL = "https://petly-be.herokuapp.com/user";
+const BASE_URL = "http://localhost:3001/petly-be/user";
+// https://petly-be.herokuapp.com/user";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
