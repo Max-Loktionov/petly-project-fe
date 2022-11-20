@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 16px 20px;
   z-index: 20;
+  background-color: ${({ theme }) => theme.colors.background};
 
   @media ${p => p.theme.media.tablet} {
     display: flex;
