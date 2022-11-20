@@ -75,7 +75,7 @@ function ModalNotice({ id, onClose }) {
 
       <BtnContainer>
         <MyBtn active={"active"}>Contact</MyBtn>
-        <MyBtn onClose={onClose}>
+        <MyBtn onClose={() => onClose()}>
           Add to <span>&#10084;</span>
         </MyBtn>
       </BtnContainer>
