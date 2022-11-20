@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { PrivatRoute,PublicRoute } from "./ProtectedRoutes";
+import { PrivatRoute, PublicRoute } from "./ProtectedRoutes";
 
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "styles/GlobalStyle";
@@ -29,15 +29,22 @@ export const App = () => {
               <Route path="friends" element={<OurFriendsPage />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="notices" element={<NoticesPage />} />
-              <Route path="user" element={
-                <PrivatRoute path="/login">
-                  <UserPage />
-                </PrivatRoute>} />
-              <Route path='login' element={
-                <PublicRoute path='/user' >
-                  <LoginPage />
-                </PublicRoute>
-              } />
+              <Route
+                path="user"
+                element={
+                  <PrivatRoute path="/login">
+                    <UserPage />
+                  </PrivatRoute>
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <PublicRoute path="/user">
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

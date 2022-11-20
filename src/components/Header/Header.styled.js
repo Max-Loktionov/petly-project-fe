@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: fixed;
+  position: sticky;
   width: 100%;
   padding: 16px 20px;
   z-index: 20;

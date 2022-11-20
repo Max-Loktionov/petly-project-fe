@@ -26,7 +26,7 @@ function News() {
       }
     };
     newsPage();
-  }, []);
+  }, [query]);
 
   const handleChange = e => {
     setSearch(e.currentTarget.value.toLocaleLowerCase());
@@ -39,14 +39,14 @@ function News() {
 
   const filteredNews = () => {
     const searchNews = news.filter(newsItem => newsItem.title.toLowerCase().includes(query));
-    console.log(searchNews.length);
-    if (searchNews.length === 0) {
-      toast.error("Nothing found. Please, try again.");
-      return searchNews;
-    } else {
-      return searchNews;
-    }
+    // console.log(searchNews.length);
+    // if (searchNews.length === 0) {
+    //   toast.error("Nothing found. Please, try again.");
+    //   return searchNews;
+    // } else {
+    return searchNews;
   };
+  // };
 
   return (
     <Container>
