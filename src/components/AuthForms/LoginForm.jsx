@@ -31,7 +31,7 @@ export const LoginForm = () => {
     try {
       const result = await loginUser(data);
       dispatch(setToken(result.data.token));
-      navigate('/user');
+
     } catch (error) {
       loginError(error.message);
     }

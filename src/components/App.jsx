@@ -31,22 +31,18 @@ export const App = () => {
               <Route path="notices" element={<NoticesPage />} />
               {/* <Route path="user" element={<UserPage />} /> */}
               <Route path="*" element={<NotFound />} />
-            </Route>
-
-            <Route path='/' element={<SharedLayout />}>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="user" element={<UserPage />} />
-              <Route path="/" element={
-                <PrivatRoute path="login">
+              {/* <Route path="/login" element={<LoginPage />} /> */}
+              <Route path="user" element={
+                <PrivatRoute path="/login">
                   <UserPage />
                 </PrivatRoute>} />
               <Route path='login' element={
-                <PublicRoute path='/' >
+                <PublicRoute path='/user' >
                   <LoginPage />
                 </PublicRoute>
               } />
-              
             </Route>
+
           </Routes>
         </Suspense>
       </BrowserRouter>
