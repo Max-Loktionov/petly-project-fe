@@ -44,22 +44,19 @@ export const userApi = createApi({
 
     //
     addPet: builder.mutation({
-      query: ({ formdata }) => {
+      query: formdata => {
         console.log(formdata);
-        const data = new FormData();
-        data.set("avatar", formdata.avatar[0]);
-        data.set("name", formdata.name);
-        data.set("birthday", formdata.birthday);
-        data.set("breed", formdata.breed);
-        data.set("comments", formdata.comments);
-        console.log(JSON.stringify(Object.fromEntries(data)));
+        const formad = new FormData();
+        Object.keys(formdata).forEach(key => formad.append(key, formdata[key]));
+        formad.set("avatar", formdata.avatar[0]);
+        console.log(JSON.stringify(Object.fromEntries(formad)));
         return {
           url: "/pets",
           method: "POST",
           headers: {
             "content-Type": "multipart/form-data",
           },
-          body: data,
+          body: formad,
         };
       },
       invalidatesTags: ["User"],

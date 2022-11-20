@@ -37,8 +37,7 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formdata, evt) => {
     try {
       onClose(evt);
-
-      await addPet({ formdata });
+      addPet(formdata);
     } catch (error) {
       console.log(error.message);
     }
@@ -63,7 +62,7 @@ const ModalAddsPet = ({ onClose }) => {
   return (
     <>
       <Title>Add pet</Title>
-      <Form encType="multipart/form-data" onSubmit={handleSubmit(handleSubmitClick)}>
+      <Form id="pets-form" encType="multipart/form-data" onSubmit={handleSubmit(handleSubmitClick)}>
         {!nextPage && (
           <>
             <Label htmlFor="petName">Name pet</Label>
