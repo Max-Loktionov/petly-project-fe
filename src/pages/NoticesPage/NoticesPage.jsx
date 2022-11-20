@@ -24,11 +24,6 @@ const NoticesPage = () => {
 
   return (
     <Container>
-      {/* {isOpenModalNotice && (
-        <Modal onClose={closeModalNotice}>
-          <ModalNotice onClose={closeModalNotice} />
-        </Modal>
-      )} */}
       <Title>Find your favorite pet</Title>
       <NoticesSearch />
       <NoticesCategoriesList />
