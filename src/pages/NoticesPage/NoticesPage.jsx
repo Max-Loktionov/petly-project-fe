@@ -4,7 +4,7 @@ import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesList from "components/NoticesCategoriesList";
-import { Title } from "./NoticesPage.styled";
+import { Container, Title } from "./NoticesPage.styled";
 
 const NoticesPage = () => {
   const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
@@ -24,7 +24,7 @@ const NoticesPage = () => {
   };
 
   return (
-    <>
+    <Container>
       {isOpenModalNotice && (
         <Modal onClose={closeModalNotice}>
           <ModalNotice onClose={closeModalNotice} />
@@ -33,7 +33,7 @@ const NoticesPage = () => {
       <Title>Find your favorite pet</Title>
       <NoticesSearch />
       <NoticesCategoriesList onModalOpen={openModalNotice} />
-    </>
+    </Container>
   );
 };
 
