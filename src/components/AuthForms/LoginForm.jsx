@@ -8,13 +8,12 @@ import { useLoginUserMutation } from "redux/auth/authApi";
 import { authSlice } from "redux/auth";
 import { Form, Input, RegisterBtn, ErrorText } from "./authForms.styled";
 import { loginFormSchima } from "utilities/auth-validation-schemas";
-import { useNavigate } from "react-router-dom";
+import { fetchErrorHendler } from "utilities/fetchErrorHendler";
 
 export const LoginForm = () => {
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const { setToken } = authSlice;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const {
     reset,
     register,
@@ -30,12 +29,15 @@ export const LoginForm = () => {
   const onSubmit = async data => {
     try {
       const result = await loginUser(data);
+      if (result.error) {
+        const errorMessage = fetchErrorHendler(result.error);
+        throw new Error(errorMessage);
+      }
       dispatch(setToken(result.data.token));
-
+      reset();
     } catch (error) {
       loginError(error.message);
     }
-    reset();
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
