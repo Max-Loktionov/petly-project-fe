@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Form, Input, RegisterBtn, BackBtn, ErrorText } from "./authForms.styled";
 import { authSlice } from "redux/auth";
 import { useRegisterUserMutation } from "redux/auth/authApi";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const { setToken } = authSlice;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [nextPage, setNextPage] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -44,6 +46,7 @@ const RegisterForm = () => {
   const onSubmit = async ({ email, password, name, city, phone }) => {
     const result = await registerUser({ email, password, name, city, phone });
     dispatch(setToken(result.data.token));
+    navigate('/user');
   };
 
   const emailRegex =
