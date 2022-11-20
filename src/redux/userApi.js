@@ -44,16 +44,16 @@ export const userApi = createApi({
 
     //
     addPet: builder.mutation({
-      query: ({ formData }) => {
-        console.log({ formData });
-        const { name, birthday, breed, comments, addPhoto } = formData;
+      query: ({ formdata }) => {
+        console.log(formdata);
+        console.log({ formdata });
 
         const data = new FormData();
-        data.append("name", name);
-        data.append("birthday", birthday);
-        data.append("breed", breed);
-        data.append("comments", comments);
-        data.append("avatar", addPhoto[0], "avatar.jpeg");
+        data.set(formdata.avatar, formdata.avatar[0]);
+        data.set(formdata.name, formdata.name);
+        data.set(formdata.birthday, formdata.birthday);
+        data.set(formdata.breed, formdata.breed);
+        data.set(formdata.comments, formdata.comments);
 
         return {
           url: "/pets",

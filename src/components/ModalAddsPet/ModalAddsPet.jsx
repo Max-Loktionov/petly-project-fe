@@ -34,10 +34,11 @@ const ModalAddsPet = ({ onClose }) => {
     mode: "onBlur",
   });
 
-  const handleSubmitClick = async (formData, evt) => {
+  const handleSubmitClick = async (formdata, evt) => {
     try {
       onClose(evt);
-      await addPet({ formData });
+
+      await addPet({ formdata });
     } catch (error) {
       console.log(error.message);
     }
@@ -126,19 +127,19 @@ const ModalAddsPet = ({ onClose }) => {
 
         {nextPage && (
           <>
-            <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+            <SubTitle htmlFor="avatar">Add photo and some comments</SubTitle>
             <Container>
               <ImageContainer>
                 <Input
                   type="file"
-                  id="addPhoto"
-                  {...register("addPhoto", {
+                  id="avatar"
+                  {...register("avatar", {
                     required: "Photo is required.",
                   })}
                   onChange={handleImage}
                 />
                 {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
-                <label htmlFor="addPhoto" id="addPhoto-label">
+                <label htmlFor="avatar" id="addPhoto-label">
                   <ImageBox id="image_container">{/* <MyImageCross /> */}x</ImageBox>
                 </label>
               </ImageContainer>
