@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterCategories } from 'redux/filterCategoriesSlice';
 import { Button } from './NoticesCategoriesNav.styled';
+import { Link } from 'react-router-dom';
 
 export const NoticesCategoriesNav = () => {
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.token);
 
     const [isAuthorized, setIsAuthorized] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState('sell');
 
     useEffect(() => {
         if (token) {
@@ -16,18 +17,19 @@ export const NoticesCategoriesNav = () => {
         }
     }, [setIsAuthorized, token]);
 
-    const handleClick = (filteredCategory) => { 
-        dispatch(setFilterCategories(filteredCategory));
-        // setIsActive(true);
+    const handleClick = (сategoryName) => { 
+        dispatch(setFilterCategories(сategoryName));
+        setIsActive(сategoryName)
+        
     }
     return (
         <>
-            <Button active={isActive} onClick={() => handleClick('lost_found')}>lost/found</Button>
-            <Button active={isActive} onClick={() => handleClick('in_good_hands')}>In good hands</Button>
-            <Button active={isActive} onClick={() => handleClick('sell')}>sell</Button>
+            <Button active={isActive==='lost_found'} onClick={() => handleClick('lost_found')}><Link to='lost_found'>lost/found</Link></Button>
+            <Button active={isActive==='in_good_hands'} onClick={() => handleClick('in_good_hands')}><Link to='in_good_hands'>In good hands</Link></Button>
+            <Button active={isActive==='sell'}  onClick={() => handleClick('sell')}><Link to='sell'>sell</Link></Button>
             {isAuthorized && (<div>
-                <Button onClick={() => handleClick('favorite')}>Favorite ads</Button>
-                <Button onClick={() => handleClick('own')}>My ads</Button>
+                <Button onClick={() => handleClick('favorite')}><Link to='favorite'>Favorite ads</Link></Button>
+                <Button onClick={() => handleClick('own')}><Link to='own'>My ads</Link></Button>
             </div>)}
         </>
     )
