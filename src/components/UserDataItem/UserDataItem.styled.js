@@ -109,7 +109,7 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     @media ${p => p.theme.media.desktop} {
       margin-bottom: 15px;
     }
