@@ -19,8 +19,8 @@ export const AccountButton = styled(StyledButton)`
 `;
 
 export const IconAccount = styled(RiAccountCircleFill)`
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
 
   @media ${p => p.theme.media.tablet} {
     width: 24px;
