@@ -5,18 +5,16 @@ import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 
 const modalRoot = document.querySelector("#modal-root");
 
-
-function Modal({tabletNoStandartWidth, onClose, children }) {
+function Modal({ tabletNoStandartWidth, onClose, children }) {
   return createPortal(
     <MyBackdrop>
-      <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth}
+      <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth}>
         <Exit onClick={onClose}>
           <ExitIcon />
         </Exit>
         {children}
       </ModalWindow>
-    </MyBackdrop>,
-    modalRoot
+    </MyBackdrop>
   );
 }
 
