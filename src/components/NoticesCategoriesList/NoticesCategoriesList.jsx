@@ -3,7 +3,7 @@ import { useGetNoticesAllQuery } from "redux/noticesApi";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { List } from "./NoticesCategoriesList.styled";
 
-const NoticesCategoriesList = ({ onModalOpen }) => {
+const NoticesCategoriesList = ({ onModalOpen, id }) => {
   const { data = [], isLoading, isError } = useGetNoticesAllQuery();
   const token = useSelector(state => state.auth.token);
 

@@ -4,11 +4,15 @@ import React, { useEffect, useState } from "react";
 import { Form, Input, RegisterBtn, BackBtn, ErrorText } from "./authForms.styled";
 import { authSlice } from "redux/auth";
 import { useRegisterUserMutation } from "redux/auth/authApi";
+import { useNavigate } from "react-router-dom";
+import { registerError } from "utilities/notification";
+import { ToastContainer } from "react-toastify";
 
 const RegisterForm = () => {
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const { setToken } = authSlice;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [nextPage, setNextPage] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -42,12 +46,19 @@ const RegisterForm = () => {
   };
 
   const onSubmit = async ({ email, password, name, city, phone }) => {
-    const result = await registerUser({ email, password, name, city, phone });
-    dispatch(setToken(result.data.token));
+    try {
+      city = city === "" ? (city = "no info") : city;
+      phone = phone === "" ? (phone = "no info") : phone;
+
+      const result = await registerUser({ email, password, name, city, phone });
+      dispatch(setToken(result.data.token));
+      navigate("/user");
+    } catch (error) {
+      registerError();
+    }
   };
 
-  const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const passwordRegex = /^\S*$/;
   const nameRegex = /[a-zA-Z]+/;
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
@@ -102,7 +113,6 @@ const RegisterForm = () => {
             label="Name"
             onInput={handleInputChange}
             {...register("name", {
-              required: "This is required",
               pattern: { value: nameRegex, message: "Enter only letters" },
             })}
             type="text"
@@ -145,6 +155,7 @@ const RegisterForm = () => {
           Back
         </BackBtn>
       )}
+      <ToastContainer />
     </Form>
   );
 };
