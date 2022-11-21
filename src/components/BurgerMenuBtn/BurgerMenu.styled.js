@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { TfiMenu } from "react-icons/tfi";
 
 export const BurgerMenuBtn = styled.button`
   display: flex;
@@ -8,6 +8,7 @@ export const BurgerMenuBtn = styled.button`
   top: 25px;
   right: 25px;
   border: none;
+  padding: 0px;
   z-index: 10;
   background-color: transparent;
   @media ${p => p.theme.media.tablet} {
@@ -19,7 +20,7 @@ export const BurgerMenuBtn = styled.button`
   }
 `;
 
-export const IconBurgerBtn = styled(GiHamburgerMenu)`
+export const IconBurgerBtn = styled(TfiMenu)`
   width: 30px;
-  height: 20px;
+  height: 28px;
 `;
