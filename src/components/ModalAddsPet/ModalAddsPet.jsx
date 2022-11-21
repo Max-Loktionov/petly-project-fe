@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
-// import { ErrorMessage } from "@hookform/error-message";
 import {
   Label,
   Form,
@@ -29,7 +28,7 @@ const ModalAddsPet = ({ onClose }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isDirty, errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
@@ -37,7 +36,6 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formdata, evt) => {
     try {
       onClose(evt);
-      console.log(formdata);
       addPet(formdata);
     } catch (error) {
       console.log(error.message);
@@ -196,29 +194,3 @@ const ModalAddsPet = ({ onClose }) => {
 };
 
 export default ModalAddsPet;
-
-//  <input
-//         {...register("multipleErrorInput", {
-//           required: "This input is required.",
-//           pattern: {
-//             value: /\d+/,
-//             message: "This input is number only.",
-//           },
-//           minLength: {
-//             value: 11,
-//             message: "This input must exceed 10 characters",
-//           },
-//         })}
-//       />
-//       <ErrorMessage
-//         errors={errors}
-//         name="multipleErrorInput"
-//         render={({ messages }) => {
-//           console.log("messages", messages);
-//           return messages
-//             ? Object.entries(messages).map(([type, message]) => (
-//                 <p key={type}>{message}</p>
-//               ))
-//             : null;
-//         }}
-//       />

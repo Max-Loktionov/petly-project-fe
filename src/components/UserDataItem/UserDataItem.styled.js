@@ -142,6 +142,7 @@ export const Text = styled.p`
 export const Block = styled.div`
   display: flex;
   flex: auto;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 `;
@@ -221,5 +222,20 @@ export const UserDataInput = styled.input`
     padding: 4px 12px;
 
     font-size: 18px;
+  }
+`;
+
+export const ErrorText = styled.div`
+  margin-left: 16px;
+  &:not(:last-of-type) {
+    margin-bottom: 14px;
+  }
+  font-size: 10px;
+  color: red;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-style: italic;
+
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.xs};
   }
 `;
