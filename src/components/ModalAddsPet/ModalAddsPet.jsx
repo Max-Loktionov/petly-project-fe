@@ -16,6 +16,10 @@ import {
   Textarea,
   Title,
   SubTitle,
+  ImageBox,
+  InputsNames,
+  MyImageCross,
+  ImageContainer,
 } from "./ModalAddsPet.styled";
 
 const ModalAddsPet = ({ onClose }) => {
@@ -30,9 +34,14 @@ const ModalAddsPet = ({ onClose }) => {
     mode: "onBlur",
   });
 
-  const handleSubmitClick = (formData, evt) => {
-    onClose(evt);
-    addPet(formData);
+  const handleSubmitClick = async (formdata, evt) => {
+    try {
+      onClose(evt);
+      console.log(formdata);
+      addPet(formdata);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleNextClick = () => {
@@ -43,19 +52,25 @@ const ModalAddsPet = ({ onClose }) => {
     setNextPage(false);
   };
 
+  const handleImage = e => {
+    const imageContainer = document.getElementById("image_container");
+
+    imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
+  };
   const textRegexp = /[a-zA-Z]+/;
   const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   return (
     <>
       <Title>Add pet</Title>
-      <Form encType="multipart/form-data" onSubmit={handleSubmit(handleSubmitClick)}>
+      <Form id="pets-form" encType="multipart/form-data" onSubmit={handleSubmit(handleSubmitClick)}>
         {!nextPage && (
           <>
             <Label htmlFor="petName">Name pet</Label>
             <Input
               id="petName"
               type="text"
+              name="name"
               placeholder="Type name pet"
               {...register("name", {
                 required: "Name is required",
@@ -78,13 +93,11 @@ const ModalAddsPet = ({ onClose }) => {
             <Label htmlFor="dateOfBirth">Date of birth</Label>
             <Input
               id="dateOfBirth"
+              type="date"
+              name="birthday"
               placeholder="Type date of birth"
               {...register("birthday", {
                 required: "Date of birth is required.",
-                pattern: {
-                  value: dateRegexp,
-                  message: "This input is number only. Example: 01.01.2022",
-                },
               })}
             />
             {errors.birthday && <ErrorText role="alert">{errors.birthday?.message}</ErrorText>}
@@ -92,6 +105,7 @@ const ModalAddsPet = ({ onClose }) => {
             <Input
               id="breed"
               type="text"
+              name="breed"
               placeholder="Type breed"
               {...register("breed", {
                 required: "Breed is required",
@@ -116,23 +130,26 @@ const ModalAddsPet = ({ onClose }) => {
 
         {nextPage && (
           <>
-            <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+            <SubTitle htmlFor="avatar">Add photo and some comments</SubTitle>
             <Container>
-              {/* <Input
-                type="file"
-                id="addPhoto"
-                {...register("addPhoto", {
-                  required: "Photo is required.",
-                })}
-              />
-              {errors.addPhoto && (
-                <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
-              )} */}
-              <Label textarea htmlFor="addPhoto">
-                Comments
-              </Label>
+              <ImageContainer>
+                <Input
+                  name="avatar"
+                  type="file"
+                  id="avatar"
+                  {...register("avatar", {
+                    required: "Photo is required.",
+                  })}
+                  onChange={handleImage}
+                />
+                {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
+                <label htmlFor="avatar" id="addPhoto-label">
+                  <ImageBox id="image_container">{/* <MyImageCross /> */}x</ImageBox>
+                </label>
+              </ImageContainer>
               <Textarea
                 id="Comments"
+                name="comments"
                 {...register("comments", {
                   required: "Comments is required.",
                   maxLength: {
