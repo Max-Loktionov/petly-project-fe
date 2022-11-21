@@ -40,22 +40,25 @@ export const noticesApi = createApi({
       invalidatesTags: ["Notices"],
     }),
 
+    addNotice: builder.mutation({
+      query: newNotice => {
+        // console.log("====noticeApi newNotice:", newNotice);
+        const newFormdata = new FormData();
+        Object.keys(newNotice).forEach(key => newFormdata.append(key, newNotice[key]));
+        newFormdata.set("avatar", newNotice.avatar[0]);
+        // console.log("====noticeApi newFormdata json:", JSON.stringify(Object.fromEntries(newFormdata)));
+
+        return { url: "/notices", method: "POST", body: newFormdata };
+      },
+      invalidatesTags: ["Notices"],
+    }),
+
     // listNoticesByCategory: builder.query({
     //   query: ({ category, page = 1, limit = 15 }) => ({
     //     url: /notices/categories/${category}?page=${page}&limit=${limit},
     //     method: "GET",
     //   }),
     //   providesTags: ["Notices"],
-    // }),
-
-    // addNotice: builder.mutation({
-    //   query: newNotice => ({
-    //     url: "/notices",
-    //     method: "POST",
-    //     body: newNotice,
-    //   }),
-
-    //   invalidatesTags: ["Notices"],
     // }),
 
     // listUserNotices: builder.query({

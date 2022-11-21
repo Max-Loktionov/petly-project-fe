@@ -6,7 +6,7 @@ import { PrivatRoute, PublicRoute } from "./ProtectedRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
-import NoticesPage from "pages/NoticesPage/NoticesPage";
+// import NoticesPage from "pages/NoticesPage/NoticesPage";
 import Modal from "./Modal/Modal";
 import ModalAddPets from "./ModalAddNotice";
 
@@ -19,6 +19,7 @@ const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 const UserPage = lazy(() => import("../pages/UserPage/UserPage"));
 const NoticesPage = lazy(() => import("../pages/NoticesPage/NoticesPage"));
+
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -51,9 +52,9 @@ export const App = () => {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
-          <Modal>
+          {/* <Modal>
             <ModalAddPets />
-          </Modal>
+          </Modal> */}
         </Suspense>
       </BrowserRouter>
     </ThemeProvider>

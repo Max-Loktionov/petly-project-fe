@@ -6,15 +6,32 @@ import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 const modalRoot = document.querySelector("#modal-root");
 
 function Modal({ tabletNoStandartWidth, onClose, children }) {
+  useEffect(() => {
+    const handleEscapeKey = e => {
+      if (e.code === "Escape") {
+        onClose(e);
+      }
+    };
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => document.removeEventListener("keydown", handleEscapeKey);
+  });
+
+  const onBackdrop = e => {
+    if (e.currentTarget === e.target) {
+      onClose(e);
+    }
+  };
+
   return createPortal(
-    <MyBackdrop>
+    <MyBackdrop onClick={onBackdrop}>
       <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth}>
         <Exit onClick={onClose}>
           <ExitIcon />
         </Exit>
         {children}
       </ModalWindow>
-    </MyBackdrop>
+    </MyBackdrop>,
+    modalRoot
   );
 }
 
