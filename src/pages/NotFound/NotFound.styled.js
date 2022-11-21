@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 import img from "../../img/auth-forms-bg.jpg";
 
 export const Container = styled.div`
-  margin-top: 0px;
-  padding-top: -30px;
+max-width: 100%;
+    padding: 100px 20px 100px;
   height: 100vh;
   background-image: url(${img});
   background-size: cover;
 
   @media ${p => p.theme.media.mobile} {
-    margin: 20px 0px 100px 0px;
+    padding: 100px 20px 100px;
   }
   @media ${p => p.theme.media.tablet} {
-    margin: 94px 0px 100px 0px;
+    padding: 160px 32px 100px 32px;
   }
   @media ${p => p.theme.media.desktop} {
-    margin: 69px 0px 200px 0px;
+    padding: 127px 16px 200px 16px;
   }
 `;
 
