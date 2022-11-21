@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const AuthNavList = styled.ul`
   display: flex;
-  @media ${p => p.theme.media.mobile} {
+  @media ${p => p.theme.media.mobileM} {
     margin-bottom: 60px;
   }
   @media ${p => p.theme.media.tablet} {

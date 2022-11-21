@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { BiSearchAlt2 } from "react-icons/bi";
+import 'react-toastify/dist/ReactToastify.css';
+import searchIcon from "../../img/VectorG.svg";
 import { SearchForm, SearchFormInput, SearchBtn } from "./NoticesSearch.styled";
 
 const NoticesSearch = ({ onSubmit }) => {
@@ -28,7 +29,7 @@ const NoticesSearch = ({ onSubmit }) => {
       <SearchForm onSubmit={handleSubmit}>
         <SearchFormInput type="text" value={searchPet} name="query" autoFocus placeholder="Search" onChange={handleSearchChange} />
         <SearchBtn type="submit" onClick={handleSubmit}>
-          <BiSearchAlt2 />
+          <img src={searchIcon} alt="searchIcon" />
         </SearchBtn>
       </SearchForm>
     </>

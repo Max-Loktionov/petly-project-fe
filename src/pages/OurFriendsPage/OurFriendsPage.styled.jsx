@@ -2,14 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   @media ${p => p.theme.media.mobile} {
-    margin: 47px 20px 100px 20px;
+    margin: 0 20px 100px 20px;
+    padding-top: 105px;
   }
 
   @media ${p => p.theme.media.tablet} {
-    margin: 94px 32px 100px 32px;
+    margin: 0 32px 100px 32px;
+    padding-top: 160px;
   }
   @media ${p => p.theme.media.desktop} {
-    margin: 72px 16px 100px 16px;
+    margin: 0 16px 100px 16px;
+    padding-top: 129px;
   }
 `;
 
