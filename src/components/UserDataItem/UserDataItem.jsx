@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUpdateUserMutation } from "redux/userApi";
-import { EditTextBtn, EditTextBtnIcon, UserDataInput } from "./UserDataItem.styled";
+import { EditTextBtn, EditTextBtnIcon, IconCheck, UserDataInput } from "./UserDataItem.styled";
 
 const UserDataItem = ({ name, defaultVaule }) => {
   const [active, setActive] = useState(false);
@@ -28,9 +28,7 @@ const UserDataItem = ({ name, defaultVaule }) => {
   return (
     <>
       <UserDataInput disabled={!active} onChange={onInputeChange} name={name} value={inputeValue}></UserDataInput>
-      <EditTextBtn onClick={handleClick}>
-        <EditTextBtnIcon />
-      </EditTextBtn>
+      <EditTextBtn onClick={handleClick}>{active ? <IconCheck /> : <EditTextBtnIcon />}</EditTextBtn>
     </>
   );
 };

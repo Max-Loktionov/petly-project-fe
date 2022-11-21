@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { HiCamera } from "react-icons/hi2";
+import { BsCheckLg } from "react-icons/bs";
 
 export const UserBlock = styled.div`
   display: flex;
@@ -174,6 +175,17 @@ export const EditTextBtnIcon = styled(HiPencil)`
   @media ${p => p.theme.media.tablet} {
     width: 20px;
     height: 20px;
+  }
+`;
+
+export const IconCheck = styled(BsCheckLg)`
+  width: 10px;
+  height: 8px;
+
+  fill: ${p => p.theme.colors.accent};
+  @media ${p => p.theme.media.tablet} {
+    width: 17px;
+    height: 13px;
   }
 `;
 
