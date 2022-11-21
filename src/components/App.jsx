@@ -6,6 +6,9 @@ import { PrivatRoute, PublicRoute } from "./ProtectedRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
+import NoticesPage from "pages/NoticesPage/NoticesPage";
+import Modal from "./Modal/Modal";
+import ModalAddPets from "./ModalAddNotice";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
@@ -48,6 +51,9 @@ export const App = () => {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
+          <Modal>
+            <ModalAddPets />
+          </Modal>
         </Suspense>
       </BrowserRouter>
     </ThemeProvider>
