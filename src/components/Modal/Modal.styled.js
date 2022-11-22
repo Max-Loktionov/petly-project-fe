@@ -48,6 +48,7 @@ export const Exit = styled.button`
 
   border-radius: 50%;
   border: none;
+  cursor: pointer;
 
   z-index: 10;
   background-color: ${p => p.theme.colors.background};
@@ -55,6 +56,10 @@ export const Exit = styled.button`
   @media ${p => p.theme.media.tablet} {
     width: 44px;
     height: 44px;
+  }
+  &:hover {
+    border: 1px solid;
+    border-color: ${p => p.theme.colors.accent};
   }
 `;
 
