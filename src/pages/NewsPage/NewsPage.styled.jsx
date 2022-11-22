@@ -57,11 +57,32 @@ export const SearchBox = styled.form`
 `;
 export const Button = styled.button`
   position: absolute;
-  right: 15px;
+  left: 15px;
   top: 30%;
   border: none;
   background: transparent;
   cursor: pointer;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  right: 2px;
+  top: 0%;
+  font-size: 48px;
+  border: none;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  background: transparent;
+  cursor: pointer;
+  color: #535353;
+  :hover {
+    background: #fdf7f2;
+  }
 `;
 
 export const Input = styled.input`
@@ -70,7 +91,7 @@ export const Input = styled.input`
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     border: 1px white solid;
     border-radius: 20px;
-    padding-left: 15px;
+    padding-left: 50px;
     width: 100%;
     height: 40px;
     background-color: #ffffff;
