@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
 const BASE_URL = "https://petly-be.herokuapp.com/notices";
 
 const baseQuery = fetchBaseQuery({
@@ -38,6 +37,14 @@ export const noticesApi = createApi({
         method: "DELETE",
       }),
       invalidatesTags: ["Notices"],
+    }),
+
+    noticesByCategory: builder.query({
+      query: category => ({
+        url: `?category=${category}`,
+        method: "GET",
+      }),
+      providesTags: ["Notices"],
     }),
 
     addNotice: builder.mutation({
@@ -82,11 +89,12 @@ export const noticesApi = createApi({
 
 export const {
   useGetNoticesAllQuery,
-  useListNoticesByCategoryQuery,
+  useNoticesByCategoryQuery,
   useListNoticesByQueryQuery,
   useListUserNoticesQuery,
   useGetNoticesByIdQuery,
   useAddNoticeMutation,
   useUpdateFavoritesMutation,
   useDeleteNoticeMutation,
+  useGetUserNoticesQuery
 } = noticesApi;

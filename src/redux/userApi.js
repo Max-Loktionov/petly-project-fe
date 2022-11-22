@@ -68,8 +68,31 @@ export const userApi = createApi({
       invalidatesTags: ["User"],
     }),
 
+    getUserNotices: builder.query({
+      query: notice => ({
+        url: `/${notice}`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+
+    getUserFavorite: builder.query({
+      query: favorite => ({
+        url: `/${favorite}`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+
     // transformResponse: (response) => response.data,
   }),
 });
 
-export const { useGetUserQuery, useUpdateUserMutation, useAddPetMutation, useDeletePetMutation, useUpdateUserAvatarMutation } = userApi;
+export const {
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useAddPetMutation,
+  useDeletePetMutation,
+  useUpdateUserAvatarMutation,
+  useGetUserNoticesQuery,
+  useGetUserFavoriteQuery } = userApi;

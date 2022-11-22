@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSelector } from "react-redux";
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesList from "components/NoticesCategoriesList";
+import NoticesCategoriesNav from "components/NoticesCategoriesNav";
 import { Container, Title } from "./NoticesPage.styled";
+import { Outlet } from "react-router-dom";
 import Modal from "components/Modal/Modal";
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 
@@ -23,18 +25,21 @@ const NoticesPage = () => {
   };
 
   return (
-    <>
+    <Container>
       {isOpenModalAddNotice && (
         <Modal onClose={closeModalAddNotice}>
           <ModalAddNotice onClose={closeModalAddNotice} />
         </Modal>
       )}
-      <Container>
-        <Title>Find your favorite pet</Title>
-        <NoticesSearch />
-        <NoticesCategoriesList />
-      </Container>
-    </>
+
+      <Title>Find your favorite pet</Title>
+      <NoticesSearch />
+      <NoticesCategoriesNav />
+      <NoticesCategoriesList onModalOpen={openModalAddNotice} />
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </Container>
   );
 };
 
