@@ -2,11 +2,23 @@ import { useSelector } from "react-redux";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { List } from "./NoticesCategoriesList.styled";
 import { useNoticesByCategoryQuery } from "redux/noticesApi";
+import { useGetUserFavoriteQuery, useGetUserNoticesQuery } from "redux/userApi";
+
 
 const NoticesCategoriesList = ({ onModalOpen }) => {
-  const token = useSelector(state => state.auth.token);
   const category = useSelector(state => state.categories.category);
-  const { data, isLoading } = useNoticesByCategoryQuery(category);
+  const { data, isLoading } = useNoticesByCategoryQuery(category, { skip: false });
+  const { data: own } = useGetUserNoticesQuery('notice', { skip: true });
+  const {data: favorite} = useGetUserFavoriteQuery('favorite', { skip: true })
+
+  const renderByCategory = data?.notices;
+  const renderByOwn = own?.data.result.userNotice;
+  const renderByFavorite = favorite?.data.result;
+
+  console.log(renderByCategory);
+  console.log(renderByOwn);
+  console.log(renderByFavorite);
+  
 
   const setCategory = category => {
     switch (category) {
@@ -21,9 +33,20 @@ const NoticesCategoriesList = ({ onModalOpen }) => {
     }
   }
 
+
+  let render = renderByCategory;
+
+  if (category === 'own') {
+    render = renderByOwn;
+  }
+
+  if (category === 'favorite') {
+    render = renderByFavorite;
+  } 
+
   return (
     <List>
-      {!isLoading && data.notices.map(({ _id, category, image, title, breed, location, birthday, price, name }) => (
+      {!isLoading && render.map(({ _id, category, image, title, breed, location, birthday, price, name }) => (
         <NoticeCategoryItem
           key={_id}
           id={_id}

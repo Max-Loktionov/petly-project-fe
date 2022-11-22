@@ -47,6 +47,8 @@ export const noticesApi = createApi({
       providesTags: ["Notices"],
     }),
 
+    
+
     // addNotice: builder.mutation({
     //   query: newNotice => ({
     //     url: "/notices",
@@ -85,4 +87,5 @@ export const {
   useAddNoticeMutation,
   useUpdateFavoritesMutation,
   useDeleteNoticeMutation,
+  useGetUserNoticesQuery
 } = noticesApi;

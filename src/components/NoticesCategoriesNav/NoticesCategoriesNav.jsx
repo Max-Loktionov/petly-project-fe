@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilterCategories } from 'redux/filterCategoriesSlice';
+import { setFilterCategories, setUserCategories } from 'redux/filterCategoriesSlice';
 import { Button } from './NoticesCategoriesNav.styled';
 import { Link } from 'react-router-dom';
 
@@ -19,9 +19,9 @@ export const NoticesCategoriesNav = () => {
 
     const handleClick = (сategoryName) => { 
         dispatch(setFilterCategories(сategoryName));
-        setIsActive(сategoryName)
-        
+        setIsActive(сategoryName);   
     }
+
     return (
         <>
             <Button active={isActive==='lost_found'} onClick={() => handleClick('lost_found')}><Link to='lost_found'>lost/found</Link></Button>
