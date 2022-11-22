@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
+import Modal from "components/Modal/Modal";
+import ModalNotice from "components/ModalNotice";
 import {
   Item,
   ImageThumb,
@@ -16,6 +18,20 @@ import unlike from "img/unlike.svg";
 const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
+  const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
+
+  const openModalNotice = e => {
+    if (e) {
+      setIsOpenModalNotice(true);
+    }
+  };
+
+  const closeModalNotice = e => {
+    if (e) {
+      setIsOpenModalNotice(false);
+    }
+  };
+
   const currentAge = date => {
     let today = new Date();
     let birthDate = new Date(date);

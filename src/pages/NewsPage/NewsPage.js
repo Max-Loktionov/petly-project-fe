@@ -1,39 +1,25 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  Container,
-  Box,
-  Card,
-  Title,
-  SearchBox,
-  Input,
-  Button,
-} from "./NewsPage.styled";
+import { toast, ToastContainer } from "react-toastify";
+import { Container, Box, Card, Title, SearchBox, Input, Button } from "./NewsPage.styled";
 import NewsCard from "../../components/NewsCards/NewsCard";
 import searchIcon from "../../img/VectorG.svg";
 import getNews from "./getNews";
 
 function News() {
   const [news, setNews] = useState([]);
+  const [search, setSearch] = useState("");
   const [searchParams, setSeachParams] = useSearchParams();
   const query = searchParams.get("query") ?? "";
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    setSeachParams({ query: form.elements.query.value });
-    form.reset();
-  };
-
   useEffect(() => {
+    if (query) {
+      setSearch(query);
+    }
     const newsPage = async () => {
       try {
         const newsArray = await getNews();
-        const newsResult = newsArray.data.result;
-        const normalisedQuery = query.toLocaleLowerCase();
-        const news = newsResult.filter(newsItem =>
-          newsItem.title.toLowerCase().includes(normalisedQuery)
-        );
+        const news = newsArray.data.result;
         setNews(news);
       } catch (error) {
         console.log(error.message);
@@ -42,18 +28,38 @@ function News() {
     newsPage();
   }, [query]);
 
+  const handleChange = e => {
+    setSearch(e.currentTarget.value.toLocaleLowerCase());
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setSeachParams({ query: search });
+  };
+
+  const filteredNews = () => {
+    const searchNews = news.filter(newsItem => newsItem.title.toLowerCase().includes(query));
+    // console.log(searchNews.length);
+    // if (searchNews.length === 0) {
+    //   toast.error("Nothing found. Please, try again.");
+    //   return searchNews;
+    // } else {
+    return searchNews;
+  };
+  // };
+
   return (
     <Container>
       <Title>News</Title>
-
+      <ToastContainer />
       <SearchBox onSubmit={handleSubmit}>
-        <Input type="text" name="query" placeholder="Search" autoFocus />
+        <Input type="text" name="query" value={search} placeholder="Search" autoFocus onChange={handleChange} />
         <Button type="submit">
           <img src={searchIcon} alt="searchIcon" />
         </Button>
       </SearchBox>
       <Box>
-        {news.map(newItem => (
+        {filteredNews().map(newItem => (
           <Card key={newItem._id}>
             <NewsCard newItem={newItem} />
           </Card>

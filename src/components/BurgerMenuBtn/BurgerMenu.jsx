@@ -1,5 +1,9 @@
-import { BurgerMenuBtn } from "./BurgerMenu.styled";
+import { BurgerMenuBtn, IconBurgerBtn } from "./BurgerMenu.styled";
 
 export const BurgerMenu = ({ handleClick }) => {
-  return <BurgerMenuBtn onClick={handleClick} type="button"></BurgerMenuBtn>;
+  return (
+    <BurgerMenuBtn onClick={handleClick} type="button">
+      <IconBurgerBtn />
+    </BurgerMenuBtn>
+  );
 };

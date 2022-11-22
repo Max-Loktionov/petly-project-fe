@@ -1,12 +1,15 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { PrivatRoute,PublicRoute } from "./ProtectedRoutes";
+import { PrivatRoute, PublicRoute } from "./ProtectedRoutes";
 
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/theme";
 import NoticesCategoriesList from "./NoticesCategoriesList/NoticesCategoriesList";
+// import NoticesPage from "pages/NoticesPage/NoticesPage";
+import Modal from "./Modal/Modal";
+import ModalAddPets from "./ModalAddNotice";
 
 const SharedLayout = lazy(() => import("./SharedLayout"));
 const Home = lazy(() => import("../pages/Home"));
@@ -17,6 +20,7 @@ const LoginPage = lazy(() => import("../pages/AuthPages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPages/RegisterPage"));
 const UserPage = lazy(() => import("../pages/UserPage/UserPage"));
 const NoticesPage = lazy(() => import("../pages/NoticesPage/NoticesPage"));
+
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -29,7 +33,6 @@ export const App = () => {
               <Route path="register" element={<RegisterPage />} />
               <Route path="friends" element={<OurFriendsPage />} />
               <Route path="news" element={<NewsPage />} />
-              {/* <Route path="notices" element={<NoticesPage />} /> */}
               <Route path="notices" element={<NoticesPage />} >
                 <Route path='sell' element={<NoticesCategoriesList />} />
                 <Route path='lost_found' element={<NoticesCategoriesList />} />
@@ -49,6 +52,9 @@ export const App = () => {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
+          {/* <Modal>
+            <ModalAddPets />
+          </Modal> */}
         </Suspense>
       </BrowserRouter>
     </ThemeProvider>

@@ -4,7 +4,6 @@ import { List } from "./NoticesCategoriesList.styled";
 import { useNoticesByCategoryQuery } from "redux/noticesApi";
 import { useGetUserFavoriteQuery, useGetUserNoticesQuery } from "redux/userApi";
 
-
 const NoticesCategoriesList = ({ onModalOpen }) => {
   const category = useSelector(state => state.categories.category);
   const { data, isLoading } = useNoticesByCategoryQuery(category, { skip: false });
@@ -18,7 +17,6 @@ const NoticesCategoriesList = ({ onModalOpen }) => {
   console.log(renderByCategory);
   console.log(renderByOwn);
   console.log(renderByFavorite);
-  
 
   const setCategory = category => {
     switch (category) {
