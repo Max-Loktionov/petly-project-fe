@@ -1,14 +1,15 @@
-import { LearnButton, Container } from "./Home.styled";
+import { LearnButton, Container, SubContainer } from "./Home.styled";
 import Button from "components/Button";
 
 const Home = () => {
   return (
     <>
       <Container>
-        Home
+        <SubContainer />
+        {/* Home
         <Button active>sell</Button>
         <Button>lost/found</Button>
-        <LearnButton disabled>Learn more</LearnButton>
+        <LearnButton disabled>Learn more</LearnButton> */}
       </Container>
     </>
   );
