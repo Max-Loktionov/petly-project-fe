@@ -183,7 +183,6 @@ export const ImageBox = styled.div`
   border-radius: 20px;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: 2;
   border: 1px solid ${p => p.theme.colors.inputModal};
   @media ${p => p.theme.media.tablet} {
     width: 182px;
