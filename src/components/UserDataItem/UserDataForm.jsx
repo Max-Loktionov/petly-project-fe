@@ -30,7 +30,8 @@ const UserDataForm = () => {
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
-
+  const birthday = user.data?.result?.birthday === "00.00.00" ? "01.01.1900" : user.data?.result?.birthday;
+  const city = user.data?.result?.city === "no info" ? "City, region" : user.data?.result?.city;
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const nameRegex = /[a-zA-Z]+/;
@@ -109,7 +110,7 @@ const UserDataForm = () => {
                     <Title>Birthday:</Title>
                     <Block>
                       <UserDataItem
-                        defaultValue={user.data.result.birthday}
+                        defaultValue={birthday}
                         name={"birthday"}
                         type="text"
                         pattern={dateRegexp}
@@ -133,7 +134,7 @@ const UserDataForm = () => {
                     <Title>City:</Title>
                     <Block>
                       <UserDataItem
-                        defaultValue={user.data.result.city}
+                        defaultValue={city}
                         name={"city"}
                         type="text"
                         pattern={cityRegex}
