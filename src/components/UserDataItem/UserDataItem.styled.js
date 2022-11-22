@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { HiCamera } from "react-icons/hi2";
+import { BsCheckLg } from "react-icons/bs";
 
 export const UserBlock = styled.div`
   display: flex;
@@ -108,7 +109,7 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     @media ${p => p.theme.media.desktop} {
       margin-bottom: 15px;
     }
@@ -141,6 +142,7 @@ export const Text = styled.p`
 export const Block = styled.div`
   display: flex;
   flex: auto;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 `;
@@ -177,6 +179,17 @@ export const EditTextBtnIcon = styled(HiPencil)`
   }
 `;
 
+export const IconCheck = styled(BsCheckLg)`
+  width: 10px;
+  height: 8px;
+
+  fill: ${p => p.theme.colors.accent};
+  @media ${p => p.theme.media.tablet} {
+    width: 17px;
+    height: 13px;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -209,5 +222,20 @@ export const UserDataInput = styled.input`
     padding: 4px 12px;
 
     font-size: 18px;
+  }
+`;
+
+export const ErrorText = styled.div`
+  margin-left: 16px;
+  &:not(:last-of-type) {
+    margin-bottom: 14px;
+  }
+  font-size: 10px;
+  color: red;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-style: italic;
+
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.xs};
   }
 `;

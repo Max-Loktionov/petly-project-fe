@@ -5,7 +5,7 @@ import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 
 const modalRoot = document.querySelector("#modal-root");
 
-function Modal({ onClose, children }) {
+function Modal({ tabletNoStandartWidth, onClose, children }) {
   useEffect(() => {
     const handleEscapeKey = e => {
       if (e.code === "Escape") {
@@ -24,7 +24,7 @@ function Modal({ onClose, children }) {
 
   return createPortal(
     <MyBackdrop onClick={onBackdrop}>
-      <ModalWindow>
+      <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth}>
         <Exit onClick={onClose}>
           <ExitIcon />
         </Exit>
