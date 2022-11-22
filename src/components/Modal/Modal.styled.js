@@ -25,6 +25,7 @@ export const ModalWindow = styled.div`
 
   max-height: calc(100vh - 40px);
 
+  background-color: white;
   padding: 40px 20px 40px;
 
   border-radius: 20px;
@@ -32,9 +33,9 @@ export const ModalWindow = styled.div`
   background-color: ${p => p.theme.colors.white};
 
   @media ${p => p.theme.media.tablet} {
-    padding: 40px 20px;
-    min-width: 608px;
-    max-width: 704px;
+    padding: 32px 20px;
+
+    width: ${props => (props?.tabletNoStandartWidth ? "704px" : "608px")};
   }
 `;
 
@@ -47,6 +48,7 @@ export const Exit = styled.button`
 
   border-radius: 50%;
   border: none;
+  cursor: pointer;
 
   z-index: 10;
   background-color: ${p => p.theme.colors.background};
@@ -54,6 +56,10 @@ export const Exit = styled.button`
   @media ${p => p.theme.media.tablet} {
     width: 44px;
     height: 44px;
+  }
+  &:hover {
+    border: 1px solid;
+    border-color: ${p => p.theme.colors.accent};
   }
 `;
 

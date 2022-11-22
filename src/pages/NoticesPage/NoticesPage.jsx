@@ -1,38 +1,44 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSelector } from "react-redux";
-import Modal from "components/Modal/Modal";
-import ModalNotice from "components/ModalNotice";
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesList from "components/NoticesCategoriesList";
+import NoticesCategoriesNav from "components/NoticesCategoriesNav";
 import { Container, Title } from "./NoticesPage.styled";
+import { Outlet } from "react-router-dom";
+import Modal from "components/Modal/Modal";
+import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 
 const NoticesPage = () => {
-  const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
   const token = useSelector(state => state.auth.token);
+  const [isOpenModalAddNotice, setIsOpenModalAddNotice] = useState(false);
 
-  const openModalNotice = e => {
+  const openModalAddNotice = e => {
     if (e) {
-      setIsOpenModalNotice(true);
-      console.log("NoticePage open:");
+      setIsOpenModalAddNotice(true);
     }
   };
 
-  const closeModalNotice = e => {
+  const closeModalAddNotice = e => {
     if (e) {
-      setIsOpenModalNotice(false);
+      setIsOpenModalAddNotice(false);
     }
   };
 
   return (
     <Container>
-      {isOpenModalNotice && (
-        <Modal onClose={closeModalNotice}>
-          <ModalNotice onClose={closeModalNotice} />
+      {isOpenModalAddNotice && (
+        <Modal onClose={closeModalAddNotice}>
+          <ModalAddNotice onClose={closeModalAddNotice} />
         </Modal>
       )}
+
       <Title>Find your favorite pet</Title>
       <NoticesSearch />
-      <NoticesCategoriesList onModalOpen={openModalNotice} />
+      <NoticesCategoriesNav />
+      <NoticesCategoriesList onModalOpen={openModalAddNotice} />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

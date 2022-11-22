@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
+import Modal from "components/Modal/Modal";
+import ModalNotice from "components/ModalNotice";
 import {
   Item,
   ImageThumb,
@@ -13,10 +15,23 @@ import {
 } from "./NoticeCategoryItem.styled";
 import unlike from "img/unlike.svg";
 
-const NoticeCategoryItem = ({ id, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
+const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
-  console.log(id);
+  const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
+
+  const openModalNotice = e => {
+    if (e) {
+      setIsOpenModalNotice(true);
+    }
+  };
+
+  const closeModalNotice = e => {
+    if (e) {
+      setIsOpenModalNotice(false);
+    }
+  };
+
   const currentAge = date => {
     let today = new Date();
     let birthDate = new Date(date);
@@ -42,7 +57,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, male, location, 
     <Item>
       <ImageThumb>
         <Image src="https://cdn.pixabay.com/photo/2021/10/27/19/09/cat-6748193_960_720.jpg" alt={title}></Image>
-        <Category>Sell</Category>
+        <Category>{category}</Category>
         <BtnFavorite type="button" onClick={() => console.log("isFavorite")}>
           <img src={unlike} alt="unlike" />
         </BtnFavorite>
