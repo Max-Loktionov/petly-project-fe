@@ -1,1 +1,1 @@
-export { NoticesCategoriesNav } from './NoticesCategoriesNav';
+export { default } from "./NoticesCategoriesNav";
