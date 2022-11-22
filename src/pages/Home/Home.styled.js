@@ -21,9 +21,7 @@ export const Container = styled.div`
   margin-right: auto;
   padding-top: 118px;
   font-size: 40px;
-  /* color: #010101; */
   color: ${p => p.theme.colors.inputModal};
-  /* color: green; */
   background-image: url(${homeBgiMobile});
   background-repeat: no-repeat;
   background-position: bottom;
