@@ -51,7 +51,6 @@ export const ImageContainer = styled.div`
     position: absolute;
     width: 0px;
     height: 0px;
-    position: absolute;
     z-index: -1;
     opacity: 0;
   }
