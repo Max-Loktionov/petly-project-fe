@@ -46,6 +46,41 @@ export const BoxImg = styled.div`
   }
 `;
 
+export const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
+  background-color: ${p => p.theme.colors.background};
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid ${p => p.theme.colors.inputModal};
+`;
+
+export const ImageContainer = styled.div`
+  /* @media ${p => p.theme.media.tablet} {
+    margin-top: 28px;
+    margin-bottom: 28px;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+  & input {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  & #image-label {
+    @media ${p => p.theme.media.tablet} {
+      margin-top: 0px;
+    }
+  }
+`;
+
 export const ImgUser = styled.img`
   width: 233px;
   height: 233px;
@@ -225,8 +260,8 @@ export const UserDataInput = styled.input`
   }
 `;
 
-export const ErrorText = styled.div`
-  margin-left: 16px;
+export const ErrorText = styled.p`
+  margin-left: 10px;
   &:not(:last-of-type) {
     margin-bottom: 14px;
   }
@@ -234,8 +269,4 @@ export const ErrorText = styled.div`
   color: red;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-style: italic;
-
-  @media ${p => p.theme.media.tablet} {
-    font-size: ${p => p.theme.fontSizes.xs};
-  }
 `;
