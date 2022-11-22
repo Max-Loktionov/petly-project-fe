@@ -23,6 +23,7 @@ import {
 
 const ModalAddsPet = ({ onClose }) => {
   const [nextPage, setNextPage] = useState(false);
+  const [isAvatar, setIsAvatar] = useState(false);
   const [addPet] = useAddPetMutation();
 
   const {
@@ -52,11 +53,11 @@ const ModalAddsPet = ({ onClose }) => {
 
   const handleImage = e => {
     const imageContainer = document.getElementById("image_container");
-
+    setIsAvatar(true);
     imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
   };
   const textRegexp = /[a-zA-Z]+/;
-  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+  // const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   return (
     <>
@@ -142,12 +143,17 @@ const ModalAddsPet = ({ onClose }) => {
                 />
                 {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
                 <label htmlFor="avatar" id="addPhoto-label">
-                  <ImageBox id="image_container">{/* <MyImageCross /> */}x</ImageBox>
+                  <ImageBox id="image_container">{!isAvatar && <MyImageCross />}</ImageBox>
                 </label>
               </ImageContainer>
+              <Label textarea id="comments-label" htmlFor="comments">
+                Comments
+              </Label>
+
               <Textarea
-                id="Comments"
+                id="comments"
                 name="comments"
+                placeholder="Type comments"
                 {...register("comments", {
                   required: "Comments is required.",
                   maxLength: {
