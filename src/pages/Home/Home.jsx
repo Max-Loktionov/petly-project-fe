@@ -1,17 +1,11 @@
-import { LearnButton, Container, SubContainer } from "./Home.styled";
-import Button from "components/Button";
+import { Container, SubContainer, Title } from "./Home.styled";
 
 const Home = () => {
   return (
-    <>
-      <Container>
-        <SubContainer />
-        {/* Home
-        <Button active>sell</Button>
-        <Button>lost/found</Button>
-        <LearnButton disabled>Learn more</LearnButton> */}
-      </Container>
-    </>
+    <Container>
+      <Title>Take good care of your small pets</Title>
+      <SubContainer />
+    </Container>
   );
 };
 
