@@ -5,6 +5,8 @@ your small pets</h1>
 
 ![](src/img/auth-forms-bg-desctop.svg)
 
+</div>
+
 Проект можна подивитись в [DEMO](https://max-loktionov.github.io/petly-project-fe/)
 
 ## **Опис**
@@ -132,7 +134,6 @@ your small pets</h1>
 
   - НЕАВТОРИЗОВАНОГО користувача клік по кнопці виводить повідомлення типу нотіфікація з інфо про те, що потрібно авторизуватися для
     використання даного функціоналу.
-    ***
 
 ### **7. UserPage** | маршрут - **_/user_**
 
@@ -147,12 +148,16 @@ your small pets</h1>
   - **_ModalAddsPet_** - Компонент рендерить модалку з формою для створення картки з даними про тварину користувача. Всі поля для вводу
     обов'язкові для заповнення
 
+---
+
 ## **Налаштування проекту**
 
 ```
 npm install
 npm start
 ```
+
+---
 
 ## **Маршрутизація**
 
@@ -163,13 +168,14 @@ npm start
 - **_/login_** - публічний-обмежений, переадресує на сторінку **_LoginPage_**
 - **_/user_** - приватний, переадресує на сторінку **_UserPage_**
 
+---
+
 ## **Backend-розробка**
 
 [Petly-be](https://github.com/Max-Loktionov/petly-be)
 
-</div>
-
 ```
+
 https://petly-be.herokuapp.com/auth/signup     post - реєстрація користувача (потребує  password, email- обов'язкові,  name, city, phone, birthday), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
 
 https://petly-be.herokuapp.com/auth/login      post - логінізація користувача (потрубує email, password), потребує передачу даних для оновлення за допомогою body/raw/JSON {name,email, }
