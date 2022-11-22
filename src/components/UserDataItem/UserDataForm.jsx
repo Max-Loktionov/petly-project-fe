@@ -1,11 +1,32 @@
-import { useGetUserQuery } from "redux/userApi";
+import { useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
 import devaultIcon from "../../img/default-icon-user.png";
 
-import { UserBlock, BoxImg, EditImgBtn, IconEditImgBtn, ImgUser, BoxInfo, BoxTitle, Title, Block, Form } from "./UserDataItem.styled";
+import {
+  UserBlock,
+  BoxImg,
+  EditImgBtn,
+  IconEditImgBtn,
+  ImgUser,
+  BoxInfo,
+  BoxTitle,
+  Title,
+  Block,
+  Form,
+  ImageContainer,
+} from "./UserDataItem.styled";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const UserDataForm = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
+  const [changeUserAvatar] = useUpdateUserAvatarMutation();
+  const [isChangeUserAvatar, setIsChangeUserAvatar] = useState(false);
+  const [newUserAvatar, setNewUserAvatar] = useState();
+
+  const { register } = useForm({
+    mode: "onBlur",
+  });
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
@@ -17,6 +38,22 @@ const UserDataForm = () => {
   const phoneRegex = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
   const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
+  const handleImage = async e => {
+    setIsChangeUserAvatar(true);
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        const avatar = reader.result;
+        setNewUserAvatar(avatar);
+        const formad = new FormData();
+        formad.append("avatar", e.target.files[0]);
+        // console.log("formad", formad);
+        changeUserAvatar(formad);
+      };
+    }
+  };
+
   return (
     <UserBlock>
       {user.length === 0 ? (
@@ -24,10 +61,20 @@ const UserDataForm = () => {
       ) : (
         <>
           <BoxImg>
-            <ImgUser src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt={imgAlt} />
+            {!isChangeUserAvatar ? (
+              <ImgUser id="img_container" src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt={imgAlt} />
+            ) : (
+              <ImgUser id="img_container" src={newUserAvatar} alt={imgAlt} />
+            )}
+
             <EditImgBtn>
+              <ImageContainer>
+                <form>
+                  <input name="userAvatar" type="file" id="userAvatar" {...register("avatar", {})} onChange={handleImage} />
+                </form>
+              </ImageContainer>
               <IconEditImgBtn />
-              Edit photo
+              <label htmlFor="userAvatar"> Edit photo</label>
             </EditImgBtn>
           </BoxImg>
           <BoxInfo>

@@ -46,26 +46,7 @@ export const BoxImg = styled.div`
   }
 `;
 
-export const ImageBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 140px;
-  height: 140px;
-  background-color: ${p => p.theme.colors.background};
-  border-radius: 20px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 1px solid ${p => p.theme.colors.inputModal};
-`;
-
 export const ImageContainer = styled.div`
-  /* @media ${p => p.theme.media.tablet} {
-    margin-top: 28px;
-    margin-bottom: 28px;
-    margin-left: auto;
-    margin-right: auto;
-  } */
   & input {
     position: absolute;
     width: 0px;

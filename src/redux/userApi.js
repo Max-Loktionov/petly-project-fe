@@ -35,11 +35,17 @@ export const userApi = createApi({
     }),
 
     updateUserAvatar: builder.mutation({
-      query: file => ({
-        url: "/avatar",
-        method: "PATCH",
-        body: file,
-      }),
+      query: file => {
+        console.log("file", file);
+
+        // const formad = new FormData();
+        // // formad.append("avatar", file.formad);
+        // formad.set("avatar", file.formad);
+
+        // console.log(JSON.stringify(Object.fromEntries(formad)));
+
+        return { url: "/avatar", method: "PATCH", body: file };
+      },
       invalidatesTags: ["User"],
     }),
 
@@ -50,7 +56,7 @@ export const userApi = createApi({
         const formad = new FormData();
         Object.keys(formdata).forEach(key => formad.append(key, formdata[key]));
         formad.set("avatar", formdata.avatar[0]);
-        console.log(JSON.stringify(Object.fromEntries(formad)));
+        // console.log(JSON.stringify(Object.fromEntries(formad)));
         return {
           url: "/pets",
           method: "POST",
