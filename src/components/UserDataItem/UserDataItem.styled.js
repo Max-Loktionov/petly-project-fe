@@ -9,7 +9,7 @@ export const UserBlock = styled.div`
 
   width: 280px;
   min-height: 537px;
-  padding: 12px;
+  padding: 20px 12px 20px 16px;
 
   border-radius: ${p => p.theme.radii.cardPet};
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
@@ -40,7 +40,8 @@ export const BoxImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8px;
+  /* margin-top: 8px; */
+
   @media ${p => p.theme.media.desktop} {
     margin-bottom: 36px;
   }
@@ -64,14 +65,11 @@ export const ImageContainer = styled.div`
 export const ImgUser = styled.img`
   width: 233px;
   height: 233px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
 
   border-radius: ${p => p.theme.radii.round};
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
   background-color: #e1e1e1;
-  @media ${p => p.theme.media.tablet} {
-    margin-bottom: 0;
-  }
 `;
 export const EditImgBtn = styled.button`
   display: inline-flex;

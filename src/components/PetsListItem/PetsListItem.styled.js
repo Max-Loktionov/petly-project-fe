@@ -58,6 +58,7 @@ export const ImgPet = styled.img`
 `;
 export const BoxInfo = styled.div`
   position: relative;
+  width: 100%;
 `;
 export const DeleteBtm = styled.button`
   position: absolute;
