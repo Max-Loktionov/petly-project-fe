@@ -49,7 +49,6 @@ const UserDataForm = () => {
         setNewUserAvatar(avatar);
         const formad = new FormData();
         formad.append("avatar", e.target.files[0]);
-        // console.log("formad", formad);
         changeUserAvatar(formad);
       };
     }

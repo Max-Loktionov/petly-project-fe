@@ -15,7 +15,7 @@ export const MyBackdrop = styled.div`
   background-color: ${p => p.theme.colors.backdrop};
   backdrop-filter: blur(10px);
 
-  z-index: 11;
+  z-index: 20;
   overflow-y: auto;
 `;
 
@@ -29,6 +29,7 @@ export const ModalWindow = styled.div`
   padding: 40px 20px 40px;
 
   border-radius: 20px;
+  z-index: 20;
 
   background-color: ${p => p.theme.colors.white};
 
