@@ -13,9 +13,9 @@ function News() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (query) {
-      setSearch(query);
-    }
+    // if (query) {
+    //   setSearch(query);
+    // }
     const newsPage = async () => {
       try {
         const newsArray = await getNews();
@@ -26,7 +26,7 @@ function News() {
       }
     };
     newsPage();
-  }, [query]);
+  }, []);
 
   const handleChange = e => {
     setSeachParams({ query: e.currentTarget.value.toLocaleLowerCase().trim() });
@@ -62,11 +62,12 @@ function News() {
         </Button>
       </SearchBox>
       <Box>
-        {filteredNews.map(newItem => (
-          <Card key={newItem._id}>
-            <NewsCard newItem={newItem} />
-          </Card>
-        ))}
+        {news.length > 0 &&
+          filteredNews.map(newItem => (
+            <Card key={newItem._id}>
+              <NewsCard newItem={newItem} />
+            </Card>
+          ))}
       </Box>
       {search !== "" && query && filteredNews.length === 0 && (
         <NotFoundBox>
