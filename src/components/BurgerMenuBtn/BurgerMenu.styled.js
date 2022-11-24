@@ -10,6 +10,7 @@ export const BurgerMenuBtn = styled.button`
   border: none;
   padding: 0px;
   z-index: 10;
+  cursor: pointer;
   background-color: transparent;
   @media ${p => p.theme.media.tablet} {
     top: 34px;
