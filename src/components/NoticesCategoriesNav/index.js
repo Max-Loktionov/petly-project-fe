@@ -1,1 +1,1 @@
-export { default } from "./NoticesCategoriesNav";
+export { default } from "./NoticesCategoriesNav.jsx";
