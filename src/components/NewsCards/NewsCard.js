@@ -6,7 +6,7 @@ const NewsCard = newItem => {
   const { date, description, title, url } = newItem.newItem;
   const text = description.slice(0, 350) + "...";
   const name = title.length < 50 ? title : title.slice(0, 50) + "...";
-  const newDate = date.split("-").reverse().join("-");
+  const newDate = date?.split("-").reverse().join("-");
 
   return (
     <>
