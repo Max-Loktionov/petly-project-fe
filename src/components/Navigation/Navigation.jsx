@@ -39,7 +39,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <BurgerMenu handleClick={onMobileMenuClick} />
+      <BurgerMenu isOpenMobile={isOpenMobile} handleClick={onMobileMenuClick} />
       <MobileMenu $mode={isOpenMobile}>
         <NavContainer>
           <Nav handleClick={onMobileMenuClick} />

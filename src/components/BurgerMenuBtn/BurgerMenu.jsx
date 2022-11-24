@@ -1,16 +1,9 @@
-import { useState } from "react";
 import { BurgerMenuBtn, IconBurgerBtn, IconCrossBtn } from "./BurgerMenu.styled";
 
-export const BurgerMenu = ({ handleClick }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMobMenu = e => {
-    setIsOpen(!isOpen);
-    handleClick(e);
-  };
+export const BurgerMenu = ({ isOpenMobile, handleClick }) => {
   return (
-    <BurgerMenuBtn onClick={toggleMobMenu} type="button">
-      {isOpen ? <IconCrossBtn /> : <IconBurgerBtn />}
+    <BurgerMenuBtn onClick={handleClick} type="button">
+      {isOpenMobile ? <IconCrossBtn /> : <IconBurgerBtn />}
     </BurgerMenuBtn>
   );
 };
