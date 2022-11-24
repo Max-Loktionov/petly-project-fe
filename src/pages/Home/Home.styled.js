@@ -84,6 +84,7 @@ export const Title = styled.h1`
 
 export const SecretButton = styled.button`
   position: absolute;
+  visibility: hidden;
   top: ${Math.random() * 1000}px;
   left: ${Math.random() * 1000}px;
   padding: 10px;
