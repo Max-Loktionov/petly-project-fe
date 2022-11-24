@@ -1,34 +1,35 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { Container, Box, Card, Title, SearchBox, Input, Button } from "./NewsPage.styled";
+import { Container, Box, Card, Title, SearchBox, Input, Button, NotFoundBox, NotFound } from "./NewsPage.styled";
 import NewsCard from "../../components/NewsCards/NewsCard";
 import searchIcon from "../../img/VectorG.svg";
 import getNews from "./getNews";
 
 function News() {
   const [news, setNews] = useState([]);
-  const [search, setSearch] = useState("");
   const [searchParams, setSeachParams] = useSearchParams();
   const query = searchParams.get("query") ?? "";
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (query) {
-      setSearch(query);
-    }
+    // if (query) {
+    //   setSearch(query);
+    // }
     const newsPage = async () => {
       try {
         const newsArray = await getNews();
-        const news = newsArray.data.result;
-        setNews(news);
+        const newsRes = newsArray.data.result;
+        setNews(newsRes);
       } catch (error) {
         console.log(error.message);
       }
     };
     newsPage();
-  }, [query]);
+  }, []);
 
   const handleChange = e => {
+    setSeachParams({ query: e.currentTarget.value.toLocaleLowerCase().trim() });
     setSearch(e.currentTarget.value.toLocaleLowerCase());
   };
 
@@ -37,16 +38,18 @@ function News() {
     setSeachParams({ query: search });
   };
 
-  const filteredNews = () => {
-    const searchNews = news.filter(newsItem => newsItem.title.toLowerCase().includes(query));
-    // console.log(searchNews.length);
+  const getFilteredNews = () => {
+    if (news) {
+      return news.filter(newsItem => newsItem.title.toLowerCase().includes(search) || newsItem.description.toLowerCase().includes(search));
+    }
+    // return searchNews;
     // if (searchNews.length === 0) {
     //   toast.error("Nothing found. Please, try again.");
-    //   return searchNews;
-    // } else {
-    return searchNews;
+    // }
+    // return searchNews;
   };
-  // };
+
+  const filteredNews = getFilteredNews();
 
   return (
     <Container>
@@ -59,12 +62,18 @@ function News() {
         </Button>
       </SearchBox>
       <Box>
-        {filteredNews().map(newItem => (
-          <Card key={newItem._id}>
-            <NewsCard newItem={newItem} />
-          </Card>
-        ))}
+        {news.length > 0 &&
+          filteredNews.map(newItem => (
+            <Card key={newItem._id}>
+              <NewsCard newItem={newItem} />
+            </Card>
+          ))}
       </Box>
+      {search !== "" && query && filteredNews.length === 0 && (
+        <NotFoundBox>
+          <NotFound>Nothing found. Please, try again.</NotFound>
+        </NotFoundBox>
+      )}
     </Container>
   );
 }
