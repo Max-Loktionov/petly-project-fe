@@ -40,6 +40,5 @@ export const StyledNavLink = styled(NavLink)`
   }
   @media ${p => p.theme.media.desktop} {
     display: inline-block;
-    margin-left: auto;
   } ;
 `;
