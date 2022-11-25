@@ -15,7 +15,8 @@ const NoticesPage = () => {
       <Container>
         <Title>Find your favorite pet</Title>
         <NoticesSearch />
-        <CategoryBtns />
+        {/* <CategoryBtns /> */}
+        <NoticesCategoriesNav />
         <NoticesCategoriesList />
       </Container>
     </>
