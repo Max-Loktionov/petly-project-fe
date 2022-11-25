@@ -16,36 +16,37 @@ const NoticesCategoriesList = () => {
   const filter = useSelector(({ notice }) => notice.filter);
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
 
-  const renderByCategory = data?.notices;
-  const renderByOwn = own?.data.result.userNotice;
-  const renderByFavorite = favorite?.data.result;
+  const { notices } = data;
+  // const renderByCategory = data?.notices;
+  // const renderByOwn = own?.data.result.userNotice;
+  // const renderByFavorite = favorite?.data.result;
 
   // console.log(renderByCategory);
   // console.log(renderByOwn);
   // console.log(renderByFavorite);
 
-  const setCategory = category => {
-    switch (category) {
-      case "sell":
-        return "Sell";
-      case "in_good_hands":
-        return "In good hands";
-      case "lost_found":
-        return "Lost/found";
-      default:
-        return "No category";
-    }
-  };
+  // const setCategory = category => {
+  //   switch (category) {
+  //     case "sell":
+  //       return "Sell";
+  //     case "in_good_hands":
+  //       return "In good hands";
+  //     case "lost_found":
+  //       return "Lost/found";
+  //     default:
+  //       return "No category";
+  //   }
+  // };
 
-  let render = renderByCategory;
+  // let render = renderByCategory;
 
-  if (category === "own") {
-    render = renderByOwn;
-  }
+  // if (category === "own") {
+  //   render = renderByOwn;
+  // }
 
-  if (category === "favorite") {
-    render = renderByFavorite;
-  }
+  // if (category === "favorite") {
+  //   render = renderByFavorite;
+  // }
 
   return (
     <>
