@@ -61,10 +61,12 @@ export const noticesApi = createApi({
         // console.log("====noticeApi newNotice:", newNotice);
         const newFormdata = new FormData();
         Object.keys(newNotice).forEach(key => newFormdata.append(key, newNotice[key]));
-        newFormdata.set("avatar", newNotice.avatar[0]);
-        // console.log("====noticeApi newFormdata json:", JSON.stringify(Object.fromEntries(newFormdata)));
+        if (newNotice.avatar) {
+          newFormdata.set("avatar", newNotice.avatar[0]);
+        }
+        console.log("====noticeApi newFormdata json:", JSON.stringify(Object.fromEntries(newFormdata)));
 
-        return { url: "/notices", method: "POST", body: newFormdata };
+        return { url: "/", method: "POST", body: newFormdata };
       },
       invalidatesTags: ["Notices"],
     }),

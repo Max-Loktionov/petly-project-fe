@@ -41,10 +41,8 @@ export const MyBtn = styled.button`
   padding: 8px 27px;
   margin: 0px;
 
-  color: ${p =>
-    p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white};
-  background-color: ${p =>
-    p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent};
+  color: ${p => (p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white)};
+  background-color: ${p => (p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent)};
 
   border: 2px solid ${p => p.theme.colors.accent};
   border-radius: 40px;
@@ -83,7 +81,7 @@ export const MyBtn = styled.button`
   }
 `;
 
-export const InputsNames = styled.p`
+export const InputsNames = styled.label`
   margin-bottom: 8px;
 
   font-size: ${p => p.theme.fontSizes.n};
