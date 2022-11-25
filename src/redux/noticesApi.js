@@ -48,6 +48,14 @@ export const noticesApi = createApi({
       invalidatesTags: ["Notices"],
     }),
 
+    noticesByCategory: builder.query({
+      query: category => ({
+        url: `?category=${category}`,
+        method: "GET",
+      }),
+      providesTags: ["Notices"],
+    }),
+
     addNotice: builder.mutation({
       query: newNotice => {
         // console.log("====noticeApi newNotice:", newNotice);

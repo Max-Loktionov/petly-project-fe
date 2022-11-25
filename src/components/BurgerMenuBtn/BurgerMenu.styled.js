@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TfiMenu } from "react-icons/tfi";
+import { TfiMenu, TfiClose } from "react-icons/tfi";
 
 export const BurgerMenuBtn = styled.button`
   display: flex;
@@ -10,6 +10,7 @@ export const BurgerMenuBtn = styled.button`
   border: none;
   padding: 0px;
   z-index: 10;
+  cursor: pointer;
   background-color: transparent;
   @media ${p => p.theme.media.tablet} {
     top: 34px;
@@ -21,6 +22,11 @@ export const BurgerMenuBtn = styled.button`
 `;
 
 export const IconBurgerBtn = styled(TfiMenu)`
+  width: 30px;
+  height: 28px;
+`;
+
+export const IconCrossBtn = styled(TfiClose)`
   width: 30px;
   height: 28px;
 `;

@@ -81,3 +81,12 @@ export const Title = styled.h1`
     font-size: 68px;
   }
 `;
+
+export const SecretButton = styled.button`
+  position: absolute;
+  visibility: hidden;
+  top: ${Math.random() * 1000}px;
+  left: ${Math.random() * 1000}px;
+  padding: 10px;
+  border: 1px solid black;
+`;

@@ -1,18 +1,22 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Form, Input, RegisterBtn, BackBtn, ErrorText } from "./authForms.styled";
+import { Form, Input, RegisterBtn, BackBtn, ErrorText, ButtonWrapper, ButtonEye } from "./authForms.styled";
 import { authSlice } from "redux/auth";
 import { useRegisterUserMutation } from "redux/auth/authApi";
 import { useNavigate } from "react-router-dom";
 import { registerError } from "utilities/notification";
 import { ToastContainer } from "react-toastify";
+import hidden from "img/eye-off.svg";
+import view from "img/eye.svg";
 
 const RegisterForm = () => {
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const { setToken } = authSlice;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setConfirmPass] = useState(false);
 
   const [nextPage, setNextPage] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -58,7 +62,8 @@ const RegisterForm = () => {
     }
   };
 
-  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  const emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const passwordRegex = /^\S*$/;
   const nameRegex = /[a-zA-Z]+/;
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
@@ -79,31 +84,55 @@ const RegisterForm = () => {
             placeholder="Email"
           />
           <ErrorText>{errors?.email && <p>{errors?.email?.message}</p>}</ErrorText>
-          <Input
-            label="Password"
-            {...register("password", {
-              required: "This is required",
-              minLength: { value: 7, message: "Min length is 7" },
-              maxLength: { value: 32, message: "Min length is 32" },
-              pattern: { value: passwordRegex, message: "Password should not contain spaces" },
-            })}
-            type="password"
-            placeholder="Password"
-          />
+          <ButtonWrapper>
+            <Input
+              label="Password"
+              {...register("password", {
+                required: "This is required",
+                minLength: { value: 7, message: "Min length is 7" },
+                maxLength: { value: 32, message: "Min length is 32" },
+                pattern: { value: passwordRegex, message: "Password should not contain spaces" },
+              })}
+              type={showPass ? "text" : "password"}
+              placeholder="Password"
+            />
+            <ButtonEye
+              name="showPass"
+              onMouseDown={() => setShowPass(true)}
+              onTouchStart={() => setShowPass(true)}
+              onMouseUp={() => setShowPass(false)}
+              onTouchEnd={() => setShowPass(false)}
+            >
+              <img src={showPass ? view : hidden} alt="button view/hidden password" />
+            </ButtonEye>
+          </ButtonWrapper>
+
           <ErrorText>{errors?.password && <p>{errors?.password?.message}</p>}</ErrorText>
-          <Input
-            label="Confirm Password"
-            {...register("confirmPassword", {
-              required: "This is required",
-              validate: value => {
-                if (watch("password") !== value) {
-                  return "Your passwords do not match";
-                }
-              },
-            })}
-            type="password"
-            placeholder="Confirm Password"
-          />
+          <ButtonWrapper>
+            <Input
+              label="Confirm Password"
+              {...register("confirmPassword", {
+                required: "This is required",
+                validate: value => {
+                  if (watch("password") !== value) {
+                    return "Your passwords do not match";
+                  }
+                },
+              })}
+              type={showConfirmPass ? "text" : "password"}
+              placeholder="Confirm Password"
+            ></Input>
+            <ButtonEye
+              name="showConfirmPass"
+              onMouseDown={() => setConfirmPass(true)}
+              onTouchStart={() => setConfirmPass(true)}
+              onMouseUp={() => setConfirmPass(false)}
+              onTouchEnd={() => setConfirmPass(false)}
+            >
+              <img src={showConfirmPass ? view : hidden} alt="button view/hidden password" />
+            </ButtonEye>
+          </ButtonWrapper>
+
           <ErrorText>{errors?.confirmPassword && <p>{errors?.confirmPassword?.message}</p>}</ErrorText>
         </div>
       )}
