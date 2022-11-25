@@ -17,7 +17,7 @@ const NoticesSearch = () => {
   const dispatch = useDispatch();
 
   const handleSearchChange = e => {
-    setSearchPet(e.currentTarget.value.toLowerCase());
+    setSearchPet(e.currentTarget.value);
   };
 
   const handleSubmit = e => {
