@@ -18,6 +18,9 @@ function Modal({ tabletNoStandartWidth, modalName, children }) {
       case "modalAddNotice":
         return dispatch(noticeActions.changeModalAddNotice());
 
+      case "modalAddPets":
+        return dispatch(noticeActions.changeModalAddPets());
+
       default:
         break;
     }

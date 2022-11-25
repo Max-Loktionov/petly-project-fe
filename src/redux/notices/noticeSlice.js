@@ -12,6 +12,9 @@ const initialState = {
     active: false,
     id: null,
   },
+  modalAddPets: {
+    active: false,
+  },
 };
 
 export const noticeSlice = createSlice({
@@ -45,7 +48,7 @@ export const noticeSlice = createSlice({
     changeModalAddNotice(state, action) {
       return {
         ...state,
-        modalAddNotice: { ...state.modalViewNotice, active: !state.modalAddNotice.active },
+        modalAddNotice: { ...state.modalAddNotice, active: !state.modalAddNotice.active },
       };
     },
     changeModalViewNotice(state, action) {
@@ -58,6 +61,12 @@ export const noticeSlice = createSlice({
       return {
         ...state,
         modalViewNotice: { ...state.modalViewNotice, id: action.payload },
+      };
+    },
+    changeModalAddPets(state, action) {
+      return {
+        ...state,
+        modalAddPets: { ...state.modalAddPets, active: !state.modalAddPets.active },
       };
     },
   },
