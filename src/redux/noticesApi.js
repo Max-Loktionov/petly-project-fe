@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { useSelector } from "react-redux";
 
 const BASE_URL = "https://petly-be.herokuapp.com/notices";
 
@@ -19,8 +20,15 @@ export const noticesApi = createApi({
   tagTypes: ["Notices"],
 
   endpoints: builder => ({
-    getNoticesAll: builder.query({
-      query: () => "/",
+    getNotices: builder.query({
+      query: ({ page, perPage, category, filter }) => {
+        const categoryQuery = !!category ? `category=${category}` : "";
+        const pageQuery = page === 1 ? "" : `&&page=${page}`;
+        const perPageQuery = !!perPage !== 15 ? "" : `&&per_page=${perPage}`;
+        const filterQuery = filter === "" ? "" : `&&filter=${filter}`;
+
+        return `/?${categoryQuery + pageQuery + perPageQuery + filterQuery}`;
+      },
       providesTags: ["Notices"],
     }),
 
@@ -80,13 +88,4 @@ export const noticesApi = createApi({
   }),
 });
 
-export const {
-  useGetNoticesAllQuery,
-  useListNoticesByCategoryQuery,
-  useListNoticesByQueryQuery,
-  useListUserNoticesQuery,
-  useGetNoticesByIdQuery,
-  useAddNoticeMutation,
-  useUpdateFavoritesMutation,
-  useDeleteNoticeMutation,
-} = noticesApi;
+export const { useGetNoticesByIdQuery, useAddNoticeMutation, useGetNoticesQuery, useDeleteNoticeMutation } = noticesApi;

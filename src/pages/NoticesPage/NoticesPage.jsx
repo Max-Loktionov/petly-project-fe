@@ -5,33 +5,15 @@ import NoticesCategoriesList from "components/NoticesCategoriesList";
 import { Container, Title } from "./NoticesPage.styled";
 import Modal from "components/Modal/Modal";
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
+import CategoryBtns from "components/CategoryBtns";
 
 const NoticesPage = () => {
-  const token = useSelector(state => state.auth.token);
-  const [isOpenModalAddNotice, setIsOpenModalAddNotice] = useState(false);
-
-  const openModalAddNotice = e => {
-    if (e) {
-      setIsOpenModalAddNotice(true);
-    }
-  };
-
-  const closeModalAddNotice = e => {
-    if (e) {
-      setIsOpenModalAddNotice(false);
-    }
-  };
-
   return (
     <>
-      {isOpenModalAddNotice && (
-        <Modal onClose={closeModalAddNotice}>
-          <ModalAddNotice onClose={closeModalAddNotice} />
-        </Modal>
-      )}
       <Container>
         <Title>Find your favorite pet</Title>
         <NoticesSearch />
+        <CategoryBtns />
         <NoticesCategoriesList />
       </Container>
     </>
