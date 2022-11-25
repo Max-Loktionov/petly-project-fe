@@ -47,19 +47,18 @@ function ModalAddNotice({ onClose }) {
   const {
     register,
     handleSubmit,
-    formState: { isDirty, errors, isValid },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
 
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
 
-  const handleSubmitClick = async (formdata, evt) => {
+  const handleSubmitClick = async formdata => {
     try {
-      console.log("formdata", formdata);
       // onClose(evt);
       formdata.male = sex;
-      await addNotice(formdata);
+      await addNotice({ formdata, noticeCategory });
     } catch (error) {
       console.log(error.message);
     }
@@ -77,6 +76,7 @@ function ModalAddNotice({ onClose }) {
     const imageContainer = document.getElementById("image_container");
     setIsAvatar(true);
     imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
+    imageContainer.childNodes[0].style.visibility = "hidden";
   };
 
   // const handleImage = e => {
@@ -90,7 +90,6 @@ function ModalAddNotice({ onClose }) {
   const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   // const [page, setPage] = useState(1);
-  // const [noticeCategory, setNoticeCategory] = useState("sell");
   // const [title, setTitle] = useState("");
   // const [name, setName] = useState("");
   // const [birth, setBirth] = useState("");
@@ -289,7 +288,7 @@ function ModalAddNotice({ onClose }) {
             )}
 
             <ImageContainer>
-              <input {...register("avatar", {})} type="file" name="image" id="image" accept=".jpg,.jpeg,.png" onChange={handleImage} />
+              <input {...register("avatar", {})} type="file" name="avatar" id="image" onChange={handleImage} />
               <label htmlFor="image" id="image-label">
                 <InputsNames> Load the pet's image</InputsNames>
                 <ImageBox id="image_container">

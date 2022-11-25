@@ -57,16 +57,13 @@ export const noticesApi = createApi({
     }),
 
     addNotice: builder.mutation({
-      query: newNotice => {
-        // console.log("====noticeApi newNotice:", newNotice);
+      query: ({ formdata, noticeCategory }) => {
         const newFormdata = new FormData();
-        Object.keys(newNotice).forEach(key => newFormdata.append(key, newNotice[key]));
-        if (newNotice.avatar) {
-          newFormdata.set("avatar", newNotice.avatar[0]);
+        Object.keys(formdata).forEach(key => newFormdata.append(key, formdata[key]));
+        if (formdata.avatar) {
+          newFormdata.set("avatar", formdata.avatar[0]);
         }
-        console.log("====noticeApi newFormdata json:", JSON.stringify(Object.fromEntries(newFormdata)));
-
-        return { url: "/", method: "POST", body: newFormdata };
+        return { url: `?category=${noticeCategory}`, method: "POST", body: newFormdata };
       },
       invalidatesTags: ["Notices"],
     }),
