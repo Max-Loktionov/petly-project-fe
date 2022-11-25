@@ -34,7 +34,7 @@ export const Text = styled.p`
 `;
 
 export const CategoryContainer = styled.div`
-  margin: 28px 0px;
+  margin: 20px 0px;
 `;
 
 export const MyBtn = styled.button`
@@ -82,6 +82,8 @@ export const MyBtn = styled.button`
 `;
 
 export const InputsNames = styled.label`
+  display: flex;
+  flex-direction: row;
   margin-bottom: 8px;
 
   font-size: ${p => p.theme.fontSizes.n};
@@ -159,7 +161,7 @@ export const MyFemaleSVG = styled(Female)`
 
 export const ImageContainer = styled.div`
   @media ${p => p.theme.media.tablet} {
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   & input {

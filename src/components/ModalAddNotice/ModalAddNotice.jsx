@@ -24,7 +24,7 @@ import {
 
 const CATEGORY = [
   {
-    category: "lost/found",
+    category: "lost_found",
     value: "Lost/found",
   },
   {
@@ -40,8 +40,9 @@ const CATEGORY = [
 function ModalAddNotice({ onClose }) {
   const [nextPage, setNextPage] = useState(false);
   const [isAvatar, setIsAvatar] = useState(false);
+  const [sex, setSex] = useState("male");
+  const [price, setPrice] = useState("");
   const [noticeCategory, setNoticeCategory] = useState("sell");
-
   const [addNotice] = useAddNoticeMutation();
 
   const {
@@ -53,6 +54,8 @@ function ModalAddNotice({ onClose }) {
   });
 
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
+  const textRegexp = /[a-zA-Z]+/;
+  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   const handleSubmitClick = async formdata => {
     try {
@@ -79,26 +82,6 @@ function ModalAddNotice({ onClose }) {
     imageContainer.childNodes[0].style.visibility = "hidden";
   };
 
-  // const handleImage = e => {
-  //   const imageContainer = document.getElementById("image_container");
-
-  //   imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
-
-  //   imageContainer.childNodes[0].style.visibility = "hidden";
-  // };
-  const textRegexp = /[a-zA-Z]+/;
-  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
-
-  // const [page, setPage] = useState(1);
-  // const [title, setTitle] = useState("");
-  // const [name, setName] = useState("");
-  // const [birth, setBirth] = useState("");
-  // const [breed, setBreed] = useState("");
-  const [sex, setSex] = useState("male");
-  // const [location, setLocation] = useState("");
-  const [price, setPrice] = useState("");
-  // const [comments, setComments] = useState("");
-
   const handleClick = e => setNoticeCategory(e.currentTarget.value);
 
   const checkCategory = value => {
@@ -112,8 +95,6 @@ function ModalAddNotice({ onClose }) {
 
     return false;
   };
-
-  // const handlePage = () => (page === 1 ? setPage(2) : setPage(1));
 
   const handleValue = e => {
     switch (e.target.name) {
@@ -162,7 +143,7 @@ function ModalAddNotice({ onClose }) {
                   message: "This input must exceed 2 characters",
                 },
                 pattern: {
-                  value: /[a-zA-Z]+/,
+                  value: textRegexp,
                   message: "Title should  contain only letters.",
                 },
               })}
@@ -230,9 +211,7 @@ function ModalAddNotice({ onClose }) {
 
         {nextPage && (
           <>
-            <InputsNames className="icon_header">
-              The sex<span>*</span>
-            </InputsNames>
+            <InputsNames className="icon_header">The sex</InputsNames>
             <RadioContainer>
               <div>
                 <RadioInputs type="radio" id="male" name="sex" onChange={handleValue} checked={sex === "male" ? true : false} />
@@ -252,9 +231,7 @@ function ModalAddNotice({ onClose }) {
               </div>
             </RadioContainer>
 
-            <InputsNames>
-              Location<span>*</span>
-            </InputsNames>
+            <InputsNames>Location</InputsNames>
             <input
               type="text"
               placeholder="Kyiv"
@@ -298,7 +275,9 @@ function ModalAddNotice({ onClose }) {
             </ImageContainer>
 
             <label>
-              <InputsNames> Comments </InputsNames>
+              <InputsNames>
+                Comments <span>*</span>
+              </InputsNames>
               <input
                 type="text"
                 name="comments"
