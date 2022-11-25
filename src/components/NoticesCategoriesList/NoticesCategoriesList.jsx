@@ -14,17 +14,11 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
+
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
 
   const { notices } = data;
-  // const renderByCategory = data?.notices;
-  // const renderByOwn = own?.data.result.userNotice;
-  // const renderByFavorite = favorite?.data.result;
-
-  // console.log(renderByCategory);
-  // console.log(renderByOwn);
-  // console.log(renderByFavorite);
-
+  const userNoticeId = notices?.data?.result?.owner;
   const setCategory = category => {
     switch (category) {
       case "sell":
@@ -37,16 +31,6 @@ const NoticesCategoriesList = () => {
         return "No category";
     }
   };
-
-  // let render = renderByCategory;
-
-  // if (category === "own") {
-  //   render = renderByOwn;
-  // }
-
-  // if (category === "favorite") {
-  //   render = renderByFavorite;
-  // }
 
   return (
     <>
@@ -64,6 +48,7 @@ const NoticesCategoriesList = () => {
               location={location}
               birthday={birthday}
               price={price}
+              userNoticeId={userNoticeId}
             />
           ))}
       </List>

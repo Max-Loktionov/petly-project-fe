@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
-import Modal from "components/Modal/Modal";
-import ModalNotice from "components/ModalNotice";
+
 import {
   Item,
   ImageThumb,
@@ -15,13 +14,14 @@ import {
 } from "./NoticeCategoryItem.styled";
 import unlike from "img/unlike.svg";
 import { useDispatch } from "react-redux";
+import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
 
-const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, onModalOpen }) => {
+const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, userNoticeId }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
   const dispatch = useDispatch();
-
+  console.log(userNoticeId);
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
     dispatch(noticeActions.changeModalNoticeId(id));
@@ -48,10 +48,13 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     return age ? age + " year" : m + " month";
   };
 
+  const BASE_URL = "https://petly-be.herokuapp.com/";
+  const filterednotice = userNoticeId.find(notice => notice === id);
+
   return (
     <Item>
       <ImageThumb>
-        <Image src="https://cdn.pixabay.com/photo/2021/10/27/19/09/cat-6748193_960_720.jpg" alt={title}></Image>
+        <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
         <BtnFavorite type="button" onClick={() => console.log("isFavorite")}>
           <img src={unlike} alt="unlike" />
@@ -78,7 +81,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
                 <td>Age:</td>
                 <td>{currentAge(birthday)}</td>
               </tr>
-              <tr>
+              <tr style={category === "sell" ? { color: "transparent" } : { color: "" }}>
                 <td>Price:</td>
                 <td>{price}</td>
               </tr>
