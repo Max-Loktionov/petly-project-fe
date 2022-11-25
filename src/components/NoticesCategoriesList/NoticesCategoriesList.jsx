@@ -25,18 +25,18 @@ const NoticesCategoriesList = () => {
   // console.log(renderByOwn);
   // console.log(renderByFavorite);
 
-  // const setCategory = category => {
-  //   switch (category) {
-  //     case "sell":
-  //       return "Sell";
-  //     case "in_good_hands":
-  //       return "In good hands";
-  //     case "lost_found":
-  //       return "Lost/found";
-  //     default:
-  //       return "No category";
-  //   }
-  // };
+  const setCategory = category => {
+    switch (category) {
+      case "sell":
+        return "Sell";
+      case "in_good_hands":
+        return "In good hands";
+      case "lost_found":
+        return "Lost/found";
+      default:
+        return "No category";
+    }
+  };
 
   // let render = renderByCategory;
 
@@ -60,7 +60,7 @@ const NoticesCategoriesList = () => {
               title={title}
               name={name}
               breed={breed}
-              category={category}
+              category={setCategory(category)}
               location={location}
               birthday={birthday}
               price={price}
