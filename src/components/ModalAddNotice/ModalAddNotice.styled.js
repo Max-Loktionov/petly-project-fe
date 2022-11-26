@@ -128,8 +128,6 @@ export const RadioInputs = styled.input`
 `;
 
 export const MyMaleSVG = styled(Male)`
-  /* width: 36;
-  height: 36px; */
   margin-bottom: 14px;
   @media ${p => p.theme.media.tablet} {
     height: 54px;
@@ -140,8 +138,6 @@ export const MyMaleSVG = styled(Male)`
 `;
 
 export const MyFemaleSVG = styled(Female)`
-  /* width: 26px;
-  height: 40px; */
   margin-bottom: 14px;
   @media ${p => p.theme.media.tablet} {
     width: 54px;
@@ -153,7 +149,6 @@ export const MyFemaleSVG = styled(Female)`
 
 export const ImageContainer = styled.div`
   @media ${p => p.theme.media.tablet} {
-    /* margin-top: 20px; */
   }
   & input {
     position: absolute;
@@ -194,17 +189,13 @@ export const MyForm = styled.form`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  /* margin-bottom: 40px; */
 
   & label {
     display: flex;
-    /* flex-direction: column; */
 
     @media ${p => p.theme.media.tablet} {
       font-weight: 500;
       font-size: 24px;
-      /* margin-top: 20px; */
-      /* margin-bottom: 28px; */
     }
   }
 
@@ -293,7 +284,6 @@ export const SvgBox = styled.div`
 export const GenderMale = styled.span`
   width: 40px;
   height: 40px;
-  /* margin-bottom: 12px; */
   @media screen and (min-width: 768px) {
     width: 60px;
     height: 60px;
@@ -312,7 +302,6 @@ export const GenderMale = styled.span`
 export const GenderFemale = styled.span`
   width: 40px;
   height: 40px;
-  /* margin-bottom: 12px; */
   @media screen and (min-width: 768px) {
     width: 60px;
     height: 60px;
@@ -334,5 +323,3 @@ export const ImageLabel = styled(InputsNames)`
   margin-bottom: 0px;
   margin-top: 0px;
 `;
-//  width: 36;
-//   height: 36px;

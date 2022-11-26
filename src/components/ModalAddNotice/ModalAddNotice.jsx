@@ -25,9 +25,6 @@ import {
   Text,
   MaleLabel,
   MaleInputsNames,
-  SvgBox,
-  GenderFemale,
-  GenderMale,
   TextArea,
   ImageLabel,
 } from "./ModalAddNotice.styled";
@@ -47,7 +44,7 @@ const CATEGORY = [
   },
 ];
 
-function ModalAddNotice({ onClose }) {
+function ModalAddNotice() {
   const [nextPage, setNextPage] = useState(false);
   const [isAvatar, setIsAvatar] = useState(false);
   const [sex, setSex] = useState("male");
@@ -281,14 +278,12 @@ function ModalAddNotice({ onClose }) {
 
             <ImageContainer>
               <input {...register("avatar", {})} type="file" name="avatar" id="avatar" onChange={handleImage} />
-              {/* <label htmlFor="image" id="image-label"> */}
               <ImageLabel htmlFor="avatar">
                 Load the pet's image
                 <ImageBox id="image_container">
                   <MyImageCross />
                 </ImageBox>
               </ImageLabel>
-              {/* </label> */}
             </ImageContainer>
 
             <InputsNames>

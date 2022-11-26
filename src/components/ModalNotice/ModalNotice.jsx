@@ -16,7 +16,6 @@ function ModalNotice({ onClose }) {
         <>
           <ImageContainer>
             <PictureData imageUrl={avatarUrl(data?.notice?.avatar)}>
-              {/* <img src={avatarUrl(data?.notice?.avatar)} alt=""></img> */}
               <Cathegory>{data.notice.category}</Cathegory>
             </PictureData>
             <div>

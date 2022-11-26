@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { List } from "./NoticesCategoriesList.styled";
 import { useGetNoticesQuery } from "redux/noticesApi";
@@ -6,7 +6,6 @@ import { useGetUserFavoriteQuery, useGetUserNoticesQuery, useGetUserQuery } from
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
-import { noticeActions } from "redux/notices/noticeSlice";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -15,18 +14,12 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
-  const favorite = useSelector(({ user }) => user.favorite);
-  // const userNotices = useSelector(({ user }) => user.userNotices);
-  // console.log("noticesCategoryList state:", favorite);
-  // console.log("noticesCategoryList category:", category);
 
-  const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
-  // console.log("noticesCategoryList data:", data);
+  const { data = [], isLoading } = useGetNoticesQuery({ filter, category, perPage, page });
+
   const { data: datatop = [] } = useGetUserFavoriteQuery();
-  // console.log("noticesCategoryList datatop:", datatop);
 
   const { data: userNotice = [] } = useGetUserNoticesQuery();
-  // console.log("noticesCategoryList userNotice:", userNotice);
 
   const selectedCategory = category => {
     switch (category) {
@@ -51,15 +44,6 @@ const NoticesCategoriesList = () => {
     return;
   }
 
-  // const notices = selectedCategory(category);
-  // const renderByCategory = data?.notices;
-  // const renderByOwn = own?.data.result.userNotice;
-  // const renderByFavorite = favorite?.data.result;
-
-  // console.log(renderByCategory);
-  // console.log(renderByOwn);
-  // console.log(renderByFavorite);
-
   const setCategory = category => {
     switch (category) {
       case "sell":
@@ -72,16 +56,6 @@ const NoticesCategoriesList = () => {
         return "No category";
     }
   };
-
-  // let render = renderByCategory;
-
-  // if (category === "own") {
-  //   render = renderByOwn;
-  // }
-
-  // if (category === "favorite") {
-  //   render = renderByFavorite;
-  // }
 
   return (
     <>

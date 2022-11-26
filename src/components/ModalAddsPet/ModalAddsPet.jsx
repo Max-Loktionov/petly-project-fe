@@ -60,7 +60,6 @@ const ModalAddsPet = () => {
     imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
   };
   const textRegexp = /[a-zA-Z]+/;
-  // const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   return (
     <>

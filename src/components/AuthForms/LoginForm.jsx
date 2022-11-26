@@ -49,7 +49,6 @@ export const LoginForm = () => {
       <ButtonWrapper>
         <Input type={showPass ? "text" : "password"} placeholder={"Password"} {...register("password")} />
         <ButtonEye
-          // type="button"
           name="showPass"
           onMouseDown={() => setShowPass(true)}
           onTouchStart={() => setShowPass(true)}
