@@ -14,7 +14,7 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
-  const favorite = useSelector(({ auth }) => auth);
+  const favorite = useSelector(({ user }) => user);
   const userNotices = useSelector(({ user }) => user.userNotices);
   console.log("noticesCategoryList state:", favorite);
 
