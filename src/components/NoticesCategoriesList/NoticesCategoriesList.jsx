@@ -2,13 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { List } from "./NoticesCategoriesList.styled";
 import { useGetNoticesQuery } from "redux/noticesApi";
-import { useGetUserFavoriteQuery, useGetUserNoticesQuery } from "redux/userApi"; //useGetUserFavoriteQuery useGetUserNoticesQuery
+import { useGetUserFavoriteQuery, useGetUserNoticesQuery, useGetUserQuery } from "redux/userApi"; //useGetUserFavoriteQuery useGetUserNoticesQuery
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
 import { noticeActions } from "redux/notices/noticeSlice";
-import { useGetUserQuery } from "redux/userApi";
-import { useEffect, useState } from "react";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -22,44 +20,42 @@ const NoticesCategoriesList = () => {
   // console.log("noticesCategoryList state:", favorite);
   // console.log("noticesCategoryList category:", category);
 
-  const { data: user = [] } = useGetUserQuery();
+  const { data: user = [] } = useGetUserQuery;
 
   const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
   const notieceId = user?.data?.result?.notieceId;
 
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
-
+  console.log("noticesCategoryList data:", data);
   const { data: datatop = [] } = useGetUserFavoriteQuery();
+  console.log("noticesCategoryList datatop:", datatop);
 
   const { data: userNotice = [] } = useGetUserNoticesQuery();
+  console.log("noticesCategoryList userNotice:", userNotice);
 
-  const [notices, setNotices] = useState([]);
-
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-    if (!datatop.data.result) {
-      return;
-    }
-    if (!userNotice.data.result.userNotice) {
-      return;
-    }
-
-    console.log(data);
+  const selectedCategory = category => {
     switch (category) {
       case "sell":
-        return setNotices(data.notices);
+        return data.notices;
       case "in_good_hands":
-        return setNotices(data.notices);
+        return data.notices;
       case "lost_found":
-        return setNotices(data.notices);
+        return data.notices;
       case "favorite":
-        return setNotices(datatop.data.result);
+        return datatop.data.result;
       case "my_adds":
-        return setNotices(userNotice.data.result.userNotice);
+        return userNotice.data.result.userNotice;
     }
-  }, [data.notices, datatop.data.result, userNotice.data.result.userNotice]);
+  };
+
+  // const notices = selectedCategory(category);
+  // const renderByCategory = data?.notices;
+  // const renderByOwn = own?.data.result.userNotice;
+  // const renderByFavorite = favorite?.data.result;
+
+  // console.log(renderByCategory);
+  // console.log(renderByOwn);
+  // console.log(renderByFavorite);
 
   const setCategory = category => {
     switch (category) {
@@ -74,11 +70,21 @@ const NoticesCategoriesList = () => {
     }
   };
 
+  // let render = renderByCategory;
+
+  // if (category === "own") {
+  //   render = renderByOwn;
+  // }
+
+  // if (category === "favorite") {
+  //   render = renderByFavorite;
+  // }
+
   return (
     <>
       <List>
         {!isLoading &&
-          notices?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
+          selectedCategory(category)?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
             <NoticeCategoryItem
               key={_id}
               id={_id}
