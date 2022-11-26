@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Form, Input, RegisterBtn, BackBtn, ErrorText } from "./authForms.styled";
+import { Form, Input, RegisterBtn, BackBtn, ErrorText, NextBtn } from "./authForms.styled";
 import { authSlice } from "redux/auth";
 import { useRegisterUserMutation } from "redux/auth/authApi";
 import { useNavigate } from "react-router-dom";
@@ -113,6 +113,7 @@ const RegisterForm = () => {
             label="Name"
             onInput={handleInputChange}
             {...register("name", {
+              required: "This is required",
               pattern: { value: nameRegex, message: "Enter only letters" },
             })}
             type="text"
@@ -142,11 +143,11 @@ const RegisterForm = () => {
         </div>
       )}
       {!nextPage ? (
-        <RegisterBtn type="button" onClick={handleClick} disabled={!isValid}>
+        <NextBtn type="button" onClick={handleClick} disabled={!isValid}>
           Next
-        </RegisterBtn>
+        </NextBtn>
       ) : (
-        <RegisterBtn type="submit" disabled={isDisabled}>
+        <RegisterBtn type="submit" >
           Register
         </RegisterBtn>
       )}
