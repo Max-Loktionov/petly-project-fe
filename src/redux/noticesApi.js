@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useSelector } from "react-redux";
 
 const BASE_URL = "https://petly-be.herokuapp.com/notices";
 

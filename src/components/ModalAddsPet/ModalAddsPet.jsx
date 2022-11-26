@@ -31,7 +31,7 @@ const ModalAddsPet = () => {
   const {
     register,
     handleSubmit,
-    formState: { isDirty, errors, isValid },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
