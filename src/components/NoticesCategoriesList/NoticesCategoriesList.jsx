@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { List } from "./NoticesCategoriesList.styled";
 import { useGetNoticesQuery } from "redux/noticesApi";
-import { useGetUserFavoriteQuery, useGetUserNoticesQuery, useGetUserQuery } from "redux/userApi"; //useGetUserFavoriteQuery useGetUserNoticesQuery
+import { useGetUserFavoriteQuery, useGetUserNoticesQuery, useGetUserQuery } from "redux/userApi";
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";

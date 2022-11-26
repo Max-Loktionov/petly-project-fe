@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-// import { noticeActions } from "redux/notices/noticeSlice";
 import AddPetBtn from "components/AddPetBtn";
 
 import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsData.styled";

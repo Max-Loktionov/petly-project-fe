@@ -1,4 +1,3 @@
-// import { Day } from "./WorkTime.styled";
 import { nanoid } from "nanoid";
 import { Div } from "./WorkTime.styled";
 

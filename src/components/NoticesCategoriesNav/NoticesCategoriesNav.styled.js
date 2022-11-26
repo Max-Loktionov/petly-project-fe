@@ -11,7 +11,6 @@ export const Container = styled.div`
 
 export const CategoryContainer = styled.div`
   display: flex;
-  /* position: relative; */
   flex-wrap: wrap;
   margin: 0px -12px -12px 0px;
 `;
@@ -38,7 +37,6 @@ export const AddBtn = styled.button`
   position: fixed;
 
   bottom: 50px;
-  /* top: 430px; */
   right: 40px;
 
   width: 80px;

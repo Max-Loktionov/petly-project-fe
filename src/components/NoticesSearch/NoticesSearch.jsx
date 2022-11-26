@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { noticeActions } from "redux/notices/noticeSlice";
 import searchIcon from "../../img/VectorG.svg";
 import { SearchForm, SearchFormInput, SearchBtn } from "./NoticesSearch.styled";
 
 const NoticesSearch = () => {
-  const page = useSelector(({ notice }) => notice.page);
-  const PerPage = useSelector(({ notice }) => notice.per_page);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("filter");
 

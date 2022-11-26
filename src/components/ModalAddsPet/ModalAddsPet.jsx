@@ -18,7 +18,6 @@ import {
   Title,
   SubTitle,
   ImageBox,
-  InputsNames,
   MyImageCross,
   ImageContainer,
 } from "./ModalAddsPet.styled";
@@ -37,7 +36,7 @@ const ModalAddsPet = () => {
     mode: "onBlur",
   });
 
-  const handleSubmitClick = async (formdata, evt) => {
+  const handleSubmitClick = async formdata => {
     try {
       addPet(formdata);
       dispatch(userActions.changeModalAddPets());

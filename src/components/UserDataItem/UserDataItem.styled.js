@@ -40,7 +40,6 @@ export const BoxImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 8px; */
 
   @media ${p => p.theme.media.desktop} {
     margin-bottom: 36px;
@@ -65,7 +64,6 @@ export const ImageContainer = styled.div`
 export const ImgUser = styled.img`
   width: 233px;
   height: 233px;
-  /* margin-bottom: 12px; */
 
   border-radius: ${p => p.theme.radii.round};
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);

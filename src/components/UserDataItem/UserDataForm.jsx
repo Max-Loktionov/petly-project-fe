@@ -20,7 +20,7 @@ import {
 import { useForm } from "react-hook-form";
 
 const UserDataForm = () => {
-  const { data: user = [], isLoading, isError } = useGetUserQuery();
+  const { data: user = [] } = useGetUserQuery();
   const [changeUserAvatar] = useUpdateUserAvatarMutation();
   const [isChangeUserAvatar, setIsChangeUserAvatar] = useState(false);
   const [newUserAvatar, setNewUserAvatar] = useState();
@@ -158,7 +158,5 @@ const UserDataForm = () => {
     </UserBlock>
   );
 };
-
-// Image.devaultIcon
 
 export default UserDataForm;

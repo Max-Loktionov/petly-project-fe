@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { Box, List, Img, Picture, Title, Time, Hr, Address, Email, Phone } from "./FriendCard.styled";
 import WorkTime from "./WorkTime";
 import image from "../../img/defaultLogo.jpg";
