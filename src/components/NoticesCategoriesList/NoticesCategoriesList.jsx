@@ -20,18 +20,13 @@ const NoticesCategoriesList = () => {
   // console.log("noticesCategoryList state:", favorite);
   // console.log("noticesCategoryList category:", category);
 
-  const { data: user = [] } = useGetUserQuery;
-
-  const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
-  const notieceId = user?.data?.result?.notieceId;
-
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
-  console.log("noticesCategoryList data:", data);
+  // console.log("noticesCategoryList data:", data);
   const { data: datatop = [] } = useGetUserFavoriteQuery();
-  console.log("noticesCategoryList datatop:", datatop);
+  // console.log("noticesCategoryList datatop:", datatop);
 
   const { data: userNotice = [] } = useGetUserNoticesQuery();
-  console.log("noticesCategoryList userNotice:", userNotice);
+  // console.log("noticesCategoryList userNotice:", userNotice);
 
   const selectedCategory = category => {
     switch (category) {
@@ -47,6 +42,12 @@ const NoticesCategoriesList = () => {
         return userNotice.data.result.userNotice;
     }
   };
+  const { data: user = [] } = useGetUserQuery();
+  const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
+  const notieceId = user?.data?.result?.notieceId;
+  if (!favoriteNoticeId || !notieceId) {
+    return;
+  }
 
   // const notices = selectedCategory(category);
   // const renderByCategory = data?.notices;
