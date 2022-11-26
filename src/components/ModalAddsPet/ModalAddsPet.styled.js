@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledButton } from "../Button/Button.styled";
+import { ReactComponent as ImageCross } from "../../img/image_cross.svg";
 
 export const Form = styled.form`
   @media ${p => p.theme.media.tablet} {
@@ -38,8 +39,9 @@ export const SubTitle = styled.h2`
 export const Label = styled.label`
   display: block;
   :not(:first-child) {
-    margin-top: 16px;
+    margin-top: ${p => (p.textarea ? "20px" : "16px")};
   }
+  margin-right: ${p => (p.textarea ? "auto" : "0px")};
   margin-bottom: 8px;
   font-size: 18px;
   line-height: ${p => p.theme.lineHeights.body};
@@ -50,7 +52,7 @@ export const Label = styled.label`
     line-height: 1.08;
     margin-bottom: 12px;
     :not(:first-child) {
-      margin-top: 28px;
+      margin-top: ${p => (p.textarea ? "40px" : "28px")};
     }
     margin-left: ${p => (p.textarea ? "27px" : "0px")};
   }
@@ -145,7 +147,12 @@ export const BtnDone = styled(StyledButton)`
   }
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 export const Textarea = styled.textarea`
   width: 100%;
@@ -163,7 +170,68 @@ export const Textarea = styled.textarea`
     width: 394px;
     height: 116px;
     display: flex;
-    margin-right: auto;
-    margin-left: auto;
+    margin-left: 27px;
   }
+`;
+export const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 208px;
+  height: 208px;
+  background-color: ${p => p.theme.colors.background};
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid ${p => p.theme.colors.inputModal};
+  @media ${p => p.theme.media.tablet} {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
+export const InputsNames = styled.p`
+  margin-bottom: 8px;
+  font-size: ${p => p.theme.fontSizes.n};
+  line-height: ${p => p.theme.lineHeights.body};
+  font-weight: ${p => p.theme.fontWeights.heading};
+  &.icon_name {
+    margin: 0px;
+  }
+  &.icon_header {
+    margin-bottom: 18px;
+    @media ${p => p.theme.media.tablet} {
+      margin-bottom: 31px;
+    }
+  }
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.ml};
+    margin-bottom: 12px;
+  }
+  & span {
+    color: ${p => p.theme.colors.accent};
+    @media ${p => p.theme.media.tablet} {
+      font-size: ${p => p.theme.fontSizes.ml};
+    }
+  }
+`;
+
+export const MyImageCross = styled(ImageCross)``;
+
+export const ImageContainer = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+
+  & input {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+`;
+
+export const CommentLabel = styled(Label)`
+  margin-top: 20px;
 `;

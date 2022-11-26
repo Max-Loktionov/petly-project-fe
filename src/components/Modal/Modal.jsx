@@ -1,22 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
+import { useDispatch } from "react-redux";
+import { noticeActions } from "redux/notices/noticeSlice";
+import { userActions } from "redux/user/userSlice";
 
-function Modal({ onClose, children }) {
-  return (
-    <MyBackdrop>
-      <ModalWindow>
-        <Exit onClick={onClose}>
+const modalRoot = document.querySelector("#modal-root");
+
+function Modal({ tabletNoStandartWidth, modalName, children, ...props }) {
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    switch (modalName) {
+      case "modalViewNotice":
+        return dispatch(noticeActions.changeModalViewNotice());
+
+      case "modalAddNotice":
+        return dispatch(noticeActions.changeModalAddNotice());
+
+      case "modalAddPets":
+        return dispatch(userActions.changeModalAddPets());
+
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    const handleEscapeKey = e => {
+      if (e.code === "Escape") {
+        handleClose(e);
+      }
+    };
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => document.removeEventListener("keydown", handleEscapeKey);
+  });
+
+  const onBackdrop = e => {
+    if (e.currentTarget === e.target) {
+      handleClose(e);
+    }
+  };
+
+  return createPortal(
+    <MyBackdrop onClick={onBackdrop}>
+      <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth} {...props}>
+        <Exit onClick={handleClose}>
           <ExitIcon />
         </Exit>
         {children}
       </ModalWindow>
-    </MyBackdrop>
+    </MyBackdrop>,
+    modalRoot
   );
 }
 
 Modal.propTypes = {
-  OnClose: PropTypes.func,
+  modalName: PropTypes.string,
 };
 
 export default Modal;

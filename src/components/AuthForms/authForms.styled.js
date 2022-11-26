@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledButton } from "components/Button/Button.styled";
+import Button from "components/Button";
 
 export const Form = styled.form`
   margin-top: 40px;
@@ -97,4 +98,22 @@ export const ErrorText = styled.div`
     margin-left: 97px;
     font-size: ${p => p.theme.fontSizes.xs};
   }
+`;
+export const ButtonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+export const ButtonEye = styled(Button)`
+  position: absolute;
+  padding: 0;
+  right: 104px;
+  width: 24px;
+
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: ${p => p.theme.colors.background};
+  pointer-events: auto;
 `;

@@ -2,14 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   @media ${p => p.theme.media.mobile} {
-    margin: 20px 42px 100px 42px;
+    margin: 0 42px 100px 42px;
+    padding-top: 100px;
   }
 
   @media ${p => p.theme.media.tablet} {
-    margin: 94px 32px 100px 32px;
+    margin: 0 32px 100px 32px;
+    padding-top: 160px;
   }
   @media ${p => p.theme.media.desktop} {
-    margin: 69px 16px 200px 16px;
+    margin: 0 16px 200px 16px;
+    padding-top: 126px;
   }
 `;
 
@@ -122,4 +125,16 @@ export const Card = styled.li`
       margin-left: 0px;
     }
   }
+`;
+
+export const NotFound = styled.p`
+  font-size: 20px;
+  color: red;
+  @media ${p => p.theme.media.tablet} {
+    font-size: 30px;
+  }
+`;
+export const NotFoundBox = styled.div`
+  display: flex;
+  justify-content: center;
 `;

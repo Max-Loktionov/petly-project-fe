@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { HiCamera } from "react-icons/hi2";
+import { BsCheckLg } from "react-icons/bs";
 
 export const UserBlock = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const UserBlock = styled.div`
 
   width: 280px;
   min-height: 537px;
-  padding: 12px;
+  padding: 20px 12px 20px 16px;
 
   border-radius: ${p => p.theme.radii.cardPet};
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
@@ -39,23 +40,34 @@ export const BoxImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8px;
+
   @media ${p => p.theme.media.desktop} {
     margin-bottom: 36px;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  & input {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: -1;
+    opacity: 0;
+  }
+  & #image-label {
+    @media ${p => p.theme.media.tablet} {
+      margin-top: 0px;
+    }
   }
 `;
 
 export const ImgUser = styled.img`
   width: 233px;
   height: 233px;
-  margin-bottom: 12px;
 
   border-radius: ${p => p.theme.radii.round};
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
   background-color: #e1e1e1;
-  @media ${p => p.theme.media.tablet} {
-    margin-bottom: 0;
-  }
 `;
 export const EditImgBtn = styled.button`
   display: inline-flex;
@@ -96,7 +108,6 @@ export const BoxInfo = styled.div`
     margin-bottom: 0;
     margin-right: 52px;
     margin-top: 16px;
-    width: inherit;
   }
   @media ${p => p.theme.media.desktop} {
     margin-top: 0;
@@ -109,7 +120,7 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     @media ${p => p.theme.media.desktop} {
       margin-bottom: 15px;
     }
@@ -119,7 +130,7 @@ export const BoxTitle = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.label`
   width: 64px;
 
   font-size: 12px;
@@ -129,7 +140,7 @@ export const Title = styled.p`
     font-size: 18px;
   }
 `;
-export const Text = styled.div`
+export const Text = styled.p`
   margin-left: 18px;
 
   font-size: 14px;
@@ -142,6 +153,7 @@ export const Text = styled.div`
 export const Block = styled.div`
   display: flex;
   flex: auto;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 `;
@@ -155,6 +167,7 @@ export const EditTextBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   border: none;
   background-color: ${p => p.theme.colors.background};
+  margin-left: auto;
   cursor: pointer;
   :hover svg,
   :focus svg {
@@ -175,4 +188,61 @@ export const EditTextBtnIcon = styled(HiPencil)`
     width: 20px;
     height: 20px;
   }
+`;
+
+export const IconCheck = styled(BsCheckLg)`
+  width: 10px;
+  height: 8px;
+
+  fill: ${p => p.theme.colors.accent};
+  @media ${p => p.theme.media.tablet} {
+    width: 17px;
+    height: 13px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  justify-content: space-between;
+`;
+
+export const UserDataInput = styled.input`
+  padding: 4px 18px;
+
+  width: 159px;
+  height: 24px;
+
+  background-color: ${p => (p.disabled ? p.theme.colors.white : p.theme.colors.background)};
+  border: ${p => (p.disabled ? "none" : p.theme.borders.inputModal)};
+  border-color: ${p => p.theme.colors.inputModal};
+  color: ${p => p.theme.colors.primaryText};
+  border-radius: 40px;
+
+  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.text};
+
+  :focus {
+    outline-color: ${p => p.theme.colors.inputModal};
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    width: 216px;
+    height: 32px;
+    padding: 4px 12px;
+
+    font-size: 18px;
+  }
+`;
+
+export const ErrorText = styled.p`
+  margin-left: 10px;
+  &:not(:last-of-type) {
+    margin-bottom: 14px;
+  }
+  font-size: 10px;
+  color: red;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-style: italic;
 `;

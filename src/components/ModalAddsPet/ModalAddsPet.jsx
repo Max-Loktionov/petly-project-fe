@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
-// import { ErrorMessage } from "@hookform/error-message";
+import { userActions } from "redux/user/userSlice";
 import {
   Label,
   Form,
@@ -16,11 +17,16 @@ import {
   Textarea,
   Title,
   SubTitle,
+  ImageBox,
+  MyImageCross,
+  ImageContainer,
 } from "./ModalAddsPet.styled";
 
-const ModalAddsPet = ({ onClose }) => {
+const ModalAddsPet = () => {
   const [nextPage, setNextPage] = useState(false);
+  const [isAvatar, setIsAvatar] = useState(false);
   const [addPet] = useAddPetMutation();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -30,9 +36,13 @@ const ModalAddsPet = ({ onClose }) => {
     mode: "onBlur",
   });
 
-  const handleSubmitClick = (formData, evt) => {
-    onClose(evt);
-    addPet(formData);
+  const handleSubmitClick = async formdata => {
+    try {
+      addPet(formdata);
+      dispatch(userActions.changeModalAddPets());
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleNextClick = () => {
@@ -43,19 +53,24 @@ const ModalAddsPet = ({ onClose }) => {
     setNextPage(false);
   };
 
+  const handleImage = e => {
+    const imageContainer = document.getElementById("image_container");
+    setIsAvatar(true);
+    imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
+  };
   const textRegexp = /[a-zA-Z]+/;
-  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   return (
     <>
       <Title>Add pet</Title>
-      <Form onSubmit={handleSubmit(handleSubmitClick)}>
+      <Form id="pets-form" encType="multipart/form-data" onSubmit={handleSubmit(handleSubmitClick)}>
         {!nextPage && (
           <>
             <Label htmlFor="petName">Name pet</Label>
             <Input
               id="petName"
               type="text"
+              name="name"
               placeholder="Type name pet"
               {...register("name", {
                 required: "Name is required",
@@ -78,13 +93,11 @@ const ModalAddsPet = ({ onClose }) => {
             <Label htmlFor="dateOfBirth">Date of birth</Label>
             <Input
               id="dateOfBirth"
+              type="date"
+              name="birthday"
               placeholder="Type date of birth"
               {...register("birthday", {
                 required: "Date of birth is required.",
-                pattern: {
-                  value: dateRegexp,
-                  message: "This input is number only. Example: 01.01.2022",
-                },
               })}
             />
             {errors.birthday && <ErrorText role="alert">{errors.birthday?.message}</ErrorText>}
@@ -92,6 +105,7 @@ const ModalAddsPet = ({ onClose }) => {
             <Input
               id="breed"
               type="text"
+              name="breed"
               placeholder="Type breed"
               {...register("breed", {
                 required: "Breed is required",
@@ -116,23 +130,32 @@ const ModalAddsPet = ({ onClose }) => {
 
         {nextPage && (
           <>
-            <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+            <SubTitle htmlFor="avatar">Add photo and some comments</SubTitle>
             <Container>
-              {/* <Input
-                type="file"
-                id="addPhoto"
-                {...register("addPhoto", {
-                  required: "Photo is required.",
-                })}
-              />
-              {errors.addPhoto && (
-                <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>
-              )} */}
-              <Label textarea htmlFor="addPhoto">
+              <ImageContainer>
+                <Input
+                  name="avatar"
+                  type="file"
+                  id="avatar"
+                  {...register("avatar", {
+                    required: "Photo is required.",
+                  })}
+                  onChange={handleImage}
+                />
+                {errors.addPhoto && <ErrorText role="alert">{errors.addPhoto?.message}</ErrorText>}
+                <label htmlFor="avatar" id="addPhoto-label">
+                  <ImageBox id="image_container">{!isAvatar && <MyImageCross />}</ImageBox>
+                </label>
+              </ImageContainer>
+
+              <Label textarea id="comments-label" htmlFor="comments">
                 Comments
               </Label>
+
               <Textarea
-                id="Comments"
+                id="comments"
+                name="comments"
+                placeholder="Type comments"
                 {...register("comments", {
                   required: "Comments is required.",
                   maxLength: {
@@ -156,7 +179,7 @@ const ModalAddsPet = ({ onClose }) => {
               <BtnNext onClick={handleNextClick} active disabled={!isValid} type="button">
                 Next
               </BtnNext>
-              <BtnCancel onClick={onClose} type="button">
+              <BtnCancel onClick={() => dispatch(userActions.changeModalAddPets())} type="button">
                 Cancel
               </BtnCancel>
             </>
@@ -179,29 +202,3 @@ const ModalAddsPet = ({ onClose }) => {
 };
 
 export default ModalAddsPet;
-
-//  <input
-//         {...register("multipleErrorInput", {
-//           required: "This input is required.",
-//           pattern: {
-//             value: /\d+/,
-//             message: "This input is number only.",
-//           },
-//           minLength: {
-//             value: 11,
-//             message: "This input must exceed 10 characters",
-//           },
-//         })}
-//       />
-//       <ErrorMessage
-//         errors={errors}
-//         name="multipleErrorInput"
-//         render={({ messages }) => {
-//           console.log("messages", messages);
-//           return messages
-//             ? Object.entries(messages).map(([type, message]) => (
-//                 <p key={type}>{message}</p>
-//               ))
-//             : null;
-//         }}
-//       />

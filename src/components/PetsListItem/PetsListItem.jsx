@@ -3,15 +3,17 @@ import { useDeletePetMutation } from "redux/userApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import devaultIcon from "../../img/default-icon-pets.png";
 import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./PetsListItem.styled";
 
 const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
   isDeleting && toast(`${name} was removed`);
+  const BASE_URL = "https://petly-be.herokuapp.com/";
 
   return (
     <PetItem>
-      <ImgPet src={`${avatar}`} alt={`${name}`}></ImgPet>
+      <ImgPet src={avatar ? BASE_URL + avatar : devaultIcon} alt={`${name}`}></ImgPet>
       <BoxInfo>
         <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(id)}>
           <DelIcon />

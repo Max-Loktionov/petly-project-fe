@@ -16,17 +16,15 @@ export const MobileMenu = styled.div`
   position: fixed;
   top: 60px;
   right: 0;
-  z-index: 1;
+  z-index: 10;
 
   height: 100vh;
   width: 100%;
   background-color: ${p => p.theme.colors.background};
   visibility: visible;
-  /* transform: translateX(100%); */
   transition: 0.5s;
   padding: 34px 20px;
 
-  //
   ${props => {
     switch (props.$mode) {
       case true:
@@ -39,7 +37,6 @@ export const MobileMenu = styled.div`
         `;
     }
   }}
-  //
 
   @media ${p => p.theme.media.tablet} {
     width: 100%;

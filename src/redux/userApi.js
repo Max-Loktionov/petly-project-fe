@@ -25,10 +25,10 @@ export const userApi = createApi({
     }),
 
     updateUser: builder.mutation({
-      query: object => ({
-        url: `/${object.propertyName}`,
+      query: ({ name, data }) => ({
+        url: `/${name}`,
         method: "PATCH",
-        body: object.propertyValue,
+        body: data,
       }),
       invalidatesTags: ["User"],
     }),
@@ -43,11 +43,16 @@ export const userApi = createApi({
     }),
 
     addPet: builder.mutation({
-      query: newPet => ({
-        url: "/pets",
-        method: "POST",
-        body: newPet,
-      }),
+      query: formdata => {
+        const formad = new FormData();
+        Object.keys(formdata).forEach(key => formad.append(key, formdata[key]));
+        formad.set("avatar", formdata.avatar[0]);
+        return {
+          url: "/pets",
+          method: "POST",
+          body: formad,
+        };
+      },
       invalidatesTags: ["User"],
     }),
 
@@ -59,9 +64,48 @@ export const userApi = createApi({
       invalidatesTags: ["User"],
     }),
 
-    // transformResponse: (response) => response.data,
+    getUserNotices: builder.query({
+      query: () => ({
+        url: `/notice`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+
+    getUserFavorite: builder.query({
+      query: () => ({
+        url: `/favorite`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+
+    addFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useGetUserQuery, useUpdateUserMutation, useAddPetMutation, useDeletePetMutation, useUpdateUserAvatarMutation } = userApi;
-
+export const {
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useAddPetMutation,
+  useDeletePetMutation,
+  useUpdateUserAvatarMutation,
+  useGetUserNoticesQuery,
+  useGetUserFavoriteQuery,
+  useAddFavoriteNoticeMutation,
+  useDeleteFavoriteNoticeMutation,
+} = userApi;

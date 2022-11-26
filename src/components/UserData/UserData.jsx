@@ -1,18 +1,23 @@
+import { useDispatch } from "react-redux";
+import { userActions } from "redux/user/userSlice";
 import AddPetBtn from "components/AddPetBtn";
-import UserDataItem from "components/UserDataItem";
+import UserDataForm from "components/UserDataItem/UserDataForm";
 import { TitleUser, TitleBtn, BoxTitleUser, BoxBtnTablet } from "./UserData.styled";
 
-const UserData = ({ onOpenModal }) => {
+const UserData = () => {
+  const dispatch = useDispatch();
+  const handleModalOpen = () => dispatch(userActions.changeModalAddPets());
+
   return (
     <>
       <BoxTitleUser>
         <TitleUser>My information:</TitleUser>
         <BoxBtnTablet>
           <TitleBtn>Add pet</TitleBtn>
-          <AddPetBtn active onOpenModal={onOpenModal}></AddPetBtn>
+          <AddPetBtn active onClick={handleModalOpen}></AddPetBtn>
         </BoxBtnTablet>
       </BoxTitleUser>
-      <UserDataItem />
+      <UserDataForm />
     </>
   );
 };

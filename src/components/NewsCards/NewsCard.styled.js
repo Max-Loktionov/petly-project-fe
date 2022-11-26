@@ -41,19 +41,19 @@ export const Title = styled.h3`
       display: none;
       padding: 2px 3px;
       margin-left: 0px;
-      
+
       @media ${p => p.theme.media.mobile} {
         width: 85%;
-        height: auto;  
+        height: auto;
       }
       @media ${p => p.theme.media.tablet} {
-        width: calc(((100% - 32px) / 2)*0.9);
+        width: calc(((100% - 32px) / 2) * 0.9);
         height: auto;
       }
       @media ${p => p.theme.media.desktop} {
-      width: calc((100% - 64px) / 3);
-      height: auto;    
-      }      
+        width: calc((100% - 64px) / 3);
+        height: auto;
+      }
     }
 
     :hover span {
@@ -63,7 +63,8 @@ export const Title = styled.h3`
       border: 1px solid #f59256;
       font-size: 18px;
       border-radius: 10px;
-      color: #535353;     
+      color: #535353;
+    }
   }
 
   @media ${p => p.theme.media.desktop} {

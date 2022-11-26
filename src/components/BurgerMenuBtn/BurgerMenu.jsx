@@ -1,5 +1,9 @@
-import { BurgerMenuBtn } from "./BurgerMenu.styled";
+import { BurgerMenuBtn, IconBurgerBtn, IconCrossBtn } from "./BurgerMenu.styled";
 
-export const BurgerMenu = ({ handleClick }) => {
-  return <BurgerMenuBtn onClick={handleClick} type="button"></BurgerMenuBtn>;
+export const BurgerMenu = ({ isOpenMobile, handleClick }) => {
+  return (
+    <BurgerMenuBtn onClick={handleClick} type="button">
+      {isOpenMobile ? <IconCrossBtn /> : <IconBurgerBtn />}
+    </BurgerMenuBtn>
+  );
 };
