@@ -42,6 +42,9 @@ export const ModalWindow = styled.div`
 `;
 
 export const Exit = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   right: 20px;
   top: 20px;
