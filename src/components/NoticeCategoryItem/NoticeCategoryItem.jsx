@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
-
+import { useDispatch } from "react-redux";
 import {
   Item,
   ImageThumb,
@@ -13,15 +13,17 @@ import {
   ButtonMore,
 } from "./NoticeCategoryItem.styled";
 import unlike from "img/unlike.svg";
-import { useDispatch } from "react-redux";
+import like from "img/like.svg";
 import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
 
-const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, userNoticeId }) => {
+const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
   const [isFavorite, setFavorite] = useState(false);
+  const [isUserNotice, setIsUserNotice] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
   const dispatch = useDispatch();
-  console.log(userNoticeId);
+
+  const BASE_URL = "https://petly-be.herokuapp.com/";
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
     dispatch(noticeActions.changeModalNoticeId(id));
@@ -48,16 +50,41 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     return age ? age + " year" : m + " month";
   };
 
-  const BASE_URL = "https://petly-be.herokuapp.com/";
-  const filterednotice = userNoticeId.find(notice => notice === id);
+  const addToFavorite = (favoriteNoticeId, id) => {
+    const filterednotice = favoriteNoticeId.find(notice => notice === id);
+    console.log(filterednotice);
+    if (filterednotice) {
+      setFavorite(true);
+    }
+  };
+
+  const addToUserNotice = (notieceId, id) => {
+    const filteredNotice = notieceId.find(notice => notice === id);
+
+    if (filteredNotice) {
+      setIsUserNotice(true);
+    }
+  };
+
+  useEffect(() => {
+    addToFavorite(favoriteNoticeId, id);
+    addToUserNotice(notieceId, id);
+  }, []);
+
+  const handleClickFavorite = () => {
+    if (isFavorite) {
+      return setFavorite(false);
+    }
+    return setFavorite(true);
+  };
 
   return (
     <Item>
       <ImageThumb>
         <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        <BtnFavorite type="button" onClick={() => console.log("isFavorite")}>
-          <img src={unlike} alt="unlike" />
+        <BtnFavorite type="button" onClick={handleClickFavorite}>
+          <img src={isFavorite ? like : unlike} alt="unlike" />
         </BtnFavorite>
       </ImageThumb>
       <div>
@@ -81,6 +108,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
                 <td>Age:</td>
                 <td>{currentAge(birthday)}</td>
               </tr>
+
               <tr style={category === "sell" ? { color: "transparent" } : { color: "" }}>
                 <td>Price:</td>
                 <td>{price}</td>
@@ -92,9 +120,11 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
       <ButtonMore active="true" type="button" onClick={() => openModalNotice(id)}>
         Learn more
       </ButtonMore>
-      <button type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
-        Delete
-      </button>
+      {isUserNotice && (
+        <ButtonMore type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
+          Delete
+        </ButtonMore>
+      )}
     </Item>
   );
 };
