@@ -81,6 +81,21 @@ export const userApi = createApi({
       providesTags: ["User"],
     }),
 
+    addFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
     // transformResponse: (response) => response.data,
   }),
 });
@@ -93,4 +108,6 @@ export const {
   useUpdateUserAvatarMutation,
   useGetUserNoticesQuery,
   useGetUserFavoriteQuery,
+  useAddFavoriteNoticeMutation,
+  useDeleteFavoriteNoticeMutation,
 } = userApi;
