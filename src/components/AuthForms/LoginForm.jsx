@@ -37,7 +37,6 @@ export const LoginForm = () => {
         throw new Error(errorMessage);
       }
       dispatch(setToken(result.data.token));
-      console.log("LoginForm data:", data);
       reset();
     } catch (error) {
       loginError(error.message);

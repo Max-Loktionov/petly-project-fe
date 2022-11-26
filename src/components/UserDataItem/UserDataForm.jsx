@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
 import devaultIcon from "../../img/default-icon-user.png";
@@ -30,9 +30,10 @@ const UserDataForm = () => {
     mode: "onBlur",
   });
   const result = user?.data?.result;
-  console.log("userDataForm data:", result?.notieceId);
-  (() => dispatch(userActions.getFavorite(result?.favoriteNoticeId)))();
-  (() => dispatch(userActions.getUserNotice(result?.notieceId)))();
+  useEffect(() => {
+    (() => dispatch(userActions.getFavorite(result?.favoriteNoticeId)))();
+    (() => dispatch(userActions.getUserNotice(result?.notieceId)))();
+  });
 
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
