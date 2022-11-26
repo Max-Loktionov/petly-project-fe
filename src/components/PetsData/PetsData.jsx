@@ -5,6 +5,8 @@ import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsData.styl
 import PetsList from "components/PetsList";
 import { userActions } from "redux/user/userSlice";
 
+const screenSize = window.innerWidth;
+
 const PetsData = () => {
   const dispatch = useDispatch();
   const handleModalOpen = () => dispatch(userActions.changeModalAddPets());
@@ -13,10 +15,22 @@ const PetsData = () => {
       <BoxPet>
         <BoxTitlePet>
           <TitlePet>My pets:</TitlePet>
-          <BoxBtn>
-            <TitleBtn>Add pet</TitleBtn>
-            <AddPetBtn onClick={handleModalOpen} />
-          </BoxBtn>
+          {screenSize < 767 && (
+            <>
+              <BoxBtn>
+                <TitleBtn>Add pet</TitleBtn>
+                <AddPetBtn onClick={handleModalOpen} />
+              </BoxBtn>
+            </>
+          )}
+          {screenSize > 1280 && (
+            <>
+              <BoxBtn>
+                <TitleBtn>Add pet</TitleBtn>
+                <AddPetBtn onClick={handleModalOpen} />
+              </BoxBtn>
+            </>
+          )}
         </BoxTitlePet>
         <PetsList />
       </BoxPet>
