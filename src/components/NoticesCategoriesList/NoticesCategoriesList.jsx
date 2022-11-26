@@ -16,30 +16,33 @@ const NoticesCategoriesList = () => {
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
   const favorite = useSelector(({ user }) => user.favorite);
-  const userNotices = useSelector(({ user }) => user.userNotices);
+  // const userNotices = useSelector(({ user }) => user.userNotices);
   // console.log("noticesCategoryList state:", favorite);
   // console.log("noticesCategoryList category:", category);
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
   console.log("noticesCategoryList data:", data);
   const { data: datatop = [] } = useGetUserFavoriteQuery();
   console.log("noticesCategoryList datatop:", datatop);
-  const { notices } = datatop;
-  const { data: userNotice = [] } = useGetUserFavoriteQuery();
+
+  const { data: userNotice = [] } = useGetUserNoticesQuery();
   console.log("noticesCategoryList userNotice:", userNotice);
 
-  // const selectedCategory = category => {
-  //   switch (category) {
-  //     case "sell" || "in_good_hands" || "lost_found":
-  //       // const { data = [] } = useGetNoticesQuery({ filter, category, perPage, page });
-  //       const { notices } = data;
-  //       return notices;
-  //     case "favorite":
-  //       return notices;
-  //     case "my_adds":
-  //       return notices;
-  //   }
-  // };
+  const selectedCategory = category => {
+    switch (category) {
+      case "sell":
+        return data.notices;
+      case "in_good_hands":
+        return data.notices;
+      case "lost_found":
+        return data.notices;
+      case "favorite":
+        return datatop.data.result;
+      case "my_adds":
+        return userNotice.data.result.userNotice;
+    }
+  };
 
+  // const notices = selectedCategory(category);
   // const renderByCategory = data?.notices;
   // const renderByOwn = own?.data.result.userNotice;
   // const renderByFavorite = favorite?.data.result;
@@ -48,18 +51,18 @@ const NoticesCategoriesList = () => {
   // console.log(renderByOwn);
   // console.log(renderByFavorite);
 
-  // const setCategory = category => {
-  //   switch (category) {
-  //     case "sell":
-  //       return "Sell";
-  //     case "in_good_hands":
-  //       return "In good hands";
-  //     case "lost_found":
-  //       return "Lost/found";
-  //     default:
-  //       return "No category";
-  //   }
-  // };
+  const setCategory = category => {
+    switch (category) {
+      case "sell":
+        return "Sell";
+      case "in_good_hands":
+        return "In good hands";
+      case "lost_found":
+        return "Lost/found";
+      default:
+        return "No category";
+    }
+  };
 
   // let render = renderByCategory;
 
@@ -75,7 +78,7 @@ const NoticesCategoriesList = () => {
     <>
       <List>
         {!isLoading &&
-          notices?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
+          selectedCategory(category)?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
             <NoticeCategoryItem
               key={_id}
               id={_id}
@@ -83,7 +86,7 @@ const NoticesCategoriesList = () => {
               title={title}
               name={name}
               breed={breed}
-              category={category}
+              category={setCategory(category)}
               location={location}
               birthday={birthday}
               price={price}
