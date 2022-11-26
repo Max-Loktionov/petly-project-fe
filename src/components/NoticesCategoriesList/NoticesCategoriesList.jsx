@@ -34,9 +34,6 @@ const NoticesCategoriesList = () => {
   const { data: userNotice = [] } = useGetUserNoticesQuery();
 
   const [notices, setNotices] = useState([]);
-  // const selectedCategory = category => {
-
-  // };
 
   useEffect(() => {
     if (!data) {
