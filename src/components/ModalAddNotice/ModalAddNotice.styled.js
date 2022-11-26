@@ -90,7 +90,7 @@ export const InputsNames = styled.label`
   &.icon_header {
     margin-bottom: 18px;
     @media ${p => p.theme.media.tablet} {
-      margin-bottom: 31px;
+      margin-bottom: 28px;
     }
   }
   @media ${p => p.theme.media.tablet} {
