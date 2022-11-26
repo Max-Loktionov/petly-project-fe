@@ -14,13 +14,27 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
-  const favorite = useSelector(({ user }) => user);
+  const favorite = useSelector(({ user }) => user.favorite);
   const userNotices = useSelector(({ user }) => user.userNotices);
   console.log("noticesCategoryList state:", favorite);
-
+  console.log("noticesCategoryList category:", category);
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
 
   const { notices } = data;
+
+  const selectedCategory = category => {
+    switch (category) {
+      case "sell" || "in_good_hands" || "lost_found":
+        // const { data = [] } = useGetNoticesQuery({ filter, category, perPage, page });
+        const { notices } = data;
+        return notices;
+      case "favorite":
+        return notices;
+      case "my_adds":
+        return notices;
+    }
+  };
+
   // const renderByCategory = data?.notices;
   // const renderByOwn = own?.data.result.userNotice;
   // const renderByFavorite = favorite?.data.result;
