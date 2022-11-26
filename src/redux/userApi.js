@@ -66,16 +66,16 @@ export const userApi = createApi({
     }),
 
     getUserNotices: builder.query({
-      query: notice => ({
-        url: `/${notice}`,
+      query: () => ({
+        url: `/notice`,
         method: "GET",
       }),
       providesTags: ["User"],
     }),
 
     getUserFavorite: builder.query({
-      query: favorite => ({
-        url: `/${favorite}`,
+      query: () => ({
+        url: `/favorite`,
         method: "GET",
       }),
       providesTags: ["User"],
@@ -92,4 +92,5 @@ export const {
   useDeletePetMutation,
   useUpdateUserAvatarMutation,
   useGetUserNoticesQuery,
-  useGetUserFavoriteQuery } = userApi;
+  useGetUserFavoriteQuery,
+} = userApi;

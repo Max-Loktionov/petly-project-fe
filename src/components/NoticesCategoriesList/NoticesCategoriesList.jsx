@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { List } from "./NoticesCategoriesList.styled";
 import { useGetNoticesQuery } from "redux/noticesApi";
+import { useGetUserFavoriteQuery, useGetUserNoticesQuery } from "redux/userApi"; //useGetUserFavoriteQuery useGetUserNoticesQuery
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
@@ -16,24 +17,28 @@ const NoticesCategoriesList = () => {
   const filter = useSelector(({ notice }) => notice.filter);
   const favorite = useSelector(({ user }) => user.favorite);
   const userNotices = useSelector(({ user }) => user.userNotices);
-  console.log("noticesCategoryList state:", favorite);
-  console.log("noticesCategoryList category:", category);
+  // console.log("noticesCategoryList state:", favorite);
+  // console.log("noticesCategoryList category:", category);
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
+  console.log("noticesCategoryList data:", data);
+  const { data: datatop = [] } = useGetUserFavoriteQuery();
+  console.log("noticesCategoryList datatop:", datatop);
+  const { notices } = datatop;
+  const { data: userNotice = [] } = useGetUserFavoriteQuery();
+  console.log("noticesCategoryList userNotice:", userNotice);
 
-  const { notices } = data;
-
-  const selectedCategory = category => {
-    switch (category) {
-      case "sell" || "in_good_hands" || "lost_found":
-        // const { data = [] } = useGetNoticesQuery({ filter, category, perPage, page });
-        const { notices } = data;
-        return notices;
-      case "favorite":
-        return notices;
-      case "my_adds":
-        return notices;
-    }
-  };
+  // const selectedCategory = category => {
+  //   switch (category) {
+  //     case "sell" || "in_good_hands" || "lost_found":
+  //       // const { data = [] } = useGetNoticesQuery({ filter, category, perPage, page });
+  //       const { notices } = data;
+  //       return notices;
+  //     case "favorite":
+  //       return notices;
+  //     case "my_adds":
+  //       return notices;
+  //   }
+  // };
 
   // const renderByCategory = data?.notices;
   // const renderByOwn = own?.data.result.userNotice;
