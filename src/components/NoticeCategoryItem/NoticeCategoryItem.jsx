@@ -52,10 +52,11 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
 
   const addToFavorite = (favoriteNoticeId, id) => {
     if (!favoriteNoticeId) {
+      console.log("no");
       return;
     }
     const filterednotice = favoriteNoticeId.find(notice => notice === id);
-    console.log(filterednotice);
+    console.log("filter", filterednotice);
     if (filterednotice) {
       setFavorite(true);
     }
@@ -75,7 +76,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   useEffect(() => {
     addToFavorite(favoriteNoticeId, id);
     addToUserNotice(notieceId, id);
-  }, []);
+  }, [favoriteNoticeId, id, notieceId]);
 
   const handleClickFavorite = () => {
     if (isFavorite) {
@@ -89,9 +90,9 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
       <ImageThumb>
         <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        {/* <BtnFavorite type="button" onClick={handleClickFavorite}> */}
-        <img src={isFavorite ? like : unlike} alt="unlike" />
-        {/* </BtnFavorite> */}
+        <BtnFavorite type="button" onClick={handleClickFavorite}>
+          <img src={isFavorite ? like : unlike} alt="unlike" />
+        </BtnFavorite>
       </ImageThumb>
       <div>
         <Title>{title}</Title>
