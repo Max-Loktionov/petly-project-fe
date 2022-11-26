@@ -1,27 +1,32 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { noticeActions } from "redux/notices/noticeSlice";
 import searchIcon from "../../img/VectorG.svg";
 import { SearchForm, SearchFormInput, SearchBtn } from "./NoticesSearch.styled";
 
-const NoticesSearch = ({ onSubmit }) => {
+const NoticesSearch = () => {
+  const page = useSelector(({ notice }) => notice.page);
+  const PerPage = useSelector(({ notice }) => notice.per_page);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query");
+  const query = searchParams.get("filter");
+
   const [searchPet, setSearchPet] = useState(query ?? "");
+  const dispatch = useDispatch();
 
   const handleSearchChange = e => {
-    setSearchPet(e.currentTarget.value.toLowerCase());
+    setSearchPet(e.currentTarget.value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (searchPet.trim() === "") {
-      toast.error("Enter to find a pet");
-      return;
-    }
-    setSearchParams({ query: searchPet });
+    searchPet ? setSearchParams({ filter: searchPet }) : setSearchParams({});
+
+    dispatch(noticeActions.changeFilter(searchPet));
+    dispatch(noticeActions.changePage(1));
   };
 
   return (

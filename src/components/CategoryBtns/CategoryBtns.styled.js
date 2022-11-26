@@ -11,12 +11,11 @@ export const Container = styled.div`
 
 export const CategoryContainer = styled.div`
   display: flex;
-  /* position: relative; */
   flex-wrap: wrap;
   margin: 0px -12px -12px 0px;
 `;
 
-export const CategoryBtn = styled(Button)`
+export const CategoryBtn = styled.button`
   font-size: ${p => p.theme.fontSizes.s};
   padding: 8px 28px;
 
@@ -37,9 +36,8 @@ export const CategoryBtn = styled(Button)`
 export const AddBtn = styled.button`
   position: fixed;
 
-  bottom: 50px;
-  /* top: 430px; */
-  right: 40px;
+  bottom: 20px;
+  right: 20px;
 
   width: 80px;
   height: 80px;
