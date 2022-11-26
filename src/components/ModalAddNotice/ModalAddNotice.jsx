@@ -2,6 +2,8 @@ import { ErrorText } from "components/ModalAddsPet/ModalAddsPet.styled";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { noticeActions } from "redux/notices/noticeSlice";
 import { useAddNoticeMutation } from "redux/noticesApi";
 
 import {
@@ -52,6 +54,7 @@ function ModalAddNotice({ onClose }) {
   const [price, setPrice] = useState("");
   const [noticeCategory, setNoticeCategory] = useState("sell");
   const [addNotice] = useAddNoticeMutation();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -67,13 +70,15 @@ function ModalAddNotice({ onClose }) {
 
   const handleSubmitClick = async formdata => {
     try {
-      // onClose(evt);
       formdata.male = sex;
       await addNotice({ formdata, noticeCategory });
+      dispatch(noticeActions.changeModalAddNotice());
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const handleClose = () => dispatch(noticeActions.changeModalAddNotice());
 
   const handleNextClick = () => {
     setNextPage(true);
@@ -318,7 +323,7 @@ function ModalAddNotice({ onClose }) {
               <MoveBtn type="button" active={true} name="move-btn" color="accent" onClick={handleNextClick} disabled={!isValid}>
                 Next
               </MoveBtn>
-              <MoveBtn onClick={onClose} type="button" name="move-btn">
+              <MoveBtn onClick={handleClose} type="button" name="move-btn">
                 Cancel
               </MoveBtn>
             </>

@@ -23,7 +23,7 @@ import {
   ImageContainer,
 } from "./ModalAddsPet.styled";
 
-const ModalAddsPet = ({ onClose }) => {
+const ModalAddsPet = () => {
   const [nextPage, setNextPage] = useState(false);
   const [isAvatar, setIsAvatar] = useState(false);
   const [addPet] = useAddPetMutation();
@@ -181,7 +181,7 @@ const ModalAddsPet = ({ onClose }) => {
               <BtnNext onClick={handleNextClick} active disabled={!isValid} type="button">
                 Next
               </BtnNext>
-              <BtnCancel onClick={onClose} type="button">
+              <BtnCancel onClick={() => dispatch(userActions.changeModalAddPets())} type="button">
                 Cancel
               </BtnCancel>
             </>
