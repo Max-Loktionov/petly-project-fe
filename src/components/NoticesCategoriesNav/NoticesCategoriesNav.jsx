@@ -38,7 +38,7 @@ function NoticesCategoriesNav() {
       {/* <BoxBtn>
         <TitleBtn>Add pet</TitleBtn>
         <AddPetBtn onClick={handleModalOpen} />
-      </BoxBtn> */}
+      </BoxBtn>  */}
       <AddBtn onClick={handleModalOpen}>
         <Cross />
 
