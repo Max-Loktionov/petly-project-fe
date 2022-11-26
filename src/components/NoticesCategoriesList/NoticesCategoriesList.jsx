@@ -7,6 +7,7 @@ import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
 import { noticeActions } from "redux/notices/noticeSlice";
+import { useGetUserQuery } from "redux/userApi";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -19,6 +20,12 @@ const NoticesCategoriesList = () => {
   // const userNotices = useSelector(({ user }) => user.userNotices);
   // console.log("noticesCategoryList state:", favorite);
   // console.log("noticesCategoryList category:", category);
+
+  const { data: user = [] } = useGetUserQuery();
+
+  const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
+  const notieceId = user?.data?.result?.notieceId;
+
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
   console.log("noticesCategoryList data:", data);
   const { data: datatop = [] } = useGetUserFavoriteQuery();
@@ -90,6 +97,8 @@ const NoticesCategoriesList = () => {
               location={location}
               birthday={birthday}
               price={price}
+              favoriteNoticeId={favoriteNoticeId}
+              notieceId={notieceId}
             />
           ))}
       </List>

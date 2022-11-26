@@ -51,6 +51,9 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   };
 
   const addToFavorite = (favoriteNoticeId, id) => {
+    if (!favoriteNoticeId) {
+      return;
+    }
     const filterednotice = favoriteNoticeId.find(notice => notice === id);
     console.log(filterednotice);
     if (filterednotice) {
@@ -59,6 +62,9 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   };
 
   const addToUserNotice = (notieceId, id) => {
+    if (!notieceId) {
+      return;
+    }
     const filteredNotice = notieceId.find(notice => notice === id);
 
     if (filteredNotice) {
