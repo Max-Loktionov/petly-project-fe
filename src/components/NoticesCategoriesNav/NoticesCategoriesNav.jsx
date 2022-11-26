@@ -38,12 +38,12 @@ function NoticesCategoriesNav() {
       {/* <BoxBtn>
         <TitleBtn>Add pet</TitleBtn>
         <AddPetBtn onClick={handleModalOpen} />
-      </BoxBtn> */}
-      {/* <AddBtn onClick={handleModalOpen}>
+      </BoxBtn>  */}
+      <AddBtn onClick={handleModalOpen}>
         <Cross />
 
         <p>Add pet</p>
-      </AddBtn> */}
+      </AddBtn>
     </Container>
   );
 }

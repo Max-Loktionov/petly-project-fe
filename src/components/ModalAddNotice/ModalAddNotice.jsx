@@ -260,7 +260,7 @@ function ModalAddNotice({ onClose }) {
                 <input
                   type="number"
                   name="price"
-                  placeholder="123.99"
+                  placeholder="120"
                   {...register("price", {
                     required: "Price is required.",
 

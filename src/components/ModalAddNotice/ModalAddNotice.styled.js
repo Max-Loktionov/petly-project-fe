@@ -25,7 +25,6 @@ export const Header = styled.h2`
 
 export const Text = styled.p`
   font-size: ${p => p.theme.fontSizes.m};
-  margin-top: 20px;
 
   @media ${p => p.theme.media.tablet} {
     font-size: ${p => p.theme.fontSizes.nl};
@@ -34,7 +33,7 @@ export const Text = styled.p`
 `;
 
 export const CategoryContainer = styled.div`
-  margin: 20px 0px;
+  margin-top: 30px;
 `;
 
 export const MyBtn = styled.button`
@@ -90,6 +89,15 @@ export const InputsNames = styled.label`
   line-height: ${p => p.theme.lineHeights.body};
   font-weight: ${p => p.theme.fontWeights.heading};
 
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+  @media ${p => p.theme.media.tablet} {
+    &:not(:first-child) {
+      margin-top: 28px;
+    }
+  }
+
   &.icon_name {
     margin: 0px;
   }
@@ -124,7 +132,7 @@ export const RadioContainer = styled.div`
   margin-bottom: 16px;
 
   @media ${p => p.theme.media.tablet} {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -146,8 +154,10 @@ export const MyMaleSVG = styled(Male)`
   margin-bottom: 14px;
 
   @media ${p => p.theme.media.tablet} {
-    height: 56px;
-    width: 56px;
+    height: 54px;
+    width: 54px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 `;
 
@@ -157,14 +167,16 @@ export const MyFemaleSVG = styled(Female)`
   margin-bottom: 14px;
 
   @media ${p => p.theme.media.tablet} {
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 `;
 
 export const ImageContainer = styled.div`
   @media ${p => p.theme.media.tablet} {
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
 
   & input {
@@ -196,6 +208,11 @@ export const ImageBox = styled.div`
 
   background-repeat: no-repeat;
   background-size: cover;
+  @media ${p => p.theme.media.tablet} {
+    width: 140px;
+    height: 140px;
+    margin-top: 12px;
+  }
 `;
 
 export const MyImageCross = styled(ImageCross)``;
@@ -207,25 +224,20 @@ export const MyForm = styled.form`
   margin-top: 20px;
   /* margin-bottom: 40px; */
 
-  @media ${p => p.theme.media.tablet} {
-    margin-top: 40px;
-  }
-
   & label {
     display: flex;
     /* flex-direction: column; */
 
-    &:not(:first-child) {
-      margin-top: 16px;
-
-      @media ${p => p.theme.media.tablet} {
-        margin-top: 26px;
-      }
+    @media ${p => p.theme.media.tablet} {
+      font-weight: 500;
+      font-size: 24px;
+      /* margin-top: 20px; */
+      /* margin-bottom: 28px; */
     }
+  }
 
-    &.icon_label {
-      margin: 0px;
-    }
+  &.icon_label {
+    margin: 0px;
   }
 
   & input {
@@ -302,10 +314,9 @@ export const TextArea = styled.textarea`
   border-radius: 20px;
 
   @media ${p => p.theme.media.tablet} {
-    width: 394px;
-    height: 116px;
+    width: 448px;
+    height: 113px;
     display: flex;
-    margin-left: 27px;
   }
 `;
 
@@ -325,7 +336,7 @@ export const SvgBox = styled.div`
 export const GenderMale = styled.span`
   width: 40px;
   height: 40px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
   @media screen and (min-width: 768px) {
     width: 60px;
     height: 60px;
@@ -345,7 +356,7 @@ export const GenderMale = styled.span`
 export const GenderFemale = styled.span`
   width: 40px;
   height: 40px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
   @media screen and (min-width: 768px) {
     width: 60px;
     height: 60px;
@@ -366,6 +377,7 @@ export const ImageLabel = styled(InputsNames)`
   display: flex;
   flex-direction: column;
   margin-bottom: 0px;
+  margin-top: 0px;
 `;
 //  width: 36;
 //   height: 36px;
