@@ -56,7 +56,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
       console.log("no");
       return;
     }
-    dispatch(userActions.toggleFavorited(id));
+    // dispatch(userActions.toggleFavorited(id));
     const filterednotice = favoriteNoticeId.find(notice => notice === id);
     console.log("filter", filterednotice);
     if (filterednotice) {

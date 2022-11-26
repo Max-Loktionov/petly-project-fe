@@ -18,14 +18,14 @@ export const userSlice = createSlice({
         ...state,
       };
     },
-    toggleFavorited(state, action) {
-      for (const notice of state) {
-        if (notice.id === action.payload) {
-          notice.favorite = !notice.favorite;
-          break;
-        }
-      }
-    },
+    // toggleFavorited(state, action) {
+    //   for (const notice of state) {
+    //     if (notice.id === action.payload) {
+    //       notice.favorite = !notice.favorite;
+    //       break;
+    //     }
+    //   }
+    // },
 
     getUserNotice(state, action) {
       return {

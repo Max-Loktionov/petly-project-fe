@@ -13,6 +13,8 @@ function NoticesCategoriesNav() {
   const handleClick = e => dispatch(noticeActions.changeCategory(e.target.name));
   const handleModalOpen = () => dispatch(noticeActions.changeModalAddNotice());
 
+  const screenSize = window.innerWidth;
+
   return (
     <Container>
       <CategoryContainer>
@@ -36,16 +38,24 @@ function NoticesCategoriesNav() {
           </>
         )}
       </CategoryContainer>
-      <BoxBtn>
-        <TitleBtn>Add notice</TitleBtn>
-        <AddPetBtn onClick={handleModalOpen} />
-      </BoxBtn>
-      {/* <AddBtn onClick={handleModalOpen}>
+      {screenSize >= 768 && (
+        <>
+          <BoxBtn>
+            <TitleBtn>Add pet</TitleBtn>
+            <AddPetBtn onClick={handleModalOpen} />
+          </BoxBtn>
+        </>
+      )}
 
-        <Cross />
+      {screenSize < 768 && (
+        <>
+          <AddBtn onClick={handleModalOpen}>
+            <Cross />
 
-        <p>Add pet</p>
-      </AddBtn> */}
+            <p>Add pet</p>
+          </AddBtn>
+        </>
+      )}
     </Container>
   );
 }
