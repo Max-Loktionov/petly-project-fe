@@ -17,11 +17,15 @@ import like from "img/like.svg";
 import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
 import { userActions } from "redux/user/userSlice";
+import { useAddFavoriteNoticeMutation, useDeleteFavoriteNoticeMutation } from "redux/userApi";
 
 const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [isUserNotice, setIsUserNotice] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
+  const [addFavoriteNotice, { isLoading: isAdding }] = useAddFavoriteNoticeMutation();
+  const [deleteFavoriteNotice, { isLoading: isDelling }] = useDeleteFavoriteNoticeMutation();
+
   const dispatch = useDispatch();
 
   const BASE_URL = "https://petly-be.herokuapp.com/";
@@ -81,10 +85,11 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   }, [favoriteNoticeId, id, notieceId]);
 
   const handleClickFavorite = () => {
-    addToFavorite(favoriteNoticeId, id);
     if (isFavorite) {
+      deleteFavoriteNotice(id);
       return setFavorite(false);
     }
+    addFavoriteNotice(id);
     return setFavorite(true);
   };
 
