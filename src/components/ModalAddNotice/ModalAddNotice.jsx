@@ -46,7 +46,7 @@ const CATEGORY = [
 
 function ModalAddNotice() {
   const [nextPage, setNextPage] = useState(false);
-  const [isAvatar, setIsAvatar] = useState(false);
+  const [_, setIsAvatar] = useState(false);
   const [sex, setSex] = useState("male");
   const [price, setPrice] = useState("");
   const [noticeCategory, setNoticeCategory] = useState("sell");
