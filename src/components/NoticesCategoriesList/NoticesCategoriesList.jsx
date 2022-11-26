@@ -8,6 +8,7 @@ import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
 import { noticeActions } from "redux/notices/noticeSlice";
 import { useGetUserQuery } from "redux/userApi";
+import { useEffect, useState } from "react";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -33,30 +34,25 @@ const NoticesCategoriesList = () => {
 
   const { data: userNotice = [] } = useGetUserNoticesQuery();
   console.log("noticesCategoryList userNotice:", userNotice);
+  const [notices, setNotices] = useState([]);
+  // const selectedCategory = category => {
 
-  const selectedCategory = category => {
+  // };
+
+  useEffect(() => {
     switch (category) {
       case "sell":
-        return data.notices;
+        return setNotices(data.notices);
       case "in_good_hands":
-        return data.notices;
+        return setNotices(data.notices);
       case "lost_found":
-        return data.notices;
+        return setNotices(data.notices);
       case "favorite":
-        return datatop.data.result;
+        return setNotices(datatop.data.result);
       case "my_adds":
-        return userNotice.data.result.userNotice;
+        return setNotices(userNotice.data.result.userNotice);
     }
-  };
-
-  // const notices = selectedCategory(category);
-  // const renderByCategory = data?.notices;
-  // const renderByOwn = own?.data.result.userNotice;
-  // const renderByFavorite = favorite?.data.result;
-
-  // console.log(renderByCategory);
-  // console.log(renderByOwn);
-  // console.log(renderByFavorite);
+  });
 
   const setCategory = category => {
     switch (category) {
@@ -71,21 +67,11 @@ const NoticesCategoriesList = () => {
     }
   };
 
-  // let render = renderByCategory;
-
-  // if (category === "own") {
-  //   render = renderByOwn;
-  // }
-
-  // if (category === "favorite") {
-  //   render = renderByFavorite;
-  // }
-
   return (
     <>
       <List>
         {!isLoading &&
-          selectedCategory(category)?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
+          notices?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
             <NoticeCategoryItem
               key={_id}
               id={_id}

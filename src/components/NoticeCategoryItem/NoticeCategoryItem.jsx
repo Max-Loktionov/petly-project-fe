@@ -67,22 +67,22 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     }
     const filteredNotice = notieceId.find(notice => notice === id);
 
-  //   if (filteredNotice) {
-  //     setIsUserNotice(true);
-  //   }
-  // };
+    if (filteredNotice) {
+      setIsUserNotice(true);
+    }
+  };
 
-  // useEffect(() => {
-  //   addToFavorite(favoriteNoticeId, id);
-  //   addToUserNotice(notieceId, id);
-  // }, []);
+  useEffect(() => {
+    addToFavorite(favoriteNoticeId, id);
+    addToUserNotice(notieceId, id);
+  }, []);
 
-  // const handleClickFavorite = () => {
-  //   if (isFavorite) {
-  //     return setFavorite(false);
-  //   }
-  //   return setFavorite(true);
-  // };
+  const handleClickFavorite = () => {
+    if (isFavorite) {
+      return setFavorite(false);
+    }
+    return setFavorite(true);
+  };
 
   return (
     <Item>
