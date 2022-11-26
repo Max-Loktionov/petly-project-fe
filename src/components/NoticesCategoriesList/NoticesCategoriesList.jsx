@@ -6,6 +6,7 @@ import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
 import { noticeActions } from "redux/notices/noticeSlice";
+import { useGetUserQuery } from "redux/userApi";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -14,43 +15,37 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
+<<<<<<< HEAD
   const favorite = useSelector(({ auth }) => auth);
   const userNotices = useSelector(({ user }) => user.userNotices);
   console.log("noticesCategoryList state:", favorite);
 
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
+=======
+>>>>>>> 82f1e597055c338d460a23b277ea66e492cb1c73
 
+  const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
+  const { data: user = [] } = useGetUserQuery();
   const { notices } = data;
-  // const renderByCategory = data?.notices;
-  // const renderByOwn = own?.data.result.userNotice;
-  // const renderByFavorite = favorite?.data.result;
+  const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
+  const notieceId = user?.data?.result?.notieceId;
 
-  // console.log(renderByCategory);
-  // console.log(renderByOwn);
-  // console.log(renderByFavorite);
+  if (!favoriteNoticeId || !notieceId) {
+    return;
+  }
 
-  // const setCategory = category => {
-  //   switch (category) {
-  //     case "sell":
-  //       return "Sell";
-  //     case "in_good_hands":
-  //       return "In good hands";
-  //     case "lost_found":
-  //       return "Lost/found";
-  //     default:
-  //       return "No category";
-  //   }
-  // };
-
-  // let render = renderByCategory;
-
-  // if (category === "own") {
-  //   render = renderByOwn;
-  // }
-
-  // if (category === "favorite") {
-  //   render = renderByFavorite;
-  // }
+  const setCategory = category => {
+    switch (category) {
+      case "sell":
+        return "Sell";
+      case "in_good_hands":
+        return "In good hands";
+      case "lost_found":
+        return "Lost/found";
+      default:
+        return "No category";
+    }
+  };
 
   return (
     <>
@@ -64,10 +59,12 @@ const NoticesCategoriesList = () => {
               title={title}
               name={name}
               breed={breed}
-              category={category}
+              category={setCategory(category)}
               location={location}
               birthday={birthday}
               price={price}
+              favoriteNoticeId={favoriteNoticeId}
+              notieceId={notieceId}
             />
           ))}
       </List>
