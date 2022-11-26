@@ -6,6 +6,7 @@ import { authApi } from "./auth";
 import { noticesApi } from "./noticesApi";
 import { persistedReducer } from "./auth";
 import { noticeReducer } from "./notices/noticeSlice";
+import { userReducer } from "./user/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     [noticesApi.reducerPath]: noticesApi.reducer,
     auth: persistedReducer,
     notice: noticeReducer,
+    user: userReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

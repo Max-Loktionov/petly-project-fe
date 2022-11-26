@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const UserPage = () => {
   // const dispatch = useDispatch();
 
-  const modalAddPetsState = useSelector(({ notice }) => notice.modalAddPets.active);
+  const modalAddPetsState = useSelector(({ user }) => user.modalAddPets.active);
   // const handleModalOpen = () => dispatch(noticeActions.changeModalAddPets());
 
   // const closeAddPetModal = e => {

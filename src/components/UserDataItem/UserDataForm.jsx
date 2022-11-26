@@ -1,7 +1,9 @@
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
 import devaultIcon from "../../img/default-icon-user.png";
-
+import { userActions } from "redux/user/userSlice";
 import {
   UserBlock,
   BoxImg,
@@ -16,17 +18,22 @@ import {
   ImageContainer,
 } from "./UserDataItem.styled";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 const UserDataForm = () => {
   const { data: user = [], isLoading, isError } = useGetUserQuery();
   const [changeUserAvatar] = useUpdateUserAvatarMutation();
   const [isChangeUserAvatar, setIsChangeUserAvatar] = useState(false);
   const [newUserAvatar, setNewUserAvatar] = useState();
+  const dispatch = useDispatch();
 
   const { register } = useForm({
     mode: "onBlur",
   });
+  const result = user?.data?.result;
+  console.log("userDataForm data:", result?.notieceId);
+  (() => dispatch(userActions.getFavorite(result.favoriteNoticeId)))();
+  (() => dispatch(userActions.getUserNotice(result.notieceId)))();
+
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
