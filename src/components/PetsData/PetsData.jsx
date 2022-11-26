@@ -5,18 +5,16 @@ import PetsList from "components/PetsList";
 
 const PetsData = ({ onOpenModal }) => {
   return (
-    <>
-      <BoxPet>
-        <BoxTitlePet>
-          <TitlePet>My pets:</TitlePet>
-          <BoxBtn>
-            <TitleBtn>Add pet</TitleBtn>
-            <AddPetBtn onOpenModal={onOpenModal} />
-          </BoxBtn>
-        </BoxTitlePet>
-        <PetsList />
-      </BoxPet>
-    </>
+    <BoxPet>
+      <BoxTitlePet>
+        <TitlePet>My pets:</TitlePet>
+        <BoxBtn>
+          <TitleBtn>Add pet</TitleBtn>
+          <AddPetBtn onOpenModal={onOpenModal} />
+        </BoxBtn>
+      </BoxTitlePet>
+      <PetsList />
+    </BoxPet>
   );
 };
 
