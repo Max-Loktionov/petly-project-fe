@@ -28,18 +28,28 @@ const NoticesCategoriesList = () => {
   const notieceId = user?.data?.result?.notieceId;
 
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
-  console.log("noticesCategoryList data:", data);
+
   const { data: datatop = [] } = useGetUserFavoriteQuery();
-  console.log("noticesCategoryList datatop:", datatop);
 
   const { data: userNotice = [] } = useGetUserNoticesQuery();
-  console.log("noticesCategoryList userNotice:", userNotice);
+
   const [notices, setNotices] = useState([]);
   // const selectedCategory = category => {
 
   // };
 
   useEffect(() => {
+    if (!data) {
+      return;
+    }
+    if (!datatop.data.result) {
+      return;
+    }
+    if (!userNotice.data.result.userNotice) {
+      return;
+    }
+
+    console.log(data);
     switch (category) {
       case "sell":
         return setNotices(data.notices);
@@ -52,7 +62,7 @@ const NoticesCategoriesList = () => {
       case "my_adds":
         return setNotices(userNotice.data.result.userNotice);
     }
-  });
+  }, [data.notices, datatop.data.result, userNotice.data.result.userNotice]);
 
   const setCategory = category => {
     switch (category) {
