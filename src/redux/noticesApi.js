@@ -67,31 +67,6 @@ export const noticesApi = createApi({
       },
       invalidatesTags: ["Notices"],
     }),
-
-    // listNoticesByCategory: builder.query({
-    //   query: ({ category, page = 1, limit = 15 }) => ({
-    //     url: /notices/categories/${category}?page=${page}&limit=${limit},
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["Notices"],
-    // }),
-
-    // listUserNotices: builder.query({
-    //   query: ({ page = 1, limit = 15, favorite }) => ({
-    //     url: /user?page=${page}&limit=${limit}${favorite ? "&favorite=true" : ""},
-    //     method: "GET",
-    //   }),
-    //   invalidatesTags: ["Notices"],
-    // }),
-
-    // updateFavorites: builder.mutation({
-    //   query: (noticeId, favorite) => ({
-    //     url: /favorites/${noticeId},
-    //     method: "POST",
-    //     body: favorite,
-    //   }),
-    //   invalidatesTags: ["Notices"],
-    // }),
   }),
 });
 

@@ -50,42 +50,42 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     return age ? age + " year" : m + " month";
   };
 
-  const addToFavorite = (favoriteNoticeId, id) => {
-    const filterednotice = favoriteNoticeId.find(notice => notice === id);
-    console.log(filterednotice);
-    if (filterednotice) {
-      setFavorite(true);
-    }
-  };
+  // const addToFavorite = (favoriteNoticeId, id) => {
+  //   const filterednotice = favoriteNoticeId.find(notice => notice === id);
+  //   console.log(filterednotice);
+  //   if (filterednotice) {
+  //     setFavorite(true);
+  //   }
+  // };
 
-  const addToUserNotice = (notieceId, id) => {
-    const filteredNotice = notieceId.find(notice => notice === id);
+  // const addToUserNotice = (notieceId, id) => {
+  //   const filteredNotice = notieceId.find(notice => notice === id);
 
-    if (filteredNotice) {
-      setIsUserNotice(true);
-    }
-  };
+  //   if (filteredNotice) {
+  //     setIsUserNotice(true);
+  //   }
+  // };
 
-  useEffect(() => {
-    addToFavorite(favoriteNoticeId, id);
-    addToUserNotice(notieceId, id);
-  }, []);
+  // useEffect(() => {
+  //   addToFavorite(favoriteNoticeId, id);
+  //   addToUserNotice(notieceId, id);
+  // }, []);
 
-  const handleClickFavorite = () => {
-    if (isFavorite) {
-      return setFavorite(false);
-    }
-    return setFavorite(true);
-  };
+  // const handleClickFavorite = () => {
+  //   if (isFavorite) {
+  //     return setFavorite(false);
+  //   }
+  //   return setFavorite(true);
+  // };
 
   return (
     <Item>
       <ImageThumb>
         <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        <BtnFavorite type="button" onClick={handleClickFavorite}>
-          <img src={isFavorite ? like : unlike} alt="unlike" />
-        </BtnFavorite>
+        {/* <BtnFavorite type="button" onClick={handleClickFavorite}> */}
+        <img src={isFavorite ? like : unlike} alt="unlike" />
+        {/* </BtnFavorite> */}
       </ImageThumb>
       <div>
         <Title>{title}</Title>
