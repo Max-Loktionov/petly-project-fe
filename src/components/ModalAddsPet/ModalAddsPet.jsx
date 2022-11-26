@@ -41,7 +41,6 @@ const ModalAddsPet = ({ onClose }) => {
     try {
       addPet(formdata);
       dispatch(userActions.changeModalAddPets());
-      onClose(evt);
     } catch (error) {
       console.log(error.message);
     }
