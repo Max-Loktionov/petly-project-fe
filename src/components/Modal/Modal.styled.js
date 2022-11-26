@@ -21,7 +21,9 @@ export const MyBackdrop = styled.div`
 
 export const ModalWindow = styled.div`
   position: relative;
-  margin-top: 130px;
+  margin-top: ${props => (props.bigHeight ? "320px" : "40px")};
+  margin-bottom: ${props => (props.bigHeight ? "20px" : "0px")};
+
   width: 280px;
 
   /* max-height: calc(100vh - 40px); */

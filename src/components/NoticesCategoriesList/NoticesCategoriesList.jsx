@@ -104,7 +104,7 @@ const NoticesCategoriesList = () => {
       </List>
 
       {modalAddNoticeState && (
-        <Modal modalName={"modalAddNotice"}>
+        <Modal modalName={"modalAddNotice"} bigHeight>
           <ModalAddNotice />
         </Modal>
       )}

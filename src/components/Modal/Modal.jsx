@@ -8,7 +8,7 @@ import { userActions } from "redux/user/userSlice";
 
 const modalRoot = document.querySelector("#modal-root");
 
-function Modal({ tabletNoStandartWidth, modalName, children }) {
+function Modal({ tabletNoStandartWidth, modalName, children, ...props }) {
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -45,7 +45,7 @@ function Modal({ tabletNoStandartWidth, modalName, children }) {
 
   return createPortal(
     <MyBackdrop onClick={onBackdrop}>
-      <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth}>
+      <ModalWindow tabletNoStandartWidth={tabletNoStandartWidth} {...props}>
         <Exit onClick={handleClose}>
           <ExitIcon />
         </Exit>
