@@ -1,6 +1,6 @@
 import Button from "components/Button";
 import styled from "styled-components";
-import { ReactComponent as Male } from "../../img/male.svg";
+import { ReactComponent as Male } from "../../img/male-mob.svg";
 import { ReactComponent as Female } from "../../img/female.svg";
 import { ReactComponent as ImageCross } from "../../img/image_cross.svg";
 
@@ -34,17 +34,15 @@ export const Text = styled.p`
 `;
 
 export const CategoryContainer = styled.div`
-  margin: 28px 0px;
+  margin: 20px 0px;
 `;
 
 export const MyBtn = styled.button`
   padding: 8px 27px;
   margin: 0px;
 
-  color: ${p =>
-    p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white};
-  background-color: ${p =>
-    p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent};
+  color: ${p => (p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white)};
+  background-color: ${p => (p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent)};
 
   border: 2px solid ${p => p.theme.colors.accent};
   border-radius: 40px;
@@ -83,7 +81,9 @@ export const MyBtn = styled.button`
   }
 `;
 
-export const InputsNames = styled.p`
+export const InputsNames = styled.label`
+  display: flex;
+  flex-direction: row;
   margin-bottom: 8px;
 
   font-size: ${p => p.theme.fontSizes.n};
@@ -121,6 +121,7 @@ export const RadioContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   gap: 39px;
+  margin-bottom: 16px;
 
   @media ${p => p.theme.media.tablet} {
     margin-bottom: 14px;
@@ -140,7 +141,8 @@ export const RadioInputs = styled.input`
 `;
 
 export const MyMaleSVG = styled(Male)`
-  height: 36px;
+  /* width: 36;
+  height: 36px; */
   margin-bottom: 14px;
 
   @media ${p => p.theme.media.tablet} {
@@ -150,7 +152,8 @@ export const MyMaleSVG = styled(Male)`
 `;
 
 export const MyFemaleSVG = styled(Female)`
-  width: 40px;
+  /* width: 26px;
+  height: 40px; */
   margin-bottom: 14px;
 
   @media ${p => p.theme.media.tablet} {
@@ -161,7 +164,7 @@ export const MyFemaleSVG = styled(Female)`
 
 export const ImageContainer = styled.div`
   @media ${p => p.theme.media.tablet} {
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   & input {
@@ -184,9 +187,9 @@ export const ImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 140px;
-  height: 140px;
+  margin-top: 8px;
+  width: 116px;
+  height: 116px;
 
   background-color: ${p => p.theme.colors.background};
   border-radius: 20px;
@@ -201,8 +204,8 @@ export const MyForm = styled.form`
   display: flex;
   flex-direction: column;
 
-  margin-top: 32px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  /* margin-bottom: 40px; */
 
   @media ${p => p.theme.media.tablet} {
     margin-top: 40px;
@@ -210,7 +213,7 @@ export const MyForm = styled.form`
 
   & label {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 
     &:not(:first-child) {
       margin-top: 16px;
@@ -252,6 +255,7 @@ export const MyForm = styled.form`
 `;
 
 export const BtnContainer = styled.div`
+  margin-top: 40px;
   @media ${p => p.theme.media.tablet} {
     display: flex;
     flex-direction: row-reverse;
@@ -286,3 +290,82 @@ export const MoveBtn = styled(Button)`
     }
   }
 `;
+
+export const TextArea = styled.textarea`
+  width: 240px;
+  height: 40px;
+  width: 100%;
+
+  padding: 12px 14px;
+  background: ${p => p.theme.colors.background};
+  border: 1px solid ${p => p.theme.colors.inputModal};
+  border-radius: 20px;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 394px;
+    height: 116px;
+    display: flex;
+    margin-left: 27px;
+  }
+`;
+
+export const MaleLabel = styled.label`
+  flex-direction: column;
+  font-family: ${p => p.theme.fonts.body};
+
+  font-weight: ${p => p.theme.fontWeights.heading};
+  font-size: 18px;
+  line-height: 1.44;
+`;
+export const MaleInputsNames = styled.p``;
+export const SvgBox = styled.div`
+  width: 40px;
+  height: 40px;
+`;
+export const GenderMale = styled.span`
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  &::after {
+    content: url("../../img/male-mob.svg");
+  }
+
+  @media screen and (min-width: 768px) {
+    &::after {
+      content: url("/img/male-desct.svg");
+    }
+  }
+`;
+
+export const GenderFemale = styled.span`
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  &::after {
+    content: url("/img/female-mob.svg");
+  }
+
+  @media screen and (min-width: 768px) {
+    &::after {
+      content: url("/image/svg/female-desct.svg");
+    }
+  }
+`;
+
+export const ImageLabel = styled(InputsNames)`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+`;
+//  width: 36;
+//   height: 36px;

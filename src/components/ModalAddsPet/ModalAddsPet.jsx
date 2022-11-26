@@ -36,8 +36,8 @@ const ModalAddsPet = ({ onClose }) => {
 
   const handleSubmitClick = async (formdata, evt) => {
     try {
-      onClose(evt);
       addPet(formdata);
+      onClose(evt);
     } catch (error) {
       console.log(error.message);
     }
@@ -146,6 +146,7 @@ const ModalAddsPet = ({ onClose }) => {
                   <ImageBox id="image_container">{!isAvatar && <MyImageCross />}</ImageBox>
                 </label>
               </ImageContainer>
+
               <Label textarea id="comments-label" htmlFor="comments">
                 Comments
               </Label>
