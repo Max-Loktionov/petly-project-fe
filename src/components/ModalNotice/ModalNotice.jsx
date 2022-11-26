@@ -9,15 +9,14 @@ function ModalNotice({ onClose }) {
 
   const { data, isLoading } = useGetNoticesByIdQuery(id);
 
-  // const avatarUrl = end => `https://petly-be.herokuapp.com/pubic/avatars/${end}`;
-  const avatarUrl = end => `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLX9f3BTRl8zwQuDCnJqd4DZEAo7KKFf07WPI7Y-Ih&s`;
-
+  const avatarUrl = end => `https://petly-be.herokuapp.com/${end}`;
   return (
     <div>
       {!isLoading && (
         <>
           <ImageContainer>
-            <PictureData imageUrl={avatarUrl(data.notice.avatar)}>
+            <PictureData imageUrl={avatarUrl(data?.notice?.avatar)}>
+              {/* <img src={avatarUrl(data?.notice?.avatar)} alt=""></img> */}
               <Cathegory>{data.notice.category}</Cathegory>
             </PictureData>
             <div>

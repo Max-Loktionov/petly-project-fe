@@ -40,6 +40,8 @@ const NoticesCategoriesList = () => {
         return datatop.data.result;
       case "my_adds":
         return userNotice.data.result.userNotice;
+      default:
+        return;
     }
   };
   const { data: user = [] } = useGetUserQuery();
@@ -85,11 +87,11 @@ const NoticesCategoriesList = () => {
     <>
       <List>
         {!isLoading &&
-          selectedCategory(category)?.map(({ _id, image, title, breed, location, birthday, price, name, category }) => (
+          selectedCategory(category)?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
             <NoticeCategoryItem
               key={_id}
               id={_id}
-              image={image}
+              image={avatar}
               title={title}
               name={name}
               breed={breed}

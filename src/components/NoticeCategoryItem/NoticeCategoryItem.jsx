@@ -23,7 +23,6 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const [isUserNotice, setIsUserNotice] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
   const dispatch = useDispatch();
-
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
