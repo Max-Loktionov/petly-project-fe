@@ -1,4 +1,4 @@
-import { ErrorText, Textarea } from "components/ModalAddsPet/ModalAddsPet.styled";
+import { ErrorText } from "components/ModalAddsPet/ModalAddsPet.styled";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,6 +21,13 @@ import {
   RadioContainer,
   RadioInputs,
   Text,
+  MaleLabel,
+  MaleInputsNames,
+  SvgBox,
+  GenderFemale,
+  GenderMale,
+  TextArea,
+  ImageLabel,
 } from "./ModalAddNotice.styled";
 
 const CATEGORY = [
@@ -217,25 +224,27 @@ function ModalAddNotice({ onClose }) {
               <div>
                 <RadioInputs type="radio" id="male" name="sex" onChange={handleValue} checked={sex === "male" ? true : false} />
 
-                <label htmlFor="male" className="icon_label">
+                <MaleLabel htmlFor="male" className="icon_label">
                   <MyMaleSVG />
-                  <InputsNames className="icon_name">Male</InputsNames>
-                </label>
+
+                  <MaleInputsNames className="icon_name">Male</MaleInputsNames>
+                </MaleLabel>
               </div>
 
               <div>
                 <RadioInputs type="radio" id="female" name="sex" onChange={handleValue} checked={sex === "female" ? true : false} />
-                <label htmlFor="female" className="icon_label">
+                <MaleLabel htmlFor="female" className="icon_label">
                   <MyFemaleSVG />
-                  <InputsNames className="icon_name">Female</InputsNames>
-                </label>
+
+                  <MaleInputsNames className="icon_name">Female</MaleInputsNames>
+                </MaleLabel>
               </div>
             </RadioContainer>
 
             <InputsNames>Location</InputsNames>
             <input
               type="text"
-              placeholder="Kyiv"
+              placeholder="Kyiv, Brovary"
               name="location"
               {...register("location", {
                 pattern: { value: cityRegex, message: "Error. Example: Brovary, Kyiv" },
@@ -266,19 +275,21 @@ function ModalAddNotice({ onClose }) {
             )}
 
             <ImageContainer>
-              <input {...register("avatar", {})} type="file" name="avatar" id="image" onChange={handleImage} />
-              <label htmlFor="image" id="image-label">
-                <InputsNames htmlFor="avatar"> Load the pet's image</InputsNames>
+              <input {...register("avatar", {})} type="file" name="avatar" id="avatar" onChange={handleImage} />
+              {/* <label htmlFor="image" id="image-label"> */}
+              <ImageLabel htmlFor="avatar">
+                Load the pet's image
                 <ImageBox id="image_container">
                   <MyImageCross />
                 </ImageBox>
-              </label>
+              </ImageLabel>
+              {/* </label> */}
             </ImageContainer>
 
             <InputsNames>
               Comments <span>*</span>
             </InputsNames>
-            <Textarea
+            <TextArea
               name="comments"
               placeholder="The best dog ever"
               {...register("comments", {

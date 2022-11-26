@@ -146,6 +146,7 @@ const ModalAddsPet = ({ onClose }) => {
                   <ImageBox id="image_container">{!isAvatar && <MyImageCross />}</ImageBox>
                 </label>
               </ImageContainer>
+
               <Label textarea id="comments-label" htmlFor="comments">
                 Comments
               </Label>
