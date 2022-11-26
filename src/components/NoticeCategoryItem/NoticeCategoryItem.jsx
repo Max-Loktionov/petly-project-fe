@@ -67,31 +67,31 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     }
     const filteredNotice = notieceId.find(notice => notice === id);
 
-    if (filteredNotice) {
-      setIsUserNotice(true);
-    }
-  };
+  //   if (filteredNotice) {
+  //     setIsUserNotice(true);
+  //   }
+  // };
 
-  useEffect(() => {
-    addToFavorite(favoriteNoticeId, id);
-    addToUserNotice(notieceId, id);
-  }, []);
+  // useEffect(() => {
+  //   addToFavorite(favoriteNoticeId, id);
+  //   addToUserNotice(notieceId, id);
+  // }, []);
 
-  const handleClickFavorite = () => {
-    if (isFavorite) {
-      return setFavorite(false);
-    }
-    return setFavorite(true);
-  };
+  // const handleClickFavorite = () => {
+  //   if (isFavorite) {
+  //     return setFavorite(false);
+  //   }
+  //   return setFavorite(true);
+  // };
 
   return (
     <Item>
       <ImageThumb>
         <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        <BtnFavorite type="button" onClick={handleClickFavorite}>
-          <img src={isFavorite ? like : unlike} alt="unlike" />
-        </BtnFavorite>
+        {/* <BtnFavorite type="button" onClick={handleClickFavorite}> */}
+        <img src={isFavorite ? like : unlike} alt="unlike" />
+        {/* </BtnFavorite> */}
       </ImageThumb>
       <div>
         <Title>{title}</Title>

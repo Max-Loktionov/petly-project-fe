@@ -1,4 +1,5 @@
 import AddPetBtn from "components/AddPetBtn";
+import { BoxBtn, TitleBtn } from "components/PetsData/PetsData.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { noticeActions } from "redux/notices/noticeSlice";
 import { AddBtn, CategoryBtn, CategoryContainer, Container, Cross } from "./NoticesCategoriesNav.styled";
@@ -35,15 +36,16 @@ function NoticesCategoriesNav() {
           </>
         )}
       </CategoryContainer>
-      {/* <BoxBtn>
-        <TitleBtn>Add pet</TitleBtn>
+      <BoxBtn>
+        <TitleBtn>Add notice</TitleBtn>
         <AddPetBtn onClick={handleModalOpen} />
-      </BoxBtn>  */}
-      <AddBtn onClick={handleModalOpen}>
+      </BoxBtn>
+      {/* <AddBtn onClick={handleModalOpen}>
+
         <Cross />
 
         <p>Add pet</p>
-      </AddBtn>
+      </AddBtn> */}
     </Container>
   );
 }
