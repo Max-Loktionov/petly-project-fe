@@ -50,16 +50,22 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     return age ? age + " year" : m + " month";
   };
 
-  // const addToFavorite = (favoriteNoticeId, id) => {
-  //   const filterednotice = favoriteNoticeId.find(notice => notice === id);
-  //   console.log(filterednotice);
-  //   if (filterednotice) {
-  //     setFavorite(true);
-  //   }
-  // };
+  const addToFavorite = (favoriteNoticeId, id) => {
+    if (!favoriteNoticeId) {
+      return;
+    }
+    const filterednotice = favoriteNoticeId.find(notice => notice === id);
+    console.log(filterednotice);
+    if (filterednotice) {
+      setFavorite(true);
+    }
+  };
 
-  // const addToUserNotice = (notieceId, id) => {
-  //   const filteredNotice = notieceId.find(notice => notice === id);
+  const addToUserNotice = (notieceId, id) => {
+    if (!notieceId) {
+      return;
+    }
+    const filteredNotice = notieceId.find(notice => notice === id);
 
   //   if (filteredNotice) {
   //     setIsUserNotice(true);

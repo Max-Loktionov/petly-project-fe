@@ -41,6 +41,7 @@ function NoticesCategoriesNav() {
         <AddPetBtn onClick={handleModalOpen} />
       </BoxBtn>
       {/* <AddBtn onClick={handleModalOpen}>
+
         <Cross />
 
         <p>Add pet</p>
