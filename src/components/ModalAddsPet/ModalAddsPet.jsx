@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
+import { userActions } from "redux/user/userSlice";
 import {
   Label,
   Form,
@@ -25,6 +27,7 @@ const ModalAddsPet = ({ onClose }) => {
   const [nextPage, setNextPage] = useState(false);
   const [isAvatar, setIsAvatar] = useState(false);
   const [addPet] = useAddPetMutation();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -37,6 +40,7 @@ const ModalAddsPet = ({ onClose }) => {
   const handleSubmitClick = async (formdata, evt) => {
     try {
       addPet(formdata);
+      dispatch(userActions.changeModalAddPets());
       onClose(evt);
     } catch (error) {
       console.log(error.message);

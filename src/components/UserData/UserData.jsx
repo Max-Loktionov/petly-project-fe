@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { noticeActions } from "redux/notices/noticeSlice";
+import { userActions } from "redux/user/userSlice";
 import AddPetBtn from "components/AddPetBtn";
 import UserDataForm from "components/UserDataItem/UserDataForm";
 import { TitleUser, TitleBtn, BoxTitleUser, BoxBtnTablet } from "./UserData.styled";
@@ -7,7 +8,7 @@ import { TitleUser, TitleBtn, BoxTitleUser, BoxBtnTablet } from "./UserData.styl
 const UserData = () => {
   const dispatch = useDispatch();
 
-  const handleModalOpen = () => dispatch(noticeActions.changeModalAddPets());
+  const handleModalOpen = () => dispatch(userActions.changeModalAddPets());
   return (
     <>
       <BoxTitleUser>

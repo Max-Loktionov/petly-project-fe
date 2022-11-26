@@ -16,6 +16,7 @@ import unlike from "img/unlike.svg";
 import like from "img/like.svg";
 import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
+import { userActions } from "redux/user/userSlice";
 
 const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
   const [isFavorite, setFavorite] = useState(false);
@@ -54,6 +55,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     if (!favoriteNoticeId) {
       return;
     }
+    dispatch(userActions.toggleFavorited(id));
     const filterednotice = favoriteNoticeId.find(notice => notice === id);
     console.log(filterednotice);
     if (filterednotice) {
@@ -78,6 +80,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   }, []);
 
   const handleClickFavorite = () => {
+    addToFavorite(favoriteNoticeId, id);
     if (isFavorite) {
       return setFavorite(false);
     }
@@ -89,9 +92,9 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
       <ImageThumb>
         <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        {/* <BtnFavorite type="button" onClick={handleClickFavorite}> */}
-        <img src={isFavorite ? like : unlike} alt="unlike" />
-        {/* </BtnFavorite> */}
+        <BtnFavorite type="button" onClick={() => handleClickFavorite}>
+          <img src={isFavorite ? like : unlike} alt="unlike" />
+        </BtnFavorite>
       </ImageThumb>
       <div>
         <Title>{title}</Title>

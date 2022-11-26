@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Exit, ExitIcon, ModalWindow, MyBackdrop } from "./Modal.styled";
 import { useDispatch } from "react-redux";
 import { noticeActions } from "redux/notices/noticeSlice";
+import { userActions } from "redux/user/userSlice";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -19,7 +20,7 @@ function Modal({ tabletNoStandartWidth, modalName, children }) {
         return dispatch(noticeActions.changeModalAddNotice());
 
       case "modalAddPets":
-        return dispatch(noticeActions.changeModalAddPets());
+        return dispatch(userActions.changeModalAddPets());
 
       default:
         break;
