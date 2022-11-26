@@ -111,17 +111,6 @@ function ModalAddNotice({ onClose }) {
     }
   };
 
-<<<<<<< HEAD
-  const handleImage = e => {
-    const imageContainer = document.getElementById("image_container");
-
-    imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
-
-    imageContainer.childNodes[0].style.visibility = "hidden";
-  };
-
-=======
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
   return (
     <Container>
       <Header>Add pet</Header>
@@ -137,43 +126,6 @@ function ModalAddNotice({ onClose }) {
               ))}
             </CategoryContainer>
 
-<<<<<<< HEAD
-      {page === 1 && (
-        <>
-          <Text>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</Text>
-
-          <CategoryContainer>
-            {CATEGORY.map(({ category, value }, index) => (
-              <MyBtn type="button" value={category} disabled={checkCategory(category)} onClick={handleClick} key={index}>
-                {value}
-              </MyBtn>
-            ))}
-          </CategoryContainer>
-        </>
-      )}
-
-      <MyForm>
-        {page === 1 && (
-          <>
-            <label>
-              <InputsNames>
-                Title of ad<span>*</span>
-              </InputsNames>
-              <input type="text" placeholder="Sell beautiful dog" name="title" onChange={handleValue} value={title} required />
-            </label>
-            <label>
-              <InputsNames>Name Pet</InputsNames>
-              <input type="text" placeholder="Julio Alvarez" name="name" onChange={handleValue} value={name} />
-            </label>
-            <label>
-              <InputsNames> Day of birth</InputsNames>
-              <input type="date" name="birth" placeholder="Set date" onChange={handleValue} value={birth} />
-            </label>
-            <label>
-              <InputsNames> Breed</InputsNames>
-              <input type="text" name="breed" placeholder="Husky" onChange={handleValue} value={breed} />
-            </label>
-=======
             <InputsNames>
               Title of ad<span>*</span>
             </InputsNames>
@@ -255,7 +207,6 @@ function ModalAddNotice({ onClose }) {
               })}
             />
             {errors.breed && <ErrorText role="alert">{errors.breed?.message}</ErrorText>}
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
           </>
         )}
 
@@ -265,10 +216,7 @@ function ModalAddNotice({ onClose }) {
             <RadioContainer>
               <div>
                 <RadioInputs type="radio" id="male" name="sex" onChange={handleValue} checked={sex === "male" ? true : false} />
-<<<<<<< HEAD
-=======
 
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
                 <label htmlFor="male" className="icon_label">
                   <MyMaleSVG />
                   <InputsNames className="icon_name">Male</InputsNames>
@@ -284,14 +232,6 @@ function ModalAddNotice({ onClose }) {
               </div>
             </RadioContainer>
 
-<<<<<<< HEAD
-            <label>
-              <InputsNames>
-                Location<span>*</span>
-              </InputsNames>
-              <input type="text" placeholder="Kyiv" name="location" value={location} onChange={handleValue} required />
-            </label>
-=======
             <InputsNames>Location</InputsNames>
             <input
               type="text"
@@ -302,21 +242,12 @@ function ModalAddNotice({ onClose }) {
               })}
             />
             {errors.location && <ErrorText role="alert">{errors.location?.message}</ErrorText>}
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
 
             {noticeCategory === "sell" && (
               <>
                 <InputsNames>
                   Price<span>*</span>
                 </InputsNames>
-<<<<<<< HEAD
-                <input type="number" name="price" placeholder="123.99" onChange={handleValue} value={price} required />
-              </label>
-            )}
-
-            <ImageContainer>
-              <input type="file" name="avatar" id="image" accept=".jpg,.jpeg,.png" onChange={handleImage} />
-=======
                 <input
                   type="number"
                   name="price"
@@ -336,7 +267,6 @@ function ModalAddNotice({ onClose }) {
 
             <ImageContainer>
               <input {...register("avatar", {})} type="file" name="avatar" id="image" onChange={handleImage} />
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
               <label htmlFor="image" id="image-label">
                 <InputsNames htmlFor="avatar"> Load the pet's image</InputsNames>
                 <ImageBox id="image_container">
@@ -345,12 +275,6 @@ function ModalAddNotice({ onClose }) {
               </label>
             </ImageContainer>
 
-<<<<<<< HEAD
-            <label>
-              <InputsNames> Comments </InputsNames>
-              <input type="text" name="comments" placeholder="The best dog ever" onChange={handleValue} value={comments} />
-            </label>
-=======
             <InputsNames>
               Comments <span>*</span>
             </InputsNames>
@@ -374,23 +298,9 @@ function ModalAddNotice({ onClose }) {
               })}
             />
             {errors.comments && <ErrorText role="alert">{errors.comments?.message}</ErrorText>}
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
           </>
         )}
 
-<<<<<<< HEAD
-      <BtnContainer>
-        {page === 1 && (
-          <>
-            <MoveBtn type="button" active={true} name="move-btn" color="accent" onClick={handlePage}>
-              Next
-            </MoveBtn>
-            <MoveBtn type="button" name="move-btn">
-              Cancel
-            </MoveBtn>
-          </>
-        )}
-=======
         <BtnContainer>
           {!nextPage && (
             <>
@@ -402,7 +312,6 @@ function ModalAddNotice({ onClose }) {
               </MoveBtn>
             </>
           )}
->>>>>>> 94980ee96c98d186e7dd35662c732ede49e7662a
 
           {nextPage && (
             <>

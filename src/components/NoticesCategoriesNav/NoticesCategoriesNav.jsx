@@ -39,11 +39,11 @@ function NoticesCategoriesNav() {
         <TitleBtn>Add pet</TitleBtn>
         <AddPetBtn onClick={handleModalOpen} />
       </BoxBtn> */}
-      {/* <AddBtn onClick={handleModalOpen}>
+      <AddBtn onClick={handleModalOpen}>
         <Cross />
 
         <p>Add pet</p>
-      </AddBtn> */}
+      </AddBtn>
     </Container>
   );
 }
