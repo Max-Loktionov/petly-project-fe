@@ -15,16 +15,12 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
-<<<<<<< HEAD
   const favorite = useSelector(({ auth }) => auth);
   const userNotices = useSelector(({ user }) => user.userNotices);
   console.log("noticesCategoryList state:", favorite);
 
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
-=======
->>>>>>> 82f1e597055c338d460a23b277ea66e492cb1c73
 
-  const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
   const { data: user = [] } = useGetUserQuery();
   const { notices } = data;
   const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
