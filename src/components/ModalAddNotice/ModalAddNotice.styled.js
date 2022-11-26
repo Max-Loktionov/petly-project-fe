@@ -34,17 +34,15 @@ export const Text = styled.p`
 `;
 
 export const CategoryContainer = styled.div`
-  margin: 28px 0px;
+  margin: 20px 0px;
 `;
 
 export const MyBtn = styled.button`
   padding: 8px 27px;
   margin: 0px;
 
-  color: ${p =>
-    p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white};
-  background-color: ${p =>
-    p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent};
+  color: ${p => (p.color !== "accent" ? p.theme.colors.black : p.theme.colors.white)};
+  background-color: ${p => (p.color !== "accent" ? p.theme.colors.white : p.theme.colors.accent)};
 
   border: 2px solid ${p => p.theme.colors.accent};
   border-radius: 40px;
@@ -83,7 +81,9 @@ export const MyBtn = styled.button`
   }
 `;
 
-export const InputsNames = styled.p`
+export const InputsNames = styled.label`
+  display: flex;
+  flex-direction: row;
   margin-bottom: 8px;
 
   font-size: ${p => p.theme.fontSizes.n};
@@ -161,7 +161,7 @@ export const MyFemaleSVG = styled(Female)`
 
 export const ImageContainer = styled.div`
   @media ${p => p.theme.media.tablet} {
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   & input {
@@ -210,7 +210,7 @@ export const MyForm = styled.form`
 
   & label {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 
     &:not(:first-child) {
       margin-top: 16px;
@@ -286,3 +286,5 @@ export const MoveBtn = styled(Button)`
     }
   }
 `;
+
+export const TextArea = styled.textarea``;

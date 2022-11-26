@@ -36,8 +36,8 @@ const ModalAddsPet = ({ onClose }) => {
 
   const handleSubmitClick = async (formdata, evt) => {
     try {
-      onClose(evt);
       addPet(formdata);
+      onClose(evt);
     } catch (error) {
       console.log(error.message);
     }
