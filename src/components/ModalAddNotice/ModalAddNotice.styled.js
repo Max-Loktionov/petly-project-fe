@@ -210,7 +210,7 @@ export const MyForm = styled.form`
 
   & label {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 
     &:not(:first-child) {
       margin-top: 16px;
@@ -286,3 +286,5 @@ export const MoveBtn = styled(Button)`
     }
   }
 `;
+
+export const TextArea = styled.textarea``;

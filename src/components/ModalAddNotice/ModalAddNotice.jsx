@@ -1,4 +1,5 @@
-import { ErrorText } from "components/ModalAddsPet/ModalAddsPet.styled";
+import { ErrorText, Textarea } from "components/ModalAddsPet/ModalAddsPet.styled";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAddNoticeMutation } from "redux/noticesApi";
@@ -267,39 +268,36 @@ function ModalAddNotice({ onClose }) {
             <ImageContainer>
               <input {...register("avatar", {})} type="file" name="avatar" id="image" onChange={handleImage} />
               <label htmlFor="image" id="image-label">
-                <InputsNames> Load the pet's image</InputsNames>
+                <InputsNames htmlFor="avatar"> Load the pet's image</InputsNames>
                 <ImageBox id="image_container">
                   <MyImageCross />
                 </ImageBox>
               </label>
             </ImageContainer>
 
-            <label>
-              <InputsNames>
-                Comments <span>*</span>
-              </InputsNames>
-              <input
-                type="text"
-                name="comments"
-                placeholder="The best dog ever"
-                {...register("comments", {
-                  required: "Comments is required.",
-                  maxLength: {
-                    value: 120,
-                    message: "The length of this field cannot exceed 120 characters",
-                  },
-                  minLength: {
-                    value: 8,
-                    message: "This input must exceed 8 characters",
-                  },
-                  pattern: {
-                    value: /[a-zA-Z]+/,
-                    message: "Comments should  contain only letters.",
-                  },
-                })}
-              />
-              {errors.comments && <ErrorText role="alert">{errors.comments?.message}</ErrorText>}
-            </label>
+            <InputsNames>
+              Comments <span>*</span>
+            </InputsNames>
+            <Textarea
+              name="comments"
+              placeholder="The best dog ever"
+              {...register("comments", {
+                required: "Comments is required.",
+                maxLength: {
+                  value: 120,
+                  message: "The length of this field cannot exceed 120 characters",
+                },
+                minLength: {
+                  value: 8,
+                  message: "This input must exceed 8 characters",
+                },
+                pattern: {
+                  value: /[a-zA-Z]+/,
+                  message: "Comments should  contain only letters.",
+                },
+              })}
+            />
+            {errors.comments && <ErrorText role="alert">{errors.comments?.message}</ErrorText>}
           </>
         )}
 
