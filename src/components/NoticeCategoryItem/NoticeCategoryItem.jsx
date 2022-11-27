@@ -16,15 +16,15 @@ import unlike from "img/unlike.svg";
 import like from "img/like.svg";
 import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
-import { userActions } from "redux/user/userSlice";
+
 import { useAddFavoriteNoticeMutation, useDeleteFavoriteNoticeMutation } from "redux/userApi";
 
 const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [isUserNotice, setIsUserNotice] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
-  const [addFavoriteNotice, { isLoading: isAdding }] = useAddFavoriteNoticeMutation();
-  const [deleteFavoriteNotice, { isLoading: isDelling }] = useDeleteFavoriteNoticeMutation();
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
+  const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
   const token = useSelector(({ auth }) => auth.token);
   const dispatch = useDispatch();
   const BASE_URL = "https://petly-be.herokuapp.com/";

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useGetUserFavoriteQuery } from "redux/userApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
-import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
+// import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 
 const NoticeFavList = ({ filter, category, perPage, page, favoriteNoticeId, notieceId }) => {
   const [noti, setNoti] = useState([]);
-  const { data = [], isLoading, isError } = useGetUserFavoriteQuery({ filter, category, perPage, page });
+  const { data = [], isLoading } = useGetUserFavoriteQuery({ filter, category, perPage, page });
 
   useEffect(() => {
     if (!data.data) {
@@ -17,7 +17,7 @@ const NoticeFavList = ({ filter, category, perPage, page, favoriteNoticeId, noti
 
   return (
     <List>
-      {/* {!isLoading && noti.length === 0 && (
+      {/* {noti.length === 0 && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>
