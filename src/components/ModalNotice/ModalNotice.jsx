@@ -4,13 +4,19 @@ import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, 
 import { useSelector } from "react-redux";
 import { useGetNoticesByIdQuery } from "redux/noticesApi";
 import defoultImage from "../../img/cat.jpg";
-
+import { toast } from "react-toastify";
 function ModalNotice({ onClose }) {
   const id = useSelector(({ notice }) => notice.modalViewNotice.id);
-
+  const token = useSelector(({ auth }) => auth.token);
   const { data, isLoading } = useGetNoticesByIdQuery(id);
 
   const image = data?.notice?.avatar;
+  const hadleClickAddFavorite = () => {
+    if (!token) {
+      return toast.warn("😹 signUp or login first");
+    }
+    return console.log("add to favorite");
+  };
 
   const BASE_URL = "https://petly-be.herokuapp.com/";
   return (
@@ -69,8 +75,13 @@ function ModalNotice({ onClose }) {
           </Comments>
 
           <BtnContainer>
-            <MyBtn active={"active"}>Contact</MyBtn>
-            <MyBtn onClose={() => onClose()}>
+            {
+              <a href="tel:{data?.notice?.owner?.phone}">
+                <MyBtn active={"active"}>Contact</MyBtn>
+              </a>
+            }
+
+            <MyBtn onClick={hadleClickAddFavorite}>
               Add to <span>&#10084;</span>
             </MyBtn>
           </BtnContainer>
