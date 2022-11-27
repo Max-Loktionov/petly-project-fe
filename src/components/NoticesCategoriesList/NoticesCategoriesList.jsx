@@ -18,7 +18,7 @@ const NoticesCategoriesList = () => {
   let notieceId = useSelector(({ user }) => user.userNotice);
   const token = useSelector(({ auth }) => auth.token);
 
-  const [categorySelect, setcategorySelect] = useState("sell");
+  const [categorySelect, setcategorySelect] = useState();
 
   useEffect(() => {
     setcategorySelect(category);

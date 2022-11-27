@@ -3,7 +3,7 @@ import { useGetUserNoticesQuery } from "redux/userApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { useGetUserQuery } from "redux/userApi";
-// import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
+import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 
 const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId }) => {
   const [noti, setNoti] = useState([]);
@@ -36,11 +36,11 @@ const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId }) => 
   };
   return (
     <List>
-      {/* { noti?.length === 0 && (
+      {noti?.length === 0 && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>
-      )} */}
+      )}
 
       {!isLoading &&
         noti?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
