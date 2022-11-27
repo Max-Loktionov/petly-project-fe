@@ -3,19 +3,23 @@ import PropTypes from "prop-types";
 import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer } from "./ModalNotice.styled";
 import { useSelector } from "react-redux";
 import { useGetNoticesByIdQuery } from "redux/noticesApi";
+import defoultImage from "../../img/cat.jpg";
 
 function ModalNotice({ onClose }) {
   const id = useSelector(({ notice }) => notice.modalViewNotice.id);
 
   const { data, isLoading } = useGetNoticesByIdQuery(id);
 
-  const avatarUrl = end => `https://petly-be.herokuapp.com/${end}`;
+  const image = data?.notice?.avatar; //20 imageUrl={avatarUrl(data?.notice?.avatar)}
+
+  const BASE_URL = "https://petly-be.herokuapp.com/";
   return (
     <div>
       {!isLoading && (
         <>
           <ImageContainer>
-            <PictureData imageUrl={avatarUrl(data?.notice?.avatar)}>
+            <PictureData>
+              <img src={image ? BASE_URL + image : defoultImage} alt={data.notice.title}></img>
               <Cathegory>{data.notice.category}</Cathegory>
             </PictureData>
             <div>
@@ -39,15 +43,15 @@ function ModalNotice({ onClose }) {
                 </MyLi>
                 <MyLi>
                   <p>The sex:</p>
-                  <span>{data.notice.theSex}</span>
+                  <span>{data.notice.male}</span>
                 </MyLi>
                 <MyLi>
                   <p>Email:</p>
-                  <span>{data.notice.email}</span>
+                  <span>{data.notice.owner.email}</span>
                 </MyLi>
                 <MyLi>
                   <p>Phone:</p>
-                  <span>{data.notice.phone}</span>
+                  <span>{data.notice.owner.phone}</span>
                 </MyLi>
 
                 {data.notice.cathegory === "sell" && (

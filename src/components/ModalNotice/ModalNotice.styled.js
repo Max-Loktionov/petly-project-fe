@@ -13,7 +13,7 @@ export const PictureData = styled.div`
   width: 100%;
   height: 240px;
   padding-top: 20px;
-  background-image: ${props => `url(${props.imageUrl})`};
+  /* background-image: ${props => `url(${props.imageUrl})`}; */
   background-repeat: no-repeat;
   background-size: contain;
 
