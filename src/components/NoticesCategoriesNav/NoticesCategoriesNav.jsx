@@ -13,7 +13,7 @@ function NoticesCategoriesNav() {
   const handleClick = e => dispatch(noticeActions.changeCategory(e.target.name));
   const handleModalOpen = () => {
     if (!token) {
-      return toast.warn("😹 signUp or login first");
+      return toast.warn("😹 SignUp or login first");
     }
     return dispatch(noticeActions.changeModalAddNotice());
   };
