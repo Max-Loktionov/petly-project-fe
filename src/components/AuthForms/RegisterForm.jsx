@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Form, Input, RegisterBtn, BackBtn, ErrorText, ButtonWrapper, ButtonEye } from "./authForms.styled";
+import { Form, Input, RegisterBtn, NextBtn, BackBtn, ErrorText, ButtonWrapper, ButtonEye } from "./authForms.styled";
 import { authSlice } from "redux/auth";
 import { useRegisterUserMutation } from "redux/auth/authApi";
 import { useNavigate } from "react-router-dom";
@@ -17,9 +17,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setConfirmPass] = useState(false);
-
   const [nextPage, setNextPage] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
   const {
     register,
     handleSubmit,
@@ -43,10 +41,6 @@ const RegisterForm = () => {
 
   const handleClickBack = () => {
     setNextPage(false);
-  };
-
-  const handleInputChange = () => {
-    setIsDisabled(false);
   };
 
   const onSubmit = async ({ email, password, name, city, phone }) => {
@@ -140,8 +134,8 @@ const RegisterForm = () => {
         <div>
           <Input
             label="Name"
-            onInput={handleInputChange}
             {...register("name", {
+              required: "This is required",
               pattern: { value: nameRegex, message: "Enter only letters" },
             })}
             type="text"
@@ -171,13 +165,11 @@ const RegisterForm = () => {
         </div>
       )}
       {!nextPage ? (
-        <RegisterBtn type="button" onClick={handleClick} disabled={!isValid}>
+        <NextBtn type="button" onClick={handleClick} disabled={!isValid}>
           Next
-        </RegisterBtn>
+        </NextBtn>
       ) : (
-        <RegisterBtn type="submit" disabled={isDisabled}>
-          Register
-        </RegisterBtn>
+        <RegisterBtn type="submit">Register</RegisterBtn>
       )}
       {nextPage && (
         <BackBtn type="button" onClick={handleClickBack}>
