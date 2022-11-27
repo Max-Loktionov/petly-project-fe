@@ -45,7 +45,7 @@ export const Input = styled.input`
   }
 `;
 
-export const RegisterBtn = styled(StyledButton)`
+export const NextBtn = styled(StyledButton)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,6 +72,10 @@ export const RegisterBtn = styled(StyledButton)`
     height: 48px;
     font-size: 20px;
   }
+`;
+
+export const RegisterBtn = styled(NextBtn)`
+  align-items: center;
 `;
 
 export const BackBtn = styled(RegisterBtn)`
