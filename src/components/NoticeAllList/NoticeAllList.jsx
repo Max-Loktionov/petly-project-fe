@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useGetNoticesQuery } from "redux/noticesApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
-
+import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 const NoticeAllList = ({ filter, category, perPage, page, favoriteNoticeId, notieceId }) => {
   const [noti, setNoti] = useState([]);
   const { data = [], isLoading, isError } = useGetNoticesQuery({ filter, category, perPage, page });
@@ -29,6 +29,12 @@ const NoticeAllList = ({ filter, category, perPage, page, favoriteNoticeId, noti
 
   return (
     <List>
+      {!isLoading && noti.length === 0 && (
+        <NotFoundBox>
+          <NotFound>Nothing found. Please, try again.</NotFound>
+        </NotFoundBox>
+      )}
+
       {!isLoading &&
         noti?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
           <NoticeCategoryItem

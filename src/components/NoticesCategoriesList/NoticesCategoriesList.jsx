@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import NoticeAllList from "components/NoticeAllList";
 import NoticeFavList from "components/NoticeFavList/NoticeFavList";
 import NoticeMyList from "components/NoticeMyList";
-import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
