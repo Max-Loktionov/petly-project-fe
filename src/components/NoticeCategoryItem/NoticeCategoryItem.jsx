@@ -91,7 +91,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
 
   const handleClickFavorite = () => {
     if (!token) {
-      toast.warn("😹 signUp first");
+      toast.warn("😹 signUp or login first");
       return;
     }
     if (isFavorite) {
@@ -152,7 +152,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
           type="button"
           disabled={isDeleting}
           onClick={() => {
-            console.log("Is delete");
+            toast.warn("😹 Notice is delete");
             return deleteNotice(id);
           }}
         >
