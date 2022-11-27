@@ -16,6 +16,7 @@ export const userSlice = createSlice({
     getFavorite(state, action) {
       return {
         ...state,
+        favorite: action.payload,
       };
     },
 
@@ -24,6 +25,14 @@ export const userSlice = createSlice({
         ...state,
         userNotice: action.payload,
       };
+    },
+
+    unsetFavorite(state, action) {
+      state.favorite = [];
+    },
+
+    unsetNotice(state, action) {
+      state.userNotice = [];
     },
 
     changeModalAddPets(state, action) {

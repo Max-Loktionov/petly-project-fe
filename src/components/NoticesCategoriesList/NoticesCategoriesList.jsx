@@ -15,23 +15,23 @@ const NoticesCategoriesList = () => {
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
   let favoriteNoticeId = useSelector(({ user }) => user.favorite);
-  let notieceId = useSelector(({ user }) => user.favorite);
+  let notieceId = useSelector(({ user }) => user.userNotice);
   const token = useSelector(({ auth }) => auth.token);
-
+  console.log(notieceId, favoriteNoticeId);
   const [categorySelect, setcategorySelect] = useState("sell");
 
   useEffect(() => {
     setcategorySelect(category);
   }, [category]);
 
-  if (token) {
-    if (!favoriteNoticeId || !notieceId) {
-      return;
-    }
+  // if (token) {
+  //   if (!favoriteNoticeId || !notieceId) {
+  //     return;
+  //   }
 
-    favoriteNoticeId = "";
-    notieceId = "";
-  }
+  //   favoriteNoticeId = "";
+  //   notieceId = "";
+  // }
 
   return (
     <>
