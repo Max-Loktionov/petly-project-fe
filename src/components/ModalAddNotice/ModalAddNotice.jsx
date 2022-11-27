@@ -46,7 +46,7 @@ const CATEGORY = [
 
 function ModalAddNotice() {
   const [nextPage, setNextPage] = useState(false);
-  const [_, setIsAvatar] = useState(false);
+  const [isAvatar, setIsAvatar] = useState(false);
   const [sex, setSex] = useState("male");
   const [price, setPrice] = useState("");
   const [noticeCategory, setNoticeCategory] = useState("sell");
@@ -280,9 +280,7 @@ function ModalAddNotice() {
               <input {...register("avatar", {})} type="file" name="avatar" id="avatar" onChange={handleImage} />
               <ImageLabel htmlFor="avatar">
                 Load the pet's image
-                <ImageBox id="image_container">
-                  <MyImageCross />
-                </ImageBox>
+                <ImageBox id="image_container">{!isAvatar && <MyImageCross />}</ImageBox>
               </ImageLabel>
             </ImageContainer>
 
