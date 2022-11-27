@@ -24,15 +24,6 @@ const NoticesCategoriesList = () => {
     setcategorySelect(category);
   }, [category]);
 
-  // if (token) {
-  //   if (!favoriteNoticeId || !notieceId) {
-  //     return;
-  //   }
-
-  //   favoriteNoticeId = "";
-  //   notieceId = "";
-  // }a
-
   return (
     <>
       {token && categorySelect === "my_adds" && (
