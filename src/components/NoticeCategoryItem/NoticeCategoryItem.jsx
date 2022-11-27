@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   Item,
   ImageThumb,
@@ -90,7 +91,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
 
   const handleClickFavorite = () => {
     if (!token) {
-      console.log("signUp first");
+      toast.warn("😹 signUp first");
       return;
     }
     if (isFavorite) {
