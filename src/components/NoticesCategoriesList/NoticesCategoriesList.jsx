@@ -6,6 +6,7 @@ import { useGetUserFavoriteQuery, useGetUserNoticesQuery, useGetUserQuery } from
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
+import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -59,6 +60,11 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
+      {selectedCategory(category)?.length === 0 && (
+        <NotFoundBox>
+          <NotFound>Nothing found. Please, try again.</NotFound>
+        </NotFoundBox>
+      )}
       <List>
         {!isLoading &&
           selectedCategory(category)?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
