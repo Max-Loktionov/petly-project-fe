@@ -27,14 +27,7 @@ const NoticesCategoriesList = () => {
   return (
     <>
       {token && categorySelect === "my_adds" && (
-        <NoticeMyList
-          filter={filter}
-          category={categorySelect}
-          perPage={perPage}
-          page={page}
-          favoriteNoticeId={favoriteNoticeId}
-          notieceId={notieceId}
-        />
+        <NoticeMyList filter={filter} category={categorySelect} perPage={perPage} page={page} favoriteNoticeId={favoriteNoticeId} />
       )}
 
       {token && categorySelect === "favorite" && (

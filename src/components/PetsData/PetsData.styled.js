@@ -2,9 +2,11 @@ import styled from "styled-components";
 import Button from "components/Button";
 
 export const BoxPet = styled.section`
+  @media ${p => p.theme.media.tablet} {
+    padding-left: ${p => p.theme.space[5]}px;
+  }
   @media ${p => p.theme.media.desktop} {
-    width: 821px;
-    height: 212px;
+    padding-left: ${p => p.theme.space[0]}px;
   }
 `;
 
@@ -18,10 +20,21 @@ export const BoxTitlePet = styled.div`
   }
 `;
 
+export const TitlePet = styled.h2`
+  color: ${p => p.theme.colors.primaryText};
+  font-weight: ${p => p.theme.fontWeights.heading};
+  font-size: ${p => p.theme.fontSizes.nl};
+  letter-spacing: 0.04em;
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.mll};
+  }
+`;
+
 export const BoxBtn = styled.div`
   display: inline-flex;
   align-items: center;
   @media ${p => p.theme.media.tablet} {
+    display: none;
   }
   @media ${p => p.theme.media.desktop} {
     display: inline-flex;
@@ -32,20 +45,7 @@ export const TitleBtn = styled.p`
   margin-right: 15px;
 
   font-weight: ${p => p.theme.fontWeights.heading};
-  font-size: 20px;
-`;
-
-export const TitlePet = styled.h2`
-  color: ${p => p.theme.colors.primaryText};
-  font-weight: ${p => p.theme.fontWeights.heading};
-  font-size: 20px;
-  letter-spacing: 0.04em;
-  @media ${p => p.theme.media.tablet} {
-    font-size: 28px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    font-size: 28px;
-  }
+  font-size: ${p => p.theme.fontSizes.nl};
 `;
 
 export const BtnAddPet = styled(Button)`
