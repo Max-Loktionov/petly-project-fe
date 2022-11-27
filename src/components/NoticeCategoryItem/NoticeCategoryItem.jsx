@@ -97,6 +97,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     if (isFavorite) {
       deleteFavoriteNotice(id);
       dispatch(userActions.deleteFavorite(id));
+
       return setFavorite(false);
     }
     addFavoriteNotice(id);
@@ -147,7 +148,14 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
         Learn more
       </ButtonMore>
       {isUserNotice && (
-        <ButtonMore type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
+        <ButtonMore
+          type="button"
+          disabled={isDeleting}
+          onClick={() => {
+            console.log("Is delete");
+            return deleteNotice(id);
+          }}
+        >
           Delete
         </ButtonMore>
       )}
