@@ -10,7 +10,7 @@ function ModalNotice({ onClose }) {
 
   const { data, isLoading } = useGetNoticesByIdQuery(id);
 
-  const image = data?.notice?.avatar; //20 imageUrl={avatarUrl(data?.notice?.avatar)}
+  const image = data?.notice?.avatar;
 
   const BASE_URL = "https://petly-be.herokuapp.com/";
   return (
@@ -47,11 +47,11 @@ function ModalNotice({ onClose }) {
                 </MyLi>
                 <MyLi>
                   <p>Email:</p>
-                  <span>{data.notice.owner.email}</span>
+                  <span>{data?.notice?.owner?.email}</span>
                 </MyLi>
                 <MyLi>
                   <p>Phone:</p>
-                  <span>{data.notice.owner.phone}</span>
+                  <span>{data?.notice?.owner?.phone}</span>
                 </MyLi>
 
                 {data.notice.cathegory === "sell" && (
