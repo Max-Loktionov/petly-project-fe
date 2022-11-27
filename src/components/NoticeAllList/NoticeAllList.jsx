@@ -3,6 +3,7 @@ import { useGetNoticesQuery } from "redux/noticesApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
 import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
+
 const NoticeAllList = ({ filter, category, perPage, page, favoriteNoticeId, notieceId }) => {
   const [noti, setNoti] = useState([]);
   const { data = [], isLoading } = useGetNoticesQuery({ filter, category, perPage, page });
