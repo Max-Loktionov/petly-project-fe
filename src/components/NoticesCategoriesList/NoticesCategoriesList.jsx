@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
-import NoticeCategoryItem from "components/NoticeCategoryItem";
-import { List } from "./NoticesCategoriesList.styled";
-import { useGetNoticesQuery } from "redux/noticesApi";
-import { useGetUserFavoriteQuery, useGetUserNoticesQuery, useGetUserQuery } from "redux/userApi";
 import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
 import Modal from "components/Modal/Modal";
 import ModalNotice from "components/ModalNotice";
-import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
+import { useEffect, useState } from "react";
+import NoticeAllList from "components/NoticeAllList";
+import NoticeFavList from "components/NoticeFavList/NoticeFavList";
+import NoticeMyList from "components/NoticeMyList";
 
 const NoticesCategoriesList = () => {
   const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
@@ -15,82 +14,63 @@ const NoticesCategoriesList = () => {
   const perPage = useSelector(({ notice }) => notice.perPage);
   const category = useSelector(({ notice }) => notice.category);
   const filter = useSelector(({ notice }) => notice.filter);
+  let favoriteNoticeId = useSelector(({ user }) => user.favorite);
+  let notieceId = useSelector(({ user }) => user.favorite);
+  const token = useSelector(({ auth }) => auth.token);
 
-  const { data = [], isLoading } = useGetNoticesQuery({ filter, category, perPage, page });
+  const [categorySelect, setcategorySelect] = useState("sell");
 
-  const { data: datatop = [] } = useGetUserFavoriteQuery();
+  useEffect(() => {
+    setcategorySelect(category);
+  }, [category]);
 
-  const { data: userNotice = [] } = useGetUserNoticesQuery();
-
-  const selectedCategory = category => {
-    switch (category) {
-      case "sell":
-        return data.notices;
-      case "in_good_hands":
-        return data.notices;
-      case "lost_found":
-        return data.notices;
-      case "favorite":
-        return datatop.data.result;
-      case "my_adds":
-        return userNotice.data.result.userNotice;
-      default:
-        return;
+  if (token) {
+    if (!favoriteNoticeId || !notieceId) {
+      return;
     }
-  };
-  const { data: user = [] } = useGetUserQuery();
-  const favoriteNoticeId = user?.data?.result?.favoriteNoticeId;
-  const notieceId = user?.data?.result?.notieceId;
-  if (!favoriteNoticeId || !notieceId) {
-    return;
+
+    favoriteNoticeId = "";
+    notieceId = "";
   }
-
-  const setCategory = category => {
-    switch (category) {
-      case "sell":
-        return "Sell";
-      case "in_good_hands":
-        return "In good hands";
-      case "lost_found":
-        return "Lost/found";
-      default:
-        return "No category";
-    }
-  };
 
   return (
     <>
-      {selectedCategory(category)?.length === 0 && (
-        <NotFoundBox>
-          <NotFound>Nothing found. Please, try again.</NotFound>
-        </NotFoundBox>
+      {token && categorySelect === "my_adds" && (
+        <NoticeMyList
+          filter={filter}
+          category={categorySelect}
+          perPage={perPage}
+          page={page}
+          favoriteNoticeId={favoriteNoticeId}
+          notieceId={notieceId}
+        />
       )}
-      <List>
-        {!isLoading &&
-          selectedCategory(category)?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
-            <NoticeCategoryItem
-              key={_id}
-              id={_id}
-              image={avatar}
-              title={title}
-              name={name}
-              breed={breed}
-              category={setCategory(category)}
-              location={location}
-              birthday={birthday}
-              price={price}
-              favoriteNoticeId={favoriteNoticeId}
-              notieceId={notieceId}
-            />
-          ))}
-      </List>
 
+      {token && categorySelect === "favorite" && (
+        <NoticeFavList
+          filter={filter}
+          category={categorySelect}
+          perPage={perPage}
+          page={page}
+          favoriteNoticeId={favoriteNoticeId}
+          notieceId={notieceId}
+        />
+      )}
+      {(categorySelect === "sell" || categorySelect === "in_good_hands" || categorySelect === "lost_found") && (
+        <NoticeAllList
+          filter={filter}
+          category={categorySelect}
+          perPage={perPage}
+          page={page}
+          favoriteNoticeId={favoriteNoticeId}
+          notieceId={notieceId}
+        />
+      )}
       {modalAddNoticeState && (
         <Modal modalName={"modalAddNotice"} bigHeight>
           <ModalAddNotice />
         </Modal>
       )}
-
       {modalViewNotice && (
         <Modal modalName={"modalViewNotice"}>
           <ModalNotice />
