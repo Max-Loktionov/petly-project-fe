@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useGetUserNoticesQuery } from "redux/userApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
+import { useGetUserQuery } from "redux/userApi";
 // import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 
-const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId, notieceId }) => {
+const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId }) => {
   const [noti, setNoti] = useState([]);
   const { data = [], isLoading } = useGetUserNoticesQuery({ filter, category, perPage, page });
 
@@ -14,6 +15,12 @@ const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId, notie
     }
     setNoti(data.data.result.userNotice);
   }, [data]);
+
+  const { data: user = [] } = useGetUserQuery();
+  const notieceId = user?.data?.result?.notieceId;
+  if (!favoriteNoticeId) {
+    return;
+  }
 
   const setCategory = category => {
     switch (category) {
