@@ -20,6 +20,13 @@ export const userSlice = createSlice({
       };
     },
 
+    addFavorite(state, action) {
+      return {
+        ...state,
+        favorite: state.favorite.push(action.payload),
+      };
+    },
+
     getUserNotice(state, action) {
       return {
         ...state,
