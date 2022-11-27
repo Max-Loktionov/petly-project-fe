@@ -4,14 +4,14 @@ import PetsListItem from "components/PetsListItem";
 import { BoxNotFoundPet } from "./PetsList.styled";
 
 const PetsList = () => {
-  const { data = [], isLoading, isError } = useGetUserQuery();
+  const { data = [], isLoading } = useGetUserQuery();
+  console.log(data);
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
-      {isError ? (
-        <div>error</div>
-      ) : data.length === 0 ? (
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : data?.data?.result?.pets?.length === 0 ? (
         <BoxNotFoundPet>Pet not found</BoxNotFoundPet>
       ) : (
         data.data.result.pets.map(({ _id, name, data, breed, comments, birthday, avatar }) => (
