@@ -29,11 +29,11 @@ const NoticeAllList = ({ filter, category, perPage, page, favoriteNoticeId, noti
 
   return (
     <List>
-      {!isLoading && noti.length === 0 && (
+      {/* {(!isLoading || noti.length === 0) && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>
-      )}
+      )} */}
 
       {!isLoading &&
         noti?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
