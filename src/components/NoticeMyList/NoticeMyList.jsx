@@ -8,7 +8,7 @@ import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
 const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId }) => {
   const [noti, setNoti] = useState([]);
   const { data = [], isLoading } = useGetUserNoticesQuery({ filter, category, perPage, page });
-  console.log(noti);
+
   useEffect(() => {
     if (!data.data) {
       return;
