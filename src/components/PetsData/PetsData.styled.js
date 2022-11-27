@@ -34,7 +34,6 @@ export const BoxBtn = styled.div`
   display: inline-flex;
   align-items: center;
   @media ${p => p.theme.media.tablet} {
-    display: none;
   }
   @media ${p => p.theme.media.desktop} {
     display: inline-flex;

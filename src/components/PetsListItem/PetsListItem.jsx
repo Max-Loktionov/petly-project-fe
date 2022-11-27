@@ -10,7 +10,7 @@ const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
   isDeleting && toast(`${name} was removed`);
   const BASE_URL = "https://petly-be.herokuapp.com/";
-  // const BASE_URL = "https://localhost:3001/public/";
+
   return (
     <PetItem>
       <ImgPet src={avatar ? BASE_URL + avatar : devaultIcon} alt={`${name}`}></ImgPet>

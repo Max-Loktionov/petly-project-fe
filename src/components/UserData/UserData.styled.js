@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-// export const BoxUser = styled.section`
-//   margin-bottom: 40px;
-//   @media ${p => p.theme.media.tablet} {
-//     margin-bottom: 20px;
-//   }
-//   @media ${p => p.theme.media.desktop} {
-//     margin-right: 32px;
-//     margin-bottom: 0px;
-//   }
-// `;
 export const BoxTitleUser = styled.div`
   display: flex;
   align-items: center;

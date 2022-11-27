@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const BASE_URL = "https://petly-be.herokuapp.com/user";
-// const BASE_URL = "http://localhost:3001/user";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -66,22 +65,36 @@ export const userApi = createApi({
     }),
 
     getUserNotices: builder.query({
-      query: notice => ({
-        url: `/${notice}`,
+      query: () => ({
+        url: `/notice`,
         method: "GET",
       }),
       providesTags: ["User"],
     }),
 
     getUserFavorite: builder.query({
-      query: favorite => ({
-        url: `/${favorite}`,
+      query: () => ({
+        url: `/favorite`,
         method: "GET",
       }),
       providesTags: ["User"],
     }),
 
-    // transformResponse: (response) => response.data,
+    addFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -92,4 +105,7 @@ export const {
   useDeletePetMutation,
   useUpdateUserAvatarMutation,
   useGetUserNoticesQuery,
-  useGetUserFavoriteQuery } = userApi;
+  useGetUserFavoriteQuery,
+  useAddFavoriteNoticeMutation,
+  useDeleteFavoriteNoticeMutation,
+} = userApi;

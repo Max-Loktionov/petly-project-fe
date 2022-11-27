@@ -1,5 +1,3 @@
-//import PropTypes from "prop-types";
-
 import { Card, Elem, Title, Box, Link, Data } from "./NewsCard.styled";
 
 const NewsCard = newItem => {

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 const BASE_URL = "https://petly-be.herokuapp.com/notices";
 
 const baseQuery = fetchBaseQuery({
@@ -18,8 +19,15 @@ export const noticesApi = createApi({
   tagTypes: ["Notices"],
 
   endpoints: builder => ({
-    getNoticesAll: builder.query({
-      query: () => "/",
+    getNotices: builder.query({
+      query: ({ page, perPage, category, filter }) => {
+        const categoryQuery = !!category ? `category=${category}` : "";
+        const pageQuery = page === 1 ? "" : `&&page=${page}`;
+        const perPageQuery = !!perPage !== 15 ? "" : `&&per_page=${perPage}`;
+        const filterQuery = filter === "" ? "" : `&&filter=${filter}`;
+
+        return `/?${categoryQuery + pageQuery + perPageQuery + filterQuery}`;
+      },
       providesTags: ["Notices"],
     }),
 
@@ -48,53 +56,17 @@ export const noticesApi = createApi({
     }),
 
     addNotice: builder.mutation({
-      query: newNotice => {
-        // console.log("====noticeApi newNotice:", newNotice);
+      query: ({ formdata, noticeCategory }) => {
         const newFormdata = new FormData();
-        Object.keys(newNotice).forEach(key => newFormdata.append(key, newNotice[key]));
-        newFormdata.set("avatar", newNotice.avatar[0]);
-        // console.log("====noticeApi newFormdata json:", JSON.stringify(Object.fromEntries(newFormdata)));
-
-        return { url: "/notices", method: "POST", body: newFormdata };
+        Object.keys(formdata).forEach(key => newFormdata.append(key, formdata[key]));
+        if (formdata.avatar) {
+          newFormdata.set("avatar", formdata.avatar[0]);
+        }
+        return { url: `?category=${noticeCategory}`, method: "POST", body: newFormdata };
       },
       invalidatesTags: ["Notices"],
     }),
-
-    // listNoticesByCategory: builder.query({
-    //   query: ({ category, page = 1, limit = 15 }) => ({
-    //     url: /notices/categories/${category}?page=${page}&limit=${limit},
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["Notices"],
-    // }),
-
-    // listUserNotices: builder.query({
-    //   query: ({ page = 1, limit = 15, favorite }) => ({
-    //     url: /user?page=${page}&limit=${limit}${favorite ? "&favorite=true" : ""},
-    //     method: "GET",
-    //   }),
-    //   invalidatesTags: ["Notices"],
-    // }),
-
-    // updateFavorites: builder.mutation({
-    //   query: (noticeId, favorite) => ({
-    //     url: /favorites/${noticeId},
-    //     method: "POST",
-    //     body: favorite,
-    //   }),
-    //   invalidatesTags: ["Notices"],
-    // }),
   }),
 });
 
-export const {
-  useGetNoticesAllQuery,
-  useNoticesByCategoryQuery,
-  useListNoticesByQueryQuery,
-  useListUserNoticesQuery,
-  useGetNoticesByIdQuery,
-  useAddNoticeMutation,
-  useUpdateFavoritesMutation,
-  useDeleteNoticeMutation,
-  useGetUserNoticesQuery
-} = noticesApi;
+export const { useGetNoticesByIdQuery, useAddNoticeMutation, useGetNoticesQuery, useDeleteNoticeMutation } = noticesApi;

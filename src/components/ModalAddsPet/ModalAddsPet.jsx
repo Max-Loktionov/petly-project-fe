@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
+import { userActions } from "redux/user/userSlice";
 import {
   Label,
   Form,
@@ -16,28 +18,28 @@ import {
   Title,
   SubTitle,
   ImageBox,
-  InputsNames,
   MyImageCross,
   ImageContainer,
 } from "./ModalAddsPet.styled";
 
-const ModalAddsPet = ({ onClose }) => {
+const ModalAddsPet = () => {
   const [nextPage, setNextPage] = useState(false);
   const [isAvatar, setIsAvatar] = useState(false);
   const [addPet] = useAddPetMutation();
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
-    formState: { isDirty, errors, isValid },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
 
-  const handleSubmitClick = async (formdata, evt) => {
+  const handleSubmitClick = async formdata => {
     try {
-      onClose(evt);
       addPet(formdata);
+      dispatch(userActions.changeModalAddPets());
     } catch (error) {
       console.log(error.message);
     }
@@ -57,7 +59,6 @@ const ModalAddsPet = ({ onClose }) => {
     imageContainer.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
   };
   const textRegexp = /[a-zA-Z]+/;
-  // const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   return (
     <>
@@ -146,6 +147,7 @@ const ModalAddsPet = ({ onClose }) => {
                   <ImageBox id="image_container">{!isAvatar && <MyImageCross />}</ImageBox>
                 </label>
               </ImageContainer>
+
               <Label textarea id="comments-label" htmlFor="comments">
                 Comments
               </Label>
@@ -177,7 +179,7 @@ const ModalAddsPet = ({ onClose }) => {
               <BtnNext onClick={handleNextClick} active disabled={!isValid} type="button">
                 Next
               </BtnNext>
-              <BtnCancel onClick={onClose} type="button">
+              <BtnCancel onClick={() => dispatch(userActions.changeModalAddPets())} type="button">
                 Cancel
               </BtnCancel>
             </>

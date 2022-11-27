@@ -1,65 +1,82 @@
 import { useSelector } from "react-redux";
-import NoticeCategoryItem from "components/NoticeCategoryItem";
-import { List } from "./NoticesCategoriesList.styled";
-import { useNoticesByCategoryQuery } from "redux/noticesApi";
-import { useGetUserFavoriteQuery, useGetUserNoticesQuery } from "redux/userApi";
+import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice";
+import Modal from "components/Modal/Modal";
+import ModalNotice from "components/ModalNotice";
+import { useEffect, useState } from "react";
+import NoticeAllList from "components/NoticeAllList";
+import NoticeFavList from "components/NoticeFavList/NoticeFavList";
+import NoticeMyList from "components/NoticeMyList";
 
-const NoticesCategoriesList = ({ onModalOpen }) => {
-  const category = useSelector(state => state.categories.category);
-  const { data, isLoading } = useNoticesByCategoryQuery(category, { skip: false });
-  const { data: own } = useGetUserNoticesQuery("notice", { skip: true });
-  const { data: favorite } = useGetUserFavoriteQuery("favorite", { skip: true });
+const NoticesCategoriesList = () => {
+  const modalAddNoticeState = useSelector(({ notice }) => notice.modalAddNotice.active);
+  const modalViewNotice = useSelector(({ notice }) => notice.modalViewNotice.active);
+  const page = useSelector(({ notice }) => notice.page);
+  const perPage = useSelector(({ notice }) => notice.perPage);
+  const category = useSelector(({ notice }) => notice.category);
+  const filter = useSelector(({ notice }) => notice.filter);
+  let favoriteNoticeId = useSelector(({ user }) => user.favorite);
+  let notieceId = useSelector(({ user }) => user.favorite);
+  const token = useSelector(({ auth }) => auth.token);
 
-  const renderByCategory = data?.notices;
-  const renderByOwn = own?.data.result.userNotice;
-  const renderByFavorite = favorite?.data.result;
+  const [categorySelect, setcategorySelect] = useState("sell");
 
-  // console.log(renderByCategory);
-  // console.log(renderByOwn);
-  // console.log(renderByFavorite);
+  useEffect(() => {
+    setcategorySelect(category);
+  }, [category]);
 
-  const setCategory = category => {
-    switch (category) {
-      case "sell":
-        return "Sell";
-      case "in_good_hands":
-        return "In good hands";
-      case "lost_found":
-        return "Lost/found";
-      default:
-        return "No category";
+  if (token) {
+    if (!favoriteNoticeId || !notieceId) {
+      return;
     }
-  };
 
-  let render = renderByCategory;
-
-  if (category === "own") {
-    render = renderByOwn;
-  }
-
-  if (category === "favorite") {
-    render = renderByFavorite;
+    favoriteNoticeId = "";
+    notieceId = "";
   }
 
   return (
-    <List>
-      {!isLoading &&
-        render.map(({ _id, category, image, title, breed, location, birthday, price, name }) => (
-          <NoticeCategoryItem
-            key={_id}
-            id={_id}
-            image={image}
-            title={title}
-            name={name}
-            breed={breed}
-            location={location}
-            birthday={birthday}
-            price={price}
-            onModalOpen={onModalOpen}
-            category={setCategory(category)}
-          />
-        ))}
-    </List>
+    <>
+      {token && categorySelect === "my_adds" && (
+        <NoticeMyList
+          filter={filter}
+          category={categorySelect}
+          perPage={perPage}
+          page={page}
+          favoriteNoticeId={favoriteNoticeId}
+          notieceId={notieceId}
+        />
+      )}
+
+      {token && categorySelect === "favorite" && (
+        <NoticeFavList
+          filter={filter}
+          category={categorySelect}
+          perPage={perPage}
+          page={page}
+          favoriteNoticeId={favoriteNoticeId}
+          notieceId={notieceId}
+        />
+      )}
+      {(categorySelect === "sell" || categorySelect === "in_good_hands" || categorySelect === "lost_found") && (
+        <NoticeAllList
+          filter={filter}
+          category={categorySelect}
+          perPage={perPage}
+          page={page}
+          favoriteNoticeId={favoriteNoticeId}
+          notieceId={notieceId}
+        />
+      )}
+      {modalAddNoticeState && (
+        <Modal modalName={"modalAddNotice"} bigHeight>
+          <ModalAddNotice />
+        </Modal>
+      )}
+      {modalViewNotice && (
+        <Modal modalName={"modalViewNotice"}>
+          <ModalNotice />
+        </Modal>
+      )}
+    </>
   );
 };
 

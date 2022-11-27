@@ -25,8 +25,10 @@ export const UserPageContainer = styled.div`
 
 export const BoxUser = styled.section`
   position: relative;
+  height: fit-content;
   margin-bottom: 40px;
   @media ${p => p.theme.media.tablet} {
+    position: relative;
     margin-bottom: 20px;
   }
   @media ${p => p.theme.media.desktop} {

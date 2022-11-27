@@ -21,9 +21,10 @@ export const MyBackdrop = styled.div`
 
 export const ModalWindow = styled.div`
   position: relative;
-  width: 280px;
+  margin-top: ${props => (props.bigHeight ? "320px" : "40px")};
+  margin-bottom: ${props => (props.bigHeight ? "20px" : "0px")};
 
-  max-height: calc(100vh - 40px);
+  width: 280px;
 
   background-color: white;
   padding: 40px 20px 40px;
@@ -41,6 +42,9 @@ export const ModalWindow = styled.div`
 `;
 
 export const Exit = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   right: 20px;
   top: 20px;

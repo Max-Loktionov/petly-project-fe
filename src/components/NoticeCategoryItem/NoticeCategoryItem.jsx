@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
-import Modal from "components/Modal/Modal";
-import ModalNotice from "components/ModalNotice";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Item,
   ImageThumb,
@@ -14,22 +13,24 @@ import {
   ButtonMore,
 } from "./NoticeCategoryItem.styled";
 import unlike from "img/unlike.svg";
+import like from "img/like.svg";
+import defoultImage from "../../img/defaultLogo.jpg";
+import { noticeActions } from "redux/notices/noticeSlice";
 
-const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
+import { useAddFavoriteNoticeMutation, useDeleteFavoriteNoticeMutation } from "redux/userApi";
+
+const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
   const [isFavorite, setFavorite] = useState(false);
+  const [isUserNotice, setIsUserNotice] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
-  const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
-
-  const openModalNotice = e => {
-    if (e) {
-      setIsOpenModalNotice(true);
-    }
-  };
-
-  const closeModalNotice = e => {
-    if (e) {
-      setIsOpenModalNotice(false);
-    }
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
+  const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
+  const token = useSelector(({ auth }) => auth.token);
+  const dispatch = useDispatch();
+  const BASE_URL = "https://petly-be.herokuapp.com/";
+  const openModalNotice = id => {
+    dispatch(noticeActions.changeModalViewNotice(id));
+    dispatch(noticeActions.changeModalNoticeId(id));
   };
 
   const currentAge = date => {
@@ -53,13 +54,53 @@ const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, 
     return age ? age + " year" : m + " month";
   };
 
+  const addToFavorite = (favoriteNoticeId, id) => {
+    if (!favoriteNoticeId) {
+      return;
+    }
+    const filterednotice = favoriteNoticeId.find(notice => notice === id);
+
+    if (filterednotice) {
+      setFavorite(true);
+    }
+  };
+
+  const addToUserNotice = (notieceId, id) => {
+    if (!notieceId) {
+      return;
+    }
+    const filteredNotice = notieceId.find(notice => notice === id);
+
+    if (filteredNotice) {
+      setIsUserNotice(true);
+    }
+  };
+
+  useEffect(() => {
+    addToFavorite(favoriteNoticeId, id);
+    addToUserNotice(notieceId, id);
+  }, [favoriteNoticeId, id, notieceId]);
+
+  const handleClickFavorite = () => {
+    if (!token) {
+      console.log("signUp first");
+      return;
+    }
+    if (isFavorite) {
+      deleteFavoriteNotice(id);
+      return setFavorite(false);
+    }
+    addFavoriteNotice(id);
+    return setFavorite(true);
+  };
+
   return (
     <Item>
       <ImageThumb>
-        <Image src="https://cdn.pixabay.com/photo/2021/10/27/19/09/cat-6748193_960_720.jpg" alt={title}></Image>
+        <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        <BtnFavorite type="button" onClick={() => console.log("isFavorite")}>
-          <img src={unlike} alt="unlike" />
+        <BtnFavorite type="button" onClick={handleClickFavorite}>
+          <img src={isFavorite ? like : unlike} alt="unlike" />
         </BtnFavorite>
       </ImageThumb>
       <div>
@@ -83,7 +124,8 @@ const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, 
                 <td>Age:</td>
                 <td>{currentAge(birthday)}</td>
               </tr>
-              <tr>
+
+              <tr style={category === "sell" ? { color: "transparent" } : { color: "" }}>
                 <td>Price:</td>
                 <td>{price}</td>
               </tr>
@@ -91,12 +133,14 @@ const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, 
           </Table>
         </ContainerDescription>
       </div>
-      <ButtonMore active="true" type="button" onClick={() => onModalOpen(id)}>
+      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id)}>
         Learn more
       </ButtonMore>
-      <button type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
-        Delete
-      </button>
+      {isUserNotice && (
+        <ButtonMore type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
+          Delete
+        </ButtonMore>
+      )}
     </Item>
   );
 };

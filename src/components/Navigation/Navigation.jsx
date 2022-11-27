@@ -15,20 +15,20 @@ export const Navigation = () => {
 
   const onMobileMenuClick = e => {
     setIsOpenMobile(!isOpenMobile);
-    if (!isOpenMobile) {
-      // Когда модальное окно открыто, фиксируем элемент body
-      const scrollY = document.documentElement.style.getPropertyValue("--scroll-y");
-      const body = document.body;
-      body.style.position = "fixed";
-      body.style.top = `-${scrollY}`;
-    } else {
-      // When the modal is hidden..
-      const body = document.body;
-      const scrollY = body.style.top;
-      body.style.position = "";
-      body.style.top = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    }
+    // if (!isOpenMobile) {
+    //   // Когда модальное окно открыто, фиксируем элемент body
+    //   const scrollY = document.documentElement.style.getPropertyValue("--scroll-y");
+    //   const body = document.body;
+    //   body.style.position = "fixed";
+    //   body.style.top = `-${scrollY}`;
+    // } else {
+    //   // When the modal is hidden..
+    //   const body = document.body;
+    //   const scrollY = body.style.top;
+    //   body.style.position = "";
+    //   body.style.top = "";
+    //   window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    // }
   };
 
   const closeMobileMenu = e => {

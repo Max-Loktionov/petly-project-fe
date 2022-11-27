@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Container, Box, Card, Title, SearchBox, Input, Button, NotFoundBox, NotFound } from "./NewsPage.styled";
 import NewsCard from "../../components/NewsCards/NewsCard";
 import searchIcon from "../../img/VectorG.svg";
@@ -13,9 +13,6 @@ function News() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    // if (query) {
-    //   setSearch(query);
-    // }
     const newsPage = async () => {
       try {
         const newsArray = await getNews();
@@ -42,11 +39,6 @@ function News() {
     if (news) {
       return news.filter(newsItem => newsItem.title.toLowerCase().includes(search) || newsItem.description.toLowerCase().includes(search));
     }
-    // return searchNews;
-    // if (searchNews.length === 0) {
-    //   toast.error("Nothing found. Please, try again.");
-    // }
-    // return searchNews;
   };
 
   const filteredNews = getFilteredNews();

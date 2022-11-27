@@ -1,7 +1,9 @@
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
 import devaultIcon from "../../img/default-icon-user.png";
-
+import { userActions } from "redux/user/userSlice";
 import {
   UserBlock,
   BoxImg,
@@ -16,24 +18,29 @@ import {
   ImageContainer,
 } from "./UserDataItem.styled";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 const UserDataForm = () => {
-  const { data: user = [], isLoading, isError } = useGetUserQuery();
+  const { data: user = [] } = useGetUserQuery();
   const [changeUserAvatar] = useUpdateUserAvatarMutation();
   const [isChangeUserAvatar, setIsChangeUserAvatar] = useState(false);
   const [newUserAvatar, setNewUserAvatar] = useState();
+  const dispatch = useDispatch();
 
   const { register } = useForm({
     mode: "onBlur",
   });
+  const result = user?.data?.result;
+  useEffect(() => {
+    (() => dispatch(userActions.getFavorite(result?.favoriteNoticeId)))();
+    (() => dispatch(userActions.getUserNotice(result?.notieceId)))();
+  });
+
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
-  const birthday = user.data?.result?.birthday === "00.00.00" ? "01.01.1900" : user.data?.result?.birthday;
-  const city = user.data?.result?.city === "no info" ? "City, region" : user.data?.result?.city;
-  const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  const birthday = user.data?.result?.birthday;
+  const city = user.data?.result?.city;
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const nameRegex = /[a-zA-Z]+/;
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
   const phoneRegex = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
@@ -150,7 +157,5 @@ const UserDataForm = () => {
     </UserBlock>
   );
 };
-
-// Image.devaultIcon
 
 export default UserDataForm;
