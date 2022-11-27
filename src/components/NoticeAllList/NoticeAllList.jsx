@@ -30,7 +30,7 @@ const NoticeAllList = ({ filter, category, perPage, page, favoriteNoticeId, noti
 
   return (
     <List>
-      {noti?.length === 0 && (
+      {!isLoading && noti?.length === 0 && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>

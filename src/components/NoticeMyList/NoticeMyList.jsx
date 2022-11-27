@@ -36,7 +36,7 @@ const NoticeMyList = ({ filter, category, perPage, page, favoriteNoticeId }) => 
   };
   return (
     <List>
-      {noti?.length === 0 && (
+      {!isLoading && noti?.length === 0 && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>
