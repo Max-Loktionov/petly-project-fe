@@ -29,6 +29,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const token = useSelector(({ auth }) => auth.token);
   const dispatch = useDispatch();
   const { userActions } = userSlice;
+  const [userNotice, setUserNotics] = useState(notieceId);
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
@@ -36,9 +37,10 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   };
 
   useEffect(() => {
+    setUserNotics(notieceId);
     checkFavorite(favoriteNoticeId, id);
-    checkToUserNotice(notieceId, id);
-  }, [favoriteNoticeId, id, notieceId]);
+    checkToUserNotice(userNotice, id);
+  }, [favoriteNoticeId, id, notieceId, userNotice]);
 
   const checkFavorite = (favoriteNoticeId, id) => {
     if (!favoriteNoticeId) {
@@ -51,11 +53,11 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     }
   };
 
-  const checkToUserNotice = (notieceId, id) => {
-    if (!notieceId) {
+  const checkToUserNotice = (userNotice, id) => {
+    if (!userNotice) {
       return;
     }
-    const filteredNotice = notieceId.find(notice => notice === id);
+    const filteredNotice = userNotice.find(notice => notice === id);
 
     if (filteredNotice) {
       setIsUserNotice(true);
@@ -95,6 +97,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     if (isFavorite) {
       deleteFavoriteNotice(id);
       dispatch(userActions.deleteFavorite(id));
+
       return setFavorite(false);
     }
     addFavoriteNotice(id);
@@ -145,7 +148,14 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
         Learn more
       </ButtonMore>
       {isUserNotice && (
-        <ButtonMore type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
+        <ButtonMore
+          type="button"
+          disabled={isDeleting}
+          onClick={() => {
+            console.log("Is delete");
+            return deleteNotice(id);
+          }}
+        >
           Delete
         </ButtonMore>
       )}

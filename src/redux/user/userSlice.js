@@ -34,6 +34,13 @@ export const userSlice = createSlice({
         userNotice: action.payload,
       };
     },
+    deleteUserNotice(state, action) {
+      state.favorite = state.userNotice.filter(item => item !== action.payload);
+    },
+
+    addUserNotice(state, action) {
+      state.userNotice.push(action.payload);
+    },
 
     unsetFavorite(state, action) {
       state.favorite = [];

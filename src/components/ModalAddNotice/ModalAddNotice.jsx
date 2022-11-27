@@ -264,8 +264,6 @@ function ModalAddNotice() {
                   name="price"
                   placeholder="120"
                   {...register("price", {
-                    required: "Price is required.",
-
                     pattern: {
                       value: /^[1-9]/,
                       message: "Price should  contain only numbers,not begin on 0.",
