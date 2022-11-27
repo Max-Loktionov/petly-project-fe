@@ -62,6 +62,10 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   };
 
   const currentAge = date => {
+    if (!date) {
+      return "";
+    }
+
     let today = new Date();
     let birthDate = new Date(date);
     let age = today.getFullYear() - birthDate.getFullYear();
