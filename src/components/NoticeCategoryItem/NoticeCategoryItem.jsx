@@ -16,7 +16,7 @@ import unlike from "img/unlike.svg";
 import like from "img/like.svg";
 import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
-
+import { userSlice } from "redux/user";
 import { useAddFavoriteNoticeMutation, useDeleteFavoriteNoticeMutation } from "redux/userApi";
 
 const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
@@ -27,13 +27,45 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
   const token = useSelector(({ auth }) => auth.token);
   const dispatch = useDispatch();
+  const { userActions } = userSlice;
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
     dispatch(noticeActions.changeModalNoticeId(id));
   };
 
+  useEffect(() => {
+    checkFavorite(favoriteNoticeId, id);
+    checkToUserNotice(notieceId, id);
+  }, [favoriteNoticeId, id, notieceId]);
+
+  const checkFavorite = (favoriteNoticeId, id) => {
+    if (!favoriteNoticeId) {
+      return;
+    }
+    const filterednotice = favoriteNoticeId.find(notice => notice === id);
+
+    if (filterednotice) {
+      setFavorite(true);
+    }
+  };
+
+  const checkToUserNotice = (notieceId, id) => {
+    if (!notieceId) {
+      return;
+    }
+    const filteredNotice = notieceId.find(notice => notice === id);
+
+    if (filteredNotice) {
+      setIsUserNotice(true);
+    }
+  };
+
   const currentAge = date => {
+    if (!date) {
+      return "";
+    }
+
     let today = new Date();
     let birthDate = new Date(date);
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -54,33 +86,6 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     return age ? age + " year" : m + " month";
   };
 
-  const addToFavorite = (favoriteNoticeId, id) => {
-    if (!favoriteNoticeId) {
-      return;
-    }
-    const filterednotice = favoriteNoticeId.find(notice => notice === id);
-
-    if (filterednotice) {
-      setFavorite(true);
-    }
-  };
-
-  const addToUserNotice = (notieceId, id) => {
-    if (!notieceId) {
-      return;
-    }
-    const filteredNotice = notieceId.find(notice => notice === id);
-
-    if (filteredNotice) {
-      setIsUserNotice(true);
-    }
-  };
-
-  useEffect(() => {
-    addToFavorite(favoriteNoticeId, id);
-    addToUserNotice(notieceId, id);
-  }, [favoriteNoticeId, id, notieceId]);
-
   const handleClickFavorite = () => {
     if (!token) {
       console.log("signUp first");
@@ -88,9 +93,11 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     }
     if (isFavorite) {
       deleteFavoriteNotice(id);
+      dispatch(userActions.deleteFavorite(id));
       return setFavorite(false);
     }
     addFavoriteNotice(id);
+    dispatch(userActions.addFavorite(id));
     return setFavorite(true);
   };
 

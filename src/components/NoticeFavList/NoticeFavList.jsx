@@ -15,6 +15,18 @@ const NoticeFavList = ({ filter, category, perPage, page, favoriteNoticeId, noti
     setNoti(data.data.result);
   }, [data]);
 
+  const setCategory = category => {
+    switch (category) {
+      case "sell":
+        return "Sell";
+      case "in_good_hands":
+        return "In good hands";
+      case "lost_found":
+        return "Lost/found";
+      default:
+        return "No category";
+    }
+  };
   return (
     <List>
       {/* {noti.length === 0 && (
@@ -32,7 +44,7 @@ const NoticeFavList = ({ filter, category, perPage, page, favoriteNoticeId, noti
             title={title}
             name={name}
             breed={breed}
-            category={category}
+            category={setCategory(category)}
             location={location}
             birthday={birthday}
             price={price}
