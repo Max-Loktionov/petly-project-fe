@@ -61,11 +61,11 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {/* {data.length === 0 && (
+      {selectedCategory(category)?.length === 0 && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>
-      )} */}
+      )}
       <List>
         {!isLoading &&
           selectedCategory(category)?.map(({ _id, avatar, title, breed, location, birthday, price, name, category }) => (
