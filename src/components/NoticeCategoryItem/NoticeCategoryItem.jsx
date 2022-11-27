@@ -89,6 +89,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     }
     if (isFavorite) {
       deleteFavoriteNotice(id);
+      dispatch(userActions.deleteFavorite(id));
       return setFavorite(false);
     }
     addFavoriteNotice(id);

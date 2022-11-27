@@ -20,11 +20,12 @@ export const userSlice = createSlice({
       };
     },
 
+    deleteFavorite(state, action) {
+      state.favorite = state.favorite.filter(item => item !== action.payload);
+    },
+
     addFavorite(state, action) {
-      return {
-        ...state,
-        favorite: state.favorite.push(action.payload),
-      };
+      state.favorite.push(action.payload);
     },
 
     getUserNotice(state, action) {

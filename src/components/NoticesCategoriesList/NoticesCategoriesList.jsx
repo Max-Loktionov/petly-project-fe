@@ -17,7 +17,7 @@ const NoticesCategoriesList = () => {
   let favoriteNoticeId = useSelector(({ user }) => user.favorite);
   let notieceId = useSelector(({ user }) => user.userNotice);
   const token = useSelector(({ auth }) => auth.token);
-  console.log(notieceId, favoriteNoticeId);
+
   const [categorySelect, setcategorySelect] = useState("sell");
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const NoticesCategoriesList = () => {
 
   //   favoriteNoticeId = "";
   //   notieceId = "";
-  // }
+  // }a
 
   return (
     <>
