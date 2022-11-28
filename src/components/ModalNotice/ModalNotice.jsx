@@ -6,7 +6,7 @@ import { useGetNoticesByIdQuery } from "redux/noticesApi";
 import defoultImage from "../../img/cat.jpg";
 import { toast } from "react-toastify";
 import { userSlice } from "redux/user";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAddFavoriteNoticeMutation } from "redux/userApi";
 
 function ModalNotice({ onClose, favorite }) {
@@ -19,7 +19,7 @@ function ModalNotice({ onClose, favorite }) {
   const { userActions } = userSlice;
   const [isFavorited, setFavorited] = useState(isFavorite);
   const image = data?.notice?.avatar;
-  console.log("yt", favorite);
+
   const hadleClickAddFavorite = () => {
     if (!token) {
       return toast.warn("😹 signUp or login first");
