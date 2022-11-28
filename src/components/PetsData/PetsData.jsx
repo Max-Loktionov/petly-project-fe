@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useGetUserQuery } from "redux/userApi";
 import AddPetBtn from "components/AddPetBtn";
 
 import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsData.styled";
@@ -8,6 +9,7 @@ import { userActions } from "redux/user/userSlice";
 const screenSize = window.innerWidth;
 
 const PetsData = () => {
+  const { data = [], isLoading } = useGetUserQuery();
   const dispatch = useDispatch();
   const handleModalOpen = () => dispatch(userActions.changeModalAddPets());
   return (
@@ -19,7 +21,7 @@ const PetsData = () => {
             <>
               <BoxBtn>
                 <TitleBtn>Add pet</TitleBtn>
-                <AddPetBtn onClick={handleModalOpen} />
+                <AddPetBtn disabled={isLoading ? true : false} onClick={handleModalOpen} />
               </BoxBtn>
             </>
           )}
@@ -27,12 +29,12 @@ const PetsData = () => {
             <>
               <BoxBtn>
                 <TitleBtn>Add pet</TitleBtn>
-                <AddPetBtn onClick={handleModalOpen} />
+                <AddPetBtn disabled={isLoading ? true : false} onClick={handleModalOpen} />
               </BoxBtn>
             </>
           )}
         </BoxTitlePet>
-        <PetsList />
+        <PetsList data={data} isLoading={isLoading} />
       </BoxPet>
     </>
   );
