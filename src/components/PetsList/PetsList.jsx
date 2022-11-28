@@ -1,16 +1,14 @@
-import { useGetUserQuery } from "redux/userApi";
-
 import PetsListItem from "components/PetsListItem";
+import Loader from "components/Loader";
 import { BoxNotFoundPet } from "./PetsList.styled";
 
-const PetsList = () => {
-  const { data = [], isLoading } = useGetUserQuery();
-  console.log(data);
-
+const PetsList = ({ data, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <BoxNotFoundPet>
+          <Loader />
+        </BoxNotFoundPet>
       ) : data?.data?.result?.pets?.length === 0 ? (
         <BoxNotFoundPet>Pet not found</BoxNotFoundPet>
       ) : (

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "components/Button";
 
 export const BoxPet = styled.section`
+  width: 100%;
   @media ${p => p.theme.media.tablet} {
     padding-left: ${p => p.theme.space[5]}px;
   }
