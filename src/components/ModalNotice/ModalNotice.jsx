@@ -11,24 +11,26 @@ import { useAddFavoriteNoticeMutation } from "redux/userApi";
 
 function ModalNotice({ onClose, favorite }) {
   const id = useSelector(({ notice }) => notice.modalViewNotice.id);
+  const isFavorite = useSelector(({ notice }) => notice.modalViewNotice.isFavorite);
   const token = useSelector(({ auth }) => auth.token);
   const { data, isLoading } = useGetNoticesByIdQuery(id);
   const dispatch = useDispatch();
   const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
   const { userActions } = userSlice;
-  const [isFavorite, setFavorite] = useState(favorite);
+  const [isFavorited, setFavorited] = useState(isFavorite);
   const image = data?.notice?.avatar;
   console.log("yt", favorite);
   const hadleClickAddFavorite = () => {
     if (!token) {
       return toast.warn("😹 signUp or login first");
     }
-    if (isFavorite) {
+    if (isFavorited) {
       return toast.warn("😹 Notice already added to favorite");
     }
     addFavoriteNotice(id);
     dispatch(userActions.addFavorite(id));
-    return setFavorite(true);
+    toast.warn("😹 Notice add to favorite");
+    return setFavorited(true);
   };
 
   const BASE_URL = "https://petly-be.herokuapp.com/";
