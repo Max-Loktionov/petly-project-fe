@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   Item,
   ImageThumb,
@@ -16,7 +17,7 @@ import unlike from "img/unlike.svg";
 import like from "img/like.svg";
 import defoultImage from "../../img/defaultLogo.jpg";
 import { noticeActions } from "redux/notices/noticeSlice";
-
+import { userSlice } from "redux/user";
 import { useAddFavoriteNoticeMutation, useDeleteFavoriteNoticeMutation } from "redux/userApi";
 
 const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
@@ -27,13 +28,48 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
   const token = useSelector(({ auth }) => auth.token);
   const dispatch = useDispatch();
+  const { userActions } = userSlice;
+  const [userNotice, setUserNotics] = useState(notieceId);
   const BASE_URL = "https://petly-be.herokuapp.com/";
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
     dispatch(noticeActions.changeModalNoticeId(id));
+    dispatch(noticeActions.changeIsFavorite(isFavorite));
+  };
+
+  useEffect(() => {
+    setUserNotics(notieceId);
+    checkFavorite(favoriteNoticeId, id);
+    checkToUserNotice(userNotice, id);
+  }, [favoriteNoticeId, id, notieceId, userNotice]);
+
+  const checkFavorite = (favoriteNoticeId, id) => {
+    if (!favoriteNoticeId) {
+      return;
+    }
+    const filterednotice = favoriteNoticeId.find(notice => notice === id);
+
+    if (filterednotice) {
+      setFavorite(true);
+    }
+  };
+
+  const checkToUserNotice = (userNotice, id) => {
+    if (!userNotice) {
+      return;
+    }
+    const filteredNotice = userNotice.find(notice => notice === id);
+
+    if (filteredNotice) {
+      setIsUserNotice(true);
+    }
   };
 
   const currentAge = date => {
+    if (!date) {
+      return "";
+    }
+
     let today = new Date();
     let birthDate = new Date(date);
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -54,43 +90,19 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
     return age ? age + " year" : m + " month";
   };
 
-  const addToFavorite = (favoriteNoticeId, id) => {
-    if (!favoriteNoticeId) {
-      return;
-    }
-    const filterednotice = favoriteNoticeId.find(notice => notice === id);
-
-    if (filterednotice) {
-      setFavorite(true);
-    }
-  };
-
-  const addToUserNotice = (notieceId, id) => {
-    if (!notieceId) {
-      return;
-    }
-    const filteredNotice = notieceId.find(notice => notice === id);
-
-    if (filteredNotice) {
-      setIsUserNotice(true);
-    }
-  };
-
-  useEffect(() => {
-    addToFavorite(favoriteNoticeId, id);
-    addToUserNotice(notieceId, id);
-  }, [favoriteNoticeId, id, notieceId]);
-
   const handleClickFavorite = () => {
     if (!token) {
-      console.log("signUp first");
+      toast.warn("😹 signUp or login first");
       return;
     }
     if (isFavorite) {
       deleteFavoriteNotice(id);
+      dispatch(userActions.deleteFavorite(id));
+
       return setFavorite(false);
     }
     addFavoriteNotice(id);
+    dispatch(userActions.addFavorite(id));
     return setFavorite(true);
   };
 
@@ -133,11 +145,18 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
           </Table>
         </ContainerDescription>
       </div>
-      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id)}>
+      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id, isFavorite)}>
         Learn more
       </ButtonMore>
       {isUserNotice && (
-        <ButtonMore type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
+        <ButtonMore
+          type="button"
+          disabled={isDeleting}
+          onClick={() => {
+            toast.warn("😹 Notice is delete");
+            return deleteNotice(id);
+          }}
+        >
           Delete
         </ButtonMore>
       )}

@@ -1,21 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer } from "./ModalNotice.styled";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useGetNoticesByIdQuery } from "redux/noticesApi";
+import defoultImage from "../../img/cat.jpg";
+import { toast } from "react-toastify";
+import { userSlice } from "redux/user";
+import { useState } from "react";
+import { useAddFavoriteNoticeMutation } from "redux/userApi";
 
-function ModalNotice({ onClose }) {
+function ModalNotice({ onClose, favorite }) {
   const id = useSelector(({ notice }) => notice.modalViewNotice.id);
-
+  const isFavorite = useSelector(({ notice }) => notice.modalViewNotice.isFavorite);
+  const token = useSelector(({ auth }) => auth.token);
   const { data, isLoading } = useGetNoticesByIdQuery(id);
+  const dispatch = useDispatch();
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
+  const { userActions } = userSlice;
+  const [isFavorited, setFavorited] = useState(isFavorite);
+  const image = data?.notice?.avatar;
 
-  const avatarUrl = end => `https://petly-be.herokuapp.com/${end}`;
+  const hadleClickAddFavorite = () => {
+    if (!token) {
+      return toast.warn("😹 signUp or login first");
+    }
+    if (isFavorited) {
+      return toast.warn("😹 Notice already added to favorite");
+    }
+    addFavoriteNotice(id);
+    dispatch(userActions.addFavorite(id));
+    toast.warn("😹 Notice add to favorite");
+    return setFavorited(true);
+  };
+
+  const BASE_URL = "https://petly-be.herokuapp.com/";
   return (
     <div>
       {!isLoading && (
         <>
           <ImageContainer>
-            <PictureData imageUrl={avatarUrl(data?.notice?.avatar)}>
+            <PictureData>
+              <img src={image ? BASE_URL + image : defoultImage} alt={data.notice.title}></img>
               <Cathegory>{data.notice.category}</Cathegory>
             </PictureData>
             <div>
@@ -39,15 +64,15 @@ function ModalNotice({ onClose }) {
                 </MyLi>
                 <MyLi>
                   <p>The sex:</p>
-                  <span>{data.notice.theSex}</span>
+                  <span>{data.notice.male}</span>
                 </MyLi>
                 <MyLi>
                   <p>Email:</p>
-                  <span>{data.notice.email}</span>
+                  <span>{data?.notice?.owner?.email}</span>
                 </MyLi>
                 <MyLi>
                   <p>Phone:</p>
-                  <span>{data.notice.phone}</span>
+                  <span>{data?.notice?.owner?.phone}</span>
                 </MyLi>
 
                 {data.notice.cathegory === "sell" && (
@@ -65,8 +90,13 @@ function ModalNotice({ onClose }) {
           </Comments>
 
           <BtnContainer>
-            <MyBtn active={"active"}>Contact</MyBtn>
-            <MyBtn onClose={() => onClose()}>
+            {
+              <a href="tel:{data?.notice?.owner?.phone}">
+                <MyBtn active={"active"}>Contact</MyBtn>
+              </a>
+            }
+
+            <MyBtn onClick={hadleClickAddFavorite}>
               Add to <span>&#10084;</span>
             </MyBtn>
           </BtnContainer>

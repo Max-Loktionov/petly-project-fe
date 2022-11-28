@@ -9,6 +9,8 @@ your small pets</h1>
 
 Проект можна подивитись в [DEMO](https://max-loktionov.github.io/petly-project-fe/)
 
+https://project-group-4-petly.netlify.app/petly-project-fe
+
 ## **Опис**
 
 **Petly** - додаток, який допомагає піклуватися про своїх маленьких вихованців. У ньому ви зможете зберігати інформацію про своїх

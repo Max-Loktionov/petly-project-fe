@@ -8,7 +8,8 @@ import { PetItem, InfoPet, Title, ImgPet, BoxInfo, DeleteBtm, DelIcon } from "./
 
 const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
-  isDeleting && toast(`${name} was removed`);
+
+  isDeleting && toast.success(`😿 ${name} was removed`);
   const BASE_URL = "https://petly-be.herokuapp.com/";
 
   return (

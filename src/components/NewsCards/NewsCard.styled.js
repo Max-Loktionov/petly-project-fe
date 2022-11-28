@@ -97,6 +97,11 @@ export const Box = styled.div`
 `;
 export const Link = styled.a`
   color: ${p => p.theme.colors.accent};
+
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.hoverBtn};
+  }
 `;
 
 export const Data = styled.span`

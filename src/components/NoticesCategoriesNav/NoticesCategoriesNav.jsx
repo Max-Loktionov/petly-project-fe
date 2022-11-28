@@ -3,7 +3,7 @@ import { BoxBtn, TitleBtn } from "components/PetsData/PetsData.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { noticeActions } from "redux/notices/noticeSlice";
 import { AddBtn, CategoryBtn, CategoryContainer, Container, Cross } from "./NoticesCategoriesNav.styled";
-
+import { toast } from "react-toastify";
 function NoticesCategoriesNav() {
   const category = useSelector(({ notice }) => notice.category);
   const token = useSelector(({ auth }) => auth.token);
@@ -11,7 +11,12 @@ function NoticesCategoriesNav() {
 
   const checkCategory = selectedCategory => (category === selectedCategory ? true : false);
   const handleClick = e => dispatch(noticeActions.changeCategory(e.target.name));
-  const handleModalOpen = () => dispatch(noticeActions.changeModalAddNotice());
+  const handleModalOpen = () => {
+    if (!token) {
+      return toast.warn("😹 SignUp or login first");
+    }
+    return dispatch(noticeActions.changeModalAddNotice());
+  };
 
   const screenSize = window.innerWidth;
 
