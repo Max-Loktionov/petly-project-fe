@@ -144,7 +144,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
           </Table>
         </ContainerDescription>
       </div>
-      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id)}>
+      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id)} favorite={isFavorite}>
         Learn more
       </ButtonMore>
       {isUserNotice && (
