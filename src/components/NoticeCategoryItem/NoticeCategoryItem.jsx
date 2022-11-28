@@ -34,6 +34,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
     dispatch(noticeActions.changeModalNoticeId(id));
+    dispatch(noticeActions.changeIsFavorite(isFavorite));
   };
 
   useEffect(() => {
@@ -144,7 +145,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
           </Table>
         </ContainerDescription>
       </div>
-      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id)}>
+      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id, isFavorite)}>
         Learn more
       </ButtonMore>
       {isUserNotice && (

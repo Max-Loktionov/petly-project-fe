@@ -11,6 +11,7 @@ const initialState = {
   modalViewNotice: {
     active: false,
     id: null,
+    isFavorite: false,
   },
   modalAddPets: {
     active: false,
@@ -63,6 +64,14 @@ export const noticeSlice = createSlice({
         modalViewNotice: { ...state.modalViewNotice, id: action.payload },
       };
     },
+
+    changeIsFavorite(state, action) {
+      return {
+        ...state,
+        modalViewNotice: { ...state.modalViewNotice, isFavorite: action.payload },
+      };
+    },
+
     changeModalAddPets(state, action) {
       return {
         ...state,

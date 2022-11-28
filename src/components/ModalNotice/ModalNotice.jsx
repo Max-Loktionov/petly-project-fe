@@ -1,21 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer } from "./ModalNotice.styled";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useGetNoticesByIdQuery } from "redux/noticesApi";
 import defoultImage from "../../img/cat.jpg";
 import { toast } from "react-toastify";
-function ModalNotice({ onClose }) {
+import { userSlice } from "redux/user";
+import { useState, useEffect } from "react";
+import { useAddFavoriteNoticeMutation } from "redux/userApi";
+
+function ModalNotice({ onClose, favorite }) {
   const id = useSelector(({ notice }) => notice.modalViewNotice.id);
+  const isFavorite = useSelector(({ notice }) => notice.modalViewNotice.isFavorite);
   const token = useSelector(({ auth }) => auth.token);
   const { data, isLoading } = useGetNoticesByIdQuery(id);
-
+  const dispatch = useDispatch();
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
+  const { userActions } = userSlice;
+  const [isFavorited, setFavorited] = useState(isFavorite);
   const image = data?.notice?.avatar;
+  console.log("yt", favorite);
   const hadleClickAddFavorite = () => {
     if (!token) {
       return toast.warn("😹 signUp or login first");
     }
-    return console.log("add to favorite");
+    if (isFavorited) {
+      return toast.warn("😹 Notice already added to favorite");
+    }
+    addFavoriteNotice(id);
+    dispatch(userActions.addFavorite(id));
+    toast.warn("😹 Notice add to favorite");
+    return setFavorited(true);
   };
 
   const BASE_URL = "https://petly-be.herokuapp.com/";
