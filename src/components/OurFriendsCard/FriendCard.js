@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { Box, List, Img, Picture, Title, Time, Hr, Address, Email, Phone } from "./FriendCard.styled";
 import WorkTime from "./WorkTime";
 import image from "../../img/defaultLogo.jpg";
@@ -6,7 +5,7 @@ import image from "../../img/defaultLogo.jpg";
 const BASE_URL = "https://petly-be.herokuapp.com/friends";
 
 const FriendCard = friend => {
-  const { title, address, email, phone, workDays, imageUrl } = friend.friend;
+  const { title, address, email, phone, workDays, imageUrl, url } = friend.friend;
   const shortName = title.split(" ").slice(0, 3).join(" ");
 
   const veryShortName = title.split(" ").slice(0, 2).join(" ");
@@ -14,7 +13,11 @@ const FriendCard = friend => {
   return (
     <>
       <Title>
-        <span>{title}</span>
+        <span>
+          <a href={url} target="_blank" rel="noreferrer">
+            {title}
+          </a>
+        </span>
         {shortName.length > 26 ? veryShortName : shortName}
       </Title>
 

@@ -14,35 +14,14 @@ export const PetItem = styled.div`
   background-color: ${p => p.theme.colors.white};
   @media ${p => p.theme.media.tablet} {
     display: flex;
+    width: 704px;
   }
   @media ${p => p.theme.media.desktop} {
+    width: 821px;
     margin-bottom: 22px;
   }
 `;
-export const InfoPet = styled.p`
-  &:not(:last-child) {
-    margin-bottom: 12px;
-  }
-  font-size: 14px;
-  font-weight: ${p => p.theme.fontWeights.text};
-  @media ${p => p.theme.media.tablet} {
-    width: 471px;
-    font-size: 16px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    width: 580px;
-  }
-`;
-export const Title = styled.span`
-  &:not(:last-child) {
-    margin-bottom: 12px;
-  }
-  font-size: 14px;
-  font-weight: ${p => p.theme.fontWeights.heading};
-  @media ${p => p.theme.media.tablet} {
-    font-size: 16px;
-  }
-`;
+
 export const ImgPet = styled.img`
   margin-bottom: 20px;
   width: 240px;
@@ -56,10 +35,17 @@ export const ImgPet = styled.img`
     height: 161px;
   }
 `;
+
 export const BoxInfo = styled.div`
   position: relative;
-  width: 100%;
+  @media ${p => p.theme.media.tablet} {
+    width: 471px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    width: 580px;
+  }
 `;
+
 export const DeleteBtm = styled.button`
   position: absolute;
   display: flex;
@@ -84,9 +70,30 @@ export const DeleteBtm = styled.button`
 export const DelIcon = styled(HiTrash)`
   width: 20px;
   height: 20px;
-  fill: rgba(17, 17, 17, 0.6);
+  fill: ${p => p.theme.colors.greyIcon};
   @media ${p => p.theme.media.tablet} {
     width: 24px;
     height: 24px;
+  }
+`;
+
+export const InfoPet = styled.p`
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  font-size: ${p => p.theme.fontSizes.s};
+  font-weight: ${p => p.theme.fontWeights.text};
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+export const Title = styled.span`
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  font-size: ${p => p.theme.fontSizes.s};
+  font-weight: ${p => p.theme.fontWeights.heading};
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.m};
   }
 `;

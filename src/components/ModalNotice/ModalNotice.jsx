@@ -1,84 +1,107 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Cathegory, Header, PictureData, MyLi, Comments, MyBtn, ImageContainer, BtnContainer } from "./ModalNotice.styled";
+import { useSelector, useDispatch } from "react-redux";
+import { useGetNoticesByIdQuery } from "redux/noticesApi";
+import defoultImage from "../../img/cat.jpg";
+import { toast } from "react-toastify";
+import { userSlice } from "redux/user";
+import { useState } from "react";
+import { useAddFavoriteNoticeMutation } from "redux/userApi";
 
-function ModalNotice({ id, onClose }) {
-  // id to use getMutationByid and delete pet Object
+function ModalNotice({ onClose, favorite }) {
+  const id = useSelector(({ notice }) => notice.modalViewNotice.id);
+  const isFavorite = useSelector(({ notice }) => notice.modalViewNotice.isFavorite);
+  const token = useSelector(({ auth }) => auth.token);
+  const { data, isLoading } = useGetNoticesByIdQuery(id);
+  const dispatch = useDispatch();
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
+  const { userActions } = userSlice;
+  const [isFavorited, setFavorited] = useState(isFavorite);
+  const image = data?.notice?.avatar;
 
-  const pet = {
-    id: "dasdqw21323reased1243434567",
-    name: "Rich",
-    birthday: "21.09.2020",
-    breed: "Pomeranian",
-    location: "Lviv",
-    theSex: "male",
-    email: "user@mail.com",
-    phone: "+380971234567",
-    comments:
-      "Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem",
-    cathegory: "sell",
-    price: 123,
-    avatar: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLX9f3BTRl8zwQuDCnJqd4DZEAo7KKFf07WPI7Y-Ih&s`,
+  const hadleClickAddFavorite = () => {
+    if (!token) {
+      return toast.warn("😹 signUp or login first");
+    }
+    if (isFavorited) {
+      return toast.warn("😹 Notice already added to favorite");
+    }
+    addFavoriteNotice(id);
+    dispatch(userActions.addFavorite(id));
+    toast.warn("😹 Notice add to favorite");
+    return setFavorited(true);
   };
 
+  const BASE_URL = "https://petly-be.herokuapp.com/";
   return (
     <div>
-      <ImageContainer>
-        <PictureData imageUrl={pet.avatar}>
-          <Cathegory>{pet.cathegory}</Cathegory>
-        </PictureData>
-        <div>
-          <Header>Сute dog looking for a home</Header>
-          <ul>
-            <MyLi>
-              <p>Name:</p>
-              <span>{pet.name}</span>
-            </MyLi>
-            <MyLi>
-              <p>Birthday:</p>
-              <span>{pet.birthday}</span>
-            </MyLi>
-            <MyLi>
-              <p>Breed:</p>
-              <span>{pet.breed}</span>
-            </MyLi>
-            <MyLi>
-              <p>Location:</p>
-              <span>{pet.location}</span>
-            </MyLi>
-            <MyLi>
-              <p>The sex:</p>
-              <span>{pet.theSex}</span>
-            </MyLi>
-            <MyLi>
-              <p>Email:</p>
-              <span>{pet.email}</span>
-            </MyLi>
-            <MyLi>
-              <p>Phone:</p>
-              <span>{pet.phone}</span>
-            </MyLi>
+      {!isLoading && (
+        <>
+          <ImageContainer>
+            <PictureData>
+              <img src={image ? BASE_URL + image : defoultImage} alt={data.notice.title}></img>
+              <Cathegory>{data.notice.category}</Cathegory>
+            </PictureData>
+            <div>
+              <Header>Cute dog looking for a home</Header>
+              <ul>
+                <MyLi>
+                  <p>Name:</p>
+                  <span>{data.notice.name}</span>
+                </MyLi>
+                <MyLi>
+                  <p>Birthday:</p>
+                  <span>{data.notice.birthday}</span>
+                </MyLi>
+                <MyLi>
+                  <p>Breed:</p>
+                  <span>{data.notice.breed}</span>
+                </MyLi>
+                <MyLi>
+                  <p>Location:</p>
+                  <span>{data.notice.location}</span>
+                </MyLi>
+                <MyLi>
+                  <p>The sex:</p>
+                  <span>{data.notice.male}</span>
+                </MyLi>
+                <MyLi>
+                  <p>Email:</p>
+                  <span>{data?.notice?.owner?.email}</span>
+                </MyLi>
+                <MyLi>
+                  <p>Phone:</p>
+                  <span>{data?.notice?.owner?.phone}</span>
+                </MyLi>
 
-            {pet.cathegory === "sell" && (
-              <MyLi>
-                <p>Sell:</p>
-                <span>{pet.price}</span>
-              </MyLi>
-            )}
-          </ul>
-        </div>
-      </ImageContainer>
+                {data.notice.cathegory === "sell" && (
+                  <MyLi>
+                    <p>Sell:</p>
+                    <span>{data.notice.price}</span>
+                  </MyLi>
+                )}
+              </ul>
+            </div>
+          </ImageContainer>
 
-      <Comments>
-        Comments: <span>{pet.comments}</span>
-      </Comments>
+          <Comments>
+            Comments: <span>{data.notice.comments}</span>
+          </Comments>
 
-      <BtnContainer>
-        <MyBtn active={"active"}>Contact</MyBtn>
-        <MyBtn onClose={() => onClose()}>
-          Add to <span>&#10084;</span>
-        </MyBtn>
-      </BtnContainer>
+          <BtnContainer>
+            {
+              <a href="tel:{data?.notice?.owner?.phone}">
+                <MyBtn active={"active"}>Contact</MyBtn>
+              </a>
+            }
+
+            <MyBtn onClick={hadleClickAddFavorite}>
+              Add to <span>&#10084;</span>
+            </MyBtn>
+          </BtnContainer>
+        </>
+      )}
     </div>
   );
 }

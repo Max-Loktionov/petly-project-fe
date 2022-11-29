@@ -69,22 +69,36 @@ export const userApi = createApi({
     }),
 
     getUserNotices: builder.query({
-      query: notice => ({
-        url: `/${notice}`,
+      query: () => ({
+        url: `/notice`,
         method: "GET",
       }),
       providesTags: ["User"],
     }),
 
     getUserFavorite: builder.query({
-      query: favorite => ({
-        url: `/${favorite}`,
+      query: () => ({
+        url: `/favorite`,
         method: "GET",
       }),
       providesTags: ["User"],
     }),
 
-    // transformResponse: (response) => response.data,
+    addFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteFavoriteNotice: builder.mutation({
+      query: notice_id => ({
+        url: `/favorite?notice_id=${notice_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -96,4 +110,6 @@ export const {
   useUpdateUserAvatarMutation,
   useGetUserNoticesQuery,
   useGetUserFavoriteQuery,
+  useAddFavoriteNoticeMutation,
+  useDeleteFavoriteNoticeMutation,
 } = userApi;

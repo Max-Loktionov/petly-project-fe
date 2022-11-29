@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDeleteNoticeMutation } from "redux/noticesApi";
-import Modal from "components/Modal/Modal";
-import ModalNotice from "components/ModalNotice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   Item,
   ImageThumb,
@@ -14,25 +14,62 @@ import {
   ButtonMore,
 } from "./NoticeCategoryItem.styled";
 import unlike from "img/unlike.svg";
+import like from "img/like.svg";
+import defoultImage from "../../img/defaultLogo.jpg";
+import { noticeActions } from "redux/notices/noticeSlice";
+import { userSlice } from "redux/user";
+import { useAddFavoriteNoticeMutation, useDeleteFavoriteNoticeMutation } from "redux/userApi";
 
-const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, location, price, image, onModalOpen }) => {
+const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, location, price, image, favoriteNoticeId, notieceId }) => {
   const [isFavorite, setFavorite] = useState(false);
+  const [isUserNotice, setIsUserNotice] = useState(false);
   const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
-  const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
+  const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
+  const token = useSelector(({ auth }) => auth.token);
+  const dispatch = useDispatch();
+  const { userActions } = userSlice;
+  const [userNotice, setUserNotics] = useState(notieceId);
+  const BASE_URL = "https://petly-be.herokuapp.com/";
+  const openModalNotice = id => {
+    dispatch(noticeActions.changeModalViewNotice(id));
+    dispatch(noticeActions.changeModalNoticeId(id));
+    dispatch(noticeActions.changeIsFavorite(isFavorite));
+  };
 
-  const openModalNotice = e => {
-    if (e) {
-      setIsOpenModalNotice(true);
+  useEffect(() => {
+    setUserNotics(notieceId);
+    checkFavorite(favoriteNoticeId, id);
+    checkToUserNotice(userNotice, id);
+  }, [favoriteNoticeId, id, notieceId, userNotice]);
+
+  const checkFavorite = (favoriteNoticeId, id) => {
+    if (!favoriteNoticeId) {
+      return;
+    }
+    const filterednotice = favoriteNoticeId.find(notice => notice === id);
+
+    if (filterednotice) {
+      setFavorite(true);
     }
   };
 
-  const closeModalNotice = e => {
-    if (e) {
-      setIsOpenModalNotice(false);
+  const checkToUserNotice = (userNotice, id) => {
+    if (!userNotice) {
+      return;
+    }
+    const filteredNotice = userNotice.find(notice => notice === id);
+
+    if (filteredNotice) {
+      setIsUserNotice(true);
     }
   };
 
   const currentAge = date => {
+    if (!date) {
+      return "";
+    }
+
     let today = new Date();
     let birthDate = new Date(date);
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -53,13 +90,29 @@ const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, 
     return age ? age + " year" : m + " month";
   };
 
+  const handleClickFavorite = () => {
+    if (!token) {
+      toast.warn("😹 signUp or login first");
+      return;
+    }
+    if (isFavorite) {
+      deleteFavoriteNotice(id);
+      dispatch(userActions.deleteFavorite(id));
+
+      return setFavorite(false);
+    }
+    addFavoriteNotice(id);
+    dispatch(userActions.addFavorite(id));
+    return setFavorite(true);
+  };
+
   return (
     <Item>
       <ImageThumb>
-        <Image src="https://cdn.pixabay.com/photo/2021/10/27/19/09/cat-6748193_960_720.jpg" alt={title}></Image>
+        <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
-        <BtnFavorite type="button" onClick={() => console.log("isFavorite")}>
-          <img src={unlike} alt="unlike" />
+        <BtnFavorite type="button" onClick={handleClickFavorite}>
+          <img src={isFavorite ? like : unlike} alt="unlike" />
         </BtnFavorite>
       </ImageThumb>
       <div>
@@ -83,7 +136,8 @@ const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, 
                 <td>Age:</td>
                 <td>{currentAge(birthday)}</td>
               </tr>
-              <tr>
+
+              <tr style={category === "sell" ? { color: "transparent" } : { color: "" }}>
                 <td>Price:</td>
                 <td>{price}</td>
               </tr>
@@ -91,12 +145,21 @@ const NoticeCategoryItem = ({ id, category, name, title, birthday, breed, male, 
           </Table>
         </ContainerDescription>
       </div>
-      <ButtonMore active="true" type="button" onClick={() => onModalOpen(id)}>
+      <ButtonMore active="true" type="button" onClick={() => openModalNotice(id, isFavorite)}>
         Learn more
       </ButtonMore>
-      <button type="button" disabled={isDeleting} onClick={() => deleteNotice(id)}>
-        Delete
-      </button>
+      {isUserNotice && (
+        <ButtonMore
+          type="button"
+          disabled={isDeleting}
+          onClick={() => {
+            toast.warn("😹 Notice is delete");
+            return deleteNotice(id);
+          }}
+        >
+          Delete
+        </ButtonMore>
+      )}
     </Item>
   );
 };
