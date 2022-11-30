@@ -33,7 +33,9 @@ function ModalNotice({ onClose, favorite }) {
     return setFavorited(true);
   };
 
-  const BASE_URL = "https://petly-be.herokuapp.com/";
+  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  const BASE_URL = `${SERVER_NAME}/`;
+  // const BASE_URL = "https://petly-be.herokuapp.com/";  // is not using now
   return (
     <div>
       {!isLoading && (

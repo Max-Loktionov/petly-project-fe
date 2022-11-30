@@ -21,7 +21,7 @@ import {
 import { useForm } from "react-hook-form";
 
 const UserDataForm = () => {
-  const { data: user = [], isLoading } = useGetUserQuery();
+  const { data: user = [], isLoading } = useGetUserQuery({}, { refetchOnMountOrArgChange: true });
   const [changeUserAvatar] = useUpdateUserAvatarMutation();
   const [isChangeUserAvatar, setIsChangeUserAvatar] = useState(false);
   const [newUserAvatar, setNewUserAvatar] = useState();
@@ -36,7 +36,9 @@ const UserDataForm = () => {
     (() => dispatch(userActions.getUserNotice(result?.notieceId)))();
   });
 
-  const BASE_URL = "https://petly-be.herokuapp.com/";
+  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  const BASE_URL = `${SERVER_NAME}/`;
+  // const BASE_URL = "https://petly-be.herokuapp.com/";  //is not using now
   const imgUrl = user?.data?.result?.avatar;
   const imgAlt = user?.data?.result?.name;
   const birthday = user.data?.result?.birthday;
