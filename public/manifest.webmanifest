@@ -1,0 +1,39 @@
+{
+    "icons": [
+        {
+            "src": "src/img/favicons/ms-icon-70x70.png",
+            "type": "image/png",
+            "sizes": "70x70"
+        },
+        {
+            "src": "src/img/favicons/ms-icon-310x310.png",
+            "type": "image/png",
+            "sizes": "310x310"
+        },
+        {
+            "src": "src/img/favicons/android-icon-36x36.png",
+            "type": "image/png",
+            "sizes": "36x36"
+        },
+        {
+            "src": "src/img/favicons/android-icon-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "src/img/favicons/apple-icon-60x60.png",
+            "type": "image/png",
+            "sizes": "60x60"
+        },
+        {
+            "src": "src/img/favicons/apple-icon-180x180.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
+        {
+            "src": "src/img/favicons/MadPesek-1.svg",
+            "type": "image/svg",
+            "sizes": "512x512"
+        }
+    ]
+}
