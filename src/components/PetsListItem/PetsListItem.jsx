@@ -10,7 +10,11 @@ const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
   const [deletePet, { isLoading: isDeleting }] = useDeletePetMutation();
 
   isDeleting && toast.success(`😿 ${name} was removed`);
-  const BASE_URL = "https://petly-be.herokuapp.com/";
+
+  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  const BASE_URL = `${SERVER_NAME}/`;
+
+  // const BASE_URL = "https://petly-be.herokuapp.com/";   //is not using now
 
   return (
     <PetItem>

@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// const { REACT_APP_BASE_URL } = process.env;
-// const BASE_URL = `${REACT_APP_BASE_URL}/notices`;
-const BASE_URL = "https://petly-be.herokuapp.com/notices";
+const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+const BASE_URL = `${SERVER_NAME}/notices`;
+// const BASE_URL = "https://petly-be.herokuapp.com/notices";
+// REACT_APP_SITE_URL=https://example-project-petly.onrender.com/
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -18,7 +19,8 @@ const baseQuery = fetchBaseQuery({
 export const noticesApi = createApi({
   reducerPath: "noticesApi",
   baseQuery,
-  tagTypes: ["Notices"],
+  tagTypes: ["Notices", "User"],
+  // refetchOnMountOrArgChange: true,
 
   endpoints: builder => ({
     getNotices: builder.query({
