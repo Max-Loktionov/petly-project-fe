@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Petly-project cats, dogs and their owners"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins:wght@700&display=swap"
-      rel="stylesheet"
-    />
+
+    <meta name="description" content="Petly-project cats, dogs and their owners" />
+    <!-- 000000000000000000000000000000000 -->
+
+    <!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
+    <!-- <meta name="msapplication-TileColor" content="#ffffff" /> -->
+    <meta name="msapplication-TileImage" content="/ms-icon-310x310.png" />
+    <!-- <meta name="theme-color" content="#ffffff" /> -->
+    <!-- 00000000000000000000000000000000000000000 -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
@@ -49,11 +49,7 @@
               return s.replace(/~and~/g, "&");
             })
             .join("?");
-          window.history.replaceState(
-            null,
-            null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          );
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
       })(window.location);
     </script>
