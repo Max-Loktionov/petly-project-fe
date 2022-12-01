@@ -1,6 +1,5 @@
 {
   "name": "petly-project-fe",
-  "homepage": "https://Max-Loktionov.github.io/petly-project-fe/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
