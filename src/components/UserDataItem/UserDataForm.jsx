@@ -39,7 +39,7 @@ const UserDataForm = () => {
   // const SERVER_NAME = process.env.REACT_APP_SITE_URL;
   // const BASE_URL = `${SERVER_NAME}/`;
   // const BASE_URL = "https://petly-be.herokuapp.com/";  //is not using now
-  const imgUrl = user?.data?.result?.avatar;
+  const imgUrl = result?.avatar;
   const imgAlt = user?.data?.result?.name;
   const birthday = user.data?.result?.birthday;
   const city = user.data?.result?.city;

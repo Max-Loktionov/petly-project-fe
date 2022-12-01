@@ -3,17 +3,17 @@
     "name": "The front-end UI for Petly",
     "icons": [
         {
-            "src": "/petly-project-fe/favicon.ico",
+            "src": "favicon.ico",
             "sizes": " 32x32 16x16",
             "type": "image/x-icon"
         },
         {
-            "src": "/petly-project-fe/android-chrome-192x192.png",
+            "src": "android-chrome-192x192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/petly-project-fe/android-chrome-512x512.png",
+            "src": "android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
