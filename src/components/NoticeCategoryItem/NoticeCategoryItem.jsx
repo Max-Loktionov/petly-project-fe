@@ -30,7 +30,10 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const dispatch = useDispatch();
   const { userActions } = userSlice;
   const [userNotice, setUserNotics] = useState(notieceId);
-  const BASE_URL = "https://petly-be.herokuapp.com/";
+
+  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  const BASE_URL = `${SERVER_NAME}/`;
+  // const BASE_URL = "https://petly-be.herokuapp.com/"; //is not using now
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
     dispatch(noticeActions.changeModalNoticeId(id));

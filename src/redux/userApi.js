@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// const { REACT_APP_BASE_URL } = process.env;
+const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+const BASE_URL = `${SERVER_NAME}/user`;
 
-// const BASE_URL = `${REACT_APP_BASE_URL}/user`;
-
-const BASE_URL = "https://petly-be.herokuapp.com/user";
+// const BASE_URL = "https://petly-be.herokuapp.com/user";
 // const BASE_URL = "http://localhost:3001/user";
 
 const baseQuery = fetchBaseQuery({
@@ -21,11 +20,12 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery,
   tagTypes: ["User"],
+  refetchOnMountOrArgChange: true,
 
   endpoints: builder => ({
     getUser: builder.query({
       query: () => "/",
-      providesTags: ["User"],
+      providesTags: ["User", "Auth"],
     }),
 
     updateUser: builder.mutation({
@@ -34,7 +34,7 @@ export const userApi = createApi({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["User", "Auth"],
     }),
 
     updateUserAvatar: builder.mutation({
