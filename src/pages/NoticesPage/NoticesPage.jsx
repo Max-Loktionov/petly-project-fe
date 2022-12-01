@@ -1,7 +1,7 @@
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
-import NoticesCategoriesList from "components/NoticesCategoriesList";
 import NoticesCategoriesNav from "components/NoticesCategoriesNav/NoticesCategoriesNav";
 import { Container, Title } from "./NoticesPage.styled";
+import NoticesCategoriesList from "components/NoticesCategoriesList/NoticesCategoriesList";
 
 const NoticesPage = () => {
   return (
