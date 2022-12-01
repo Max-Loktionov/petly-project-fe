@@ -77,7 +77,7 @@ const UserDataForm = () => {
             <>
               <BoxImg>
                 {!isChangeUserAvatar ? (
-                  <ImgUser id="img_container" src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt={imgAlt} />
+                  <ImgUser id="img_container" src={imgUrl ? imgUrl : devaultIcon} alt={imgAlt} />
                 ) : (
                   <ImgUser id="img_container" src={newUserAvatar} alt={imgAlt} />
                 )}
