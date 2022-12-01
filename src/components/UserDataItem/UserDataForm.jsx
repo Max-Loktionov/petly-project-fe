@@ -36,10 +36,10 @@ const UserDataForm = () => {
     (() => dispatch(userActions.getUserNotice(result?.notieceId)))();
   });
 
-  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
-  const BASE_URL = `${SERVER_NAME}/`;
+  // const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  // const BASE_URL = `${SERVER_NAME}/`;
   // const BASE_URL = "https://petly-be.herokuapp.com/";  //is not using now
-  const imgUrl = user?.data?.result?.avatar;
+  const imgUrl = result?.avatar;
   const imgAlt = user?.data?.result?.name;
   const birthday = user.data?.result?.birthday;
   const city = user.data?.result?.city;
@@ -77,7 +77,7 @@ const UserDataForm = () => {
             <>
               <BoxImg>
                 {!isChangeUserAvatar ? (
-                  <ImgUser id="img_container" src={imgUrl ? BASE_URL + imgUrl : devaultIcon} alt={imgAlt} />
+                  <ImgUser id="img_container" src={imgUrl ? imgUrl : devaultIcon} alt={imgAlt} />
                 ) : (
                   <ImgUser id="img_container" src={newUserAvatar} alt={imgAlt} />
                 )}
