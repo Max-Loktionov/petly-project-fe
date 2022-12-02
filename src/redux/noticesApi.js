@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+const SERVER_NAME = process.env.REACT_APP_SITE_URL; // REACT_APP_SITE_URL=https://example-project-petly.onrender.com/
 const BASE_URL = `${SERVER_NAME}/notices`;
-// const BASE_URL = "https://petly-be.herokuapp.com/notices";
-// REACT_APP_SITE_URL=https://example-project-petly.onrender.com/
+// const BASE_URL = "https://petly-be.herokuapp.com/notices";  //is not using
+
+// const BASE_URL = "http://localhost:3001/notices";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -20,7 +21,7 @@ export const noticesApi = createApi({
   reducerPath: "noticesApi",
   baseQuery,
   tagTypes: ["Notices", "User"],
-  // refetchOnMountOrArgChange: true,
+  refetchOnMountOrArgChange: true,
 
   endpoints: builder => ({
     getNotices: builder.query({
@@ -66,6 +67,7 @@ export const noticesApi = createApi({
         if (formdata.avatar) {
           newFormdata.set("avatar", formdata.avatar[0]);
         }
+        console.log("======userApi newForm:", newFormdata);
         return { url: `?category=${noticeCategory}`, method: "POST", body: newFormdata };
       },
       invalidatesTags: ["Notices"],

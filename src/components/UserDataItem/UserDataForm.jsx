@@ -58,9 +58,10 @@ const UserDataForm = () => {
       reader.onloadend = () => {
         const avatar = reader.result;
         setNewUserAvatar(avatar);
-        const formad = new FormData();
-        formad.append("avatar", e.target.files[0]);
-        changeUserAvatar(formad);
+        const file = new FormData();
+        file.append("avatar", e.target.files[0]);
+        console.log("UserDataForm file:", file);
+        changeUserAvatar(file);
       };
     }
   };

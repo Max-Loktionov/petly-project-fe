@@ -63,7 +63,7 @@ function ModalAddNotice() {
 
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
   const textRegexp = /[a-zA-Z]+/;
-  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+  // const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   const handleSubmitClick = async formdata => {
     try {
@@ -187,10 +187,11 @@ function ModalAddNotice() {
               name="birth"
               placeholder="Set date"
               {...register("birthday", {
-                pattern: {
-                  value: dateRegexp,
-                  message: "birthday should  contain only numbers.",
-                },
+                message: "birthday should  contain only numbers.",
+                // pattern: {
+                //   value: dateRegexp,
+                //   message: "birthday should  contain only numbers.",
+                // },
               })}
             />
             {errors.birth && <ErrorText role="alert">{errors.birth?.message}</ErrorText>}
