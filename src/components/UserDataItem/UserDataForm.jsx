@@ -40,7 +40,7 @@ const UserDataForm = () => {
   // const BASE_URL = `${SERVER_NAME}/`;
   // const BASE_URL = "https://petly-be.herokuapp.com/";  //is not using now
   const imgUrl = result?.avatar;
-  const imgAlt = user?.data?.result?.name;
+  const imgAlt = result?.name;
   const birthday = user.data?.result?.birthday;
   const city = user.data?.result?.city;
   const emailRegex =
