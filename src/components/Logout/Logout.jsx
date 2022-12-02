@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { authSlice } from "redux/auth";
 import { useLogOutUserMutation } from "redux/auth/authApi";
 import { userSlice } from "redux/user";
+import { userApi } from "redux/userApi";
 import { LogOut, LogOutIcon } from "./Logout.styled";
 
 const Logout = () => {
@@ -15,6 +16,7 @@ const Logout = () => {
     dispatch(unsetToken());
     dispatch(userActions.unsetNotice());
     dispatch(userActions.unsetFavorite());
+    dispatch(userApi.util.resetApiState());
   };
 
   return (

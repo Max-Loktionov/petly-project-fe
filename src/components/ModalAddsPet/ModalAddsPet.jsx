@@ -38,6 +38,7 @@ const ModalAddsPet = () => {
 
   const handleSubmitClick = async formdata => {
     try {
+      console.log("==== ModalAddsPet formdata:", formdata);
       addPet(formdata);
       dispatch(userActions.changeModalAddPets());
     } catch (error) {
