@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useAddPetMutation } from "../../redux/userApi";
 import { userActions } from "redux/user/userSlice";
+import changedateformat from "utilities/dateMaker";
 import {
   Label,
   Form,
@@ -38,7 +39,8 @@ const ModalAddsPet = () => {
 
   const handleSubmitClick = async formdata => {
     try {
-      console.log("==== ModalAddsPet formdata:", formdata);
+      const newDateFormat = changedateformat(formdata.birthday);
+      formdata.birthday = newDateFormat;
       addPet(formdata);
       dispatch(userActions.changeModalAddPets());
     } catch (error) {

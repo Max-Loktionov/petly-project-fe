@@ -51,7 +51,6 @@ export const userApi = createApi({
         const formad = new FormData();
         Object.keys(formdata).forEach(key => formad.append(key, formdata[key]));
         formad.set("avatar", formdata.avatar[0]);
-        console.log("======userApi formad:", formad);
         return {
           url: "/pets",
           method: "POST",

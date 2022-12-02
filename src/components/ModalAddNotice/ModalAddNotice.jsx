@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { noticeActions } from "redux/notices/noticeSlice";
 import { useAddNoticeMutation } from "redux/noticesApi";
+import changedateformat from "utilities/dateMaker";
 
 import {
   BtnContainer,
@@ -63,11 +64,14 @@ function ModalAddNotice() {
 
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
   const textRegexp = /[a-zA-Z]+/;
-  // const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   const handleSubmitClick = async formdata => {
     try {
       formdata.male = sex;
+
+      const newDateFormat = changedateformat(formdata.birthday);
+      formdata.birthday = newDateFormat;
+
       await addNotice({ formdata, noticeCategory });
       dispatch(noticeActions.changeModalAddNotice());
     } catch (error) {
@@ -188,10 +192,6 @@ function ModalAddNotice() {
               placeholder="Set date"
               {...register("birthday", {
                 message: "birthday should  contain only numbers.",
-                // pattern: {
-                //   value: dateRegexp,
-                //   message: "birthday should  contain only numbers.",
-                // },
               })}
             />
             {errors.birth && <ErrorText role="alert">{errors.birth?.message}</ErrorText>}
