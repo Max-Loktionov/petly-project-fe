@@ -31,8 +31,8 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   const { userActions } = userSlice;
   const [userNotice, setUserNotics] = useState(notieceId);
 
-  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
-  const BASE_URL = `${SERVER_NAME}/`;
+  // const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  // const BASE_URL = `${SERVER_NAME}/`;      // is not using now due to cloudinary
   // const BASE_URL = "https://petly-be.herokuapp.com/"; //is not using now
   const openModalNotice = id => {
     dispatch(noticeActions.changeModalViewNotice(id));
@@ -112,7 +112,7 @@ const NoticeCategoryItem = ({ id, name, title, birthday, breed, category, male, 
   return (
     <Item>
       <ImageThumb>
-        <Image src={image ? BASE_URL + image : defoultImage} alt={title}></Image>
+        <Image src={image ? image : defoultImage} alt={title}></Image>
         <Category>{category}</Category>
         <BtnFavorite type="button" onClick={handleClickFavorite}>
           <img src={isFavorite ? like : unlike} alt="unlike" />

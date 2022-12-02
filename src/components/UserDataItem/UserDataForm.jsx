@@ -41,8 +41,8 @@ const UserDataForm = () => {
   // const BASE_URL = "https://petly-be.herokuapp.com/";  //is not using now
   const imgUrl = result?.avatar;
   const imgAlt = result?.name;
-  const birthday = user.data?.result?.birthday;
-  const city = user.data?.result?.city;
+  const birthday = result?.birthday;
+  const city = result?.city;
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const nameRegex = /[a-zA-Z]+/;

@@ -9,7 +9,7 @@ import { userSlice } from "redux/user";
 import { useState } from "react";
 import { useAddFavoriteNoticeMutation } from "redux/userApi";
 
-function ModalNotice({ onClose, favorite }) {
+function ModalNotice() {
   const id = useSelector(({ notice }) => notice.modalViewNotice.id);
   const isFavorite = useSelector(({ notice }) => notice.modalViewNotice.isFavorite);
   const token = useSelector(({ auth }) => auth.token);
@@ -33,8 +33,8 @@ function ModalNotice({ onClose, favorite }) {
     return setFavorited(true);
   };
 
-  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
-  const BASE_URL = `${SERVER_NAME}/`;
+  // const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  // const BASE_URL = `${SERVER_NAME}/`;
   // const BASE_URL = "https://petly-be.herokuapp.com/";  // is not using now
   return (
     <div>
@@ -42,7 +42,7 @@ function ModalNotice({ onClose, favorite }) {
         <>
           <ImageContainer>
             <PictureData>
-              <img src={image ? BASE_URL + image : defoultImage} alt={data.notice.title}></img>
+              <img src={image ? image : defoultImage} alt={data.notice.title}></img>
               <Cathegory>{data.notice.category}</Cathegory>
             </PictureData>
             <div>

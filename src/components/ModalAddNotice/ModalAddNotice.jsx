@@ -183,7 +183,7 @@ function ModalAddNotice() {
 
             <InputsNames> Day of birth</InputsNames>
             <input
-              type="text"
+              type="date"
               name="birth"
               placeholder="Set date"
               {...register("birthday", {
