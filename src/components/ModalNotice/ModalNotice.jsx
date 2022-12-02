@@ -33,8 +33,8 @@ function ModalNotice({ onClose, favorite }) {
     return setFavorited(true);
   };
 
-  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
-  const BASE_URL = `${SERVER_NAME}/`;
+  // const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  // const BASE_URL = `${SERVER_NAME}/`;   // no nedd due to cloudinary
   // const BASE_URL = "https://petly-be.herokuapp.com/";  // is not using now
   return (
     <div>
@@ -42,7 +42,7 @@ function ModalNotice({ onClose, favorite }) {
         <>
           <ImageContainer>
             <PictureData>
-              <img src={image ? BASE_URL + image : defoultImage} alt={data.notice.title}></img>
+              <img src={image ? image : defoultImage} alt={data.notice.title}></img>
               <Cathegory>{data.notice.category}</Cathegory>
             </PictureData>
             <div>

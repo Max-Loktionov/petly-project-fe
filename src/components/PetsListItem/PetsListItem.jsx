@@ -11,14 +11,14 @@ const PetsListItem = ({ id, name, birthday, breed, comment, avatar }) => {
 
   isDeleting && toast.success(`😿 ${name} was removed`);
 
-  const SERVER_NAME = process.env.REACT_APP_SITE_URL;
-  const BASE_URL = `${SERVER_NAME}/`;
+  // const SERVER_NAME = process.env.REACT_APP_SITE_URL;
+  // const BASE_URL = `${SERVER_NAME}/`;
 
   // const BASE_URL = "https://petly-be.herokuapp.com/";   //is not using now
 
   return (
     <PetItem>
-      <ImgPet src={avatar ? BASE_URL + avatar : devaultIcon} alt={`${name}`}></ImgPet>
+      <ImgPet src={avatar ? avatar : devaultIcon} alt={`${name}`}></ImgPet>
       <BoxInfo>
         <DeleteBtm type="button" disabled={isDeleting} onClick={() => deletePet(id)}>
           <DelIcon />
