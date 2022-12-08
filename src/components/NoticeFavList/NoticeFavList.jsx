@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useGetUserFavoriteQuery } from "redux/userApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
-import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
+import { NotFoundBox, NotFound } from "pages/NewsPage/newsPage.styled";
 
 const NoticeFavList = ({ filter, category, perPage, page, favoriteNoticeId, notieceId }) => {
   const [noti, setNoti] = useState([]);

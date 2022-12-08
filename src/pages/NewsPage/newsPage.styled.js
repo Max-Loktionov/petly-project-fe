@@ -2,17 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   @media ${p => p.theme.media.mobile} {
-    margin: 0 42px 100px 42px;
-    padding-top: 100px;
+    padding: 100px 20px 100px 20px;
   }
 
   @media ${p => p.theme.media.tablet} {
-    margin: 0 32px 100px 32px;
-    padding-top: 160px;
+    padding: 160px 32px 100px 32px;
   }
+
   @media ${p => p.theme.media.desktop} {
-    margin: 0 16px 200px 16px;
-    padding-top: 126px;
+    padding: 126px 16px 200px 16px;
   }
 `;
 
@@ -21,13 +19,15 @@ export const Title = styled.h1`
     text-align: center;
     margin-bottom: 28px;
     font-size: 24px;
-    line-height: 33px;
+    line-height: 1.36;
   }
+
   @media ${p => p.theme.media.tablet} {
     margin-bottom: 40px;
     font-size: 48px;
     line-height: 66px;
   }
+  
   @media ${p => p.theme.media.desktop} {
     margin-bottom: 40px;
     font-size: 48px;
@@ -44,17 +44,20 @@ export const SearchBox = styled.form`
     width: 280px;
     height: 40px;
   }
+
   @media ${p => p.theme.media.tablet} {
     margin-bottom: 60px;
     width: 608px;
     height: 44px;
   }
+
   @media ${p => p.theme.media.desktop} {
     margin-bottom: 60px;
     width: 608px;
     height: 44px;
   }
 `;
+
 export const Button = styled.button`
   position: absolute;
   right: 15px;
@@ -79,10 +82,8 @@ export const Input = styled.input`
       color: #535353;
     }
   }
+
   @media ${p => p.theme.media.tablet} {
-    height: 44px;
-  }
-  @media ${p => p.theme.media.desktop} {
     height: 44px;
   }
 `;
@@ -92,6 +93,7 @@ export const Box = styled.ul`
     display: flex;
     flex-wrap: wrap;
   }
+
   @media ${p => p.theme.media.desktop} {
     display: flex;
     flex-wrap: wrap;
@@ -107,6 +109,7 @@ export const Card = styled.li`
       margin-bottom: 0px;
     }
   }
+
   @media ${p => p.theme.media.tablet} {
     width: calc((100% - 32px) / 2);
     margin-left: 32px;
@@ -116,11 +119,13 @@ export const Card = styled.li`
       margin-left: 0px;
     }
   }
+
   @media ${p => p.theme.media.desktop} {
     width: calc((100% - 64px) / 3);
     &:nth-child(2n + 1) {
       margin-left: 32px;
     }
+
     &:nth-child(3n + 1) {
       margin-left: 0px;
     }
@@ -128,12 +133,14 @@ export const Card = styled.li`
 `;
 
 export const NotFound = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   color: red;
+
   @media ${p => p.theme.media.tablet} {
     font-size: 30px;
   }
 `;
+
 export const NotFoundBox = styled.div`
   display: flex;
   justify-content: center;

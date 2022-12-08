@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Card, Title } from "./OurFriendsPage.styled";
+import { Container, Box, Card, Title } from "./ourFriendsPage.styled";
 import FriendCard from "../../components/OurFriendsCard/FriendCard";
 import getFriends from "./getFriends";
 

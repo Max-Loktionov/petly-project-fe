@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useGetNoticesQuery } from "redux/noticesApi";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.styled";
 import NoticeCategoryItem from "components/NoticeCategoryItem";
-import { NotFoundBox, NotFound } from "pages/NewsPage/NewsPage.styled";
+import { NotFoundBox, NotFound } from "pages/NewsPage/newsPage.styled";
 
 const NoticeAllList = ({ filter, category, perPage, page, favoriteNoticeId, notieceId }) => {
   const [noti, setNoti] = useState([]);
