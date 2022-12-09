@@ -72,7 +72,7 @@ export const Section = styled.div`
   background-image: url(${bgImgMobile});
   background-repeat: no-repeat;
   background-position: bottom;
-  background-size: 100%;
+  background-size: cover;
 
   @media ${p => p.theme.media.tablet} {
     background-image: url(${bgImgTablet});

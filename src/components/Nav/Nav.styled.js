@@ -11,10 +11,14 @@ export const NavItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
+  :not(:last-child) {
+    margin-bottom: 24px;
+  }
 
   @media ${p => p.theme.media.desktop} {
     :not(:last-child) {
       margin-right: 80px;
+      margin-bottom: 0;
     }
   }
 `;
