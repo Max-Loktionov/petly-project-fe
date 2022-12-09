@@ -24,10 +24,10 @@ export const Container = styled.div`
   color: ${p => p.theme.colors.inputModal};
   background-image: url(${homeBgiMobile});
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-position: bottom, bottom;
+  background-size: cover cover;
   @media ${p => p.theme.media.tablet} {
-    height: auto;
+    /* height: auto; */
     padding-top: 160px;
     padding-left: 32px;
     padding-right: 32px;
