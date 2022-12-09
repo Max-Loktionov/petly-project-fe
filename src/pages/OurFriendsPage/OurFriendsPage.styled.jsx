@@ -2,17 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   @media ${p => p.theme.media.mobile} {
-    margin: 0 20px 100px 20px;
-    padding-top: 105px;
+    padding: 105px 20px 100px 20px;
+  }
+  @media ${p => p.theme.media.tablet} {
+    padding: 160px 32px 100px 32px;
   }
 
-  @media ${p => p.theme.media.tablet} {
-    margin: 0 32px 100px 32px;
-    padding-top: 160px;
-  }
   @media ${p => p.theme.media.desktop} {
-    margin: 0 16px 100px 16px;
-    padding-top: 129px;
+    padding: 129px 16px 100px 16px;
   }
 `;
 
@@ -52,7 +49,6 @@ export const Card = styled.li`
     width: 280px;
     margin-bottom: 12px;
     background-color: #ffffff;
-
     &:nth-last-child() {
       margin-bottom: 0px;
     }

@@ -2,17 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   @media ${p => p.theme.media.mobile} {
-    margin: 0 42px 100px 42px;
-    padding-top: 100px;
+    padding: 100px 20px 100px 20px;
   }
-
   @media ${p => p.theme.media.tablet} {
-    margin: 0 32px 100px 32px;
-    padding-top: 160px;
+    padding: 160px 32px 100px 32px;
   }
   @media ${p => p.theme.media.desktop} {
-    margin: 0 16px 200px 16px;
-    padding-top: 126px;
+    padding: 126px 16px 200px 16px;
   }
 `;
 
@@ -21,13 +17,14 @@ export const Title = styled.h1`
     text-align: center;
     margin-bottom: 28px;
     font-size: 24px;
-    line-height: 33px;
+    line-height: 1.36;
   }
   @media ${p => p.theme.media.tablet} {
     margin-bottom: 40px;
     font-size: 48px;
     line-height: 66px;
   }
+
   @media ${p => p.theme.media.desktop} {
     margin-bottom: 40px;
     font-size: 48px;
@@ -55,6 +52,7 @@ export const SearchBox = styled.form`
     height: 44px;
   }
 `;
+
 export const Button = styled.button`
   position: absolute;
   right: 15px;
@@ -65,24 +63,20 @@ export const Button = styled.button`
 `;
 
 export const Input = styled.input`
-  @media ${p => p.theme.media.mobile} {
-    display: block;
-    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-    border: 1px white solid;
-    border-radius: 20px;
-    padding-left: 15px;
-    width: 100%;
-    height: 40px;
-    background-color: #ffffff;
-
-    ::placeholder {
-      color: #535353;
-    }
+  /* @media ${p => p.theme.media.mobile} { */
+  display: block;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border: 1px white solid;
+  border-radius: 20px;
+  padding-left: 15px;
+  width: 100%;
+  height: 40px;
+  background-color: #ffffff;
+  ::placeholder {
+    color: #535353;
   }
+  /* } */
   @media ${p => p.theme.media.tablet} {
-    height: 44px;
-  }
-  @media ${p => p.theme.media.desktop} {
     height: 44px;
   }
 `;
@@ -99,14 +93,14 @@ export const Box = styled.ul`
 `;
 
 export const Card = styled.li`
-  @media ${p => p.theme.media.mobile} {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 40px;
-    &:nth-last-child() {
-      margin-bottom: 0px;
-    }
+  /* @media ${p => p.theme.media.mobile} { */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  &:nth-last-child() {
+    margin-bottom: 0px;
   }
+  /* } */
   @media ${p => p.theme.media.tablet} {
     width: calc((100% - 32px) / 2);
     margin-left: 32px;
@@ -128,12 +122,13 @@ export const Card = styled.li`
 `;
 
 export const NotFound = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   color: red;
   @media ${p => p.theme.media.tablet} {
     font-size: 30px;
   }
 `;
+
 export const NotFoundBox = styled.div`
   display: flex;
   justify-content: center;
