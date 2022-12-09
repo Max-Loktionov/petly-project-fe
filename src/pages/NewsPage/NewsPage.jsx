@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Container, Box, Card, Title, SearchBox, Input, Button, NotFoundBox, NotFound } from "./NewsPage.styled";
+import { Container, Box, Card, Title, SearchBox, Input, Button, NotFoundBox, NotFound } from "./newsPage.styled";
 import NewsCard from "../../components/NewsCards/NewsCard";
 import searchIcon from "../../img/VectorG.svg";
 import getNews from "./getNews";
