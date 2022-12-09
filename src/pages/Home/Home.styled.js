@@ -13,7 +13,7 @@ export const LearnButton = styled(StyledButton)`
 `;
 
 export const Container = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,8 +24,8 @@ export const Container = styled.div`
   color: ${p => p.theme.colors.inputModal};
   background-image: url(${homeBgiMobile});
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: 100%;
+  background-position: center center;
+  background-size: cover;
   @media ${p => p.theme.media.tablet} {
     height: auto;
     padding-top: 160px;
@@ -33,16 +33,13 @@ export const Container = styled.div`
     padding-right: 32px;
     color: ${p => p.theme.colors.accent};
     background-image: url(${homeBgiTablet});
-    background-size: 100%;
   }
   @media ${p => p.theme.media.desktop} {
-    height: 100vh;
     flex-direction: row;
     padding-left: 16px;
     padding-right: 0;
     color: ${p => p.theme.colors.white};
     background-image: url(${homeHartBgi}), url(${homeBgiDt});
-    background-size: 91.93px 89px, 100%;
     background-position: 59.6% 26.28%, bottom;
   }
 `;
@@ -80,13 +77,4 @@ export const Title = styled.h1`
     padding: 0;
     font-size: 68px;
   }
-`;
-
-export const SecretButton = styled.button`
-  position: absolute;
-  visibility: hidden;
-  top: ${Math.random() * 1000}px;
-  left: ${Math.random() * 1000}px;
-  padding: 10px;
-  border: 1px solid black;
 `;

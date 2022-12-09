@@ -111,7 +111,8 @@ export const ButtonWrapper = styled.div`
 export const ButtonEye = styled(Button)`
   position: absolute;
   padding: 0;
-  right: 104px;
+  right: 24px;
+  /* right: 104px; */
   width: 24px;
 
   border: none;
@@ -120,4 +121,7 @@ export const ButtonEye = styled(Button)`
   cursor: pointer;
   background-color: ${p => p.theme.colors.background};
   pointer-events: auto;
+  @media ${p => p.theme.media.tablet} {
+    right: 104px;
+  }
 `;
